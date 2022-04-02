@@ -147,13 +147,13 @@ func (s *Search) SearchFiles() error {
 	}
 
 	// save excel file
-	if err := wb.SaveAs(savePath + "/Excel.xlsx"); err != nil {
+	if err := wb.SaveAs(savePath + "/" + s.Word + ".xlsx"); err != nil {
 		return err
 	}
 
 	// Generate a json file
 	file, _ := json.MarshalIndent(JsonData, "", " ")
-	_ = ioutil.WriteFile(savePath+"/Json.json", file, 0644)
+	_ = ioutil.WriteFile(savePath+"/"+s.Word+".json", file, 0644)
 
 	// print on the screen the end of search
 	DrawEndSearch(s.Path, savePath, id)
