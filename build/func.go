@@ -62,17 +62,23 @@ func (s *Search) SearchFiles() error {
 				log.Fatal(err)
 			}
 
-			if !strings.Contains(strings.ToLower(fileStat.Name()), strings.ToLower(s.Word)) {
-				return nil
-			}
-			if strings.Split(strings.ToLower(fileStat.Name()), ".")[0] != strings.ToLower(s.Word) {
-				return nil
-			}
-			if !strings.HasPrefix(strings.ToLower(fileStat.Name()), strings.ToLower(s.Word)) {
-				return nil
-			}
-			if !strings.HasSuffix(strings.Split(strings.ToLower(fileStat.Name()), ".")[0], strings.ToLower(s.Word)) {
-				return nil
+			switch strings.ToLower(s.Word) {
+			case "%":
+				if !strings.Contains(strings.ToLower(fileStat.Name()), strings.ToLower(s.Word)) {
+					return nil
+				}
+			case "=":
+				if strings.Split(strings.ToLower(fileStat.Name()), ".")[0] != strings.ToLower(s.Word) {
+					return nil
+				}
+			case "^":
+				if !strings.HasPrefix(strings.ToLower(fileStat.Name()), strings.ToLower(s.Word)) {
+					return nil
+				}
+			case "$":
+				if !strings.HasSuffix(strings.Split(strings.ToLower(fileStat.Name()), ".")[0], strings.ToLower(s.Word)) {
+					return nil
+				}
 			}
 
 			id++
