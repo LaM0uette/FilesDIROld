@@ -56,11 +56,12 @@ func (s *Search) SearchFiles() error {
 			return err
 		}
 		if info.IsDir() == false {
-			id++
 
 			if !strings.Contains(strings.ToLower(path), strings.ToLower(s.Word)) {
-				return nil
+
 			}
+
+			id++
 
 			fileStat, err := os.Stat(path)
 			if err != nil {
@@ -99,6 +100,6 @@ func (s *Search) SearchFiles() error {
 	file, _ := json.MarshalIndent(CsvData, "", " ")
 	_ = ioutil.WriteFile("FilesDIR_Data.json", file, 0644)
 
-	DrawEndSearch(s.Path, "f", "g", id-1)
+	DrawEndSearch(s.Path, "f", "g", id)
 	return nil
 }
