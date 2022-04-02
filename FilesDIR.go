@@ -69,4 +69,7 @@ func main() {
 	if err != nil {
 		return
 	}
+
+	os.Exit(1)
+
 }
