@@ -1,16 +1,21 @@
 package main
 
-// Data : Struct of data for each file searched
-type Data struct {
-	Id   int    `json:"id"`
-	Name string `json:"Nom"`
-	Date string `json:"Date"`
-	Path string `json:"Lien"`
-}
+import (
+	"flag"
+	"fmt"
+)
 
-// Reader : Var for read the user input
-//var Reader = bufio.NewReader(os.Stdin)
+// Data : Struct of data for each file searched
+// type Data struct {
+// 	Id   int    `json:"id"`
+// 	Name string `json:"Nom"`
+// 	Date string `json:"Date"`
+// 	Path string `json:"Lien"`
+// }
 
 func main() {
+
+	var DataSearched = flag.String("mode", "===", "Mode de recherche.")
+	fmt.Println(DataSearched)
 
 }
