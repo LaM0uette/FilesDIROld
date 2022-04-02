@@ -39,7 +39,7 @@ func CurrentDir() string {
 func (s *Search) SearchFiles() error {
 
 	var CsvData []DataJson
-	id := 1
+	id := 0
 
 	DrawStartSearch()
 
@@ -55,7 +55,12 @@ func (s *Search) SearchFiles() error {
 			fmt.Println(err)
 			return err
 		}
-		if info.IsDir() == false && strings.Contains(strings.ToLower(path), strings.ToLower(s.Word)) {
+		if info.IsDir() == false {
+			id++
+
+			if !strings.Contains(strings.ToLower(path), strings.ToLower(s.Word)) {
+				return nil
+			}
 
 			fileStat, err := os.Stat(path)
 			if err != nil {
@@ -78,7 +83,6 @@ func (s *Search) SearchFiles() error {
 			}
 			CsvData = append(CsvData, data)
 
-			id++
 		}
 
 		return nil
