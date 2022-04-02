@@ -1,8 +1,10 @@
 package build
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
+	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -14,6 +16,14 @@ type Search struct {
 	Word      string
 	Path      string
 	Extension string
+}
+
+type DataJson struct {
+	Id       int    `json:"id"`
+	File     string `json:"Fichier"`
+	Date     string `json:"Date"`
+	PathFile string `json:"Lien_Fichier"`
+	Path     string `json:"Lien"`
 }
 
 // CurrentDir : Return the actual directory
@@ -28,8 +38,11 @@ func CurrentDir() string {
 
 func (s *Search) SearchFiles() error {
 
+	var CsvData []DataJson
 	id := 1
+
 	DrawStartSearch()
+
 	wb := excelize.NewFile()
 	wb.SetCellValue("Sheet1", "A1", "id")
 	wb.SetCellValue("Sheet1", "B1", "Fichier")
@@ -55,6 +68,16 @@ func (s *Search) SearchFiles() error {
 			wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", id+1), fmt.Sprintf("%v", fileStat.ModTime()))
 			wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", id+1), path)
 			wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", id+1), filepath.Dir(path))
+
+			data := DataJson{
+				Id:       id,
+				File:     fileStat.Name(),
+				Date:     fmt.Sprintf("%v", fileStat.ModTime()),
+				PathFile: path,
+				Path:     filepath.Dir(path),
+			}
+			CsvData = append(CsvData, data)
+
 			id++
 		}
 
@@ -68,6 +91,9 @@ func (s *Search) SearchFiles() error {
 	if err := wb.SaveAs("FilesDIR_Data.xlsx"); err != nil {
 		log.Fatal(err)
 	}
+
+	file, _ := json.MarshalIndent(CsvData, "", " ")
+	_ = ioutil.WriteFile("FilesDIR_Data.json", file, 0644)
 
 	DrawEndSearch(s.Path, "f", "g", id)
 	return nil
