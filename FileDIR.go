@@ -3,6 +3,8 @@ package main
 import (
 	"Test/build"
 	"flag"
+	"fmt"
+	"os"
 )
 
 // Data : Struct of data for each file searched
@@ -30,6 +32,10 @@ func main() {
 
 	build.DrawStart()
 
-	s.SearchFiles()
+	err := s.SearchFiles()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
 }
