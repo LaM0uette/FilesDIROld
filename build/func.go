@@ -85,6 +85,10 @@ func (s *Search) SearchFiles() error {
 				}
 			}
 
+			if strings.Split(strings.ToLower(fileStat.Name()), ".")[1] != s.Extension {
+				return nil
+			}
+
 			id++
 
 			fmt.Printf("N°%v | Fichier: %v\n", id, fileStat.Name())
