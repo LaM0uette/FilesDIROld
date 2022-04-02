@@ -95,6 +95,6 @@ func (s *Search) SearchFiles() error {
 	file, _ := json.MarshalIndent(CsvData, "", " ")
 	_ = ioutil.WriteFile("FilesDIR_Data.json", file, 0644)
 
-	DrawEndSearch(s.Path, "f", "g", id)
+	DrawEndSearch(s.Path, "f", "g", id-1)
 	return nil
 }
