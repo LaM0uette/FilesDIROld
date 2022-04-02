@@ -20,7 +20,6 @@ func main() {
 	schMode2 := flag.Bool("beg", false, "^")
 	schMode3 := flag.Bool("end", false, "$")
 
-	//schMode := flag.String("m", "%", "Mode de recherche.")
 	schWord := flag.String("f", "", "Non de fichier.")
 	schExt := flag.String("e", "*", "Extension de fichier.")
 	schPath := flag.String("l", build.CurrentDir(), "Chemin de recherche.")
