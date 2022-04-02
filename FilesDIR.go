@@ -40,6 +40,8 @@ func main() {
 		fmt.Print("Chemin de recherche : ")
 		*schPath, _ = reader.ReadString('\n')
 		*schPath = strings.TrimSpace(*schPath)
+
+		fmt.Print("\n\n")
 	}
 
 	// generated the structure with data to search for files
