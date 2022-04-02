@@ -19,7 +19,7 @@ func main() {
 
 	schMode := flag.String("m", "%", "Mode de recherche.")
 	schWord := flag.String("f", "", "Non de fichier.")
-	schExt := flag.String("e", ".*", "Extension de fichier.")
+	schExt := flag.String("e", "*", "Extension de fichier.")
 	schPath := flag.String("l", build.CurrentDir(), "Extension de fichier.")
 	flag.Parse()
 

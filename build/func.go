@@ -85,7 +85,7 @@ func (s *Search) SearchFiles() error {
 				}
 			}
 
-			if strings.Split(strings.ToLower(fileStat.Name()), ".")[1] != s.Extension {
+			if s.Extension != "*" && strings.Split(strings.ToLower(fileStat.Name()), ".")[1] != s.Extension {
 				return nil
 			}
 
