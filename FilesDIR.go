@@ -21,6 +21,8 @@ func main() {
 	schPath := flag.String("l", build.CurrentDir(), "Chemin de recherche.")
 	flag.Parse()
 
+	Save := build.DesktopDir()
+
 	// print on screen the start of program
 	build.DrawStart()
 
@@ -43,6 +45,7 @@ func main() {
 		*schPath = strings.TrimSpace(*schPath)
 
 		fmt.Print("\n\n")
+		Save = build.CurrentDir()
 	}
 
 	// generated the structure with data to search for files
@@ -51,6 +54,7 @@ func main() {
 		Word:      *schWord,
 		Extension: *schExt,
 		Path:      *schPath,
+		Save:      Save,
 	}
 
 	// print on screen the start of search

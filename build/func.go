@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"os/user"
 	"path/filepath"
 	"strings"
 )
@@ -17,6 +18,7 @@ type Search struct {
 	Word      string
 	Path      string
 	Extension string
+	Save      string
 }
 
 // DataJson : Struct for generate json file
@@ -36,6 +38,17 @@ func CurrentDir() string {
 		os.Exit(1)
 	}
 	return pwd
+}
+
+// DesktopDir : Return the desktop directory
+func DesktopDir() string {
+	myself, err := user.Current()
+	if err != nil {
+		panic(err)
+	}
+	homedir := myself.HomeDir
+	desktop := homedir + "/Desktop/"
+	return desktop
 }
 
 // SearchFiles : Function for search all files with different criteria in folder and sub folders
