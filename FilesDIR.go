@@ -24,7 +24,7 @@ func main() {
 	// print on screen the start of program
 	build.DrawStart()
 
-	if *schCli {
+	if !*schCli {
 		fmt.Print("Mode de recherche : ")
 		*schMode, _ = reader.ReadString('\n')
 		*schMode = strings.TrimSpace(*schMode)
