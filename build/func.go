@@ -57,16 +57,19 @@ func (s *Search) SearchFiles() error {
 		}
 		if info.IsDir() == false {
 
-			if !strings.Contains(strings.ToLower(path), strings.ToLower(s.Word)) {
-
-			}
-
-			id++
-
 			fileStat, err := os.Stat(path)
 			if err != nil {
 				log.Fatal(err)
 			}
+
+			if !strings.Contains(strings.ToLower(fileStat.Name()), strings.ToLower(s.Word)) {
+				return nil
+			}
+			if strings.ToLower(fileStat.Name()) != strings.ToLower(s.Word) {
+				return nil
+			}
+
+			id++
 
 			fmt.Printf("N°%v | Fichier: %v\n", id, fileStat.Name())
 			wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", id+1), id)
