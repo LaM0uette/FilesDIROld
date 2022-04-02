@@ -3,7 +3,6 @@ package main
 import (
 	"Test/build"
 	"flag"
-	"fmt"
 )
 
 // Data : Struct of data for each file searched
@@ -17,12 +16,20 @@ import (
 func main() {
 
 	schMode := flag.String("m", "%", "Mode de recherche.")
-	schFile := flag.String("f", "", "Non de fichier.")
+	schWord := flag.String("f", "", "Non de fichier.")
 	schExt := flag.String("e", ".*", "Extension de fichier.")
+	schPath := flag.String("l", build.CurrentDir(), "Extension de fichier.")
 	flag.Parse()
+
+	s := build.Search{
+		Mode:      *schMode,
+		Word:      *schWord,
+		Extension: *schExt,
+		Path:      *schPath,
+	}
 
 	build.DrawStart()
 
-	fmt.Println(*schMode, *schFile, *schExt)
+	s.SearchFiles()
 
 }
