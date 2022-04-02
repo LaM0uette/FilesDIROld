@@ -2,8 +2,10 @@ package build
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 type Search struct {
@@ -25,10 +27,22 @@ func CurrentDir() string {
 
 func (s *Search) SearchFiles() error {
 
+	id := 0
+
 	err := filepath.Walk(s.Path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			fmt.Println(err)
 			return err
+		}
+		if info.IsDir() == false && strings.Contains(strings.ToLower(path), strings.ToLower(s.Word)) {
+
+			fileStat, err := os.Stat(path)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			fmt.Printf("Nom: %v | Id: %v\n", fileStat.Name(), id)
+			id++
 		}
 
 		return nil

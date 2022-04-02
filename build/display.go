@@ -16,5 +16,5 @@ func DrawStart() {
 		╚═╝     ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝
 		Version: %v               Auteur: %s
 
- `, config.Config().Version, config.Config().Author)
+`, config.Config().Version, config.Config().Author)
 }
