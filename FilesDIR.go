@@ -2,10 +2,14 @@ package main
 
 import (
 	"Test/build"
+	"bufio"
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 )
+
+var reader = bufio.NewReader(os.Stdin)
 
 func main() {
 
@@ -14,11 +18,28 @@ func main() {
 	schMode := flag.String("m", "%", "Mode de recherche.")
 	schWord := flag.String("f", "", "Non de fichier.")
 	schExt := flag.String("e", "*", "Extension de fichier.")
-	schPath := flag.String("l", build.CurrentDir(), "Extension de fichier.")
+	schPath := flag.String("l", build.CurrentDir(), "Chemin de recherche.")
 	flag.Parse()
 
+	// print on screen the start of program
+	build.DrawStart()
+
 	if *schCli {
-		fmt.Println(*schCli)
+		fmt.Print("Mode de recherche : ")
+		*schMode, _ = reader.ReadString('\n')
+		*schMode = strings.TrimSpace(*schMode)
+
+		fmt.Print("Non de fichier : ")
+		*schWord, _ = reader.ReadString('\n')
+		*schWord = strings.TrimSpace(*schWord)
+
+		fmt.Print("Extension de fichier : ")
+		*schExt, _ = reader.ReadString('\n')
+		*schExt = strings.TrimSpace(*schExt)
+
+		fmt.Print("Chemin de recherche : ")
+		*schPath, _ = reader.ReadString('\n')
+		*schPath = strings.TrimSpace(*schPath)
 	}
 
 	// generated the structure with data to search for files
@@ -28,9 +49,6 @@ func main() {
 		Extension: *schExt,
 		Path:      *schPath,
 	}
-
-	// print on screen the start of program
-	build.DrawStart()
 
 	// print on screen the start of search
 	err := s.SearchFiles()
