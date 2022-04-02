@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
 	"io/ioutil"
-	"log"
 	"os"
 	"os/user"
 	"path/filepath"
@@ -54,8 +53,8 @@ func DesktopDir() string {
 // SearchFiles : Function for search all files with different criteria in folder and sub folders
 func (s *Search) SearchFiles() error {
 
-	var CsvData []DataJson // Var for generate json file
-	id := 0                // count number file searched
+	var JsonData []DataJson // Var for generate json file
+	id := 0                 // count number file searched
 
 	DrawStartSearch() // print on the screen the start of search
 
@@ -80,7 +79,7 @@ func (s *Search) SearchFiles() error {
 			// look at the stats of file
 			fileStat, err := os.Stat(path)
 			if err != nil {
-				log.Fatal(err)
+				return err
 			}
 
 			// condition of search Mode ( = | % | ^ | $ )
@@ -130,7 +129,7 @@ func (s *Search) SearchFiles() error {
 				PathFile: path,
 				Path:     filepath.Dir(path),
 			}
-			CsvData = append(CsvData, data)
+			JsonData = append(JsonData, data)
 
 		}
 		return nil
@@ -140,16 +139,23 @@ func (s *Search) SearchFiles() error {
 		return err
 	}
 
+	// Create a new folder to save data file
+	savePath := s.Save + "/Data"
+	err = os.MkdirAll(savePath, os.ModePerm)
+	if err != nil {
+		return err
+	}
+
 	// save excel file
-	if err := wb.SaveAs("FilesDIR_Data.xlsx"); err != nil {
-		log.Fatal(err)
+	if err := wb.SaveAs(savePath + ".xlsx"); err != nil {
+		return err
 	}
 
 	// Generate a json file
-	file, _ := json.MarshalIndent(CsvData, "", " ")
-	_ = ioutil.WriteFile("FilesDIR_Data.json", file, 0644)
+	file, _ := json.MarshalIndent(JsonData, "", " ")
+	_ = ioutil.WriteFile(savePath+".json", file, 0644)
 
 	// print on the screen the end of search
-	DrawEndSearch(s.Path, "f", "g", id)
+	DrawEndSearch(s.Path, savePath, id)
 	return nil
 }
