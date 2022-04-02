@@ -15,7 +15,11 @@ import (
 
 func main() {
 
-	var DataSearched = flag.String("mode", "===", "Mode de recherche.")
-	fmt.Println(DataSearched)
+	schMode := flag.String("m", "%", "Mode de recherche.")
+	schFile := flag.String("f", "", "Non de fichier.")
+	schExt := flag.String("e", ".*", "Extension de fichier.")
+	flag.Parse()
+
+	fmt.Println(*schMode, *schFile, *schExt)
 
 }
