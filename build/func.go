@@ -27,7 +27,9 @@ func CurrentDir() string {
 
 func (s *Search) SearchFiles() error {
 
-	id := 0
+	id := 1
+
+	DrawStartSearch()
 
 	err := filepath.Walk(s.Path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -41,7 +43,7 @@ func (s *Search) SearchFiles() error {
 				log.Fatal(err)
 			}
 
-			fmt.Printf("Nom: %v | Id: %v\n", fileStat.Name(), id)
+			fmt.Printf("N°%v | Fichier: %v\n", id, fileStat.Name())
 			id++
 		}
 
@@ -51,5 +53,7 @@ func (s *Search) SearchFiles() error {
 		fmt.Println(err)
 		return err
 	}
+
+	DrawEndSearch(s.Path, "f", "g", id)
 	return nil
 }
