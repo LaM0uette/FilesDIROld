@@ -61,7 +61,7 @@ func (s *Search) SearchFiles() error {
 			if err != nil {
 				log.Fatal(err)
 			}
-			fmt.Println(strings.ToLower(s.Word))
+
 			switch s.Mode {
 			case "%":
 				if !strings.Contains(strings.ToLower(fileStat.Name()), strings.ToLower(s.Word)) {
