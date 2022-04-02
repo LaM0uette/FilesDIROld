@@ -24,6 +24,7 @@ func main() {
 	// print on screen the start of program
 	build.DrawStart()
 
+	// if is not mode cli, the user need to fill the settings of search
 	if !*schCli {
 		fmt.Print("Mode de recherche : ")
 		*schMode, _ = reader.ReadString('\n')
