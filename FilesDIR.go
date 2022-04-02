@@ -10,11 +10,16 @@ import (
 func main() {
 
 	// setup flag for insert data of search in cli
+	schCli := flag.Bool("r", false, "CLI / Run")
 	schMode := flag.String("m", "%", "Mode de recherche.")
 	schWord := flag.String("f", "", "Non de fichier.")
 	schExt := flag.String("e", "*", "Extension de fichier.")
 	schPath := flag.String("l", build.CurrentDir(), "Extension de fichier.")
 	flag.Parse()
+
+	if *schCli {
+		fmt.Println(*schCli)
+	}
 
 	// generated the structure with data to search for files
 	s := build.Search{
