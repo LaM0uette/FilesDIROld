@@ -7,14 +7,6 @@ import (
 	"os"
 )
 
-// Data : Struct of data for each file searched
-// type Data struct {
-// 	Id   int    `json:"id"`
-// 	Name string `json:"Nom"`
-// 	Date string `json:"Date"`
-// 	Path string `json:"Lien"`
-// }
-
 func main() {
 
 	schMode := flag.String("m", "%", "Mode de recherche.")
@@ -37,5 +29,4 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-
 }
