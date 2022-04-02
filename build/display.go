@@ -2,9 +2,7 @@ package build
 
 import (
 	"Test/config"
-	"bufio"
 	"fmt"
-	"os"
 )
 
 // DrawStart : Display the screen of start application
@@ -39,10 +37,4 @@ Emplacement de sauvegarde: %s
 
 
 `, path, nbrFiles, saveFolder)
-
-	fmt.Print("Appuyer sur Entrée pour quitter...")
-	_, err := bufio.NewReader(os.Stdin).ReadBytes('\n')
-	if err != nil {
-		return
-	}
 }
