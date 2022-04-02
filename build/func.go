@@ -65,7 +65,13 @@ func (s *Search) SearchFiles() error {
 			if !strings.Contains(strings.ToLower(fileStat.Name()), strings.ToLower(s.Word)) {
 				return nil
 			}
-			if strings.ToLower(fileStat.Name()) != strings.ToLower(s.Word) {
+			if strings.Split(strings.ToLower(fileStat.Name()), ".")[0] != strings.ToLower(s.Word) {
+				return nil
+			}
+			if !strings.HasPrefix(strings.ToLower(fileStat.Name()), strings.ToLower(s.Word)) {
+				return nil
+			}
+			if !strings.HasSuffix(strings.Split(strings.ToLower(fileStat.Name()), ".")[0], strings.ToLower(s.Word)) {
 				return nil
 			}
 
