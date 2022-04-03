@@ -26,3 +26,4 @@ Then, you have to add the path of the executable `FilesDIR.exe` by creating a ne
 
 ### Use
 
+Open the desired folder, then, in the explorer, launch the FilesDIR program by giving it its arguments.
