@@ -35,8 +35,15 @@ required arguments:
 
 possible arguments :   
 `-mode=%` : It allows you to choose the keyword you want to search for.   
-Ex: `-mode==` Search exact word in file name   
-Ex: `-mode=%` Search word is contains in file name   
-Ex: `-mode=^` the name of the file starts with the searched word   
-Ex: `-mode=$` the name of the file ends with the searched word   
+Ex: `-mode==` Search exact word in file name.    
+Ex: `-mode=%` Search word is contains in file name.    
+Ex: `-mode=^` the name of the file starts with the searched word.    
+Ex: `-mode=$` the name of the file ends with the searched word.    
 
+`-word=%` : Is the word key for search.    
+Ex: `-word=test` Search `test` in file name.    
+
+`-ext=%` : Is the extension of file.    
+Ex: `-ext=xlsx` Search all files with `.xlsx` extension    
+
+`-maj` : Allows if set to take into account uppercase letters.    
