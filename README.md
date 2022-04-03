@@ -15,7 +15,7 @@ You can also filter files by extension and with or without the capital letters.
 For use FilesDIR, you can simply launch it from anywhere, but it is better to add it to the environment variables.   
 
 To do this, add the path of the folder containing the module to the environment variables `PATH`:   
-![var1](https://github.com/LaM0uette/FilesDIR/tree/V0.2/docs/img/var1.png)
+![var1](https://github.com/LaM0uette/FilesDIR/blob/V0.2/docs/img/var1.PNG)
 ![var2](https://github.com/LaM0uette/FilesDIR/tree/V0.2/docs/img/var2.png)
 ![var3](https://github.com/LaM0uette/FilesDIR/tree/V0.2/docs/img/var3.png)
 ![var4](https://github.com/LaM0uette/FilesDIR/tree/V0.2/docs/img/var4.png)
