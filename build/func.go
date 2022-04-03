@@ -15,8 +15,9 @@ import (
 type Search struct {
 	Mode      string
 	Word      string
-	Path      string
 	Extension string
+	Maj       bool
+	Path      string
 	Save      string
 }
 
@@ -52,6 +53,8 @@ func DesktopDir() string {
 
 // SearchFiles : Function for search all files with different criteria in folder and sub folders
 func (s *Search) SearchFiles() error {
+	word := strToLower(s.Word, s.Maj)
+	var searchWord string
 
 	var JsonData []DataJson // Var for generate json file
 	id := 0                 // count number file searched
@@ -82,32 +85,34 @@ func (s *Search) SearchFiles() error {
 				return err
 			}
 
+			searchWord = strToLower(fileStat.Name(), s.Maj)
+
 			// condition of search Mode ( = | % | ^ | $ )
 			switch s.Mode {
 			case "%":
-				if !strings.Contains(strings.ToLower(fileStat.Name()), strings.ToLower(s.Word)) {
+				if !strings.Contains(searchWord, word) {
 					return nil
 				}
 			case "=":
-				if strings.Split(strings.ToLower(fileStat.Name()), ".")[0] != strings.ToLower(s.Word) {
+				if strings.Split(searchWord, ".")[0] != word {
 					return nil
 				}
 			case "^":
-				if !strings.HasPrefix(strings.ToLower(fileStat.Name()), strings.ToLower(s.Word)) {
+				if !strings.HasPrefix(searchWord, word) {
 					return nil
 				}
 			case "$":
-				if !strings.HasSuffix(strings.Split(strings.ToLower(fileStat.Name()), ".")[0], strings.ToLower(s.Word)) {
+				if !strings.HasSuffix(strings.Split(searchWord, ".")[0], word) {
 					return nil
 				}
 			default:
-				if !strings.Contains(strings.ToLower(fileStat.Name()), strings.ToLower(s.Word)) {
+				if !strings.Contains(searchWord, word) {
 					return nil
 				}
 			}
 
 			// condition of extension file
-			if s.Extension != "*" && strings.Split(strings.ToLower(fileStat.Name()), ".")[1] != s.Extension {
+			if s.Extension != "*" && strings.Split(searchWord, ".")[1] != s.Extension {
 				return nil
 			}
 
@@ -158,4 +163,13 @@ func (s *Search) SearchFiles() error {
 	// print on the screen the end of search
 	DrawEndSearch(s.Path, savePath, id)
 	return nil
+}
+
+// strToLower : Function for convert string to lower
+func strToLower(s string, b bool) string {
+	if !b {
+		return strings.ToLower(s)
+	} else {
+		return s
+	}
 }
