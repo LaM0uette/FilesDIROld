@@ -16,18 +16,18 @@ For use FilesDIR, you can simply launch it from anywhere, but it is better to ad
 
 To do this, add the path of the folder containing the module to the environment variables `PATH`:   
 ![var1](https://github.com/LaM0uette/FilesDIR/blob/V0.2/docs/img/var1.PNG)
-![var2](https://github.com/LaM0uette/FilesDIR/tree/V0.2/docs/img/var2.PNG)
-![var3](https://github.com/LaM0uette/FilesDIR/tree/V0.2/docs/img/var3.PNG)
-![var4](https://github.com/LaM0uette/FilesDIR/tree/V0.2/docs/img/var4.PNG)
-![var5](https://github.com/LaM0uette/FilesDIR/tree/V0.2/docs/img/var5.PNG)
+![var2](https://github.com/LaM0uette/FilesDIR/blob/V0.2/docs/img/var2.PNG)
+![var3](https://github.com/LaM0uette/FilesDIR/blob/V0.2/docs/img/var3.PNG)
+![var4](https://github.com/LaM0uette/FilesDIR/blob/V0.2/docs/img/var4.PNG)
+![var5](https://github.com/LaM0uette/FilesDIR/blob/V0.2/docs/img/var5.PNG)
 
 Then, you have to add the path of the executable `FilesDIR.exe` by creating a new environment variable `FilesDIR`:   
-![var6](https://github.com/LaM0uette/FilesDIR/tree/V0.2/docs/img/var6.PNG)
+![var6](https://github.com/LaM0uette/FilesDIR/blob/V0.2/docs/img/var6.PNG)
 
 ### Use
 
 Open the desired folder, then, in the explorer, launch the FilesDIR program by giving it its arguments.
-![fd1](https://github.com/LaM0uette/FilesDIR/tree/V0.2/docs/img/fd1.PNG)
+![fd1](https://github.com/LaM0uette/FilesDIR/blob/V0.2/docs/img/fd1.PNG)
 
 required arguments:   
 `FilesDIR` : This is the main executable of the module.   
