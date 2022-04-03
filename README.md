@@ -27,3 +27,16 @@ Then, you have to add the path of the executable `FilesDIR.exe` by creating a ne
 ### Use
 
 Open the desired folder, then, in the explorer, launch the FilesDIR program by giving it its arguments.
+![fd1](https://github.com/LaM0uette/FilesDIR/tree/V0.2/docs/img/fd1.PNG)
+
+required arguments:   
+`FilesDIR` : This is the main executable of the module.   
+`-r` : Is required for run app in CLI mode.    
+
+possible arguments :   
+`-mode=%` : It allows you to choose the keyword you want to search for.   
+Ex: `-mode==` Search exact word in file name   
+Ex: `-mode=%` Search word is contains in file name   
+Ex: `-mode=^` the name of the file starts with the searched word   
+Ex: `-mode=$` the name of the file ends with the searched word   
+
