@@ -11,7 +11,6 @@ import (
 	"strings"
 )
 
-// Search : Structure with data to search for files
 type Search struct {
 	Mode       string
 	Word       string
@@ -20,8 +19,6 @@ type Search struct {
 	Path       string
 	SaveFolder string
 }
-
-// DataJson : Struct for generate json file
 type DataJson struct {
 	Id       int    `json:"id"`
 	File     string `json:"Fichier"`
@@ -30,7 +27,6 @@ type DataJson struct {
 	Path     string `json:"Lien"`
 }
 
-// CurrentDir : Return the actual directory
 func CurrentDir() string {
 	pwd, err := os.Getwd()
 	if err != nil {
@@ -40,15 +36,14 @@ func CurrentDir() string {
 	return pwd
 }
 
-// DesktopDir : Return the desktop directory
 func DesktopDir() string {
-	myself, err := user.Current()
+	GUID, err := user.Current()
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		os.Exit(1)
 	}
-	homedir := myself.HomeDir
-	desktop := homedir + "/Desktop/"
-	return desktop
+	homeDir := GUID.HomeDir
+	return homeDir + "/Desktop/"
 }
 
 // SearchFiles : Function for search all files with different criteria in folder and sub folders
