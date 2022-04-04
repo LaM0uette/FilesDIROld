@@ -48,22 +48,29 @@ func DesktopDir() string {
 
 // SearchFiles : Function for search all files with different criteria in folder and sub folders
 func (s *Search) SearchFiles() error {
+
 	word := strToLower(s.Word, s.Maj)
+	savePath := s.SaveFolder + "/Data"
+
+	err := createSaveFolder(savePath) // create folder for save data
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
 	var searchWord string
+	var JsonData []DataJson
+	id := 0
 
-	var JsonData []DataJson // Var for generate json file
-	id := 0                 // count number file searched
-
-	// Create new excel file
 	wb := excelize.NewFile()
-	wb.SetCellValue("Sheet1", "A1", "id")           // insert column name in excel file (A1)
-	wb.SetCellValue("Sheet1", "B1", "Fichier")      // insert column name in excel file (B1)
-	wb.SetCellValue("Sheet1", "C1", "Date")         // insert column name in excel file (C1)
-	wb.SetCellValue("Sheet1", "D1", "Lien_Fichier") // insert column name in excel file (D1)
-	wb.SetCellValue("Sheet1", "E1", "Lien")         // insert column name in excel file (E1)
+	wb.SetCellValue("Sheet1", "A1", "id")
+	wb.SetCellValue("Sheet1", "B1", "Fichier")
+	wb.SetCellValue("Sheet1", "C1", "Date")
+	wb.SetCellValue("Sheet1", "D1", "Lien_Fichier")
+	wb.SetCellValue("Sheet1", "E1", "Lien")
 
 	// loop for all files in folder
-	err := filepath.Walk(s.Path, func(path string, info os.FileInfo, err error) error {
+	err = filepath.Walk(s.Path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			fmt.Println(err)
 			return err
@@ -137,24 +144,11 @@ func (s *Search) SearchFiles() error {
 		return err
 	}
 
-	// Create a new folder to save data file
-	savePath := s.SaveFolder + "/Data"
-	err = os.MkdirAll(savePath, os.ModePerm)
-	if err != nil {
-		return err
-	}
-
 	// save excel file
-	if err := wb.SaveAs(savePath + "/" + s.Word + ".xlsx"); err != nil {
-		return err
-	}
+	savelFile(wb, savePath, s.Word, JsonData)
 
-	// Generate a json file
-	file, _ := json.MarshalIndent(JsonData, "", " ")
-	_ = ioutil.WriteFile(savePath+"/"+s.Word+".json", file, 0644)
-
-	// print on the screen the end of search
 	DrawEndSearch(s.Path, savePath, id)
+
 	return nil
 }
 
@@ -164,4 +158,25 @@ func strToLower(s string, b bool) string {
 	} else {
 		return s
 	}
+}
+
+func createSaveFolder(savePath string) error {
+	err := os.MkdirAll(savePath, os.ModePerm)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func savelFile(wb *excelize.File, savePath, word string, JsonData []DataJson) {
+	if len(word) < 1 {
+		word = "Data"
+	}
+
+	if err := wb.SaveAs(savePath + "/" + word + ".xlsx"); err != nil {
+		fmt.Println(err)
+	}
+
+	file, _ := json.MarshalIndent(JsonData, "", " ")
+	_ = ioutil.WriteFile(savePath+"/"+word+".json", file, 0644)
 }
