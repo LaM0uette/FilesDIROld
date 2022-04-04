@@ -144,7 +144,7 @@ func (s *Search) SearchFiles() error {
 				savelFile(wb, savePath, s.Word, JsonData)
 			}
 		} else {
-			if stringInSlice(info.Name(), listFolders) {
+			if stringInSlice(path, listFolders) {
 				nbFolderMade++
 				fmt.Printf(`
 *******************************************
@@ -181,7 +181,7 @@ func countNbFolder(path string) (int, []string) {
 	for _, file := range files {
 		if file.IsDir() {
 			count++
-			listFolders = append(listFolders, file.Name())
+			listFolders = append(listFolders, path)
 		}
 	}
 	return count, listFolders
@@ -189,6 +189,7 @@ func countNbFolder(path string) (int, []string) {
 
 func stringInSlice(a string, list []string) bool {
 	for _, b := range list {
+		fmt.Println(a, b)
 		if b == a {
 			return true
 		}
