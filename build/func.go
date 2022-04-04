@@ -158,7 +158,6 @@ func (s *Search) SearchFiles() error {
 	return nil
 }
 
-// strToLower : Function for convert string to lower
 func strToLower(s string, b bool) string {
 	if !b {
 		return strings.ToLower(s)
