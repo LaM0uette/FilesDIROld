@@ -27,23 +27,33 @@ func main() {
 
 	build.DrawStart()
 
-	// if is not mode cli, the user need to fill the settings of search
+	// if is not in cli mode, the user need to fill the settings of search
 	if !*schCli {
-		fmt.Print("Mode de recherche : ")
+		fmt.Print("Mode de recherche ( = | % | ^ | $ ) : ")
 		*schMode, _ = reader.ReadString('\n')
 		*schMode = strings.TrimSpace(*schMode)
 
-		fmt.Print("Non de fichier : ")
+		fmt.Print("Non de fichier ( fiche, test, ...) : ")
 		*schWord, _ = reader.ReadString('\n')
 		*schWord = strings.TrimSpace(*schWord)
 
-		fmt.Print("Extension de fichier : ")
+		fmt.Print("Extension de fichier ( xlsx, jpg, ...) : ")
 		*schExt, _ = reader.ReadString('\n')
 		*schExt = strings.TrimSpace(*schExt)
 
-		fmt.Print("Chemin de recherche : ")
+		fmt.Print("Chemin de recherche ( C:/... ) : ")
 		*schPath, _ = reader.ReadString('\n')
 		*schPath = strings.TrimSpace(*schPath)
+
+		fmt.Print("Prise en compte de la casse ( o | n ) : ")
+		_schMaj, _ := reader.ReadString('\n')
+		_schMaj = strings.TrimSpace(_schMaj)
+		switch _schMaj {
+		case "o":
+			*schMaj = true
+		case "n":
+			*schMaj = false
+		}
 
 		fmt.Print("\n\n")
 		saveFolder = build.CurrentDir()
