@@ -126,7 +126,6 @@ func (s *Search) SearchFiles() error {
 			wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", id+1), path)                                  // insert data of excel file
 			wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", id+1), filepath.Dir(path))                    // insert data of excel file
 
-			// Add entry of DataJson struct
 			data := DataJson{
 				Id:       id,
 				File:     fileStat.Name(),
@@ -135,7 +134,8 @@ func (s *Search) SearchFiles() error {
 				Path:     filepath.Dir(path),
 			}
 			JsonData = append(JsonData, data)
-
+		} else {
+			savelFile(wb, savePath, s.Word, JsonData)
 		}
 		return nil
 	})
