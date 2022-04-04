@@ -16,6 +16,7 @@ type Search struct {
 	Word       string
 	Ext        string
 	Maj        bool
+	Save       bool
 	Path       string
 	SaveFolder string
 }
@@ -134,8 +135,10 @@ func (s *Search) SearchFiles() error {
 				Path:     filepath.Dir(path),
 			}
 			JsonData = append(JsonData, data)
-		} else {
-			savelFile(wb, savePath, s.Word, JsonData)
+
+			if s.Save {
+				savelFile(wb, savePath, s.Word, JsonData)
+			}
 		}
 		return nil
 	})

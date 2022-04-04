@@ -19,6 +19,7 @@ func main() {
 	flagWord := flag.String("word", "", "Non de fichier")
 	flagExt := flag.String("ext", "*", "Ext de fichier")
 	flagMaj := flag.Bool("maj", false, "Autorise les majuscules")
+	flagSave := flag.Bool("save", false, "Sauvegarde à chaque fichier")
 	flagPath := flag.String("path", build.CurrentDir(), "Chemin de recherche")
 	flag.Parse()
 
@@ -65,6 +66,7 @@ func main() {
 		Word:       *flagWord,
 		Ext:        *flagExt,
 		Maj:        *flagMaj,
+		Save:       *flagSave,
 		Path:       *flagPath,
 		SaveFolder: saveFolder,
 	}
