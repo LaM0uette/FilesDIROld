@@ -13,12 +13,12 @@ import (
 
 // Search : Structure with data to search for files
 type Search struct {
-	Mode string
-	Word string
-	Ext  string
-	Maj  bool
-	Path string
-	Save string
+	Mode       string
+	Word       string
+	Ext        string
+	Maj        bool
+	Path       string
+	SaveFolder string
 }
 
 // DataJson : Struct for generate json file
@@ -145,7 +145,7 @@ func (s *Search) SearchFiles() error {
 	}
 
 	// Create a new folder to save data file
-	savePath := s.Save + "/Data"
+	savePath := s.SaveFolder + "/Data"
 	err = os.MkdirAll(savePath, os.ModePerm)
 	if err != nil {
 		return err

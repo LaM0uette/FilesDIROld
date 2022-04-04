@@ -61,12 +61,12 @@ func main() {
 
 	// generated the structure with data to search for files
 	s := build.Search{
-		Mode: *flagMode,
-		Word: *flagWord,
-		Ext:  *flagExt,
-		Maj:  *flagMaj,
-		Path: *flagPath,
-		Save: saveFolder,
+		Mode:       *flagMode,
+		Word:       *flagWord,
+		Ext:        *flagExt,
+		Maj:        *flagMaj,
+		Path:       *flagPath,
+		SaveFolder: saveFolder,
 	}
 
 	// print on screen the start of search
