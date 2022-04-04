@@ -69,7 +69,9 @@ func main() {
 		SaveFolder: saveFolder,
 	}
 
-	// print on screen the start of search
+	build.DrawStartSearch()
+
+	// search for files
 	err := s.SearchFiles()
 	if err != nil {
 		fmt.Println(err)

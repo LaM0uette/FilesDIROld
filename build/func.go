@@ -59,8 +59,6 @@ func (s *Search) SearchFiles() error {
 	var JsonData []DataJson // Var for generate json file
 	id := 0                 // count number file searched
 
-	DrawStartSearch() // print on the screen the start of search
-
 	// Create new excel file
 	wb := excelize.NewFile()
 	wb.SetCellValue("Sheet1", "A1", "id")           // insert column name in excel file (A1)
