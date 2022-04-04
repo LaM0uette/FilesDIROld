@@ -146,7 +146,12 @@ func (s *Search) SearchFiles() error {
 		} else {
 			if stringInSlice(info.Name(), listFolders) {
 				nbFolderMade++
-				fmt.Printf("\nDossier : %v/%v\n\n", nbFolderMade, nbFolder)
+				fmt.Printf(`
+*******************************************
+******        Dossier : %v/%v        ******
+*******************************************
+
+`, nbFolderMade, nbFolder)
 			}
 		}
 		return nil
