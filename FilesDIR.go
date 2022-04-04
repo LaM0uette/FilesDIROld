@@ -14,7 +14,7 @@ var reader = bufio.NewReader(os.Stdin)
 func main() {
 
 	// setup flag for insert data of search in cli
-	flagRun := flag.Bool("r", false, "CLI / Run")
+	flagRunCLI := flag.Bool("r", false, "CLI / Run")
 	flagMode := flag.String("mode", "%", "Mode de recherche")
 	flagWord := flag.String("word", "", "Non de fichier")
 	flagExt := flag.String("ext", "*", "Extension de fichier")
@@ -28,7 +28,7 @@ func main() {
 	build.DrawStart()
 
 	// if is not in cli mode, the user need to fill the settings of search
-	if !*flagRun {
+	if !*flagRunCLI {
 		fmt.Print("Mode de recherche ( = | % | ^ | $ ) : ")
 		*flagMode, _ = reader.ReadString('\n')
 		*flagMode = strings.TrimSpace(*flagMode)
@@ -76,7 +76,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if *flagRun {
+	if *flagRunCLI {
 		fmt.Print("Appuyer sur Entrée pour quitter...")
 		_, err = bufio.NewReader(os.Stdin).ReadBytes('\n')
 		if err != nil {
