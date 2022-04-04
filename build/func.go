@@ -13,12 +13,12 @@ import (
 
 // Search : Structure with data to search for files
 type Search struct {
-	Mode      string
-	Word      string
-	Extension string
-	Maj       bool
-	Path      string
-	Save      string
+	Mode string
+	Word string
+	Ext  string
+	Maj  bool
+	Path string
+	Save string
 }
 
 // DataJson : Struct for generate json file
@@ -112,7 +112,7 @@ func (s *Search) SearchFiles() error {
 			}
 
 			// condition of extension file
-			if s.Extension != "*" && strings.Split(searchWord, ".")[1] != s.Extension {
+			if s.Ext != "*" && strings.Split(searchWord, ".")[1] != s.Ext {
 				return nil
 			}
 

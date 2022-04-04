@@ -17,7 +17,7 @@ func main() {
 	flagRunCLI := flag.Bool("r", false, "CLI / Run")
 	flagMode := flag.String("mode", "%", "Mode de recherche")
 	flagWord := flag.String("word", "", "Non de fichier")
-	flagExt := flag.String("ext", "*", "Extension de fichier")
+	flagExt := flag.String("ext", "*", "Ext de fichier")
 	flagMaj := flag.Bool("maj", false, "Autorise les majuscules")
 	flagPath := flag.String("path", build.CurrentDir(), "Chemin de recherche")
 	flag.Parse()
@@ -37,7 +37,7 @@ func main() {
 		*flagWord, _ = reader.ReadString('\n')
 		*flagWord = strings.TrimSpace(*flagWord)
 
-		fmt.Print("Extension de fichier ( xlsx, jpg, ...) : ")
+		fmt.Print("Ext de fichier ( xlsx, jpg, ...) : ")
 		*flagExt, _ = reader.ReadString('\n')
 		*flagExt = strings.TrimSpace(*flagExt)
 
@@ -61,12 +61,12 @@ func main() {
 
 	// generated the structure with data to search for files
 	s := build.Search{
-		Mode:      *flagMode,
-		Word:      *flagWord,
-		Extension: *flagExt,
-		Maj:       *flagMaj,
-		Path:      *flagPath,
-		Save:      saveFolder,
+		Mode: *flagMode,
+		Word: *flagWord,
+		Ext:  *flagExt,
+		Maj:  *flagMaj,
+		Path: *flagPath,
+		Save: saveFolder,
 	}
 
 	// print on screen the start of search
