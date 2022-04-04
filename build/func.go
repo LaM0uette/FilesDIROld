@@ -164,7 +164,7 @@ func (s *Search) SearchFiles() error {
 	// save excel file
 	savelFile(wb, savePath, s.Word, JsonData)
 
-	DrawEndSearch(s.Path, savePath, id)
+	DrawEndSearch(s.Path, savePath, nbFolderMade, id)
 
 	return nil
 }
