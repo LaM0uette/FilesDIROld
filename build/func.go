@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
 	"io/ioutil"
+	"log"
 	"os"
 	"os/user"
 	"path/filepath"
@@ -52,6 +53,7 @@ func (s *Search) SearchFiles() error {
 
 	word := strToLower(s.Word, s.Maj)
 	savePath := s.SaveFolder + "/Data"
+	nbFolderMade := 0
 
 	err := createSaveFolder(savePath) // create folder for save data
 	if err != nil {
@@ -69,6 +71,8 @@ func (s *Search) SearchFiles() error {
 	wb.SetCellValue("Sheet1", "C1", "Date")
 	wb.SetCellValue("Sheet1", "D1", "Lien_Fichier")
 	wb.SetCellValue("Sheet1", "E1", "Lien")
+
+	nbFolder, listFolders := countNbFolder(s.Path)
 
 	// loop for all files in folder
 	err = filepath.Walk(s.Path, func(path string, info os.FileInfo, err error) error {
@@ -139,6 +143,11 @@ func (s *Search) SearchFiles() error {
 			if s.Save {
 				savelFile(wb, savePath, s.Word, JsonData)
 			}
+		} else {
+			if stringInSlice(info.Name(), listFolders) {
+				nbFolderMade++
+				fmt.Printf("\nDossier : %v/%v\n\n", nbFolderMade, nbFolder)
+			}
 		}
 		return nil
 	})
@@ -153,6 +162,33 @@ func (s *Search) SearchFiles() error {
 	DrawEndSearch(s.Path, savePath, id)
 
 	return nil
+}
+
+func countNbFolder(path string) (int, []string) {
+	count := 0
+	var listFolders []string
+
+	files, err := ioutil.ReadDir(path)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, file := range files {
+		if file.IsDir() {
+			count++
+			listFolders = append(listFolders, file.Name())
+		}
+	}
+	return count, listFolders
+}
+
+func stringInSlice(a string, list []string) bool {
+	for _, b := range list {
+		if b == a {
+			return true
+		}
+	}
+	return false
 }
 
 func strToLower(s string, b bool) string {
