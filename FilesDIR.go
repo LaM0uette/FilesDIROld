@@ -14,12 +14,12 @@ var reader = bufio.NewReader(os.Stdin)
 func main() {
 
 	// setup flag for insert data of search in cli
-	schCli := flag.Bool("r", false, "CLI / Run")
-	schMode := flag.String("mode", "%", "Mode de recherche")
-	schWord := flag.String("word", "", "Non de fichier")
-	schExt := flag.String("ext", "*", "Extension de fichier")
-	schMaj := flag.Bool("maj", false, "Autorise les majuscules")
-	schPath := flag.String("path", build.CurrentDir(), "Chemin de recherche")
+	flagRun := flag.Bool("r", false, "CLI / Run")
+	flagMode := flag.String("mode", "%", "Mode de recherche")
+	flagWord := flag.String("word", "", "Non de fichier")
+	flagExt := flag.String("ext", "*", "Extension de fichier")
+	flagMaj := flag.Bool("maj", false, "Autorise les majuscules")
+	flagPath := flag.String("path", build.CurrentDir(), "Chemin de recherche")
 	flag.Parse()
 
 	// desktop dir is a default save folder
@@ -28,31 +28,31 @@ func main() {
 	build.DrawStart()
 
 	// if is not in cli mode, the user need to fill the settings of search
-	if !*schCli {
+	if !*flagRun {
 		fmt.Print("Mode de recherche ( = | % | ^ | $ ) : ")
-		*schMode, _ = reader.ReadString('\n')
-		*schMode = strings.TrimSpace(*schMode)
+		*flagMode, _ = reader.ReadString('\n')
+		*flagMode = strings.TrimSpace(*flagMode)
 
 		fmt.Print("Non de fichier ( fiche, test, ...) : ")
-		*schWord, _ = reader.ReadString('\n')
-		*schWord = strings.TrimSpace(*schWord)
+		*flagWord, _ = reader.ReadString('\n')
+		*flagWord = strings.TrimSpace(*flagWord)
 
 		fmt.Print("Extension de fichier ( xlsx, jpg, ...) : ")
-		*schExt, _ = reader.ReadString('\n')
-		*schExt = strings.TrimSpace(*schExt)
+		*flagExt, _ = reader.ReadString('\n')
+		*flagExt = strings.TrimSpace(*flagExt)
 
 		fmt.Print("Chemin de recherche ( C:/... ) : ")
-		*schPath, _ = reader.ReadString('\n')
-		*schPath = strings.TrimSpace(*schPath)
+		*flagPath, _ = reader.ReadString('\n')
+		*flagPath = strings.TrimSpace(*flagPath)
 
 		fmt.Print("Prise en compte de la casse ( o | n ) : ")
 		_schMaj, _ := reader.ReadString('\n')
 		_schMaj = strings.TrimSpace(_schMaj)
 		switch _schMaj {
 		case "o":
-			*schMaj = true
+			*flagMaj = true
 		case "n":
-			*schMaj = false
+			*flagMaj = false
 		}
 
 		fmt.Print("\n\n")
@@ -61,11 +61,11 @@ func main() {
 
 	// generated the structure with data to search for files
 	s := build.Search{
-		Mode:      *schMode,
-		Word:      *schWord,
-		Extension: *schExt,
-		Maj:       *schMaj,
-		Path:      *schPath,
+		Mode:      *flagMode,
+		Word:      *flagWord,
+		Extension: *flagExt,
+		Maj:       *flagMaj,
+		Path:      *flagPath,
 		Save:      saveFolder,
 	}
 
@@ -76,7 +76,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if *schCli {
+	if *flagRun {
 		fmt.Print("Appuyer sur Entrée pour quitter...")
 		_, err = bufio.NewReader(os.Stdin).ReadBytes('\n')
 		if err != nil {
