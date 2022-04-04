@@ -22,9 +22,9 @@ func main() {
 	schPath := flag.String("path", build.CurrentDir(), "Chemin de recherche")
 	flag.Parse()
 
-	Save := build.DesktopDir()
+	// desktop dir is a default save folder
+	saveFolder := build.DesktopDir()
 
-	// print on screen the start of program
 	build.DrawStart()
 
 	// if is not mode cli, the user need to fill the settings of search
@@ -46,7 +46,7 @@ func main() {
 		*schPath = strings.TrimSpace(*schPath)
 
 		fmt.Print("\n\n")
-		Save = build.CurrentDir()
+		saveFolder = build.CurrentDir()
 	}
 
 	// generated the structure with data to search for files
@@ -56,7 +56,7 @@ func main() {
 		Extension: *schExt,
 		Maj:       *schMaj,
 		Path:      *schPath,
-		Save:      Save,
+		Save:      saveFolder,
 	}
 
 	// print on screen the start of search
