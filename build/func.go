@@ -181,7 +181,7 @@ func countNbFolder(path string) (int, []string) {
 	for _, file := range files {
 		if file.IsDir() {
 			count++
-			listFolders = append(listFolders, path)
+			listFolders = append(listFolders, path+"\\"+file.Name())
 		}
 	}
 	return count, listFolders
@@ -189,7 +189,6 @@ func countNbFolder(path string) (int, []string) {
 
 func stringInSlice(a string, list []string) bool {
 	for _, b := range list {
-		fmt.Println(a, b)
 		if b == a {
 			return true
 		}
