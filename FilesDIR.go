@@ -3,9 +3,9 @@ package main
 import (
 	"Test/build"
 	"bufio"
-	"database/sql"
 	"flag"
 	"fmt"
+	_ "github.com/mattn/go-sqlite3"
 	"os"
 	"strings"
 	"time"
@@ -91,7 +91,6 @@ func main() {
 	}
 
 	build.DrawStartSearch()
-	_, err := sql.Open("sqlite3", "foo.db")
 
 	reqUse, savePath, nbFolderMade, id, err := s.SearchFiles()
 	if err != nil {
