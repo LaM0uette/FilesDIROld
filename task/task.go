@@ -1,4 +1,4 @@
-package FilesDIR
+package task
 
 import (
 	"fmt"
