@@ -143,6 +143,7 @@ func (s *Search) SearchFiles() error {
 			}
 		} else {
 			if stringInSlice(path, listFolders) {
+				savelFiles(wb, savePath, s.Word, JsonData)
 				nbFolderMade++
 				fmt.Printf(`
 *******************************************
