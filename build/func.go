@@ -229,17 +229,15 @@ func ReadExcelFileForReq() (mode, word, ext string, maj, save bool, err error) {
 		panic(err)
 	}
 
-	i := 2
+	i := 1
+	nom := f.GetCellValue("Sheet1", fmt.Sprintf("A%v", i))
+	fmt.Println(nom)
 
 	mode = f.GetCellValue("Sheet1", fmt.Sprintf("B%v", i))
 	word = f.GetCellValue("Sheet1", fmt.Sprintf("C%v", i))
 	ext = f.GetCellValue("Sheet1", fmt.Sprintf("D%v", i))
 	strMaj := f.GetCellValue("Sheet1", fmt.Sprintf("E%v", i))
 	strSave := f.GetCellValue("Sheet1", fmt.Sprintf("F%v", i))
-
-	t := f.GetCellValue("Sheet1", fmt.Sprintf("A%v", 3))
-	fmt.Println(t)
-	fmt.Printf("%v", t)
 
 	maj, err = strconv.ParseBool(strMaj)
 	save, err = strconv.ParseBool(strSave)
