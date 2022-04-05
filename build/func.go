@@ -50,10 +50,14 @@ func DesktopDir() string {
 
 // SearchFiles : Function for search all files with different criteria in folder and sub folders
 func (s *Search) SearchFiles() error {
+	var searchWord string
+	var JsonData []DataJson
 
 	word := strToLower(s.Word, s.Maj)
 	savePath := filepath.Join(s.SaveFolder, "Data")
+	nbFolder, listFolders := countNbFolder(s.Path)
 	nbFolderMade := 0
+	id := 0
 
 	err := createSaveFolder(savePath) // create folder for save data
 	if err != nil {
@@ -61,18 +65,12 @@ func (s *Search) SearchFiles() error {
 		return err
 	}
 
-	var searchWord string
-	var JsonData []DataJson
-	id := 0
-
 	wb := excelize.NewFile()
 	wb.SetCellValue("Sheet1", "A1", "id")
 	wb.SetCellValue("Sheet1", "B1", "Fichier")
 	wb.SetCellValue("Sheet1", "C1", "Date")
 	wb.SetCellValue("Sheet1", "D1", "Lien_Fichier")
 	wb.SetCellValue("Sheet1", "E1", "Lien")
-
-	nbFolder, listFolders := countNbFolder(s.Path)
 
 	// loop for all files in folder
 	err = filepath.Walk(s.Path, func(path string, info os.FileInfo, err error) error {
