@@ -10,7 +10,7 @@ import (
 )
 
 func LoopDir(path string) error {
-	wg := sync.WaitGroup{}
+	var wg sync.WaitGroup
 
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -33,7 +33,9 @@ func LoopDir(path string) error {
 	if err != nil {
 		return err
 	}
+
 	wg.Wait()
+	fmt.Println("Finished")
 	return nil
 }
 
@@ -47,10 +49,10 @@ func loopFiles(path string, wg *sync.WaitGroup) error {
 	for _, file := range files {
 		if !file.IsDir() {
 			fmt.Println(file.Name())
-
-			wg.Done()
 		}
 	}
+
+	wg.Done()
 	return nil
 }
 

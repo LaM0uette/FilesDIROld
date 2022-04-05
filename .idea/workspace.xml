@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Création de la boucle principale">
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Ajout du waitGroup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
     </list>
@@ -169,7 +169,8 @@
     <MESSAGE value="Ajout du code de test" />
     <MESSAGE value="refont du code" />
     <MESSAGE value="Création de la boucle principale" />
-    <option name="LAST_COMMIT_MESSAGE" value="Création de la boucle principale" />
+    <MESSAGE value="Ajout du waitGroup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout du waitGroup" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
