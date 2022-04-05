@@ -3,6 +3,7 @@ package task
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 )
@@ -15,10 +16,12 @@ func LoopDir(path string) error {
 		}
 
 		if info.IsDir() {
-			loopFiles(path)
-			//fmt.Println(path)
-		} else {
-			//fmt.Println(info.Name())
+			go func() {
+				err := loopFiles(path)
+				if err != nil {
+					log.Println(err.Error())
+				}
+			}()
 		}
 
 		return nil
