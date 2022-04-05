@@ -1,7 +1,6 @@
-package build
+package FilesDIR
 
 import (
-	"Test/config"
 	"fmt"
 	"time"
 )
@@ -17,7 +16,7 @@ func DrawStart() {
 		Version: %v               Auteur: %s
 
 
-`, config.Config().Version, config.Config().Author)
+`, 0.5, "LaM0uette")
 }
 
 func DrawStartSearch() {

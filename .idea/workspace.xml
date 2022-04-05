@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Préparation refonte du code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/display.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/func.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listFolders.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,18 +59,18 @@
   }
 }]]></component>
   <component name="RunManager">
-    <configuration name="go build Test" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build FilesDIR" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="Test" />
+      <package value="FilesDIR" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/FilesDIR.go" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build Test" />
+        <item itemvalue="Go Build.go build FilesDIR" />
       </list>
     </recent_temporary>
   </component>
