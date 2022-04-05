@@ -27,7 +27,9 @@ func DrawEndSearch(path, reqUse, saveFolder string, nbrFolder, nbrFiles int) {
 	fmt.Printf(`**********  FIN DE LA RECHERCHE  **********
 
 
-            BILAN DES RECHERCHES
+BILAN DES RECHERCHES :
+------------------------------------------------------------------
+
 Dossier principal de recherche: %s
 Requête utilisée: %s
 
