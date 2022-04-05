@@ -2,7 +2,6 @@ package FilesDIR
 
 import (
 	"fmt"
-	"time"
 )
 
 func DrawStart() {
@@ -19,6 +18,7 @@ func DrawStart() {
 `, 0.5, "LaM0uette")
 }
 
+/*
 func DrawStartSearch() {
 	fmt.Printf("**********  DEBUT DE LA RECHERCHE  **********\n")
 }
@@ -42,3 +42,4 @@ Emplacement de sauvegarde: %s
 
 `, time, path, reqUse, nbrFolder, nbrFiles, saveFolder)
 }
+*/

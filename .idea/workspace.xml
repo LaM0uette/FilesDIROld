@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Préparation refonte du code">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/display.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/func.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listFolders.txt" beforeDir="false" />
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Suppression du code (préparation de la refont)">
+      <change beforePath="$PROJECT_DIR$/FilesDIR/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR/display.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +94,8 @@
     <MESSAGE value="Add historique des dossiers en .txt" />
     <MESSAGE value="Annulation de bdd" />
     <MESSAGE value="Préparation refonte du code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Préparation refonte du code" />
+    <MESSAGE value="Suppression du code (préparation de la refont)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Suppression du code (préparation de la refont)" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
