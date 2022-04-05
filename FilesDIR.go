@@ -89,11 +89,13 @@ func main() {
 
 	build.DrawStartSearch()
 
-	err := s.SearchFiles()
+	reqUse, savePath, nbFolderMade, id, err := s.SearchFiles()
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
+	build.DrawEndSearch(s.Path, reqUse, savePath, nbFolderMade, id)
 
 	if *flagRunCLI {
 		fmt.Print("Appuyer sur Entrée pour quitter...")

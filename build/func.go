@@ -50,15 +50,15 @@ func DesktopDir() string {
 }
 
 // SearchFiles : Function for search all files with different criteria in folder and sub folders
-func (s *Search) SearchFiles() error {
+func (s *Search) SearchFiles() (reqUse, savePath string, nbFolderMade, id int, err error) {
 	var searchWord string
 	var JsonData []DataJson
 
 	word := strToLower(s.Word, s.Maj)
-	savePath := filepath.Join(s.SaveFolder, "Data")
+	savePath = filepath.Join(s.SaveFolder, "Data")
 	nbFolder, listFolders := countFoldersDir(s.Path)
-	nbFolderMade := 0
-	id := 0
+	nbFolderMade = 0
+	id = 0
 
 	sMaj := ""
 	if s.Maj {
@@ -68,12 +68,12 @@ func (s *Search) SearchFiles() error {
 	if s.Save {
 		sSave = " -save"
 	}
-	reqUse := fmt.Sprintf("FilesDIR -r -mode=%s -word=%s -ext=%s%s%s\n", s.Mode, s.Word, s.Ext, sMaj, sSave)
+	reqUse = fmt.Sprintf("FilesDIR -r -mode=%s -word=%s -ext=%s%s%s\n", s.Mode, s.Word, s.Ext, sMaj, sSave)
 
-	err := createSaveFolder(savePath) // create folder for save data
+	err = createSaveFolder(savePath) // create folder for save data
 	if err != nil {
 		fmt.Println(err)
-		return err
+		os.Exit(1)
 	}
 
 	wb := excelize.NewFile()
@@ -167,15 +167,12 @@ func (s *Search) SearchFiles() error {
 	})
 	if err != nil {
 		fmt.Println(err)
-		return err
 	}
 
 	// save excel file
 	savelFiles(wb, savePath, s.Word, JsonData)
 
-	DrawEndSearch(s.Path, reqUse, savePath, nbFolderMade, id)
-
-	return nil
+	return reqUse, savePath, nbFolderMade, id, nil
 }
 
 func countFoldersDir(path string) (int, []string) {
