@@ -29,7 +29,7 @@ func DrawEndSearch(path, saveFolder string, nbrFolder, nbrFiles int) {
 
             BILAN DES RECHERCHES
 Dossier: %s
-Nbr dossier parents: %v
+Nombre de dossiers parents: %v
 Fichiers trouvés: %v
 Emplacement de sauvegarde: %s
 
