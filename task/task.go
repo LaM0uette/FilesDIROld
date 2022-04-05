@@ -9,6 +9,8 @@ import (
 	"sync"
 )
 
+var id = 0
+
 func LoopDir(path string) error {
 	var wg sync.WaitGroup
 
@@ -38,7 +40,7 @@ func LoopDir(path string) error {
 	}
 
 	wg.Wait()
-	fmt.Println("Finished", countDir)
+	fmt.Println("Finished", countDir, id)
 	return nil
 }
 
@@ -53,6 +55,7 @@ func loopFiles(path string, wg *sync.WaitGroup) error {
 	for _, file := range files {
 		if !file.IsDir() {
 			fmt.Println(file.Name())
+			id++
 		}
 	}
 
