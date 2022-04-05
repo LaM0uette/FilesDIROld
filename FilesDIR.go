@@ -36,7 +36,6 @@ func main() {
 			fmt.Println(err)
 			os.Exit(1)
 		}
-
 		*flagRunCLI = true
 		*flagMode = mode
 		*flagWord = word
