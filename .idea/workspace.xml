@@ -5,12 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Suppression du code (préparation de la refont)">
-      <change beforePath="$PROJECT_DIR$/FilesDIR/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR/display.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FilesDIR/FilesDIR.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FilesDIR/FilesDIR_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../../Program Files/Go" />
   <component name="Git.Settings">
@@ -28,12 +37,16 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="27LJxo7Ho99Rb9xajauWggxi4RE" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
@@ -52,7 +65,7 @@
     "settings.editor.selected.configurable": "go.sdk"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Test.TestLoopDir in FilesDIR/FilesDIR">
     <configuration name="go build FilesDIR" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$" />
@@ -62,8 +75,21 @@
       <filePath value="$PROJECT_DIR$/FilesDIR.go" />
       <method v="2" />
     </configuration>
+    <configuration name="TestLoopDir in FilesDIR/FilesDIR" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="FilesDIR" />
+      <working_directory value="$PROJECT_DIR$/FilesDIR" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="FilesDIR/FilesDIR" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestLoopDir\E$" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR" />
         <item itemvalue="Go Build.go build FilesDIR" />
       </list>
     </recent_temporary>
