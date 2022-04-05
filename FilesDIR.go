@@ -12,11 +12,21 @@ import (
 var reader = bufio.NewReader(os.Stdin)
 var saveFolder = build.DesktopDir()
 
+type Flags struct {
+	Mode string
+	Word string
+	Ext  string
+	Maj  bool
+	Save bool
+}
+
 func main() {
 
 	build.DrawStart()
 
 	// setup flag for insert data of search in cli
+	flagReq := flag.String("req", "", "CLI / Run")
+
 	flagRunCLI := flag.Bool("r", false, "CLI / Run")
 	flagMode := flag.String("mode", "%", "Mode de recherche")
 	flagWord := flag.String("word", "", "Non de fichier")
@@ -56,6 +66,16 @@ func main() {
 
 		fmt.Print("\n\n")
 		saveFolder = build.CurrentDir()
+	}
+
+	if *flagReq != "" {
+		*flagRunCLI = true
+		*flagMode = "%"
+		*flagWord = *flagReq
+		*flagExt = "*"
+		*flagMaj = false
+		*flagSave = false
+		*flagPath = build.CurrentDir()
 	}
 
 	// generated the structure with data to search for files
