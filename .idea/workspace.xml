@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Ajout du waitGroup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +64,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;go.sdk&quot;
   }
 }</component>
-  <component name="RunManager" selected="Go Build.FilesDIR">
+  <component name="RunManager" selected="Go Test.TestLoopDir in FilesDIR/task (2)">
     <configuration name="FilesDIR" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$" />
@@ -132,8 +131,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.FilesDIR" />
         <item itemvalue="Go Test.TestLoopDir in FilesDIR/task (2)" />
+        <item itemvalue="Go Build.FilesDIR" />
         <item itemvalue="Go Test.TestLoopDir in FilesDIR/task (1)" />
         <item itemvalue="Go Test.TestLoopDir in FilesDIR/task" />
         <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR" />

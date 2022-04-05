@@ -62,5 +62,3 @@ func loopFiles(path string, wg *sync.WaitGroup) error {
 	wg.Done()
 	return nil
 }
-
-// Function qui pour chaque nouveau dossier lance une goroutine qui boucle sur les fichiers.
