@@ -64,7 +64,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;go.sdk&quot;
   }
 }</component>
-  <component name="RunManager" selected="Go Test.TestLoopDir in FilesDIR/FilesDIR">
+  <component name="RunManager" selected="Go Test.TestLoopDir in FilesDIR/FilesDIR (1)">
     <configuration name="go build FilesDIR" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$" />
@@ -72,6 +72,18 @@
       <package value="FilesDIR" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/FilesDIR.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestLoopDir in FilesDIR/FilesDIR (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="FilesDIR" />
+      <working_directory value="$PROJECT_DIR$/FilesDIR" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="FilesDIR/FilesDIR" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestLoopDir\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestLoopDir in FilesDIR/FilesDIR" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -88,6 +100,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR (1)" />
         <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR" />
         <item itemvalue="Go Build.go build FilesDIR" />
       </list>
