@@ -12,6 +12,8 @@ import (
 func LoopDir(path string) error {
 	var wg sync.WaitGroup
 
+	countDir := 0
+
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
@@ -19,6 +21,7 @@ func LoopDir(path string) error {
 
 		if info.IsDir() {
 			wg.Add(1)
+			countDir++
 
 			go func() {
 				err := loopFiles(path, &wg)
@@ -35,7 +38,7 @@ func LoopDir(path string) error {
 	}
 
 	wg.Wait()
-	fmt.Println("Finished")
+	fmt.Println("Finished", countDir)
 	return nil
 }
 
@@ -43,6 +46,7 @@ func loopFiles(path string, wg *sync.WaitGroup) error {
 
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
+		wg.Done()
 		return err
 	}
 
