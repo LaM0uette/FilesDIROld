@@ -12,14 +12,6 @@ import (
 var reader = bufio.NewReader(os.Stdin)
 var saveFolder = build.DesktopDir()
 
-type Flags struct {
-	Mode string
-	Word string
-	Ext  string
-	Maj  bool
-	Save bool
-}
-
 func main() {
 
 	build.DrawStart()
@@ -71,8 +63,8 @@ func main() {
 	if *flagReq != "" {
 		*flagRunCLI = true
 		*flagMode = "%"
-		*flagWord = *flagReq
-		*flagExt = "*"
+		*flagWord = "fiche"
+		*flagExt = "xlsx"
 		*flagMaj = false
 		*flagSave = false
 		*flagPath = build.CurrentDir()

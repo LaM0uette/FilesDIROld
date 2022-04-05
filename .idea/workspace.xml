@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Reformatage">
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Ajout de requete save">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +71,8 @@
     <MESSAGE value="fin v0.3" />
     <MESSAGE value="Init v0.4" />
     <MESSAGE value="Reformatage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reformatage" />
+    <MESSAGE value="Ajout de requete save" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout de requete save" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
