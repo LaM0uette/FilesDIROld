@@ -2,17 +2,25 @@ package task
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
+	"path/filepath"
 )
 
 func LoopDir(path string) error {
-	files, err := ioutil.ReadDir(path)
+
+	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		if info.IsDir() {
+			fmt.Println("Dir:", path)
+		}
+
+		return nil
+	})
 	if err != nil {
 		return err
-	}
-
-	for _, f := range files {
-		fmt.Println(f.Name())
 	}
 	return nil
 }
