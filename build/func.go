@@ -11,7 +11,6 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
-	"time"
 )
 
 type Search struct {
@@ -143,11 +142,11 @@ func (s *Search) SearchFiles() (reqUse, savePath string, nbFolderMade, id int, e
 			JsonData = addJsonData(path, id, fileStat, JsonData)
 
 			if s.Save {
-				savelFiles(wb, savePath, s.Word, JsonData, false)
+				savelFiles(wb, savePath, s.Word, JsonData)
 			}
 		} else {
 			if stringInSlice(path, listFolders) {
-				savelFiles(wb, savePath, s.Word, JsonData, false)
+				savelFiles(wb, savePath, s.Word, JsonData)
 				nbFolderMade++
 				fmt.Printf(`
 *******************************************
@@ -164,7 +163,7 @@ func (s *Search) SearchFiles() (reqUse, savePath string, nbFolderMade, id int, e
 	}
 
 	// save excel file
-	savelFiles(wb, savePath, s.Word, JsonData, true)
+	savelFiles(wb, savePath, s.Word, JsonData)
 
 	return reqUse, savePath, nbFolderMade, id, nil
 }
@@ -224,20 +223,13 @@ func createSaveFolder(savePath string) error {
 	return nil
 }
 
-func savelFiles(wb *excelize.File, savePath, word string, JsonData []DataJson, end bool) {
+func savelFiles(wb *excelize.File, savePath, word string, JsonData []DataJson) {
 	if len(word) < 1 {
 		word = "Data"
 	}
 
 	if err := wb.SaveAs(savePath + "\\" + word + ".xlsx"); err != nil {
 		fmt.Println(err)
-	}
-	if end {
-		currentTime := time.Now()
-
-		if err := wb.SaveAs("T:\\- 4 Suivi Appuis\\26_MACROS\\GO\\FilesDIR\\Data\\" + word + "__" + currentTime.Format("2017-09-07 2:3:5") + ".xlsx"); err != nil {
-			fmt.Println(err)
-		}
 	}
 
 	file, _ := json.MarshalIndent(JsonData, "", " ")
