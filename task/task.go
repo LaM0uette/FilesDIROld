@@ -74,10 +74,15 @@ func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 
 	for _, file := range files {
 		if !file.IsDir() {
-			go fmt.Println(file.Name())
+			fmt.Println(file.Name())
 			Id++
 		} else {
-			go LoopDirsFiles(filepath.Join(path, file.Name()), wg)
+			go func() {
+				err := LoopDirsFiles(filepath.Join(path, file.Name()), wg)
+				if err != nil {
+					log.Println(err.Error())
+				}
+			}()
 		}
 	}
 
