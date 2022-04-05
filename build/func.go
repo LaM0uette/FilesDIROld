@@ -131,7 +131,7 @@ func (s *Search) SearchFiles() (reqUse, savePath string, nbFolderMade, id int, e
 
 			id++ // increment the id (number of file searched)
 
-			fmt.Printf("N°%v | Fichier: %v\n", id, fileStat.Name())
+			go fmt.Printf("N°%v | Fichier: %v\n", id, fileStat.Name())
 
 			wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", id+1), id)
 			wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", id+1), fileStat.Name())
@@ -139,14 +139,7 @@ func (s *Search) SearchFiles() (reqUse, savePath string, nbFolderMade, id int, e
 			wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", id+1), path)
 			wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", id+1), filepath.Dir(path))
 
-			data := DataJson{
-				Id:       id,
-				File:     fileStat.Name(),
-				Date:     fmt.Sprintf("%v", fileStat.ModTime()),
-				PathFile: path,
-				Path:     filepath.Dir(path),
-			}
-			JsonData = append(JsonData, data)
+			JsonData = addJsonData(path, id, fileStat, JsonData)
 
 			if s.Save {
 				savelFiles(wb, savePath, s.Word, JsonData)
@@ -173,6 +166,18 @@ func (s *Search) SearchFiles() (reqUse, savePath string, nbFolderMade, id int, e
 	savelFiles(wb, savePath, s.Word, JsonData)
 
 	return reqUse, savePath, nbFolderMade, id, nil
+}
+
+func addJsonData(path string, id int, fileStat os.FileInfo, JsonData []DataJson) []DataJson {
+	data := DataJson{
+		Id:       id,
+		File:     fileStat.Name(),
+		Date:     fmt.Sprintf("%v", fileStat.ModTime()),
+		PathFile: path,
+		Path:     filepath.Dir(path),
+	}
+	JsonData = append(JsonData, data)
+	return JsonData
 }
 
 func countFoldersDir(path string) (int, []string) {
