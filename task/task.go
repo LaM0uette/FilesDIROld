@@ -14,7 +14,9 @@ func LoopDir(path string) error {
 		}
 
 		if info.IsDir() {
-			fmt.Println("Dir:", path)
+			fmt.Println("Dir: ", path)
+		} else {
+			fmt.Println("File : ", path)
 		}
 
 		return nil
