@@ -34,8 +34,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println(mode, word, ext, maj, save)
-
 	if *flagReq != "" {
 		*flagRunCLI = true
 		*flagMode = mode

@@ -60,6 +60,16 @@ func (s *Search) SearchFiles() error {
 	nbFolderMade := 0
 	id := 0
 
+	sMaj := ""
+	if s.Maj {
+		sMaj = " -maj"
+	}
+	sSave := ""
+	if s.Maj {
+		sSave = " -save"
+	}
+	reqUse := fmt.Sprintf("FilesDIR -r -mode=%s -word=%s -ext=%s%s%s\n", s.Mode, s.Word, s.Ext, sMaj, sSave)
+
 	err := createSaveFolder(savePath) // create folder for save data
 	if err != nil {
 		fmt.Println(err)
@@ -163,7 +173,7 @@ func (s *Search) SearchFiles() error {
 	// save excel file
 	savelFiles(wb, savePath, s.Word, JsonData)
 
-	DrawEndSearch(s.Path, savePath, nbFolderMade, id)
+	DrawEndSearch(s.Path, reqUse, savePath, nbFolderMade, id)
 
 	return nil
 }
