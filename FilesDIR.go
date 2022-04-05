@@ -28,7 +28,7 @@ func main() {
 	flagPath := flag.String("path", build.CurrentDir(), "Chemin de recherche")
 	flag.Parse()
 
-	mode, word, ext, maj, save, err := build.ReadExcelFileForReq()
+	mode, word, ext, maj, save, err := build.ReadExcelFileForReq(*flagReq)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)

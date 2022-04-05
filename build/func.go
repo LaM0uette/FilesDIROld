@@ -223,7 +223,7 @@ func savelFiles(wb *excelize.File, savePath, word string, JsonData []DataJson) {
 	_ = ioutil.WriteFile(savePath+"/"+word+".json", file, 0644)
 }
 
-func ReadExcelFileForReq() (mode, word, ext string, maj, save bool, err error) {
+func ReadExcelFileForReq(req string) (mode, word, ext string, maj, save bool, err error) {
 	f, err := excelize.OpenFile("T:\\- 4 Suivi Appuis\\26_MACROS\\GO\\FilesDIR\\req.xlsx")
 	if err != nil {
 		panic(err)
@@ -231,6 +231,9 @@ func ReadExcelFileForReq() (mode, word, ext string, maj, save bool, err error) {
 
 	i := 1
 	for len(f.GetCellValue("Sheet1", fmt.Sprintf("A%v", i))) > 0 {
+		if strings.ToLower(req) == strings.ToLower(f.GetCellValue("Sheet1", fmt.Sprintf("A%v", i))) {
+			break
+		}
 		i++
 	}
 
