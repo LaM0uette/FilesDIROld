@@ -10,8 +10,11 @@ import (
 )
 
 var reader = bufio.NewReader(os.Stdin)
+var saveFolder = build.DesktopDir()
 
 func main() {
+
+	build.DrawStart()
 
 	// setup flag for insert data of search in cli
 	flagRunCLI := flag.Bool("r", false, "CLI / Run")
@@ -22,11 +25,6 @@ func main() {
 	flagSave := flag.Bool("save", false, "Sauvegarde à chaque fichier")
 	flagPath := flag.String("path", build.CurrentDir(), "Chemin de recherche")
 	flag.Parse()
-
-	// desktop dir is a default save folder
-	saveFolder := build.DesktopDir()
-
-	build.DrawStart()
 
 	// if is not in cli mode, the user need to fill the settings of search
 	if !*flagRunCLI {
@@ -73,7 +71,6 @@ func main() {
 
 	build.DrawStartSearch()
 
-	// search for files
 	err := s.SearchFiles()
 	if err != nil {
 		fmt.Println(err)
@@ -87,6 +84,5 @@ func main() {
 			return
 		}
 	}
-
 	os.Exit(1)
 }
