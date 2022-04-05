@@ -55,7 +55,7 @@ func (s *Search) SearchFiles() error {
 
 	word := strToLower(s.Word, s.Maj)
 	savePath := filepath.Join(s.SaveFolder, "Data")
-	nbFolder, listFolders := countNbFolder(s.Path)
+	nbFolder, listFolders := countFoldersDir(s.Path)
 	nbFolderMade := 0
 	id := 0
 
@@ -79,7 +79,6 @@ func (s *Search) SearchFiles() error {
 			return err
 		}
 
-		// check if is not a folder
 		if info.IsDir() == false {
 
 			// look at the stats of file
@@ -121,13 +120,13 @@ func (s *Search) SearchFiles() error {
 
 			id++ // increment the id (number of file searched)
 
-			fmt.Printf("N°%v | Fichier: %v\n", id, fileStat.Name()) // print searched file on screen
+			fmt.Printf("N°%v | Fichier: %v\n", id, fileStat.Name())
 
-			wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", id+1), id)                                    // insert data of excel file
-			wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", id+1), fileStat.Name())                       // insert data of excel file
-			wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", id+1), fmt.Sprintf("%v", fileStat.ModTime())) // insert data of excel file
-			wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", id+1), path)                                  // insert data of excel file
-			wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", id+1), filepath.Dir(path))                    // insert data of excel file
+			wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", id+1), id)
+			wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", id+1), fileStat.Name())
+			wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", id+1), fmt.Sprintf("%v", fileStat.ModTime()))
+			wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", id+1), path)
+			wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", id+1), filepath.Dir(path))
 
 			data := DataJson{
 				Id:       id,
@@ -139,7 +138,7 @@ func (s *Search) SearchFiles() error {
 			JsonData = append(JsonData, data)
 
 			if s.Save {
-				savelFile(wb, savePath, s.Word, JsonData)
+				savelFiles(wb, savePath, s.Word, JsonData)
 			}
 		} else {
 			if stringInSlice(path, listFolders) {
@@ -160,14 +159,14 @@ func (s *Search) SearchFiles() error {
 	}
 
 	// save excel file
-	savelFile(wb, savePath, s.Word, JsonData)
+	savelFiles(wb, savePath, s.Word, JsonData)
 
 	DrawEndSearch(s.Path, savePath, nbFolderMade, id)
 
 	return nil
 }
 
-func countNbFolder(path string) (int, []string) {
+func countFoldersDir(path string) (int, []string) {
 	count := 0
 	var listFolders []string
 
@@ -185,6 +184,14 @@ func countNbFolder(path string) (int, []string) {
 	return count, listFolders
 }
 
+func strToLower(s string, b bool) string {
+	if !b {
+		return strings.ToLower(s)
+	} else {
+		return s
+	}
+}
+
 func stringInSlice(a string, list []string) bool {
 	for _, b := range list {
 		if b == a {
@@ -192,14 +199,6 @@ func stringInSlice(a string, list []string) bool {
 		}
 	}
 	return false
-}
-
-func strToLower(s string, b bool) string {
-	if !b {
-		return strings.ToLower(s)
-	} else {
-		return s
-	}
 }
 
 func createSaveFolder(savePath string) error {
@@ -210,7 +209,7 @@ func createSaveFolder(savePath string) error {
 	return nil
 }
 
-func savelFile(wb *excelize.File, savePath, word string, JsonData []DataJson) {
+func savelFiles(wb *excelize.File, savePath, word string, JsonData []DataJson) {
 	if len(word) < 1 {
 		word = "Data"
 	}
