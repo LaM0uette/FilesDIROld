@@ -1,0 +1,1 @@
+a chauqe dossier trouvé, ajouter le path dans le channel dans le select pour chercher les fichiers en goroutine
