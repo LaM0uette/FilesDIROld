@@ -5,7 +5,6 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
-	_ "github.com/mattn/go-sqlite3"
 	"os"
 	"strings"
 	"time"
