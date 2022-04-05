@@ -230,8 +230,9 @@ func ReadExcelFileForReq() (mode, word, ext string, maj, save bool, err error) {
 	}
 
 	i := 1
-	nom := f.GetCellValue("Sheet1", fmt.Sprintf("A%v", i))
-	fmt.Println(nom)
+	for len(f.GetCellValue("Sheet1", fmt.Sprintf("A%v", i))) > 0 {
+		i++
+	}
 
 	mode = f.GetCellValue("Sheet1", fmt.Sprintf("B%v", i))
 	word = f.GetCellValue("Sheet1", fmt.Sprintf("C%v", i))
