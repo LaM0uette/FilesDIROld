@@ -236,6 +236,10 @@ func ReadExcelFileForReq(req string) (mode, word, ext string, maj, save bool, er
 		}
 		i++
 	}
+	if len(f.GetCellValue("Sheet1", fmt.Sprintf("A%v", i))) < 1 {
+		fmt.Println("Pas de requête trouvée pour ce nom.")
+		os.Exit(1)
+	}
 
 	mode = f.GetCellValue("Sheet1", fmt.Sprintf("B%v", i))
 	word = f.GetCellValue("Sheet1", fmt.Sprintf("C%v", i))
