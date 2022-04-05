@@ -1,6 +1,7 @@
 package main
 
 import (
+	"FilesDIR/globals"
 	"FilesDIR/task"
 	"log"
 )
@@ -9,7 +10,7 @@ func main() {
 
 	task.DrawStart()
 
-	path := "C:\\Users\\doria\\go\\src\\FilesDIR\\tests"
+	path := globals.SrcPath
 	err := task.LoopDir(path)
 	if err != nil {
 		log.Fatal(err)

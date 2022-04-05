@@ -1,9 +1,12 @@
 package task
 
-import "testing"
+import (
+	"FilesDIR/globals"
+	"testing"
+)
 
 func TestLoopDir(t *testing.T) {
-	path := "C:\\Users\\doria\\go\\src\\FilesDIR\\tests"
+	path := globals.SrcPath
 	err := LoopDir(path)
 	if err != nil {
 		t.Error(err)
