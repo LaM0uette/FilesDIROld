@@ -28,6 +28,24 @@ func main() {
 	flagPath := flag.String("path", build.CurrentDir(), "Chemin de recherche")
 	flag.Parse()
 
+	mode, word, ext, maj, save, err := build.ReadExcelFileForReq()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	fmt.Println(mode, word, ext, maj, save)
+
+	if *flagReq != "" {
+		*flagRunCLI = true
+		*flagMode = mode
+		*flagWord = word
+		*flagExt = ext
+		*flagMaj = maj
+		*flagSave = save
+		*flagPath = build.CurrentDir()
+	}
+
 	// if is not in cli mode, the user need to fill the settings of search
 	if !*flagRunCLI {
 		fmt.Print("Mode de recherche ( = | % | ^ | $ ) : ")
@@ -60,16 +78,6 @@ func main() {
 		saveFolder = build.CurrentDir()
 	}
 
-	if *flagReq != "" {
-		*flagRunCLI = true
-		*flagMode = "%"
-		*flagWord = "fiche"
-		*flagExt = "xlsx"
-		*flagMaj = false
-		*flagSave = false
-		*flagPath = build.CurrentDir()
-	}
-
 	// generated the structure with data to search for files
 	s := build.Search{
 		Mode:       *flagMode,
@@ -83,7 +91,7 @@ func main() {
 
 	build.DrawStartSearch()
 
-	err := s.SearchFiles()
+	err = s.SearchFiles()
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)

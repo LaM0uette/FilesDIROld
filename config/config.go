@@ -10,7 +10,7 @@ func Config() Data {
 	c := Data{
 		Name:    "FileDIR",
 		Author:  "LaM0uette",
-		Version: 0.3,
+		Version: 0.4,
 	}
 	return c
 }

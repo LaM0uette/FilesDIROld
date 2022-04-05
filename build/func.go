@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/user"
 	"path/filepath"
+	"strconv"
 	"strings"
 )
 
@@ -220,4 +221,28 @@ func savelFiles(wb *excelize.File, savePath, word string, JsonData []DataJson) {
 
 	file, _ := json.MarshalIndent(JsonData, "", " ")
 	_ = ioutil.WriteFile(savePath+"/"+word+".json", file, 0644)
+}
+
+func ReadExcelFileForReq() (mode, word, ext string, maj, save bool, err error) {
+	f, err := excelize.OpenFile("T:\\- 4 Suivi Appuis\\26_MACROS\\GO\\FilesDIR\\req.xlsx")
+	if err != nil {
+		panic(err)
+	}
+
+	i := 2
+
+	mode = f.GetCellValue("Sheet1", fmt.Sprintf("B%v", i))
+	word = f.GetCellValue("Sheet1", fmt.Sprintf("C%v", i))
+	ext = f.GetCellValue("Sheet1", fmt.Sprintf("D%v", i))
+	strMaj := f.GetCellValue("Sheet1", fmt.Sprintf("E%v", i))
+	strSave := f.GetCellValue("Sheet1", fmt.Sprintf("F%v", i))
+
+	t := f.GetCellValue("Sheet1", fmt.Sprintf("A%v", 3))
+	fmt.Println(t)
+	fmt.Printf("%v", t)
+
+	maj, err = strconv.ParseBool(strMaj)
+	save, err = strconv.ParseBool(strSave)
+
+	return mode, word, ext, maj, save, nil
 }
