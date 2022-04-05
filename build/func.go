@@ -65,7 +65,7 @@ func (s *Search) SearchFiles() error {
 		sMaj = " -maj"
 	}
 	sSave := ""
-	if s.Maj {
+	if s.Save {
 		sSave = " -save"
 	}
 	reqUse := fmt.Sprintf("FilesDIR -r -mode=%s -word=%s -ext=%s%s%s\n", s.Mode, s.Word, s.Ext, sMaj, sSave)
