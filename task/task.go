@@ -9,7 +9,7 @@ import (
 	"sync"
 )
 
-var id = 0
+var Id = 0
 
 func LoopDir(path string) error {
 	var wg sync.WaitGroup
@@ -40,7 +40,7 @@ func LoopDir(path string) error {
 	}
 
 	wg.Wait()
-	fmt.Println("Finished", countDir, id)
+	fmt.Println("Finished", countDir, Id)
 	return nil
 }
 
@@ -55,7 +55,29 @@ func loopFiles(path string, wg *sync.WaitGroup) error {
 	for _, file := range files {
 		if !file.IsDir() {
 			go fmt.Println(file.Name())
-			id++
+			Id++
+		}
+	}
+
+	wg.Done()
+	return nil
+}
+
+func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
+	wg.Add(1)
+
+	files, err := ioutil.ReadDir(path)
+	if err != nil {
+		wg.Done()
+		return err
+	}
+
+	for _, file := range files {
+		if !file.IsDir() {
+			go fmt.Println(file.Name())
+			Id++
+		} else {
+			go LoopDirsFiles(filepath.Join(path, file.Name()), wg)
 		}
 	}
 
