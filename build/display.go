@@ -39,6 +39,7 @@ Nombre de dossiers parents: %v
 Fichiers trouvés: %v
 Emplacement de sauvegarde: %s
 
+------------------------------------------------------------------
 
 `, time, path, reqUse, nbrFolder, nbrFiles, saveFolder)
 }
