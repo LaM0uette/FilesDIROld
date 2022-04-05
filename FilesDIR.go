@@ -7,12 +7,14 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
 )
 
 var reader = bufio.NewReader(os.Stdin)
 var saveFolder = build.DesktopDir()
 
 func main() {
+	timeStart := time.Now()
 
 	build.DrawStart()
 
@@ -95,7 +97,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	build.DrawEndSearch(s.Path, reqUse, savePath, nbFolderMade, id)
+	timeEnd := time.Since(timeStart)
+
+	build.DrawEndSearch(timeEnd, s.Path, reqUse, savePath, nbFolderMade, id)
 
 	if *flagRunCLI {
 		fmt.Print("Appuyer sur Entrée pour quitter...")
