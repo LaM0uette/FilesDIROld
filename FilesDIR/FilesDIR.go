@@ -16,3 +16,5 @@ func LoopDir(path string) error {
 	}
 	return nil
 }
+
+// Function qui pour chaque nouveau dossier lance une goroutine qui boucle sur les fichiers.
