@@ -10,8 +10,7 @@ func main() {
 
 	task.DrawStart()
 
-	path := globals.SrcPath
-	err := task.LoopDir(path)
+	err := task.LoopDir(globals.SrcPath)
 	if err != nil {
 		log.Fatal(err)
 	}
