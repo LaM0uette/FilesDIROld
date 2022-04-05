@@ -52,7 +52,7 @@ func DesktopDir() string {
 func (s *Search) SearchFiles() error {
 
 	word := strToLower(s.Word, s.Maj)
-	savePath := s.SaveFolder + "/Data"
+	savePath := filepath.Join(s.SaveFolder, "Data")
 	nbFolderMade := 0
 
 	err := createSaveFolder(savePath) // create folder for save data
