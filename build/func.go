@@ -60,13 +60,6 @@ func (s *Search) SearchFiles() (reqUse, savePath string, nbFolderMade, id int, e
 	nbFolderMade = 0
 	id = 0
 
-	val := "old falcon\n"
-	data := []byte(val)
-	err = ioutil.WriteFile("listFolders.txt", data, 0)
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	sMaj := ""
 	if s.Maj {
 		sMaj = " -maj"

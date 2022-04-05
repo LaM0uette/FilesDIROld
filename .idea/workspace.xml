@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Ajout bdd en sqlite">
-      <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bdd/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bdd/.idea/bdd.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bdd/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bdd/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bdd/.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Add historique des dossiers en .txt">
       <change beforePath="$PROJECT_DIR$/build/func.go" beforeDir="false" afterPath="$PROJECT_DIR$/build/func.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listFolders.txt" beforeDir="false" afterPath="$PROJECT_DIR$/listFolders.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +91,8 @@
     <MESSAGE value="Ajout d'un timer" />
     <MESSAGE value="Save en plus avec historique" />
     <MESSAGE value="Ajout bdd en sqlite" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout bdd en sqlite" />
+    <MESSAGE value="Add historique des dossiers en .txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add historique des dossiers en .txt" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
