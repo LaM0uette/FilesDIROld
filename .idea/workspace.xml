@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Save en plus avec historique">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8d3cbcfe-9eea-4d84-9987-ec5093260029.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8d3cbcfe-9eea-4d84-9987-ec5093260029.xml" afterDir="false" />
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="refont du code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilesDIR/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR/FilesDIR.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/task_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +65,7 @@
     "settings.editor.selected.configurable": "go.sdk"
   }
 }]]></component>
-  <component name="RunManager" selected="Go Build.FilesDIR">
+  <component name="RunManager" selected="Go Test.TestLoopDir in FilesDIR/task">
     <configuration name="FilesDIR" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$" />
@@ -100,13 +99,27 @@
       <pattern value="^\QTestLoopDir\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="TestLoopDir in FilesDIR/task" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="FilesDIR" />
+      <working_directory value="$PROJECT_DIR$/task" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="FilesDIR/task" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestLoopDir\E$" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Go Build.FilesDIR" />
+      <item itemvalue="Go Test.TestLoopDir in FilesDIR/task" />
       <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR" />
       <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestLoopDir in FilesDIR/task" />
         <item itemvalue="Go Build.FilesDIR" />
         <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR" />
         <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR (1)" />
@@ -141,7 +154,8 @@
     <MESSAGE value="Préparation refonte du code" />
     <MESSAGE value="Suppression du code (préparation de la refont)" />
     <MESSAGE value="Ajout du code de test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout du code de test" />
+    <MESSAGE value="refont du code" />
+    <option name="LAST_COMMIT_MESSAGE" value="refont du code" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
