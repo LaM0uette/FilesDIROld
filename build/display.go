@@ -29,9 +29,8 @@ func DrawEndSearch(time time.Duration, path, reqUse, saveFolder string, nbrFolde
 
 
 BILAN DES RECHERCHES :
-------------------------------------------------------------------
-
 La recherche à mis : %s
+------------------------------------------------------------------
 
 Dossier principal de recherche: %s
 Requête utilisée: %s
