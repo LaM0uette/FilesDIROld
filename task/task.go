@@ -13,6 +13,7 @@ import (
 )
 
 var Id = 0
+var Thr = 0
 
 // LoopDir TODO: Code à supprimer
 func LoopDir(path string) error {
@@ -75,6 +76,7 @@ func SetProgramLimits() {
 
 func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 	wg.Add(1)
+	defer func() { Thr-- }()
 	defer wg.Done()
 
 	files, err := ioutil.ReadDir(path)
@@ -84,9 +86,16 @@ func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 
 	for _, file := range files {
 		if !file.IsDir() && !strings.Contains(file.Name(), "~") {
-			fmt.Println(file.Name(), Id)
+			fmt.Println(file.Name(), Id, Thr)
 			Id++
 		} else if file.IsDir() {
+
+			Thr++
+
+			for Thr > 8000000 {
+
+			}
+
 			go func() {
 				err = LoopDirsFiles(filepath.Join(path, file.Name()), wg)
 				if err != nil {
