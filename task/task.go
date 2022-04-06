@@ -84,7 +84,7 @@ func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 					log.Print(err)
 				}
 			}()
-			time.Sleep(20 * time.Millisecond)
+			time.Sleep(600 * time.Millisecond)
 		}
 	}
 	return nil
