@@ -10,7 +10,6 @@ import (
 var (
 	wg   sync.WaitGroup
 	jobs = make(chan string)
-	Id   = 0
 )
 
 type Sch struct {

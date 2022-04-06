@@ -13,6 +13,6 @@ func TestRunSearch(t *testing.T) {
 
 	RunSearch(&s)
 	if s.NbFiles != 18 {
-		t.Error("NbFiles is not 18", Id)
+		t.Error("NbFiles is not 18", s.NbFiles)
 	}
 }
