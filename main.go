@@ -13,7 +13,7 @@ func main() {
 	timerStart := time.Now()
 
 	s := task.Sch{
-		SrcPath:  globals.SrcPath,
+		SrcPath:  globals.SrcPathGen,
 		PoolSize: 10,
 		NbFiles:  0,
 	}
