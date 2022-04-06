@@ -1,114 +1,61 @@
 package task
 
 import (
+	"FilesDIR/globals"
 	"fmt"
 	"io/ioutil"
-	"log"
-	"os"
 	"path/filepath"
-	"strings"
 	"sync"
-	"time"
 )
 
-var Id = 0
+var (
+	wg   sync.WaitGroup
+	jobs chan string = make(chan string)
+	Id               = 0
+)
 
-// LoopDir TODO: Code à supprimer / Code to delete
-func LoopDir(path string) error {
-	var wg sync.WaitGroup
-
-	countDir := 0
-
-	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
+func loopFilesWorker() error {
+	for path := range jobs {
+		files, err := ioutil.ReadDir(path)
 		if err != nil {
+			wg.Done()
 			return err
 		}
 
-		if info.IsDir() {
-			wg.Add(1)
-			countDir++
-
-			go func() {
-				err := loopFiles(path, &wg)
-				if err != nil {
-					log.Println(err.Error())
-				}
-			}()
+		for _, file := range files {
+			if !file.IsDir() {
+				fmt.Println(file.Name())
+			}
 		}
-
-		return nil
-	})
-	if err != nil {
-		return err
-	}
-
-	wg.Wait()
-	fmt.Println("Finished", countDir, Id)
-	return nil
-}
-
-// loopFiles TODO: Code à supprimer / Code to delete
-func loopFiles(path string, wg *sync.WaitGroup) error {
-
-	files, err := ioutil.ReadDir(path)
-	if err != nil {
 		wg.Done()
-		return err
 	}
-
-	for _, file := range files {
-		if !file.IsDir() {
-			go fmt.Println(file.Name())
-			Id++
-		}
-	}
-
-	wg.Done()
 	return nil
 }
 
-func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
-	wg.Add(1)
-	defer wg.Done()
-
+func LoopDirsFiles(path string) error {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		return err
 	}
 
+	go func() {
+		wg.Add(1)
+		jobs <- path
+	}()
 	for _, file := range files {
-		if !file.IsDir() && !strings.Contains(file.Name(), "~") {
-			fmt.Println(file.Name(), Id)
-			Id++
-		} else if file.IsDir() {
-			go func() {
-				err = LoopDirsFiles(filepath.Join(path, file.Name()), wg)
-				if err != nil {
-					log.Print(err)
-				}
-			}()
-			time.Sleep(20 * time.Millisecond)
+		if file.IsDir() {
+			LoopDirsFiles(filepath.Join(path, file.Name()))
 		}
 	}
 	return nil
 }
 
-func LoopAlls(path string, wg *sync.WaitGroup) error {
-	wg.Add(1)
-	defer wg.Done()
+func Run() {
 
-	err := filepath.WalkDir(path, func(path string, d os.DirEntry, err error) error {
-		if err != nil {
-			return err
-		}
-
-		fmt.Println(d.Name())
-
-		return nil
-	})
-	if err != nil {
-		return err
+	for w := 1; w <= 10; w++ {
+		go loopFilesWorker()
 	}
 
-	return nil
+	LoopDirsFiles(globals.SrcPath)
+	wg.Wait()
 }
