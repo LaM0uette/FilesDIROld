@@ -5,6 +5,7 @@ import (
 	"FilesDIR/task"
 	"fmt"
 	"log"
+	"runtime/debug"
 	"sync"
 	"time"
 )
@@ -16,7 +17,7 @@ func main() {
 
 	task.DrawStart()
 
-	task.SetProgramLimits()
+	debug.SetMaxThreads(5 * 1000)
 
 	/*
 		err := task.LoopDir(globals.SrcPath)

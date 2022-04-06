@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"runtime/debug"
 	"strings"
 	"sync"
 	"time"
@@ -66,11 +65,6 @@ func loopFiles(path string, wg *sync.WaitGroup) error {
 
 	wg.Done()
 	return nil
-}
-
-func SetProgramLimits() {
-	const maxThreadCount int = 5 * 1000
-	debug.SetMaxThreads(maxThreadCount)
 }
 
 func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
