@@ -20,6 +20,18 @@ func DrawStart() {
 `, globals.Version, globals.Author)
 }
 
+func DrawRunSearch() {
+	fmt.Print(`
+==================  DEBUT DES RECHERCHES  ==================
+`)
+}
+
+func DrawEndSearch() {
+	fmt.Print(`
+==================   FIN DES RECHERCHES   ==================
+`)
+}
+
 func DrawEnd(s *Sch, timer time.Duration) {
 	fmt.Printf(`
 
