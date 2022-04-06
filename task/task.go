@@ -1,6 +1,7 @@
 package task
 
 import (
+	"FilesDIR/log"
 	"fmt"
 	"io/ioutil"
 	"path/filepath"
@@ -22,6 +23,7 @@ func (s *Sch) loopFilesWorker() error {
 	for path := range jobs {
 		files, err := ioutil.ReadDir(path)
 		if err != nil {
+			log.Crash.Printf(fmt.Sprintf("Crash with this path: %s\n\n", path))
 			wg.Done()
 			return err
 		}
@@ -29,7 +31,8 @@ func (s *Sch) loopFilesWorker() error {
 		for _, file := range files {
 			if !file.IsDir() {
 				s.NbFiles++
-				fmt.Println(file.Name())
+				log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s\n\n", s.NbFiles, file.Name()))
+				fmt.Printf("N°%v | Files: %s\n\n", s.NbFiles, file.Name())
 			}
 		}
 		wg.Done()
@@ -40,7 +43,8 @@ func (s *Sch) loopFilesWorker() error {
 func LoopDirsFiles(path string) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		fmt.Print(err)
+		log.Error.Printf(fmt.Sprintf("Error with this path: %s\n\n", path))
+		fmt.Printf("Error with this path: %s\n\n", path)
 	}
 
 	go func() {
@@ -58,6 +62,7 @@ func RunSearch(s *Sch) {
 	DrawRunSearch()
 
 	if s.PoolSize < 2 {
+		log.Info.Println("Set the PoolSize to 2\n")
 		s.PoolSize = 2
 	}
 	for w := 1; w <= s.PoolSize; w++ {

@@ -10,9 +10,10 @@ import (
 var (
 	//Blank     *log.Logger
 	BlankDate *log.Logger
-	//Info      *log.Logger
+	Info      *log.Logger
 	//Warning   *log.Logger
 	Error *log.Logger
+	Crash *log.Logger
 )
 
 func init() {
@@ -23,7 +24,8 @@ func init() {
 
 	//Blank = log.New(file, "", 0)
 	BlankDate = log.New(file, ": ", log.Ltime|log.Lmsgprefix)
-	//Info = log.New(file, "[INFO]: ", log.Ltime|log.Lmsgprefix)
+	Info = log.New(file, "[INFO]: ", log.Ltime|log.Lmsgprefix)
 	//Warning = log.New(file, "[WARNING]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
 	Error = log.New(file, "[ERROR]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
+	Crash = log.New(file, "[CRASH]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
 }
