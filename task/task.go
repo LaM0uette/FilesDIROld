@@ -92,3 +92,23 @@ func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 	}
 	return nil
 }
+
+func LoopAlls(path string, wg *sync.WaitGroup) error {
+	wg.Add(1)
+	defer wg.Done()
+
+	err := filepath.WalkDir(path, func(path string, d os.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+
+		fmt.Println(d.Name())
+
+		return nil
+	})
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Optimisation de vitesse/ correction bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/globals/globals.go" beforeDir="false" afterPath="$PROJECT_DIR$/globals/globals.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/task_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,16 +84,16 @@
       <filePath value="$PROJECT_DIR$/FilesDIR.go" />
       <method v="2" />
     </configuration>
-    <configuration name="TestLoopDir in FilesDIR/FilesDIR" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestLoopAlls in FilesDIR/task" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
-      <working_directory value="$PROJECT_DIR$/FilesDIR" />
+      <working_directory value="$PROJECT_DIR$/task" />
       <root_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="FilesDIR/FilesDIR" />
+      <package value="FilesDIR/task" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
-      <pattern value="^\QTestLoopDir\E$" />
+      <pattern value="^\QTestLoopAlls\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestLoopDir in FilesDIR/task" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -123,17 +123,17 @@
     <list>
       <item itemvalue="Go Build.FilesDIR" />
       <item itemvalue="Go Build.go build FilesDIR.go" />
+      <item itemvalue="Go Test.TestLoopAlls in FilesDIR/task" />
       <item itemvalue="Go Test.TestLoopDir in FilesDIR/task" />
       <item itemvalue="Go Test.TestLoopDirsFiles" />
-      <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.FilesDIR" />
+        <item itemvalue="Go Test.TestLoopAlls in FilesDIR/task" />
         <item itemvalue="Go Test.TestLoopDir in FilesDIR/task" />
         <item itemvalue="Go Test.TestLoopDirsFiles" />
         <item itemvalue="Go Build.go build FilesDIR.go" />
-        <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR" />
       </list>
     </recent_temporary>
   </component>
