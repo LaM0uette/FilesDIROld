@@ -16,6 +16,8 @@ func main() {
 
 	task.DrawStart()
 
+	task.SetProgramLimits()
+
 	/*
 		err := task.LoopDir(globals.SrcPath)
 		if err != nil {

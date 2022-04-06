@@ -6,12 +6,15 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"runtime/debug"
+	"strings"
 	"sync"
 	"time"
 )
 
 var Id = 0
 
+// LoopDir TODO: Code à supprimer
 func LoopDir(path string) error {
 	var wg sync.WaitGroup
 
@@ -45,6 +48,7 @@ func LoopDir(path string) error {
 	return nil
 }
 
+// loopFiles TODO: Code à supprimer
 func loopFiles(path string, wg *sync.WaitGroup) error {
 
 	files, err := ioutil.ReadDir(path)
@@ -64,6 +68,11 @@ func loopFiles(path string, wg *sync.WaitGroup) error {
 	return nil
 }
 
+func SetProgramLimits() {
+	const maxThreadCount int = 500 * 1000
+	debug.SetMaxThreads(maxThreadCount)
+}
+
 func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 	wg.Add(1)
 	defer wg.Done()
@@ -74,7 +83,7 @@ func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 	}
 
 	for _, file := range files {
-		if !file.IsDir() {
+		if !file.IsDir() && !strings.Contains(file.Name(), "~") {
 			fmt.Println(file.Name(), Id)
 			Id++
 		} else if file.IsDir() {
@@ -84,7 +93,7 @@ func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 					log.Print(err)
 				}
 			}()
-			time.Sleep(600 * time.Millisecond)
+			time.Sleep(30 * time.Millisecond)
 		}
 	}
 	return nil
