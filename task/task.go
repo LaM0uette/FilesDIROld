@@ -13,7 +13,13 @@ var (
 	Id   = 0
 )
 
-func loopFilesWorker() error {
+type Sch struct {
+	SrcPath  string
+	PoolSize int
+	NbFiles  int
+}
+
+func (s *Sch) loopFilesWorker() error {
 	for path := range jobs {
 		files, err := ioutil.ReadDir(path)
 		if err != nil {
@@ -23,7 +29,7 @@ func loopFilesWorker() error {
 
 		for _, file := range files {
 			if !file.IsDir() {
-				Id++
+				s.NbFiles++
 				fmt.Println(file.Name())
 			}
 		}
@@ -49,15 +55,15 @@ func LoopDirsFiles(path string) {
 	}
 }
 
-func RunSearch(path string, poolsize int) {
-	for w := 1; w <= poolsize; w++ {
+func RunSearch(s *Sch) {
+	for w := 1; w <= s.PoolSize; w++ {
 		go func() {
-			err := loopFilesWorker()
+			err := s.loopFilesWorker()
 			if err != nil {
 				fmt.Println(err)
 			}
 		}()
 	}
-	LoopDirsFiles(path)
+	LoopDirsFiles(s.SrcPath)
 	wg.Wait()
 }

@@ -1,6 +1,7 @@
 package task
 
 import (
+	"FilesDIR/globals"
 	"fmt"
 )
 
@@ -15,31 +16,16 @@ func DrawStart() {
 		Version: %v               Auteur: %s
 
 
-`, 0.5, "LaM0uette")
+`, globals.Version, globals.Author)
 }
 
-/*
-func DrawStartSearch() {
-	fmt.Printf("**********  DEBUT DE LA RECHERCHE  **********\n")
-}
+func (s *Sch) DrawEnd() {
+	fmt.Printf(`
+==================  BILAN DES RECHERCHES  ==================
 
-func DrawEndSearch(time time.Duration, path, reqUse, saveFolder string, nbrFolder, nbrFiles int) {
-	fmt.Printf(`**********  FIN DE LA RECHERCHE  **********
-
-
-BILAN DES RECHERCHES :
-La recherche à mis : %s
-------------------------------------------------------------------
-
-Dossier principal de recherche: %s
-Requête utilisée: %s
-
-Nombre de dossiers parents: %v
+Dossiers principal: %s
 Fichiers trouvés: %v
-Emplacement de sauvegarde: %s
 
-------------------------------------------------------------------
 
-`, time, path, reqUse, nbrFolder, nbrFiles, saveFolder)
+`, s.SrcPath, s.NbFiles)
 }
-*/

@@ -13,9 +13,15 @@ func main() {
 
 	timerStart := time.Now()
 
-	task.RunSearch(globals.SrcPath, 10)
+	s := task.Sch{
+		SrcPath:  globals.SrcPath,
+		PoolSize: 10,
+		NbFiles:  0,
+	}
+
+	task.RunSearch(&s)
 
 	timerEnd := time.Since(timerStart)
 
-	fmt.Println("FINI: Nb Fichiers: ", task.Id, " en ", timerEnd)
+	fmt.Println("FINI: Nb Fichiers: ", s.NbFiles, " en ", timerEnd)
 }

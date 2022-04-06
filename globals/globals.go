@@ -1,4 +1,5 @@
 package globals
 
-// var SrcPath = "C:\\Users\\XD5965\\go\\src\\FilesDIR\\tests"
-var SrcPath = "F:\\"
+const SrcPath = "F:\\"
+const Version = 0.5
+const Author = "LaM0uette"
