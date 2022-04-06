@@ -57,6 +57,9 @@ func LoopDirsFiles(path string) {
 func RunSearch(s *Sch) {
 	DrawRunSearch()
 
+	if s.PoolSize < 2 {
+		s.PoolSize = 2
+	}
 	for w := 1; w <= s.PoolSize; w++ {
 		go func() {
 			err := s.loopFilesWorker()
