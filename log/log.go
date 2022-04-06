@@ -23,5 +23,5 @@ func init() {
 
 	Info = log.New(file, fmt.Sprintf("[%v][INFO]: ", logDate), 0)
 	Warning = log.New(file, fmt.Sprintf("[%v][WARNING]: ", logDate), log.Lshortfile)
-	Error = log.New(file, fmt.Sprintf("[%v][ERROR]: ", logDate), log.Llongfile)
+	Error = log.New(file, fmt.Sprintf("[%v][ERROR]: ", logDate), log.Lshortfile)
 }
