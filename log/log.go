@@ -21,11 +21,9 @@ func init() {
 		log.Fatal(err)
 	}
 
-	logDate := time.Now().Format("15:04:05")
-
 	//Blank = log.New(file, "", 0)
-	BlankDate = log.New(file, fmt.Sprintf("[%v]: ", logDate), 0)
-	//Info = log.New(file, fmt.Sprintf("[%v][INFO]: ", logDate), 0)
-	//Warning = log.New(file, fmt.Sprintf("[%v][WARNING]: ", logDate), log.Lshortfile)
-	Error = log.New(file, fmt.Sprintf("[%v][ERROR]: ", logDate), log.Lshortfile)
+	BlankDate = log.New(file, fmt.Sprintf("[%v]: ", log.Ltime), 0)
+	//Info = log.New(file, fmt.Sprintf("[%v][INFO]: ", log.Ltime), 0)
+	//Warning = log.New(file, fmt.Sprintf("[%v][WARNING]: ", log.Ltime), log.Lshortfile)
+	Error = log.New(file, fmt.Sprintf("[%v][ERROR]: ", log.Ltime), log.Lshortfile)
 }
