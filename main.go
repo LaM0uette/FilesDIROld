@@ -16,7 +16,7 @@ func main() {
 
 	var wg sync.WaitGroup
 
-	task.DrawStart()
+	// task.DrawStart()
 
 	/*
 		err := task.LoopDir(globals.SrcPath)
@@ -25,7 +25,7 @@ func main() {
 		}
 	*/
 
-	err := task.LoopDirsFiles(globals.SrcPath, &wg)
+	err := task.LoopDirsFiles(globals.SrcPath, &wg) // globals.SrcPath = My path with ~2000000 files ( this is a serveur of my entreprise)
 	if err != nil {
 		log.Print(err.Error())
 	}

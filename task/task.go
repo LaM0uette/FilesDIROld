@@ -13,7 +13,7 @@ import (
 
 var Id = 0
 
-// LoopDir TODO: Code à supprimer
+// LoopDir TODO: Code à supprimer / Code to delete
 func LoopDir(path string) error {
 	var wg sync.WaitGroup
 
@@ -47,7 +47,7 @@ func LoopDir(path string) error {
 	return nil
 }
 
-// loopFiles TODO: Code à supprimer
+// loopFiles TODO: Code à supprimer / Code to delete
 func loopFiles(path string, wg *sync.WaitGroup) error {
 
 	files, err := ioutil.ReadDir(path)
