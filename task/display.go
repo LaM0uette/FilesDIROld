@@ -22,14 +22,18 @@ func DrawStart() {
 
 func DrawEnd(s *Sch, timer time.Duration) {
 	fmt.Printf(`
+
+
 ==================  BILAN DES RECHERCHES  ==================
 
+INFOS GENERALES:
 Dossiers principal: %s
 Temps d'exécution: %v
 
-============================================================
+RESULTATS:
 Fichiers trouvés: %v
 
+============================================================
 
 `, s.SrcPath, timer, s.NbFiles)
 }
