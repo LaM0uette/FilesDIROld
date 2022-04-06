@@ -21,15 +21,11 @@ func DrawStart() {
 }
 
 func DrawRunSearch() {
-	fmt.Print(`
-==================  DEBUT DES RECHERCHES  ==================
-`)
+	fmt.Print(`==================  DEBUT DES RECHERCHES  ==================`)
 }
 
 func DrawEndSearch() {
-	fmt.Print(`
-==================   FIN DES RECHERCHES   ==================
-`)
+	fmt.Print(`==================   FIN DES RECHERCHES   ==================`)
 }
 
 func DrawEnd(s *Sch, timer time.Duration) {
