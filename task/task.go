@@ -76,16 +76,16 @@ func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 	}
 
 	for _, file := range files {
-		if !file.IsDir() {
-			//fmt.Println(file.Name())
-			Id++
-		} else if file.IsDir() {
-			func() {
+		if file.IsDir() {
+			go func() {
 				err := LoopDirsFiles(filepath.Join(path, file.Name()), wg)
 				if err != nil {
-					log.Println("ERRORRRRRRR", err)
+					log.Print(err)
 				}
 			}()
+		} else if !file.IsDir() {
+			//fmt.Println(file.Name())
+			Id++
 		}
 	}
 
