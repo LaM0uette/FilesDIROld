@@ -25,7 +25,7 @@ func DrawRunSearch() {
 	fmt.Print(`Début de la recherche...
 
 `)
-	time.Sleep(2 * time.Second)
+	time.Sleep(1 * time.Second)
 }
 
 func DrawEndSearch() {
