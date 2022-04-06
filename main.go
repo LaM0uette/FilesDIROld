@@ -12,12 +12,11 @@ import (
 
 func main() {
 	timeStart := time.Now()
+	debug.SetMaxThreads(5 * 1000)
 
 	var wg sync.WaitGroup
 
 	task.DrawStart()
-
-	debug.SetMaxThreads(5 * 1000)
 
 	/*
 		err := task.LoopDir(globals.SrcPath)
