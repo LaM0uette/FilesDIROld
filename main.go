@@ -7,14 +7,14 @@ import (
 )
 
 func main() {
-	timeStart := time.Now()
 
 	task.DrawStart()
 
-	task.Run()
+	timerStart := time.Now()
 
-	fmt.Println("FINI: Nb Fichiers: ", task.Id)
+	task.RunSearch(10)
 
-	timeEnd := time.Since(timeStart)
-	fmt.Println(timeEnd)
+	timerEnd := time.Since(timerStart)
+
+	fmt.Println("FINI: Nb Fichiers: ", task.Id, " en ", timerEnd)
 }

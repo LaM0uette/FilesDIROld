@@ -10,8 +10,8 @@ import (
 
 var (
 	wg   sync.WaitGroup
-	jobs chan string = make(chan string)
-	Id               = 0
+	jobs = make(chan string)
+	Id   = 1
 )
 
 func loopFilesWorker() error {
@@ -25,6 +25,7 @@ func loopFilesWorker() error {
 		for _, file := range files {
 			if !file.IsDir() {
 				fmt.Println(file.Name())
+				Id++
 			}
 		}
 		wg.Done()
@@ -32,10 +33,10 @@ func loopFilesWorker() error {
 	return nil
 }
 
-func LoopDirsFiles(path string) error {
+func LoopDirsFiles(path string) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		return err
+		fmt.Println(err)
 	}
 
 	go func() {
@@ -47,15 +48,17 @@ func LoopDirsFiles(path string) error {
 			LoopDirsFiles(filepath.Join(path, file.Name()))
 		}
 	}
-	return nil
 }
 
-func Run() {
-
-	for w := 1; w <= 10; w++ {
-		go loopFilesWorker()
+func RunSearch(poolsize int) {
+	for w := 1; w <= poolsize; w++ {
+		go func() {
+			err := loopFilesWorker()
+			if err != nil {
+				fmt.Println(err)
+			}
+		}()
 	}
-
 	LoopDirsFiles(globals.SrcPath)
 	wg.Wait()
 }
