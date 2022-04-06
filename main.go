@@ -11,10 +11,14 @@ func main() {
 
 	task.DrawStart()
 	log.Info.Println("Starting FilesDIR")
+	log.Blank.Println()
 
 	log.Info.Println("Test Info")
+	log.Blank.Println()
 	log.Warning.Println("Test Warning")
+	log.Blank.Println()
 	log.Error.Println("Test Error")
+	log.Blank.Println()
 
 	timerStart := time.Now()
 
