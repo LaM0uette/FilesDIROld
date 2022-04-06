@@ -9,7 +9,6 @@ import (
 	"runtime/debug"
 	"strings"
 	"sync"
-	"time"
 )
 
 var Id = 0
@@ -93,7 +92,7 @@ func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 					log.Print(err)
 				}
 			}()
-			time.Sleep(100 * time.Millisecond)
+			//time.Sleep(100 * time.Millisecond)
 		}
 	}
 	return nil
