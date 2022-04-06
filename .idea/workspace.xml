@@ -4,25 +4,41 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="test boost vitesse">
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Ajout du code de test">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/globals/globals.go" beforeDir="false" afterPath="$PROJECT_DIR$/globals/globals.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/task_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
   <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../../Program Files/Go" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GoLibraries">
-    <option name="indexEntireGoPath" value="true" />
+    <option name="indexEntireGoPath" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="27OTRPMhDkAACpQVLlFmorZ3OkL" />
+  <component name="ProjectId" id="27LJxo7Ho99Rb9xajauWggxi4RE" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -30,36 +46,71 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "C:/Users/doria",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/XD5965/go/src/FilesDIR&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;go.sdk&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Go Build.go build main.go">
-    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+}</component>
+  <component name="RunManager" selected="Go Test.TestLoopDirsFiles in FilesDIR/task">
+    <configuration name="FilesDIR" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
+      <module name="FilesDIR" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="FilesDIR" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/FilesDIR.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build FilesDIR.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
       <package value="FilesDIR" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/main.go" />
+      <filePath value="$PROJECT_DIR$/FilesDIR.go" />
       <method v="2" />
     </configuration>
-    <configuration name="TestLoopDir in FilesDIR/task" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestLoopDir in FilesDIR/FilesDIR (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="FilesDIR" />
+      <working_directory value="$PROJECT_DIR$/FilesDIR" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="FilesDIR/FilesDIR" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestLoopDir\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestLoopDir in FilesDIR/FilesDIR" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="FilesDIR" />
+      <working_directory value="$PROJECT_DIR$/FilesDIR" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="FilesDIR/FilesDIR" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestLoopDir\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestLoopDirsFiles in FilesDIR/task" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$/task" />
       <root_directory value="$PROJECT_DIR$" />
@@ -68,17 +119,23 @@
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
-      <pattern value="^\QTestLoopDir\E$" />
+      <pattern value="^\QTestLoopDirsFiles\E$" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Go Build.go build main.go" />
-      <item itemvalue="Go Test.TestLoopDir in FilesDIR/task" />
+      <item itemvalue="Go Build.FilesDIR" />
+      <item itemvalue="Go Build.go build FilesDIR.go" />
+      <item itemvalue="Go Test.TestLoopDirsFiles in FilesDIR/task" />
+      <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR" />
+      <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build main.go" />
-        <item itemvalue="Go Test.TestLoopDir in FilesDIR/task" />
+        <item itemvalue="Go Test.TestLoopDirsFiles in FilesDIR/task" />
+        <item itemvalue="Go Build.FilesDIR" />
+        <item itemvalue="Go Build.go build FilesDIR.go" />
+        <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR" />
+        <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -98,14 +155,21 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ajout du waitGroup" />
-    <MESSAGE value="Ajout du timer" />
-    <MESSAGE value="test" />
-    <MESSAGE value="test boost vitesse" />
-    <option name="LAST_COMMIT_MESSAGE" value="test boost vitesse" />
+    <MESSAGE value="fin v0.3" />
+    <MESSAGE value="Init v0.4" />
+    <MESSAGE value="Reformatage" />
+    <MESSAGE value="Ajout de requete save" />
+    <MESSAGE value="Ajout d'un timer" />
+    <MESSAGE value="Save en plus avec historique" />
+    <MESSAGE value="Ajout bdd en sqlite" />
+    <MESSAGE value="Add historique des dossiers en .txt" />
+    <MESSAGE value="Annulation de bdd" />
+    <MESSAGE value="Préparation refonte du code" />
+    <MESSAGE value="Suppression du code (préparation de la refont)" />
+    <MESSAGE value="Ajout du code de test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout du code de test" />
   </component>
   <component name="VgoProject">
-    <integration-enabled>false</integration-enabled>
     <settings-migrated>true</settings-migrated>
   </component>
 </project>

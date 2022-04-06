@@ -30,7 +30,7 @@ func main() {
 
 	wg.Wait()
 
-	fmt.Println("Finished", task.Id)
+	fmt.Println("FINI: Nb Fichiers: ", task.Id)
 
 	timeEnd := time.Since(timeStart)
 	fmt.Println(timeEnd)

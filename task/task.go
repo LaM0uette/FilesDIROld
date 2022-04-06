@@ -66,24 +66,24 @@ func loopFiles(path string, wg *sync.WaitGroup) error {
 func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 	wg.Add(1)
 
-	//fmt.Println(path)
+	fmt.Println(path)
 
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
+		fmt.Println("ERROR", path)
 		wg.Done()
 		return err
 	}
 
 	for _, file := range files {
 		if !file.IsDir() {
-			fmt.Println(file.Name())
-			//time.Sleep(1 * time.Second)
+			//fmt.Println(file.Name())
 			Id++
-		} else {
-			go func() {
+		} else if file.IsDir() {
+			func() {
 				err := LoopDirsFiles(filepath.Join(path, file.Name()), wg)
 				if err != nil {
-					log.Println(err)
+					log.Println("ERRORRRRRRR", err)
 				}
 			}()
 		}
