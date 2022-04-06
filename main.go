@@ -10,15 +10,11 @@ import (
 func main() {
 
 	task.DrawStart()
-	log.Info.Println("Starting FilesDIR")
-	log.Blank.Println()
+	log.Info.Println("Starting FilesDIR\n")
 
-	log.Info.Println("Test Info")
-	log.Blank.Println()
-	log.Warning.Println("Test Warning")
-	log.Blank.Println()
-	log.Error.Println("Test Error")
-	log.Blank.Println()
+	log.Info.Println("Test Info\n")
+	log.Warning.Println("Test Warning\n")
+	log.Error.Println("Test Error\n")
 
 	timerStart := time.Now()
 
@@ -28,12 +24,12 @@ func main() {
 		NbFiles:  0,
 	}
 
-	log.Info.Println("Starting search")
+	log.Info.Println("Starting search\n")
 	task.RunSearch(&s)
-	log.Info.Println("Ending search")
+	log.Info.Println("Ending search\n")
 
 	timerEnd := time.Since(timerStart)
 
 	task.DrawEnd(&s, timerEnd)
-	log.Info.Println("Ending FilesDIR")
+	log.Info.Println("Ending FilesDIR\n")
 }

@@ -8,7 +8,6 @@ import (
 )
 
 var (
-	Blank   *log.Logger
 	Info    *log.Logger
 	Warning *log.Logger
 	Error   *log.Logger
@@ -22,8 +21,7 @@ func init() {
 
 	logDate := time.Now().Format("15:04:05")
 
-	Blank = log.New(file, "", 0)
-	Info = log.New(file, fmt.Sprintf("[%v - INFO]: ", logDate), 0)
-	Warning = log.New(file, fmt.Sprintf("[%v - ?WARNING?]: ", logDate), log.Lshortfile)
-	Error = log.New(file, fmt.Sprintf("[%v - !!ERROR!!]: ", logDate), log.Llongfile)
+	Info = log.New(file, fmt.Sprintf("[%v][INFO]: ", logDate), 0)
+	Warning = log.New(file, fmt.Sprintf("[%v][WARNING]: ", logDate), log.Lshortfile)
+	Error = log.New(file, fmt.Sprintf("[%v][ERROR]: ", logDate), log.Llongfile)
 }
