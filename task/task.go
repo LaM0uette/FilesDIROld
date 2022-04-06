@@ -69,7 +69,7 @@ func loopFiles(path string, wg *sync.WaitGroup) error {
 }
 
 func SetProgramLimits() {
-	const maxThreadCount int = 50
+	const maxThreadCount int = 50 * 1000
 	debug.SetMaxThreads(maxThreadCount)
 }
 
