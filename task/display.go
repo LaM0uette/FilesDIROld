@@ -15,6 +15,8 @@ func DrawStart() {
 		██║     ██║███████╗███████╗██████╔╝██║██║  ██║
 		╚═╝     ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝
 		Version: %v               Auteur: %s
+
+
 `, globals.Version, globals.Author)
 	time.Sleep(1 * time.Second)
 }
