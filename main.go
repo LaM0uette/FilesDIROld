@@ -12,6 +12,10 @@ func main() {
 	task.DrawStart()
 	log.Info.Println("Starting FilesDIR")
 
+	log.Info.Println("Test Info")
+	log.Warning.Println("Test Warning")
+	log.Error.Println("Test Error")
+
 	timerStart := time.Now()
 
 	s := task.Sch{
