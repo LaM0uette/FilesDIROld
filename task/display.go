@@ -3,6 +3,7 @@ package task
 import (
 	"FilesDIR/globals"
 	"fmt"
+	"time"
 )
 
 func DrawStart() {
@@ -19,13 +20,16 @@ func DrawStart() {
 `, globals.Version, globals.Author)
 }
 
-func (s *Sch) DrawEnd() {
+func DrawEnd(s *Sch, timer time.Duration) {
 	fmt.Printf(`
 ==================  BILAN DES RECHERCHES  ==================
 
 Dossiers principal: %s
+Temps d'exécution: %v
+
+============================================================
 Fichiers trouvés: %v
 
 
-`, s.SrcPath, s.NbFiles)
+`, s.SrcPath, timer, s.NbFiles)
 }

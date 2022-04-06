@@ -3,7 +3,6 @@ package main
 import (
 	"FilesDIR/globals"
 	"FilesDIR/task"
-	"fmt"
 	"time"
 )
 
@@ -23,5 +22,5 @@ func main() {
 
 	timerEnd := time.Since(timerStart)
 
-	fmt.Println("FINI: Nb Fichiers: ", s.NbFiles, " en ", timerEnd)
+	task.DrawEnd(&s, timerEnd)
 }
