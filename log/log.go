@@ -22,8 +22,8 @@ func init() {
 	}
 
 	//Blank = log.New(file, "", 0)
-	BlankDate = log.New(file, fmt.Sprintf("[%v]: ", log.Ltime), 0)
-	//Info = log.New(file, fmt.Sprintf("[%v][INFO]: ", log.Ltime), 0)
-	//Warning = log.New(file, fmt.Sprintf("[%v][WARNING]: ", log.Ltime), log.Lshortfile)
-	Error = log.New(file, fmt.Sprintf("[%v][ERROR]: ", log.Ltime), log.Lshortfile)
+	BlankDate = log.New(file, ": ", log.Ltime|log.Lmsgprefix)
+	//Info = log.New(file, "[INFO]: ", log.Ltime|log.Lmsgprefix)
+	//Warning = log.New(file, "[WARNING]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
+	Error = log.New(file, "[ERROR]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
 }
