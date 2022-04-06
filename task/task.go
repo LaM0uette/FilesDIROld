@@ -1,7 +1,6 @@
 package task
 
 import (
-	"FilesDIR/globals"
 	"fmt"
 	"io/ioutil"
 	"path/filepath"
@@ -33,10 +32,10 @@ func loopFilesWorker() error {
 	return nil
 }
 
-func LoopDirsFiles(path string) {
+func LoopDirsFiles(path string) error {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		fmt.Println(err)
+		return err
 	}
 
 	go func() {
@@ -45,12 +44,16 @@ func LoopDirsFiles(path string) {
 	}()
 	for _, file := range files {
 		if file.IsDir() {
-			LoopDirsFiles(filepath.Join(path, file.Name()))
+			err := LoopDirsFiles(filepath.Join(path, file.Name()))
+			if err != nil {
+				return err
+			}
 		}
 	}
+	return nil
 }
 
-func RunSearch(poolsize int) {
+func RunSearch(path string, poolsize int) error {
 	for w := 1; w <= poolsize; w++ {
 		go func() {
 			err := loopFilesWorker()
@@ -59,6 +62,10 @@ func RunSearch(poolsize int) {
 			}
 		}()
 	}
-	LoopDirsFiles(globals.SrcPath)
+	err := LoopDirsFiles(path)
+	if err != nil {
+		return err
+	}
 	wg.Wait()
+	return nil
 }

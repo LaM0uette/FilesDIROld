@@ -1,6 +1,7 @@
 package main
 
 import (
+	"FilesDIR/globals"
 	"FilesDIR/task"
 	"fmt"
 	"time"
@@ -12,7 +13,10 @@ func main() {
 
 	timerStart := time.Now()
 
-	task.RunSearch(10)
+	err := task.RunSearch(globals.SrcPath, 10)
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	timerEnd := time.Since(timerStart)
 

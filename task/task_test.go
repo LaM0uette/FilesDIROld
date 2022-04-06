@@ -1,13 +1,12 @@
 package task
 
 import (
-	"FilesDIR/globals"
 	"testing"
 )
 
-func TestLoopDir(t *testing.T) {
-	path := globals.SrcPath
-	err := LoopDir(path)
+func TestRunSearch(t *testing.T) {
+	path := "F:\\"
+	err := RunSearch(path, 10)
 	if err != nil {
 		t.Error(err)
 	}
