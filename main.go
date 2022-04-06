@@ -2,16 +2,15 @@ package main
 
 import (
 	"FilesDIR/globals"
+	"FilesDIR/log"
 	"FilesDIR/task"
-	"fmt"
-	"log"
-	"os"
 	"time"
 )
 
 func main() {
 
 	task.DrawStart()
+	log.Info.Println("Starting FilesDIR")
 
 	timerStart := time.Now()
 
@@ -21,17 +20,12 @@ func main() {
 		NbFiles:  0,
 	}
 
-	file, err := os.OpenFile(fmt.Sprintf("logs/SLog_%v.txt", timerStart.Format("20060102150405")), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
-	if err != nil {
-		log.Fatal(err)
-	}
-	log.SetOutput(file)
-
-	log.Println("Hello world!")
-
+	log.Info.Println("Starting search")
 	task.RunSearch(&s)
+	log.Info.Println("Ending search")
 
 	timerEnd := time.Since(timerStart)
 
 	task.DrawEnd(&s, timerEnd)
+	log.Info.Println("Ending FilesDIR")
 }
