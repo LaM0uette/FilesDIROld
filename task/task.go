@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"sync"
+	"time"
 )
 
 var Id = 0
@@ -65,30 +66,26 @@ func loopFiles(path string, wg *sync.WaitGroup) error {
 
 func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 	wg.Add(1)
-
-	fmt.Println(path)
+	defer wg.Done()
 
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		fmt.Println("ERROR", path)
-		wg.Done()
 		return err
 	}
 
 	for _, file := range files {
-		if file.IsDir() {
+		if !file.IsDir() {
+			fmt.Println(file.Name())
+			Id++
+		} else if file.IsDir() {
 			go func() {
 				err := LoopDirsFiles(filepath.Join(path, file.Name()), wg)
 				if err != nil {
 					log.Print(err)
 				}
 			}()
-		} else if !file.IsDir() {
-			//fmt.Println(file.Name())
-			Id++
+			time.Sleep(20 * time.Millisecond)
 		}
 	}
-
-	wg.Done()
 	return nil
 }
