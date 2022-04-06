@@ -13,10 +13,7 @@ func main() {
 
 	timerStart := time.Now()
 
-	err := task.RunSearch(globals.SrcPath, 10)
-	if err != nil {
-		fmt.Println(err)
-	}
+	task.RunSearch(globals.SrcPath, 10)
 
 	timerEnd := time.Since(timerStart)
 

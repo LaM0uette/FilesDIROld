@@ -5,9 +5,9 @@ import (
 )
 
 func TestRunSearch(t *testing.T) {
-	path := "F:\\"
-	err := RunSearch(path, 10)
-	if err != nil {
-		t.Error(err)
+	path := "C:\\Users\\doria\\go\\src\\FilesDIR\\tests"
+	RunSearch(path, 10)
+	if Id != 18 {
+		t.Error("Id is not 18", Id)
 	}
 }
