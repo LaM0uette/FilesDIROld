@@ -69,7 +69,7 @@ func loopFiles(path string, wg *sync.WaitGroup) error {
 }
 
 func SetProgramLimits() {
-	const maxThreadCount int = 500 * 1000
+	const maxThreadCount int = 50
 	debug.SetMaxThreads(maxThreadCount)
 }
 
@@ -88,7 +88,7 @@ func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 			Id++
 		} else if file.IsDir() {
 			go func() {
-				err := LoopDirsFiles(filepath.Join(path, file.Name()), wg)
+				err = LoopDirsFiles(filepath.Join(path, file.Name()), wg)
 				if err != nil {
 					log.Print(err)
 				}
