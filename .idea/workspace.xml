@@ -51,7 +51,7 @@
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
-  <component name="RunManager" selected="Go Build.FilesDIR">
+  <component name="RunManager" selected="Go Test.BenchmarkRunSearch in FilesDIR/task">
     <configuration name="FilesDIR" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$" />
@@ -103,8 +103,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.FilesDIR" />
         <item itemvalue="Go Test.BenchmarkRunSearch in FilesDIR/task" />
+        <item itemvalue="Go Build.FilesDIR" />
         <item itemvalue="Go Test.TestRunSearch in FilesDIR/task" />
         <item itemvalue="Go Test.TestLoopDir in FilesDIR/task" />
       </list>

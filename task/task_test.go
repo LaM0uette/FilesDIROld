@@ -20,16 +20,13 @@ func TestRunSearch(t *testing.T) {
 }
 
 func BenchmarkRunSearch(b *testing.B) {
-	s := Sch{
-		SrcPath:  scrTest,
-		PoolSize: 10,
-		NbFiles:  0,
-	}
-
 	for i := 0; i < b.N; i++ {
-		RunSearch(&s)
-		if s.NbFiles != 18 {
-			b.Error("NbFiles is not 18", s.NbFiles)
+		s := Sch{
+			SrcPath:  scrTest,
+			PoolSize: 10,
+			NbFiles:  0,
 		}
+
+		RunSearch(&s)
 	}
 }
