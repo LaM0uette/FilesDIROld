@@ -7,6 +7,7 @@
     <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Optimisation de vitesse/ correction bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/globals/globals.go" beforeDir="false" afterPath="$PROJECT_DIR$/globals/globals.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,8 +129,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.FilesDIR" />
         <item itemvalue="Go Test.TestLoopDirsFiles" />
+        <item itemvalue="Go Build.FilesDIR" />
         <item itemvalue="Go Build.go build FilesDIR.go" />
         <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR" />
         <item itemvalue="Go Test.TestLoopDir in FilesDIR/FilesDIR (1)" />
@@ -169,5 +170,8 @@
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/FilesDIR$TestLoopDirsFiles.out" NAME="TestLoopDirsFiles Coverage Results" MODIFIED="1649233651525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
