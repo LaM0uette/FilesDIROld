@@ -12,11 +12,11 @@ import (
 
 func main() {
 	timeStart := time.Now()
-	debug.SetMaxThreads(5 * 1000)
+	debug.SetMaxThreads(500 * 1000)
 
 	var wg sync.WaitGroup
 
-	// task.DrawStart()
+	task.DrawStart()
 
 	/*
 		err := task.LoopDir(globals.SrcPath)
@@ -25,7 +25,7 @@ func main() {
 		}
 	*/
 
-	err := task.LoopDirsFiles(globals.SrcPath, &wg) // globals.SrcPath = My path with ~2000000 files ( this is a serveur of my entreprise)
+	err := task.LoopDirsFiles(globals.SrcPath, &wg)
 	if err != nil {
 		log.Print(err.Error())
 	}
