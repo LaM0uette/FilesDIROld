@@ -9,6 +9,7 @@ import (
 	"runtime/debug"
 	"strings"
 	"sync"
+	"time"
 )
 
 var Id = 0
@@ -74,6 +75,7 @@ func SetProgramLimits() {
 
 func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 	wg.Add(1)
+	time.Sleep(20 * time.Millisecond)
 	defer wg.Done()
 
 	files, err := ioutil.ReadDir(path)
@@ -92,7 +94,7 @@ func LoopDirsFiles(path string, wg *sync.WaitGroup) error {
 					log.Print(err)
 				}
 			}()
-			//time.Sleep(100 * time.Millisecond)
+			time.Sleep(20 * time.Millisecond)
 		}
 	}
 	return nil
