@@ -18,11 +18,12 @@ func DrawStart() {
 
 
 `, globals.Version, globals.Author)
-	time.Sleep(1 * time.Second)
+	time.Sleep(200 * time.Millisecond)
 }
 
 func DrawRunSearch() {
-	fmt.Print(`==================  DEBUT DES RECHERCHES  ==================
+	fmt.Print(`Début de la recherche...
+
 `)
 	time.Sleep(1 * time.Second)
 }
