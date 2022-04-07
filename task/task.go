@@ -1,6 +1,7 @@
 package task
 
 import (
+	"FilesDIR/dump"
 	"FilesDIR/log"
 	"fmt"
 	"io/ioutil"
@@ -18,6 +19,7 @@ var (
 
 type Sch struct {
 	SrcPath     string
+	DstPath     string
 	PoolSize    int
 	NbFiles     int
 	NbGoroutine int
@@ -39,11 +41,15 @@ func (s *Sch) loopFilesWorker() error {
 				log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s\n", s.NbFiles, file.Name()))
 				fmt.Printf("N°%v | Files: %s\n", s.NbFiles, file.Name())
 
+				dump.Semicolon.Printf(fmt.Sprintf("%v;%s;%s;%s;%s",
+					s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), path+"/"+file.Name(), path))
+
 				if runtime.NumGoroutine() > s.NbGoroutine {
 					s.NbGoroutine = runtime.NumGoroutine()
 				}
 			}
 		}
+
 		wg.Done()
 	}
 	return nil
@@ -70,16 +76,18 @@ func LoopDirsFiles(path string) {
 
 func RunSearch(s *Sch) {
 
+	DrawSetupSearch()
+
+	dump.Semicolon.Println("id;Fichier;Date;Lien_Fichier;Lien")
+
 	if s.PoolSize < 2 {
 		log.Info.Println("Set the PoolSize to 2\n")
 		s.PoolSize = 2
 	}
-
 	maxThr := s.PoolSize * 500
+
 	log.Info.Printf(fmt.Sprintf("Set max thread count to %v\n\n", maxThr))
 	debug.SetMaxThreads(maxThr)
-
-	DrawSetupSearch()
 
 	for w := 1; w <= s.PoolSize; w++ {
 		go func() {

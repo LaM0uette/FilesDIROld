@@ -17,6 +17,7 @@ func main() {
 
 	s := task.Sch{
 		SrcPath:  globals.SrcPathGen,
+		DstPath:  globals.DstPathGen,
 		PoolSize: 10,
 	}
 
