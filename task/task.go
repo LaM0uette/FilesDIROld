@@ -20,6 +20,7 @@ type Flags struct {
 	FlgWord  string
 	FlgExt   string
 	FlgMaj   bool
+	FlgXl    bool
 }
 
 type Sch struct {
@@ -192,30 +193,34 @@ func RunSearch(s *Sch, f *Flags) {
 	DrawEndSearch()
 
 	time.Sleep(200 * time.Millisecond)
-	DrawWriteExcel()
 
-	fmt.Print("\033[s")
+	// Export Excel
+	if f.FlgXl {
+		DrawWriteExcel()
 
-	iMax := len(ExcelData)
-	for w := 1; w <= 500; w++ {
-		go writeExcelLineWorker(Wb, iMax)
+		fmt.Print("\033[s")
+
+		iMax := len(ExcelData)
+		for w := 1; w <= 500; w++ {
+			go writeExcelLineWorker(Wb, iMax)
+		}
+
+		for i := 1; i < iMax-1; i++ {
+			i := i
+			go func() {
+				wgWritter.Add(1)
+				jobsWritter <- i
+			}()
+		}
+
+		wgWritter.Wait()
+
+		fmt.Print("\033[u\033[K")
+		if err := Wb.SaveAs(filepath.Join(s.DstPath, "word.xlsx")); err != nil {
+			fmt.Println(err)
+		}
+
+		DrawSaveExcel()
+		time.Sleep(600 * time.Millisecond)
 	}
-
-	for i := 1; i < iMax-1; i++ {
-		i := i
-		go func() {
-			wgWritter.Add(1)
-			jobsWritter <- i
-		}()
-	}
-
-	wgWritter.Wait()
-
-	fmt.Print("\033[u\033[K")
-	if err := Wb.SaveAs(filepath.Join(s.DstPath, "word.xlsx")); err != nil {
-		fmt.Println(err)
-	}
-
-	DrawSaveExcel()
-	time.Sleep(600 * time.Millisecond)
 }

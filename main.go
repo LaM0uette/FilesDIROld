@@ -18,6 +18,7 @@ func main() {
 	FlgWord := flag.String("word", "", "Non de fichier")
 	FlgExt := flag.String("ext", "*", "Ext de fichier")
 	FlgMaj := flag.Bool("maj", false, "Autorise les majuscules")
+	FlgXlsx := flag.Bool("xl", true, "Lance l'export Excel à la fin")
 	flag.Parse()
 
 	f := task.Flags{
@@ -26,6 +27,7 @@ func main() {
 		FlgWord:  *FlgWord,
 		FlgExt:   *FlgExt,
 		FlgMaj:   *FlgMaj,
+		FlgXl:    *FlgXlsx,
 	}
 
 	task.DrawStart()
