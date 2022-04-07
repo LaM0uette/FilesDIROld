@@ -31,8 +31,10 @@ func (s *Sch) loopFilesWorker() error {
 		for _, file := range files {
 			if !file.IsDir() {
 				s.NbFiles++
-				log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s\n", s.NbFiles, file.Name()))
-				fmt.Printf("N°%v | Files: %s\n", s.NbFiles, file.Name())
+				go func() {
+					log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s\n", s.NbFiles, file.Name()))
+					fmt.Printf("N°%v | Files: %s\n", s.NbFiles, file.Name())
+				}()
 			}
 		}
 		wg.Done()
