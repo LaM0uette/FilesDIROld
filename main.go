@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "FilesDIR/__init__"
 	"FilesDIR/globals"
 	"FilesDIR/log"
 	"FilesDIR/task"
