@@ -4,5 +4,6 @@
 /*.xlsx
 /*.json
 /FilesDIR.exe
-/log
+/log/logs
+/dump/dumps
 
