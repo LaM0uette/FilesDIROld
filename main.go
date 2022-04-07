@@ -30,6 +30,7 @@ func main() {
 		FlgXl:    *FlgXlsx,
 	}
 
+	log.Blank.Print(task.Start.Pattern)
 	task.Start.Draw()
 
 	log.BlankDate.Println("*** Starting FilesDIR\n")

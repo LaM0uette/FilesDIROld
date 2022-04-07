@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	//Blank     *log.Logger
+	Blank     *log.Logger
 	BlankDate *log.Logger
 	Info      *log.Logger
 	//Warning   *log.Logger
@@ -24,7 +24,7 @@ func init() {
 		log.Fatal(err)
 	}
 
-	//Blank = log.New(file, "", 0)
+	Blank = log.New(file, "", 0)
 	BlankDate = log.New(file, ": ", log.Ltime|log.Lmsgprefix)
 	Info = log.New(file, "[INFO]: ", log.Ltime|log.Lmsgprefix)
 	//Warning = log.New(file, "[WARNING]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
