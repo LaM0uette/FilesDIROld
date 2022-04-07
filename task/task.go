@@ -79,9 +79,9 @@ func (s *Sch) loopFilesWorker() error {
 			if !file.IsDir() {
 				s.NbFiles++
 
-				log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
 				fmt.Printf("N°%v | Files: %s\n", s.NbFiles, file.Name())
 
+				log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
 				dump.Semicolon.Printf(fmt.Sprintf("%v;%s;%s;%s;%s",
 					s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), path+"/"+file.Name(), path))
 
