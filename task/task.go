@@ -67,6 +67,7 @@ func RunSearch(s *Sch) {
 		log.Info.Println("Set the PoolSize to 2\n")
 		s.PoolSize = 2
 	}
+	fmt.Println(s.PoolSize)
 	for w := 1; w <= s.PoolSize; w++ {
 		go func() {
 			err := s.loopFilesWorker()
