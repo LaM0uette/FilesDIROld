@@ -22,16 +22,13 @@ func DrawStart() string {
 }
 
 func DrawInitSearch() string {
-	return fmt.Sprint(`
-Initialisation de la recherche...
-
+	return fmt.Sprint(`Initialisation de la recherche...
 `)
 }
 
 func DrawRunSearch() string {
 	return fmt.Sprint(`
-==================   DEBUT DES RECHERCHES   ==================
-`)
+==================   DEBUT DES RECHERCHES   ==================`)
 }
 
 func DrawEndSearch() string {
@@ -42,13 +39,13 @@ func DrawEndSearch() string {
 
 func DrawWriteExcel() string {
 	return fmt.Sprint(`
-Sauvegarde du fichier Excel...
-`)
+Sauvegarde du fichier Excel...`)
 }
 
 func DrawSaveExcel() string {
 	return fmt.Sprint(`
-Fichier Excel sauvegardé avec succes.`)
+Fichier Excel sauvegardé avec succes.
+`)
 }
 
 func DrawEnd(s *Sch, timerSearch time.Duration, timerTotal time.Duration) string {
