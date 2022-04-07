@@ -5,6 +5,8 @@ import (
 	"FilesDIR/log"
 	"fmt"
 	"io/ioutil"
+	"os"
+	"os/user"
 	"path/filepath"
 	"runtime"
 	"runtime/debug"
@@ -23,6 +25,29 @@ type Sch struct {
 	PoolSize    int
 	NbFiles     int
 	NbGoroutine int
+}
+
+func TempDir() string {
+	temp, err := user.Current()
+	if err != nil {
+		log.Crash.Println("Error with your User folder.")
+	}
+
+	mainDir := filepath.Join(temp.HomeDir, "FilesDIR")
+	logDir := filepath.Join(mainDir, "logs")
+	dumpDir := filepath.Join(mainDir, "dumps")
+
+	err = os.MkdirAll(logDir, os.ModePerm)
+	if err != nil {
+		log.Crash.Printf(fmt.Sprintf("Impossible to create log folder in: %s", logDir))
+	}
+
+	err = os.MkdirAll(dumpDir, os.ModePerm)
+	if err != nil {
+		log.Crash.Printf(fmt.Sprintf("Impossible to create dump folder in: %s", dumpDir))
+	}
+
+	return mainDir
 }
 
 func (s *Sch) loopFilesWorker() error {
@@ -81,7 +106,7 @@ func RunSearch(s *Sch) {
 	dump.Semicolon.Println("id;Fichier;Date;Lien_Fichier;Lien")
 
 	if s.PoolSize < 2 {
-		log.Info.Println("Set the PoolSize to 2\n")
+		log.Info.Println("Set the PoolSize to 2")
 		s.PoolSize = 2
 	}
 	maxThr := s.PoolSize * 500

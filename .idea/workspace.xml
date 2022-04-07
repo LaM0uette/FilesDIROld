@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Log dump création" />
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Log dump création">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dump/dump.go" beforeDir="false" afterPath="$PROJECT_DIR$/dump/dump.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/globals/globals.go" beforeDir="false" afterPath="$PROJECT_DIR$/globals/globals.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/log.go" beforeDir="false" afterPath="$PROJECT_DIR$/log/log.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/task_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task_test.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,6 +106,17 @@
       <pattern value="^\QTestLoopDir\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="TestRunSearch in FilesDIR/task (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="FilesDIR" />
+      <working_directory value="$PROJECT_DIR$/task" />
+      <kind value="PACKAGE" />
+      <package value="FilesDIR/task" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestRunSearch\E$" />
+      <method v="2" />
+    </configuration>
     <configuration name="TestRunSearch in FilesDIR/task" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$/task" />
@@ -112,6 +130,7 @@
     </configuration>
     <list>
       <item itemvalue="Go Build.FilesDIR" />
+      <item itemvalue="Go Test.TestRunSearch in FilesDIR/task (1)" />
       <item itemvalue="Go Test.BenchmarkRunSearch in FilesDIR/task" />
       <item itemvalue="Go Test.TestRunSearch in FilesDIR/task" />
       <item itemvalue="Go Test.TestLoopDir in FilesDIR/task" />
@@ -119,6 +138,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.FilesDIR" />
+        <item itemvalue="Go Test.TestRunSearch in FilesDIR/task (1)" />
         <item itemvalue="Go Test.BenchmarkRunSearch in FilesDIR/task" />
         <item itemvalue="Go Test.TestRunSearch in FilesDIR/task" />
         <item itemvalue="Go Test.TestLoopDir in FilesDIR/task" />

@@ -4,29 +4,20 @@ import (
 	"testing"
 )
 
-const scrTest = "C:\\Users\\doria\\go\\src\\FilesDIR\\tests"
+const (
+	scrTest = "C:\\Users\\XD5965\\go\\src\\FilesDIR\\tests"
+	DstPath = "C:\\Users\\XD5965\\go\\src\\FilesDIR\\export"
+)
 
 func TestRunSearch(t *testing.T) {
 	s := Sch{
 		SrcPath:  scrTest,
+		DstPath:  DstPath,
 		PoolSize: 10,
-		NbFiles:  0,
 	}
 
 	RunSearch(&s)
 	if s.NbFiles != 18 {
 		t.Error("NbFiles is not 18", s.NbFiles)
-	}
-}
-
-func BenchmarkRunSearch(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		s := Sch{
-			SrcPath:  scrTest,
-			PoolSize: 10,
-			NbFiles:  0,
-		}
-
-		RunSearch(&s)
 	}
 }

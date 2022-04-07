@@ -1,9 +1,11 @@
 package log
 
 import (
+	"FilesDIR/globals"
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	"time"
 )
 
@@ -17,7 +19,7 @@ var (
 )
 
 func init() {
-	file, err := os.OpenFile(fmt.Sprintf("log/logs/SLog_%v.txt", time.Now().Format("20060102150405")), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	file, err := os.OpenFile(filepath.Join(globals.TempPathGen, "logs", fmt.Sprintf("SLog_%v.txt", time.Now().Format("20060102150405"))), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
