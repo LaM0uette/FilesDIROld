@@ -37,7 +37,7 @@ func DrawEndSearch() string {
 
 func DrawWriteExcel() string {
 	return fmt.Sprint(`
-Sauvegarde du fichier Excel...`)
+Sauvegarde du fichier Excel...  `)
 }
 
 func DrawSaveExcel() string {
