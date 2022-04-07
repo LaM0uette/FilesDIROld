@@ -3,6 +3,7 @@ package task
 import (
 	"FilesDIR/globals"
 	"fmt"
+	"path/filepath"
 	"time"
 )
 
@@ -47,9 +48,9 @@ func DrawWriteExcel() {
 `)
 }
 
-func DrawSaveExcel(s *Sch) {
-	fmt.Printf(`Fichier Excel sauvergardé: %s
-`, s.DstPath)
+func DrawSaveExcel() {
+	fmt.Print(`Fichier Excel sauvegardé avec succes.
+`)
 }
 
 func DrawEnd(s *Sch, timer time.Duration) {
@@ -61,13 +62,19 @@ INFOS GENERALES:
 Dossiers principal: %s
 Nombre de Threads: %v
 Nombre de Goroutines: %v
-Temps d'exécution: %v
 
 RESULTATS:
 Fichiers trouvés: %v
+Temps d'exécution: %v
+
+EXPORTS:
+Logs: %s
+Dumps: %s
+Export Excel: %s
 
 ============================================================
+Version: %v                           Auteur: %s
 
 
-`, s.SrcPath, s.PoolSize, s.NbGoroutine, timer, s.NbFiles)
+`, s.SrcPath, s.PoolSize, s.NbGoroutine, s.NbFiles, timer, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Version, globals.Author)
 }

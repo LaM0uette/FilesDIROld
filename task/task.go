@@ -148,5 +148,8 @@ func RunSearch(s *Sch) {
 	if err := wb.SaveAs(filepath.Join(s.DstPath, "word.xlsx")); err != nil {
 		fmt.Println(err)
 	}
-	DrawSaveExcel(s)
+
+	time.Sleep(500 * time.Millisecond)
+
+	DrawSaveExcel()
 }
