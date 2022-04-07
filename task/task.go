@@ -147,6 +147,7 @@ func LoopDirsFiles(path string, f *Flags) {
 
 func RunSearch(s *Sch, f *Flags) {
 
+	log.BlankDate.Println("Setup search...")
 	DrawSetupSearch()
 
 	s.Mode = f.FlgMode
@@ -181,6 +182,7 @@ func RunSearch(s *Sch, f *Flags) {
 		}()
 	}
 
+	log.BlankDate.Println("Setup search...")
 	DrawRunSearch()
 
 	LoopDirsFiles(s.SrcPath, f)

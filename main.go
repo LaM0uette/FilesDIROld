@@ -30,7 +30,7 @@ func main() {
 		FlgXl:    *FlgXlsx,
 	}
 
-	task.DrawStart()
+	task.Start.Draw()
 
 	log.BlankDate.Println("*** Starting FilesDIR\n")
 	timerStart := time.Now()

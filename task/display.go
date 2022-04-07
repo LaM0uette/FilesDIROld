@@ -7,8 +7,12 @@ import (
 	"time"
 )
 
-func DrawStart() {
-	fmt.Printf(`
+type DrawStruct struct {
+	Pattern string
+}
+
+var Start = DrawStruct{
+	Pattern: fmt.Sprintf(`
 		███████╗██╗██╗     ███████╗██████╗ ██╗██████╗ 
 		██╔════╝██║██║     ██╔════╝██╔══██╗██║██╔══██╗
 		█████╗  ██║██║     █████╗  ██║  ██║██║██████╔╝
@@ -18,8 +22,11 @@ func DrawStart() {
 		Version: %s               Auteur: %s
 
 
-`, globals.Version, globals.Author)
-	time.Sleep(200 * time.Millisecond)
+`, globals.Version, globals.Author),
+}
+
+func (d *DrawStruct) Draw() {
+	fmt.Print(d.Pattern)
 }
 
 func DrawSetupSearch() {
