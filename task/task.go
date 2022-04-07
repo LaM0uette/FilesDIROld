@@ -133,7 +133,9 @@ func RunSearch(s *Sch) {
 
 	DrawEndSearch()
 
+	DrawWriteExcel()
 	if err := wb.SaveAs(filepath.Join(s.DstPath, "word.xlsx")); err != nil {
 		fmt.Println(err)
 	}
+	DrawSaveExcel(s)
 }

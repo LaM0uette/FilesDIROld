@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Création des fichiers/dossier tempo">
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="création du fichier d'export excel">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/display.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -164,7 +168,8 @@
     <MESSAGE value="Optimisation de vitesse/ correction bug" />
     <MESSAGE value="Log dump création" />
     <MESSAGE value="Création des fichiers/dossier tempo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Création des fichiers/dossier tempo" />
+    <MESSAGE value="création du fichier d'export excel" />
+    <option name="LAST_COMMIT_MESSAGE" value="création du fichier d'export excel" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

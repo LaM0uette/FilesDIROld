@@ -40,6 +40,16 @@ func DrawEndSearch() {
 `)
 }
 
+func DrawWriteExcel() {
+	fmt.Print(`Sauvegarde du fichier Excel...
+`)
+}
+
+func DrawSaveExcel(s *Sch) {
+	fmt.Printf(`Fichier Excel sauvergardé: %s
+`, s.DstPath)
+}
+
 func DrawEnd(s *Sch, timer time.Duration) {
 	fmt.Printf(`
 
