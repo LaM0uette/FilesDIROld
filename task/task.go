@@ -12,11 +12,6 @@ import (
 	"time"
 )
 
-var (
-	wg   sync.WaitGroup
-	jobs = make(chan string)
-)
-
 type Sch struct {
 	SrcPath     string
 	DstPath     string
@@ -24,6 +19,20 @@ type Sch struct {
 	NbFiles     int
 	NbGoroutine int
 }
+
+type exportData struct {
+	Id       int    `json:"id"`
+	File     string `json:"Fichier"`
+	Date     string `json:"Date"`
+	PathFile string `json:"Lien_Fichier"`
+	Path     string `json:"Lien"`
+}
+
+var (
+	wg        sync.WaitGroup
+	jobs      = make(chan string)
+	ExcelData []exportData
+)
 
 func (s *Sch) loopFilesWorker() error {
 	for path := range jobs {
@@ -43,6 +52,15 @@ func (s *Sch) loopFilesWorker() error {
 
 				dump.Semicolon.Printf(fmt.Sprintf("%v;%s;%s;%s;%s",
 					s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), path+"/"+file.Name(), path))
+
+				dataExp := exportData{
+					Id:       s.NbFiles,
+					File:     file.Name(),
+					Date:     file.ModTime().Format("02-01-2006 15:04:05"),
+					PathFile: path + "/" + file.Name(),
+					Path:     path,
+				}
+				ExcelData = append(ExcelData, dataExp)
 
 				if runtime.NumGoroutine() > s.NbGoroutine {
 					s.NbGoroutine = runtime.NumGoroutine()
