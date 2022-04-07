@@ -4,6 +4,7 @@ import (
 	"FilesDIR/dump"
 	"FilesDIR/log"
 	"fmt"
+	"github.com/360EntSecGroup-Skylar/excelize"
 	"io/ioutil"
 	"path/filepath"
 	"runtime"
@@ -98,6 +99,13 @@ func RunSearch(s *Sch) {
 
 	dump.Semicolon.Println("id;Fichier;Date;Lien_Fichier;Lien")
 
+	wb := excelize.NewFile()
+	_ = wb.SetCellValue("Sheet1", "A1", "id")
+	_ = wb.SetCellValue("Sheet1", "B1", "Fichier")
+	_ = wb.SetCellValue("Sheet1", "C1", "Date")
+	_ = wb.SetCellValue("Sheet1", "D1", "LienFichier")
+	_ = wb.SetCellValue("Sheet1", "E1", "Lien")
+
 	if s.PoolSize < 2 {
 		log.Info.Println("Set the PoolSize to 2")
 		s.PoolSize = 2
@@ -124,4 +132,8 @@ func RunSearch(s *Sch) {
 	time.Sleep(1 * time.Second)
 
 	DrawEndSearch()
+
+	if err := wb.SaveAs(filepath.Join(s.DstPath, "word.xlsx")); err != nil {
+		fmt.Println(err)
+	}
 }
