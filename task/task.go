@@ -37,7 +37,7 @@ func (s *Sch) loopFilesWorker() error {
 				s.NbFiles++
 
 				log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s\n", s.NbFiles, file.Name()))
-				go fmt.Printf("N°%v | Files: %s\n", s.NbFiles, file.Name())
+				fmt.Printf("N°%v | Files: %s\n", s.NbFiles, file.Name())
 
 				if runtime.NumGoroutine() > s.NbGoroutine {
 					s.NbGoroutine = runtime.NumGoroutine()
@@ -74,7 +74,7 @@ func RunSearch(s *Sch) {
 		s.PoolSize = 2
 	}
 
-	maxThr := s.PoolSize + 500
+	maxThr := s.PoolSize * 500
 	log.Info.Printf(fmt.Sprintf("Set max thread count to %v\n\n", maxThr))
 	debug.SetMaxThreads(maxThr)
 
