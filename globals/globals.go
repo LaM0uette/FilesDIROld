@@ -17,7 +17,7 @@ func tempPathGen() string {
 const (
 	Name       = "FilesDIR"
 	Author     = "LaM0uette"
-	Version    = 0.5
+	Version    = "1.0.0"
 	SrcPathGen = "T:\\- 4 Suivi Appuis\\18-Partage\\de VILLELE DORIAN"
 )
 

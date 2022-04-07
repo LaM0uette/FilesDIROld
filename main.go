@@ -5,12 +5,20 @@ import (
 	"FilesDIR/globals"
 	"FilesDIR/log"
 	"FilesDIR/task"
+	"flag"
 	"fmt"
 	"path/filepath"
 	"time"
 )
 
 func main() {
+
+	FlgDevil := flag.Bool("devil", false, "Mode 'Démon' de l'application.")
+	flag.Parse()
+
+	f := task.Flags{
+		FlgDevil: *FlgDevil,
+	}
 
 	task.DrawStart()
 
@@ -24,7 +32,7 @@ func main() {
 	}
 
 	log.BlankDate.Printf(fmt.Sprintf("*** Starting search on: %s\n\n", s.SrcPath))
-	task.RunSearch(&s)
+	task.RunSearch(&s, &f)
 
 	log.BlankDate.Println("\n*** Ending search\n")
 	timerEnd := time.Since(timerStart)

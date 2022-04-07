@@ -15,7 +15,7 @@ func DrawStart() {
 		██╔══╝  ██║██║     ██╔══╝  ██║  ██║██║██╔══██╗
 		██║     ██║███████╗███████╗██████╔╝██║██║  ██║
 		╚═╝     ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝
-		Version: %v               Auteur: %s
+		Version: %s               Auteur: %s
 
 
 `, globals.Version, globals.Author)
@@ -73,7 +73,7 @@ Dumps: %s
 Export Excel: %s
 
 ============================================================
-Version: %v                           Auteur: %s
+Version: %s                             Auteur: %s
 
 
 `, s.SrcPath, s.PoolSize, s.NbGoroutine, s.NbFiles, timer, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Version, globals.Author)

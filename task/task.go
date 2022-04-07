@@ -13,6 +13,10 @@ import (
 	"time"
 )
 
+type Flags struct {
+	FlgDevil bool
+}
+
 type Sch struct {
 	SrcPath     string
 	DstPath     string
@@ -35,7 +39,7 @@ var (
 	ExcelData []exportData
 )
 
-func (s *Sch) loopFilesWorker() error {
+func (s *Sch) loopFilesWorker(f *Flags) error {
 	for path := range jobs {
 		files, err := ioutil.ReadDir(path)
 		if err != nil {
@@ -74,7 +78,7 @@ func (s *Sch) loopFilesWorker() error {
 	return nil
 }
 
-func LoopDirsFiles(path string) {
+func LoopDirsFiles(path string, f *Flags) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		log.Error.Printf(fmt.Sprintf("Error with this path: %s\n\n", path))
@@ -88,12 +92,12 @@ func LoopDirsFiles(path string) {
 	for _, file := range files {
 		if file.IsDir() {
 			//time.Sleep(20 * time.Millisecond)
-			LoopDirsFiles(filepath.Join(path, file.Name()))
+			LoopDirsFiles(filepath.Join(path, file.Name()), f)
 		}
 	}
 }
 
-func RunSearch(s *Sch) {
+func RunSearch(s *Sch, f *Flags) {
 
 	DrawSetupSearch()
 
@@ -117,7 +121,7 @@ func RunSearch(s *Sch) {
 
 	for w := 1; w <= s.PoolSize; w++ {
 		go func() {
-			err := s.loopFilesWorker()
+			err := s.loopFilesWorker(f)
 			if err != nil {
 				log.Error.Println(err)
 			}
@@ -126,7 +130,7 @@ func RunSearch(s *Sch) {
 
 	DrawRunSearch()
 
-	LoopDirsFiles(s.SrcPath)
+	LoopDirsFiles(s.SrcPath, f)
 
 	wg.Wait()
 
