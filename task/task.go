@@ -134,7 +134,7 @@ func RunSearch(s *Sch) {
 
 	DrawEndSearch()
 
-	time.Sleep(500 * time.Millisecond)
+	time.Sleep(300 * time.Millisecond)
 
 	DrawWriteExcel()
 
@@ -145,11 +145,12 @@ func RunSearch(s *Sch) {
 		_ = wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", i), ExcelData[i].PathFile)
 		_ = wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", i), ExcelData[i].Path)
 	}
+
 	if err := wb.SaveAs(filepath.Join(s.DstPath, "word.xlsx")); err != nil {
 		fmt.Println(err)
 	}
 
-	time.Sleep(500 * time.Millisecond)
+	time.Sleep(200 * time.Millisecond)
 
 	DrawSaveExcel()
 }
