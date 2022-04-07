@@ -78,5 +78,5 @@ Auteur: %s
 Version: %s
 
 
-`, s.SrcPath, s.PoolSize, s.NbGoroutine, s.NbFiles, timer, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Name, globals.Version, globals.Author)
+`, s.SrcPath, s.PoolSize, s.NbGoroutine, s.NbFiles, timer, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Name, globals.Author, globals.Version)
 }
