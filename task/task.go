@@ -158,5 +158,5 @@ func RunSearch(s *Sch, f *Flags) {
 	}
 
 	DrawSaveExcel()
-	time.Sleep(200 * time.Millisecond)
+	time.Sleep(500 * time.Millisecond)
 }
