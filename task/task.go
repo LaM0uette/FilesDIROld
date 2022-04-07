@@ -46,11 +46,15 @@ type exportData struct {
 }
 
 var (
-	wg        sync.WaitGroup
-	jobs      = make(chan string)
-	ExcelData []exportData
+	wg          sync.WaitGroup
+	wgWritter   sync.WaitGroup
+	jobs        = make(chan string)
+	jobsWritter = make(chan int)
+	ExcelData   []exportData
 )
 
+//...
+// ACTIONS:
 func strToLower(s string, b bool) string {
 	if !b {
 		return strings.ToLower(s)
@@ -59,6 +63,8 @@ func strToLower(s string, b bool) string {
 	}
 }
 
+//...
+// WORKER:
 func (s *Sch) loopFilesWorker() error {
 	for path := range jobs {
 		files, err := ioutil.ReadDir(path)
@@ -98,6 +104,23 @@ func (s *Sch) loopFilesWorker() error {
 	return nil
 }
 
+func writeExcelLineWorker(Wb *excelize.File, iMax int) {
+	for job := range jobsWritter {
+		fmt.Print("\033[u\033[K")
+		fmt.Printf("%v/%v", job, iMax)
+
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job), ExcelData[job].Id)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job), ExcelData[job].File)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", job), ExcelData[job].Date)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", job), ExcelData[job].PathFile)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", job), ExcelData[job].Path)
+
+		wgWritter.Done()
+	}
+}
+
+//...
+// MAIN FUNC:
 func LoopDirsFiles(path string, f *Flags) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
@@ -131,12 +154,12 @@ func RunSearch(s *Sch, f *Flags) {
 	s.Maj = f.FlgMaj
 
 	dump.Semicolon.Println("id;Fichier;Date;Lien_Fichier;Lien")
-	wb := excelize.NewFile()
-	_ = wb.SetCellValue("Sheet1", "A1", "id")
-	_ = wb.SetCellValue("Sheet1", "B1", "Fichier")
-	_ = wb.SetCellValue("Sheet1", "C1", "Date")
-	_ = wb.SetCellValue("Sheet1", "D1", "LienFichier")
-	_ = wb.SetCellValue("Sheet1", "E1", "Lien")
+	Wb := excelize.NewFile()
+	_ = Wb.SetCellValue("Sheet1", "A1", "id")
+	_ = Wb.SetCellValue("Sheet1", "B1", "Fichier")
+	_ = Wb.SetCellValue("Sheet1", "C1", "Date")
+	_ = Wb.SetCellValue("Sheet1", "D1", "LienFichier")
+	_ = Wb.SetCellValue("Sheet1", "E1", "Lien")
 
 	if s.PoolSize < 2 {
 		log.Info.Println("Set the PoolSize to 2")
@@ -171,15 +194,27 @@ func RunSearch(s *Sch, f *Flags) {
 	time.Sleep(200 * time.Millisecond)
 	DrawWriteExcel()
 
-	for i := range ExcelData {
-		_ = wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", i), ExcelData[i].Id)
-		_ = wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", i), ExcelData[i].File)
-		_ = wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", i), ExcelData[i].Date)
-		_ = wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", i), ExcelData[i].PathFile)
-		_ = wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", i), ExcelData[i].Path)
+	fmt.Print("\033[s")
+
+	iMax := len(ExcelData)
+	for w := 1; w <= 500; w++ {
+		go func() {
+			writeExcelLineWorker(Wb, iMax)
+		}()
 	}
 
-	if err := wb.SaveAs(filepath.Join(s.DstPath, "word.xlsx")); err != nil {
+	for i := 1; i < iMax-1; i++ {
+		i := i
+		go func() {
+			wgWritter.Add(1)
+			jobsWritter <- i
+		}()
+	}
+
+	wgWritter.Wait()
+
+	fmt.Print("\033[u\033[K")
+	if err := Wb.SaveAs(filepath.Join(s.DstPath, "word.xlsx")); err != nil {
 		fmt.Println(err)
 	}
 
