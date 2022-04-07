@@ -234,6 +234,7 @@ func RunSearch(s *Sch, f *Flags) {
 		}
 
 		log.Blank.Print(DrawSaveExcel())
+		fmt.Println()
 		fmt.Print(DrawSaveExcel())
 
 		time.Sleep(600 * time.Millisecond)

@@ -41,8 +41,7 @@ Sauvegarde du fichier Excel...  `)
 }
 
 func DrawSaveExcel() string {
-	return fmt.Sprint(`
-Fichier Excel sauvegardé avec succes.
+	return fmt.Sprint(`Fichier Excel sauvegardé avec succes.
 `)
 }
 
