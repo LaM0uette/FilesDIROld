@@ -62,8 +62,8 @@ func LoopDirsFiles(path string) {
 	}()
 	for _, file := range files {
 		if file.IsDir() {
-			go LoopDirsFiles(filepath.Join(path, file.Name()))
-			time.Sleep(20 * time.Millisecond)
+			//time.Sleep(20 * time.Millisecond)
+			LoopDirsFiles(filepath.Join(path, file.Name()))
 		}
 	}
 }
