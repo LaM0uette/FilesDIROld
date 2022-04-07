@@ -203,7 +203,7 @@ func RunSearch(s *Sch, f *Flags) {
 
 	// Export Excel
 	if !f.FlgXl {
-		log.BlankDate.Print(DrawWriteExcel())
+		log.Blank.Print(DrawWriteExcel())
 		fmt.Print(DrawWriteExcel())
 
 		fmt.Print("\033[s")
@@ -233,7 +233,7 @@ func RunSearch(s *Sch, f *Flags) {
 			fmt.Println(err)
 		}
 
-		log.BlankDate.Print(DrawSaveExcel())
+		log.Blank.Print(DrawSaveExcel())
 		fmt.Print(DrawSaveExcel())
 
 		time.Sleep(600 * time.Millisecond)
