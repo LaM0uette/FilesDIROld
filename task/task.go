@@ -198,9 +198,7 @@ func RunSearch(s *Sch, f *Flags) {
 
 	iMax := len(ExcelData)
 	for w := 1; w <= 500; w++ {
-		go func() {
-			writeExcelLineWorker(Wb, iMax)
-		}()
+		go writeExcelLineWorker(Wb, iMax)
 	}
 
 	for i := 1; i < iMax-1; i++ {
