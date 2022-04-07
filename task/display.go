@@ -31,14 +31,12 @@ Initialisation de la recherche...
 func DrawRunSearch() string {
 	return fmt.Sprint(`
 ==================   DEBUT DES RECHERCHES   ==================
-
 `)
 }
 
 func DrawEndSearch() string {
 	return fmt.Sprint(`
 ==================   FIN DES RECHERCHES   ==================
-
 `)
 }
 
@@ -50,8 +48,7 @@ Sauvegarde du fichier Excel...
 
 func DrawSaveExcel() string {
 	return fmt.Sprint(`
-Fichier Excel sauvegardé avec succes.
-`)
+Fichier Excel sauvegardé avec succes.`)
 }
 
 func DrawEnd(s *Sch, timerSearch time.Duration, timerTotal time.Duration) string {
