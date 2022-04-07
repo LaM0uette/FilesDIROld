@@ -23,6 +23,7 @@ type Sch struct {
 	PoolSize    int
 	NbFiles     int
 	NbGoroutine int
+	TimerSearch time.Duration
 }
 
 type exportData struct {
@@ -120,6 +121,7 @@ func RunSearch(s *Sch, f *Flags) {
 	}
 	maxThr := s.PoolSize * 500
 
+	searchStart := time.Now()
 	log.Info.Printf(fmt.Sprintf("Set max thread count to %v\n\n", maxThr))
 	debug.SetMaxThreads(maxThr)
 
@@ -137,6 +139,7 @@ func RunSearch(s *Sch, f *Flags) {
 	LoopDirsFiles(s.SrcPath, f)
 
 	wg.Wait()
+	s.TimerSearch = time.Since(searchStart)
 
 	time.Sleep(1 * time.Second)
 

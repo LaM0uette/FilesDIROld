@@ -53,7 +53,7 @@ func DrawSaveExcel() {
 `)
 }
 
-func DrawEnd(s *Sch, timer time.Duration) {
+func DrawEnd(s *Sch, timerSearch time.Duration, timerTotal time.Duration) {
 	fmt.Printf(`
 
 ==================  BILAN DES RECHERCHES  ==================
@@ -65,7 +65,8 @@ Nombre de Goroutines: %v
 
 RESULTATS:
 Fichiers trouvés: %v
-Temps d'exécution: %v
+Temps d'exécution de la recherche: %v
+Temps d'exécution total: %v
 
 EXPORTS:
 Logs: %s
@@ -78,5 +79,5 @@ Auteur: %s
 Version: %s
 
 
-`, s.SrcPath, s.PoolSize, s.NbGoroutine, s.NbFiles, timer, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Name, globals.Author, globals.Version)
+`, s.SrcPath, s.PoolSize, s.NbGoroutine, s.NbFiles, timerSearch, timerTotal, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Name, globals.Author, globals.Version)
 }

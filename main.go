@@ -38,5 +38,5 @@ func main() {
 	timerEnd := time.Since(timerStart)
 
 	log.BlankDate.Println("*** Closing FilesDIR")
-	task.DrawEnd(&s, timerEnd)
+	task.DrawEnd(&s, s.TimerSearch, timerEnd)
 }
