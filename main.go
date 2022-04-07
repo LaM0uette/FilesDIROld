@@ -30,10 +30,9 @@ func main() {
 		FlgXl:    *FlgXlsx,
 	}
 
-	log.Blank.Print(task.Start.Pattern)
-	task.Start.Draw()
+	log.Blank.Print(task.DrawStart())
+	fmt.Print(task.DrawStart())
 
-	log.BlankDate.Println("*** Starting FilesDIR\n")
 	timerStart := time.Now()
 
 	s := task.Sch{
@@ -42,12 +41,13 @@ func main() {
 		PoolSize: 10,
 	}
 
-	log.BlankDate.Printf(fmt.Sprintf("*** Starting search on: %s\n\n", s.SrcPath))
 	task.RunSearch(&s, &f)
 
-	log.BlankDate.Println("*** Ending search\n")
 	timerEnd := time.Since(timerStart)
 
-	log.BlankDate.Println("*** Closing FilesDIR")
-	task.DrawEnd(&s, s.TimerSearch, timerEnd)
+	log.Blank.Print(task.DrawEnd(&s, s.TimerSearch, timerEnd))
+	fmt.Print(task.DrawEnd(&s, s.TimerSearch, timerEnd))
+
+	//log.Blank.Print(DrawSaveExcel.Pattern)
+	//DrawSaveExcel.Draw()
 }

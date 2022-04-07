@@ -147,8 +147,8 @@ func LoopDirsFiles(path string, f *Flags) {
 
 func RunSearch(s *Sch, f *Flags) {
 
-	log.BlankDate.Println("Setup search...")
-	DrawSetupSearch()
+	log.Blank.Print(DrawInitSearch.Pattern)
+	DrawInitSearch.Draw()
 
 	s.Mode = f.FlgMode
 	s.Word = strToLower(s.Word, s.Maj)
@@ -165,13 +165,17 @@ func RunSearch(s *Sch, f *Flags) {
 
 	if s.PoolSize < 2 {
 		log.Info.Println("Set the PoolSize to 2")
+		fmt.Println("Set the PoolSize to 2")
 		s.PoolSize = 2
 	}
 	maxThr := s.PoolSize * 500
 
-	searchStart := time.Now()
 	log.Info.Printf(fmt.Sprintf("Set max thread count to %v\n\n", maxThr))
+	fmt.Printf("Set max thread count to %v\n\n", maxThr)
+
 	debug.SetMaxThreads(maxThr)
+
+	searchStart := time.Now()
 
 	for w := 1; w <= s.PoolSize; w++ {
 		go func() {
@@ -182,8 +186,8 @@ func RunSearch(s *Sch, f *Flags) {
 		}()
 	}
 
-	log.BlankDate.Println("Setup search...")
-	DrawRunSearch()
+	log.Blank.Print(DrawRunSearch.Pattern)
+	DrawRunSearch.Draw()
 
 	LoopDirsFiles(s.SrcPath, f)
 
@@ -192,13 +196,15 @@ func RunSearch(s *Sch, f *Flags) {
 
 	time.Sleep(1 * time.Second)
 
-	DrawEndSearch()
+	log.Blank.Print(DrawEndSearch.Pattern)
+	DrawEndSearch.Draw()
 
 	time.Sleep(200 * time.Millisecond)
 
 	// Export Excel
 	if !f.FlgXl {
-		DrawWriteExcel()
+		log.Blank.Print(DrawWriteExcel.Pattern)
+		DrawWriteExcel.Draw()
 
 		fmt.Print("\033[s")
 
@@ -227,7 +233,9 @@ func RunSearch(s *Sch, f *Flags) {
 			fmt.Println(err)
 		}
 
-		DrawSaveExcel()
+		log.Blank.Print(DrawSaveExcel.Pattern)
+		DrawSaveExcel.Draw()
+
 		time.Sleep(600 * time.Millisecond)
 	}
 }

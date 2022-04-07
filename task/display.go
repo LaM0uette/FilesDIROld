@@ -7,12 +7,8 @@ import (
 	"time"
 )
 
-type DrawStruct struct {
-	Pattern string
-}
-
-var Start = DrawStruct{
-	Pattern: fmt.Sprintf(`
+func DrawStart() string {
+	return fmt.Sprintf(`
 		███████╗██╗██╗     ███████╗██████╗ ██╗██████╗ 
 		██╔════╝██║██║     ██╔════╝██╔══██╗██║██╔══██╗
 		█████╗  ██║██║     █████╗  ██║  ██║██║██████╔╝
@@ -22,47 +18,11 @@ var Start = DrawStruct{
 		Version: %s               Auteur: %s
 
 
-`, globals.Version, globals.Author),
+`, globals.Version, globals.Author)
 }
 
-func (d *DrawStruct) Draw() {
-	fmt.Print(d.Pattern)
-}
-
-func DrawSetupSearch() {
-	fmt.Print(`Initialisation de la recherche...
-
-`)
-	time.Sleep(1 * time.Second)
-}
-
-func DrawRunSearch() {
-	fmt.Print(`==================   DEBUT DES RECHERCHES   ==================
-
-`)
-	time.Sleep(1 * time.Second)
-}
-
-func DrawEndSearch() {
-	fmt.Print(`==================   FIN DES RECHERCHES   ==================
-
-
-`)
-}
-
-func DrawWriteExcel() {
-	fmt.Print(`Sauvegarde du fichier Excel...
-`)
-}
-
-func DrawSaveExcel() {
-	fmt.Print(`Fichier Excel sauvegardé avec succes.
-`)
-}
-
-func DrawEnd(s *Sch, timerSearch time.Duration, timerTotal time.Duration) {
-	fmt.Printf(`
-
+func DrawEnd(s *Sch, timerSearch time.Duration, timerTotal time.Duration) string {
+	return fmt.Sprintf(`
 ==================  BILAN DES RECHERCHES  ==================
 
 INFOS GENERALES:
@@ -84,7 +44,41 @@ Export Excel: %s
 %s
 Auteur: %s
 Version: %s
-
-
 `, s.SrcPath, s.PoolSize, s.NbGoroutine, s.NbFiles, timerSearch, timerTotal, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Name, globals.Author, globals.Version)
+}
+
+type DrawStruct struct {
+	Pattern string
+}
+
+var DrawInitSearch = DrawStruct{
+	Pattern: fmt.Sprintf(`Initialisation de la recherche...
+
+`),
+}
+
+var DrawRunSearch = DrawStruct{
+	Pattern: fmt.Sprintf(`==================   DEBUT DES RECHERCHES   ==================
+`),
+}
+
+var DrawEndSearch = DrawStruct{
+	Pattern: fmt.Sprintf(`==================   FIN DES RECHERCHES   ==================
+
+
+`),
+}
+
+var DrawWriteExcel = DrawStruct{
+	Pattern: fmt.Sprintf(`Sauvegarde du fichier Excel...
+`),
+}
+
+var DrawSaveExcel = DrawStruct{
+	Pattern: fmt.Sprintf(`Fichier Excel sauvegardé avec succes.
+`),
+}
+
+func (d *DrawStruct) Draw() {
+	fmt.Print(d.Pattern)
 }
