@@ -216,12 +216,12 @@ func RunSearch(s *Sch, f *Flags) {
 		wgWritter.Wait()
 
 		saveWord := f.FlgWord
-		if len(f.FlgMode) < 1 {
+		if len(f.FlgWord) < 1 {
 			saveWord = "Export"
 		}
 
 		fmt.Print("\033[u\033[K")
-		if err := Wb.SaveAs(filepath.Join(s.DstPath, saveWord, fmt.Sprintf("_%v", time.Now().Format("20060102150405")), ".xlsx")); err != nil {
+		if err := Wb.SaveAs(filepath.Join(s.DstPath, saveWord+fmt.Sprintf("_%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
 			fmt.Println(err)
 		}
 
