@@ -2,9 +2,12 @@ package task
 
 import (
 	"FilesDIR/dump"
+	"FilesDIR/globals"
 	"FilesDIR/log"
 	"fmt"
 	"io/ioutil"
+	"os"
+	"os/user"
 	"path/filepath"
 	"runtime"
 	"runtime/debug"
@@ -23,6 +26,29 @@ type Sch struct {
 	PoolSize    int
 	NbFiles     int
 	NbGoroutine int
+}
+
+func GenTempDir() error {
+	temp, err := user.Current()
+	if err != nil {
+		return err
+	}
+
+	mainDir := filepath.Join(temp.HomeDir, globals.Name)
+	logDir := filepath.Join(mainDir, "logs")
+	dumpDir := filepath.Join(mainDir, "dumps")
+
+	err = os.MkdirAll(logDir, os.ModePerm)
+	if err != nil {
+		return err
+	}
+
+	err = os.MkdirAll(dumpDir, os.ModePerm)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (s *Sch) loopFilesWorker() error {
