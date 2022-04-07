@@ -6,6 +6,7 @@ import (
 	"FilesDIR/log"
 	"FilesDIR/task"
 	"fmt"
+	"path/filepath"
 	"time"
 )
 
@@ -18,7 +19,7 @@ func main() {
 
 	s := task.Sch{
 		SrcPath:  globals.SrcPathGen,
-		DstPath:  globals.DstPathGen,
+		DstPath:  filepath.Join(globals.TempPathGen, "exports"),
 		PoolSize: 10,
 	}
 

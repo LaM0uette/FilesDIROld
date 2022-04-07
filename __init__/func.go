@@ -2,10 +2,18 @@ package __init__
 
 import (
 	"FilesDIR/globals"
+	log2 "log"
 	"os"
 	"os/user"
 	"path/filepath"
 )
+
+func mkdirFolder(path string) {
+	err := os.MkdirAll(path, os.ModePerm)
+	if err != nil {
+		log2.Fatal(err)
+	}
+}
 
 func init() {
 	temp, err := user.Current()
@@ -16,14 +24,9 @@ func init() {
 	mainDir := filepath.Join(temp.HomeDir, globals.Name)
 	logDir := filepath.Join(mainDir, "logs")
 	dumpDir := filepath.Join(mainDir, "dumps")
+	exportDir := filepath.Join(mainDir, "exports")
 
-	err = os.MkdirAll(logDir, os.ModePerm)
-	if err != nil {
-		return
-	}
-
-	err = os.MkdirAll(dumpDir, os.ModePerm)
-	if err != nil {
-		return
-	}
+	mkdirFolder(logDir)
+	mkdirFolder(dumpDir)
+	mkdirFolder(exportDir)
 }
