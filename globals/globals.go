@@ -1,7 +1,5 @@
 package globals
 
-import "FilesDIR/task"
-
 const (
 	Author     = "LaM0uette"
 	Version    = 0.5
@@ -10,5 +8,5 @@ const (
 )
 
 var (
-	TempPathGen = task.TempDir()
+	TempPathGen = TempDir()
 )
