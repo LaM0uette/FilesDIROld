@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 	"runtime/debug"
 	"sync"
+	"time"
 )
 
 var (
@@ -56,7 +57,7 @@ func LoopDirsFiles(path string) {
 	}()
 	for _, file := range files {
 		if file.IsDir() {
-			go LoopDirsFiles(filepath.Join(path, file.Name()))
+			LoopDirsFiles(filepath.Join(path, file.Name()))
 		}
 	}
 }
@@ -87,6 +88,8 @@ func RunSearch(s *Sch) {
 
 	LoopDirsFiles(s.SrcPath)
 	wg.Wait()
+
+	time.Sleep(2 * time.Second)
 
 	DrawEndSearch()
 }
