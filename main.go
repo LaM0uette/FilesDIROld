@@ -13,11 +13,19 @@ import (
 
 func main() {
 
-	FlgDevil := flag.Bool("devil", false, "Mode 'Démon' de l'application.")
+	FlgDevil := flag.Bool("devil", false, "Mode 'Démon' de l'application")
+	FlgMode := flag.String("mode", "%", "Mode de recherche")
+	FlgWord := flag.String("word", "", "Non de fichier")
+	FlgExt := flag.String("ext", "*", "Ext de fichier")
+	FlgMaj := flag.Bool("maj", false, "Autorise les majuscules")
 	flag.Parse()
 
 	f := task.Flags{
 		FlgDevil: *FlgDevil,
+		FlgMode:  *FlgMode,
+		FlgWord:  *FlgWord,
+		FlgExt:   *FlgExt,
+		FlgMaj:   *FlgMaj,
 	}
 
 	task.DrawStart()

@@ -9,12 +9,17 @@ import (
 	"path/filepath"
 	"runtime"
 	"runtime/debug"
+	"strings"
 	"sync"
 	"time"
 )
 
 type Flags struct {
 	FlgDevil bool
+	FlgMode  string
+	FlgWord  string
+	FlgExt   string
+	FlgMaj   bool
 }
 
 type Sch struct {
@@ -23,6 +28,12 @@ type Sch struct {
 	PoolSize    int
 	NbFiles     int
 	NbGoroutine int
+
+	Mode string
+	Word string
+	Ext  string
+	Maj  bool
+
 	TimerSearch time.Duration
 }
 
@@ -40,7 +51,15 @@ var (
 	ExcelData []exportData
 )
 
-func (s *Sch) loopFilesWorker(f *Flags) error {
+func strToLower(s string, b bool) string {
+	if !b {
+		return strings.ToLower(s)
+	} else {
+		return s
+	}
+}
+
+func (s *Sch) loopFilesWorker() error {
 	for path := range jobs {
 		files, err := ioutil.ReadDir(path)
 		if err != nil {
@@ -106,8 +125,12 @@ func RunSearch(s *Sch, f *Flags) {
 
 	DrawSetupSearch()
 
-	dump.Semicolon.Println("id;Fichier;Date;Lien_Fichier;Lien")
+	s.Mode = f.FlgMode
+	s.Word = strToLower(s.Word, s.Maj)
+	s.Ext = f.FlgExt
+	s.Maj = f.FlgMaj
 
+	dump.Semicolon.Println("id;Fichier;Date;Lien_Fichier;Lien")
 	wb := excelize.NewFile()
 	_ = wb.SetCellValue("Sheet1", "A1", "id")
 	_ = wb.SetCellValue("Sheet1", "B1", "Fichier")
@@ -127,7 +150,7 @@ func RunSearch(s *Sch, f *Flags) {
 
 	for w := 1; w <= s.PoolSize; w++ {
 		go func() {
-			err := s.loopFilesWorker(f)
+			err := s.loopFilesWorker()
 			if err != nil {
 				log.Error.Println(err)
 			}
