@@ -16,9 +16,10 @@ func main() {
 	timerStart := time.Now()
 
 	s := task.Sch{
-		SrcPath:  globals.SrcPathGen,
-		PoolSize: 10,
-		NbFiles:  0,
+		SrcPath:     globals.SrcPathGen,
+		PoolSize:    10,
+		NbFiles:     0,
+		NbGoroutine: 0,
 	}
 
 	log.BlankDate.Printf(fmt.Sprintf("*** Starting search on: %s\n\n", s.SrcPath))

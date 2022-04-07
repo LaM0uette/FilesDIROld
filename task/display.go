@@ -48,6 +48,8 @@ func DrawEnd(s *Sch, timer time.Duration) {
 
 INFOS GENERALES:
 Dossiers principal: %s
+Nombre de Threads: %v
+Nombre de Goroutines: %v
 Temps d'exécution: %v
 
 RESULTATS:
@@ -56,5 +58,5 @@ Fichiers trouvés: %v
 ============================================================
 
 
-`, s.SrcPath, timer, s.NbFiles)
+`, s.SrcPath, s.PoolSize, s.NbGoroutine, timer, s.NbFiles)
 }

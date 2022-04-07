@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"path/filepath"
+	"runtime"
 	"runtime/debug"
 	"sync"
 	"time"
@@ -16,9 +17,10 @@ var (
 )
 
 type Sch struct {
-	SrcPath  string
-	PoolSize int
-	NbFiles  int
+	SrcPath     string
+	PoolSize    int
+	NbFiles     int
+	NbGoroutine int
 }
 
 func (s *Sch) loopFilesWorker() error {
@@ -36,6 +38,10 @@ func (s *Sch) loopFilesWorker() error {
 				go func() {
 					log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s\n", s.NbFiles, file.Name()))
 					fmt.Printf("N°%v | Files: %s\n", s.NbFiles, file.Name())
+
+					if runtime.NumGoroutine() > s.NbGoroutine {
+						s.NbGoroutine = runtime.NumGoroutine()
+					}
 				}()
 			}
 		}
