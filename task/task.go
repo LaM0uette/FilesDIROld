@@ -129,11 +129,22 @@ func RunSearch(s *Sch) {
 	LoopDirsFiles(s.SrcPath)
 
 	wg.Wait()
+
 	time.Sleep(1 * time.Second)
 
 	DrawEndSearch()
 
+	time.Sleep(500 * time.Millisecond)
+
 	DrawWriteExcel()
+
+	for i := range ExcelData {
+		_ = wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", i), ExcelData[i].Id)
+		_ = wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", i), ExcelData[i].File)
+		_ = wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", i), ExcelData[i].Date)
+		_ = wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", i), ExcelData[i].PathFile)
+		_ = wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", i), ExcelData[i].Path)
+	}
 	if err := wb.SaveAs(filepath.Join(s.DstPath, "word.xlsx")); err != nil {
 		fmt.Println(err)
 	}
