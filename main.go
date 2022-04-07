@@ -47,7 +47,4 @@ func main() {
 
 	log.Blank.Print(task.DrawEnd(&s, s.TimerSearch, timerEnd))
 	fmt.Print(task.DrawEnd(&s, s.TimerSearch, timerEnd))
-
-	//log.Blank.Print(DrawSaveExcel.Pattern)
-	//DrawSaveExcel.Draw()
 }
