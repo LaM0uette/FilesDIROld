@@ -44,7 +44,7 @@ func main() {
 	log.BlankDate.Printf(fmt.Sprintf("*** Starting search on: %s\n\n", s.SrcPath))
 	task.RunSearch(&s, &f)
 
-	log.BlankDate.Println("\n*** Ending search\n")
+	log.BlankDate.Println("*** Ending search\n")
 	timerEnd := time.Since(timerStart)
 
 	log.BlankDate.Println("*** Closing FilesDIR")
