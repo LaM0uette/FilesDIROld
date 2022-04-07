@@ -110,11 +110,11 @@ func writeExcelLineWorker(Wb *excelize.File, iMax int) {
 		fmt.Print("\033[u\033[K")
 		fmt.Printf("%v/%v", job, iMax)
 
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job), ExcelData[job].Id)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job), ExcelData[job].File)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", job), ExcelData[job].Date)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", job), ExcelData[job].PathFile)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", job), ExcelData[job].Path)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job+2), ExcelData[job].Id)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job+2), ExcelData[job].File)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", job+2), ExcelData[job].Date)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", job+2), ExcelData[job].PathFile)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", job+2), ExcelData[job].Path)
 
 		wgWritter.Done()
 	}
@@ -205,7 +205,7 @@ func RunSearch(s *Sch, f *Flags) {
 			go writeExcelLineWorker(Wb, iMax)
 		}
 
-		for i := 1; i < iMax-1; i++ {
+		for i := 0; i < iMax-1; i++ {
 			i := i
 			go func() {
 				wgWritter.Add(1)
