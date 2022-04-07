@@ -101,8 +101,8 @@ func RunSearch(s *Sch) {
 	DrawRunSearch()
 
 	LoopDirsFiles(s.SrcPath)
-	wg.Wait()
 
+	wg.Wait()
 	time.Sleep(1 * time.Second)
 
 	DrawEndSearch()
