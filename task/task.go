@@ -94,7 +94,7 @@ func RunSearch(s *Sch) {
 	LoopDirsFiles(s.SrcPath)
 	wg.Wait()
 
-	time.Sleep(2 * time.Second)
+	time.Sleep(1 * time.Second)
 
 	DrawEndSearch()
 }
