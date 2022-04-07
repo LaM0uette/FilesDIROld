@@ -37,6 +37,8 @@ func DrawRunSearch() {
 
 func DrawEndSearch() {
 	fmt.Print(`==================   FIN DES RECHERCHES   ==================
+
+
 `)
 }
 
@@ -52,7 +54,6 @@ func DrawSaveExcel(s *Sch) {
 
 func DrawEnd(s *Sch, timer time.Duration) {
 	fmt.Printf(`
-
 
 ==================  BILAN DES RECHERCHES  ==================
 
