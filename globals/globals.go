@@ -5,5 +5,5 @@ package globals
 const (
 	Author     = "LaM0uette"
 	Version    = 0.5
-	SrcPathGen = "T:\\"
+	SrcPathGen = "T:\\- 4 Suivi Appuis"
 )
