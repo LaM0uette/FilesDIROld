@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="création du fichier d'export excel">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/globals/globals.go" beforeDir="false" afterPath="$PROJECT_DIR$/globals/globals.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Ajout des flags - Devil">
       <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,7 +165,8 @@
     <MESSAGE value="Log dump création" />
     <MESSAGE value="Création des fichiers/dossier tempo" />
     <MESSAGE value="création du fichier d'export excel" />
-    <option name="LAST_COMMIT_MESSAGE" value="création du fichier d'export excel" />
+    <MESSAGE value="Ajout des flags - Devil" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout des flags - Devil" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
