@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"path/filepath"
+	"runtime/debug"
 	"sync"
 )
 
@@ -61,21 +62,29 @@ func LoopDirsFiles(path string) {
 }
 
 func RunSearch(s *Sch) {
-	DrawRunSearch()
 
 	if s.PoolSize < 2 {
 		log.Info.Println("Set the PoolSize to 2\n")
 		s.PoolSize = 2
 	}
 
+	maxThr := s.PoolSize + 500
+	log.Info.Printf(fmt.Sprintf("Set max thread count to %v\n\n", maxThr))
+	debug.SetMaxThreads(maxThr)
+
+	DrawSetupSearch()
+
 	for w := 1; w <= s.PoolSize; w++ {
 		go func() {
 			err := s.loopFilesWorker()
 			if err != nil {
-				fmt.Println(err)
+				log.Error.Println(err)
 			}
 		}()
 	}
+
+	DrawRunSearch()
+
 	LoopDirsFiles(s.SrcPath)
 	wg.Wait()
 

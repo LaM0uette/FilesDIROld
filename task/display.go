@@ -21,8 +21,15 @@ func DrawStart() {
 	time.Sleep(200 * time.Millisecond)
 }
 
+func DrawSetupSearch() {
+	fmt.Print(`Initialisation de la recherche...
+
+`)
+	time.Sleep(1 * time.Second)
+}
+
 func DrawRunSearch() {
-	fmt.Print(`Début de la recherche...
+	fmt.Print(`==================   DEBUT DES RECHERCHES   ==================
 
 `)
 	time.Sleep(1 * time.Second)
