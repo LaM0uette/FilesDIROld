@@ -195,7 +195,7 @@ func RunSearch(s *Sch, f *Flags) {
 	time.Sleep(200 * time.Millisecond)
 
 	// Export Excel
-	if f.FlgXl {
+	if !f.FlgXl {
 		DrawWriteExcel()
 
 		fmt.Print("\033[s")
