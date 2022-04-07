@@ -147,8 +147,8 @@ func LoopDirsFiles(path string, f *Flags) {
 
 func RunSearch(s *Sch, f *Flags) {
 
-	log.Blank.Print(DrawInitSearch.Pattern)
-	DrawInitSearch.Draw()
+	log.BlankDate.Print(DrawInitSearch())
+	fmt.Print(DrawInitSearch())
 
 	s.Mode = f.FlgMode
 	s.Word = strToLower(s.Word, s.Maj)
@@ -186,8 +186,8 @@ func RunSearch(s *Sch, f *Flags) {
 		}()
 	}
 
-	log.Blank.Print(DrawRunSearch.Pattern)
-	DrawRunSearch.Draw()
+	log.Blank.Print(DrawRunSearch())
+	fmt.Print(DrawRunSearch())
 
 	LoopDirsFiles(s.SrcPath, f)
 
@@ -196,15 +196,15 @@ func RunSearch(s *Sch, f *Flags) {
 
 	time.Sleep(1 * time.Second)
 
-	log.Blank.Print(DrawEndSearch.Pattern)
-	DrawEndSearch.Draw()
+	log.Blank.Print(DrawEndSearch())
+	fmt.Print(DrawEndSearch())
 
 	time.Sleep(200 * time.Millisecond)
 
 	// Export Excel
 	if !f.FlgXl {
-		log.Blank.Print(DrawWriteExcel.Pattern)
-		DrawWriteExcel.Draw()
+		log.BlankDate.Print(DrawWriteExcel())
+		fmt.Print(DrawWriteExcel())
 
 		fmt.Print("\033[s")
 
@@ -233,8 +233,8 @@ func RunSearch(s *Sch, f *Flags) {
 			fmt.Println(err)
 		}
 
-		log.Blank.Print(DrawSaveExcel.Pattern)
-		DrawSaveExcel.Draw()
+		log.BlankDate.Print(DrawSaveExcel())
+		fmt.Print(DrawSaveExcel())
 
 		time.Sleep(600 * time.Millisecond)
 	}

@@ -21,6 +21,39 @@ func DrawStart() string {
 `, globals.Version, globals.Author)
 }
 
+func DrawInitSearch() string {
+	return fmt.Sprint(`
+Initialisation de la recherche...
+
+`)
+}
+
+func DrawRunSearch() string {
+	return fmt.Sprint(`
+==================   DEBUT DES RECHERCHES   ==================
+
+`)
+}
+
+func DrawEndSearch() string {
+	return fmt.Sprint(`
+==================   FIN DES RECHERCHES   ==================
+
+`)
+}
+
+func DrawWriteExcel() string {
+	return fmt.Sprint(`
+Sauvegarde du fichier Excel...
+`)
+}
+
+func DrawSaveExcel() string {
+	return fmt.Sprint(`
+Fichier Excel sauvegardé avec succes.
+`)
+}
+
 func DrawEnd(s *Sch, timerSearch time.Duration, timerTotal time.Duration) string {
 	return fmt.Sprintf(`
 ==================  BILAN DES RECHERCHES  ==================
@@ -45,40 +78,4 @@ Export Excel: %s
 Auteur: %s
 Version: %s
 `, s.SrcPath, s.PoolSize, s.NbGoroutine, s.NbFiles, timerSearch, timerTotal, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Name, globals.Author, globals.Version)
-}
-
-type DrawStruct struct {
-	Pattern string
-}
-
-var DrawInitSearch = DrawStruct{
-	Pattern: fmt.Sprintf(`Initialisation de la recherche...
-
-`),
-}
-
-var DrawRunSearch = DrawStruct{
-	Pattern: fmt.Sprintf(`==================   DEBUT DES RECHERCHES   ==================
-`),
-}
-
-var DrawEndSearch = DrawStruct{
-	Pattern: fmt.Sprintf(`==================   FIN DES RECHERCHES   ==================
-
-
-`),
-}
-
-var DrawWriteExcel = DrawStruct{
-	Pattern: fmt.Sprintf(`Sauvegarde du fichier Excel...
-`),
-}
-
-var DrawSaveExcel = DrawStruct{
-	Pattern: fmt.Sprintf(`Fichier Excel sauvegardé avec succes.
-`),
-}
-
-func (d *DrawStruct) Draw() {
-	fmt.Print(d.Pattern)
 }
