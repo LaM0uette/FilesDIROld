@@ -91,8 +91,12 @@ func LoopDirsFiles(path string, f *Flags) {
 	}()
 	for _, file := range files {
 		if file.IsDir() {
-			//time.Sleep(20 * time.Millisecond)
-			LoopDirsFiles(filepath.Join(path, file.Name()), f)
+			if f.FlgDevil {
+				time.Sleep(20 * time.Millisecond)
+				go LoopDirsFiles(filepath.Join(path, file.Name()), f)
+			} else {
+				LoopDirsFiles(filepath.Join(path, file.Name()), f)
+			}
 		}
 	}
 }
