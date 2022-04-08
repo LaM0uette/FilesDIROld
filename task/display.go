@@ -57,25 +57,28 @@ func DrawEnd(s *Sch, timerSearch time.Duration, timerTotal time.Duration) string
                      BILAN DES RECHERCHES                     
 |============================================================|
 
-INFOS GENERALES :
-  Dossiers principal: %s
-  Nombre de Threads: %v
-  Nombre de Goroutines: %v
+#### - INFOS GENERALES :
+Dossiers principal: %s
+Nombre de Threads: %v
+Nombre de Goroutines: %v
 
-RESULTATS :
-  Fichiers trouvés: %v
-  Temps d'exécution de la recherche: %v
-  Temps d'exécution total: %v
+#### - RESULTATS :
+Fichiers trouvés: %v
+Temps d'exécution de la recherche: %v
+Temps d'exécution total: %v
 
-EXPORTS :
-  Logs: %s
-  Dumps: %s
-  Export Excel: %s
+#### - EXPORTS :
+Logs: %s
+Dumps: %s
+Export Excel: %s
+
+
+
 
 |============================================================|
-                          %s
-                          Auteur: %s       
-                          Version: %s
+                    ####  %s  ####
+                                 
+Auteur: %s                             Version: %s
 |============================================================|
 
 
