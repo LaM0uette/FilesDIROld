@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
 	"io/ioutil"
+	"path"
 	"path/filepath"
 	"runtime"
 	"runtime/debug"
@@ -56,41 +57,77 @@ var (
 
 //...
 // ACTIONS:
-func strToLower(s string, b bool) string {
-	if !b {
-		return strings.ToLower(s)
-	} else {
-		return s
+func strToLower(s string) string {
+	return strings.ToLower(s)
+}
+
+func (s *Sch) checkFileSearched(file string) bool {
+	name := file[:strings.LastIndex(file, path.Ext(file))]
+	ext := file[strings.LastIndex(file, path.Ext(file)):]
+
+	if !s.Maj {
+		name = strToLower(name)
 	}
+
+	// condition of search Mode ( = | % | ^ | $ )
+	switch s.Mode {
+	case "%":
+		if !strings.Contains(name, s.Word) {
+			return false
+		}
+	case "=":
+		if name != s.Word {
+			return false
+		}
+	case "^":
+		if !strings.HasPrefix(name, s.Word) {
+			return false
+		}
+	case "$":
+		if !strings.HasSuffix(name, s.Word) {
+			return false
+		}
+	default:
+		if !strings.Contains(name, s.Word) {
+			return false
+		}
+	}
+
+	// condition of extension file
+	if s.Ext != "*" && ext != s.Ext {
+		return false
+	}
+
+	return true
 }
 
 //...
 // WORKER:
 func (s *Sch) loopFilesWorker() error {
-	for path := range jobs {
-		files, err := ioutil.ReadDir(path)
+	for pth := range jobs {
+		files, err := ioutil.ReadDir(pth)
 		if err != nil {
-			log.Crash.Printf(fmt.Sprintf("Crash with this path: %s\n\n", path))
+			log.Crash.Printf(fmt.Sprintf("Crash with this path: %s\n\n", pth))
 			wg.Done()
 			return err
 		}
 
 		for _, file := range files {
-			if !file.IsDir() {
+			if !file.IsDir() && s.checkFileSearched(file.Name()) {
 				s.NbFiles++
 
 				fmt.Printf("N°%v | Files: %s\n", s.NbFiles, file.Name())
 
 				log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
 				dump.Semicolon.Printf(fmt.Sprintf("%v;%s;%s;%s;%s",
-					s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), path+"/"+file.Name(), path))
+					s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(pth, file.Name()), pth))
 
 				dataExp := exportData{
 					Id:       s.NbFiles,
 					File:     file.Name(),
 					Date:     file.ModTime().Format("02-01-2006 15:04:05"),
-					PathFile: path + "/" + file.Name(),
-					Path:     path,
+					PathFile: filepath.Join(pth, file.Name()),
+					Path:     pth,
 				}
 				ExcelData = append(ExcelData, dataExp)
 
@@ -150,8 +187,13 @@ func RunSearch(s *Sch, f *Flags) {
 	log.BlankDate.Print(DrawInitSearch())
 	fmt.Print(DrawInitSearch())
 
+	time.Sleep(600 * time.Millisecond)
+
 	s.Mode = f.FlgMode
-	s.Word = strToLower(s.Word, s.Maj)
+	s.Word = f.FlgWord
+	if !f.FlgMaj {
+		s.Word = strToLower(f.FlgWord)
+	}
 	s.Ext = f.FlgExt
 	s.Maj = f.FlgMaj
 
@@ -188,6 +230,8 @@ func RunSearch(s *Sch, f *Flags) {
 
 	log.Blank.Print(DrawRunSearch())
 	fmt.Print(DrawRunSearch())
+
+	time.Sleep(400 * time.Millisecond)
 
 	LoopDirsFiles(s.SrcPath, f)
 

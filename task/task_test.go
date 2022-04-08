@@ -1,6 +1,8 @@
 package task
 
 import (
+	"fmt"
+	"strconv"
 	"testing"
 )
 
@@ -16,8 +18,39 @@ func TestRunSearch(t *testing.T) {
 		PoolSize: 10,
 	}
 
-	RunSearch(&s)
-	if s.NbFiles != 18 {
-		t.Error("NbFiles is not 18", s.NbFiles)
+	tabs := [][]string{
+		//Devil  Mode Word Ext    Maj      Xl   Result
+		{"false", "%", "", "*", "false", "true", "23"},
+		{"false", "%", "Devis", "*", "false", "true", "6"},
+	}
+
+	for _, tab := range tabs {
+
+		fmt.Println(tab[:])
+
+		VDevil, _ := strconv.ParseBool(tab[0])
+		VMaj, _ := strconv.ParseBool(tab[4])
+		VXl, _ := strconv.ParseBool(tab[5])
+		VResult, _ := strconv.Atoi(tab[6])
+
+		f := Flags{
+			FlgDevil: VDevil,
+			FlgMode:  tab[1],
+			FlgWord:  tab[2],
+			FlgExt:   tab[3],
+			FlgMaj:   VMaj,
+			FlgXl:    VXl,
+		}
+
+		s.NbFiles = 0
+		RunSearch(&s, &f)
+
+		if s.NbFiles != VResult {
+			t.Error(fmt.Sprintf("the number of files found is incorrect: %v found but %v file was expected", s.NbFiles, VResult))
+		}
+
+		fmt.Println()
+		fmt.Println()
+		fmt.Println()
 	}
 }

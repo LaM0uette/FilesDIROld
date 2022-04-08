@@ -27,7 +27,8 @@ func DrawInitSearch() string {
 }
 
 func DrawRunSearch() string {
-	return fmt.Sprint(`==================   DEBUT DES RECHERCHES   ==================`)
+	return fmt.Sprint(`==================   DEBUT DES RECHERCHES   ==================
+`)
 }
 
 func DrawEndSearch() string {
