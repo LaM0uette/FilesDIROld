@@ -119,7 +119,7 @@ func (s *Sch) checkFileSearched(file string) bool {
 
 func (s *Sch) isInBlackList(folderName string) bool {
 	for _, black := range s.BlackList {
-		if strings.Contains(folderName, black) {
+		if strings.Contains(strToLower(folderName), strToLower(black)) {
 			return true
 		}
 	}
