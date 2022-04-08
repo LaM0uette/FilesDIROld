@@ -146,20 +146,20 @@ func (s *Sch) loopFilesWorker(super bool) error {
 
 					if !super {
 						fmt.Print("\033[u\033[K", fmt.Sprintf("N°%v | Files: %s\n", s.NbFiles, file.Name()))
+
+						dataExp := exportData{
+							Id:       s.NbFiles,
+							File:     file.Name(),
+							Date:     file.ModTime().Format("02-01-2006 15:04:05"),
+							PathFile: filepath.Join(pth, file.Name()),
+							Path:     pth,
+						}
+						ExcelData = append(ExcelData, dataExp)
 					}
 
 					log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
 					dump.Semicolon.Printf(fmt.Sprintf("%v;%s;%s;%s;%s",
 						s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(pth, file.Name()), pth))
-
-					dataExp := exportData{
-						Id:       s.NbFiles,
-						File:     file.Name(),
-						Date:     file.ModTime().Format("02-01-2006 15:04:05"),
-						PathFile: filepath.Join(pth, file.Name()),
-						Path:     pth,
-					}
-					ExcelData = append(ExcelData, dataExp)
 
 					if runtime.NumGoroutine() > s.NbGoroutine {
 						s.NbGoroutine = runtime.NumGoroutine()
@@ -241,7 +241,7 @@ func RunSearch(s *Sch, f *Flags) {
 		}
 	}
 
-	if !f.FlgXl {
+	if !f.FlgXl || !f.FlgSuper {
 		dump.Semicolon.Println("id;Fichier;Date;Lien_Fichier;Lien")
 		Wb = excelize.NewFile()
 		_ = Wb.SetCellValue("Sheet1", "A1", "id")
@@ -266,12 +266,13 @@ func RunSearch(s *Sch, f *Flags) {
 
 	debug.SetMaxThreads(maxThr)
 
-	searchStart := time.Now()
 	if !f.FlgSuper {
 		log.Blank.Print(DrawRunSearch())
 		fmt.Print(DrawRunSearch())
 		time.Sleep(400 * time.Millisecond)
 	}
+
+	searchStart := time.Now()
 
 	fmt.Print("\033[s")
 	for w := 1; w <= s.PoolSize; w++ {
@@ -298,7 +299,7 @@ func RunSearch(s *Sch, f *Flags) {
 	}
 
 	// Export Excel
-	if !f.FlgXl {
+	if !f.FlgXl || !f.FlgSuper {
 		if !f.FlgSuper {
 			log.Blank.Print(DrawWriteExcel())
 			fmt.Print(DrawWriteExcel())
