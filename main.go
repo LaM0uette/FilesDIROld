@@ -12,6 +12,7 @@ import (
 )
 
 func main() {
+
 	// Flag of search
 	FlgMode := flag.String("mode", "%", "Mode de recherche")
 	FlgWord := flag.String("word", "", "Non de fichier")
@@ -26,7 +27,7 @@ func main() {
 	FlgSuper := flag.Bool("s", false, "Mode 'Super', évite toutes les choses inutiles")
 	FlgBlackList := flag.Bool("b", false, "Ajout d'une blacklist de dossier")
 
-	flag.Parse()
+	flag.Parse() // Parse all Flags
 
 	f := task.Flags{
 		FlgMode:      *FlgMode,
