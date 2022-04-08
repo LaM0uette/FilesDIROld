@@ -16,12 +16,13 @@ import (
 )
 
 type Flags struct {
-	FlgDevil bool
 	FlgMode  string
 	FlgWord  string
 	FlgExt   string
 	FlgMaj   bool
 	FlgXl    bool
+	FlgDevil bool
+	FlgSuper bool
 }
 
 type Sch struct {
@@ -54,6 +55,7 @@ var (
 	jobs        = make(chan string)
 	jobsWritter = make(chan int)
 	ExcelData   []exportData
+	Wb          = &excelize.File{}
 )
 
 //...
@@ -104,7 +106,7 @@ func (s *Sch) checkFileSearched(file string) bool {
 
 //...
 // WORKER:
-func (s *Sch) loopFilesWorker() error {
+func (s *Sch) loopFilesWorker(super bool) error {
 	for pth := range jobs {
 		files, err := ioutil.ReadDir(pth)
 		if err != nil {
@@ -120,11 +122,13 @@ func (s *Sch) loopFilesWorker() error {
 					s.NbFiles++
 					s.NbFilesTotal++
 
-					fmt.Print("\033[u\033[K", fmt.Sprintf("N°%v | Files: %s\n", s.NbFiles, file.Name()))
+					if !super {
+						fmt.Print("\033[u\033[K", fmt.Sprintf("N°%v | Files: %s\n", s.NbFiles, file.Name()))
 
-					log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
-					dump.Semicolon.Printf(fmt.Sprintf("%v;%s;%s;%s;%s",
-						s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(pth, file.Name()), pth))
+						log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
+						dump.Semicolon.Printf(fmt.Sprintf("%v;%s;%s;%s;%s",
+							s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(pth, file.Name()), pth))
+					}
 
 					dataExp := exportData{
 						Id:       s.NbFiles,
@@ -192,10 +196,11 @@ func LoopDirsFiles(path string, f *Flags) {
 
 func RunSearch(s *Sch, f *Flags) {
 
-	log.BlankDate.Print(DrawInitSearch())
-	fmt.Print(DrawInitSearch())
-
-	time.Sleep(400 * time.Millisecond)
+	if !f.FlgSuper {
+		log.BlankDate.Print(DrawInitSearch())
+		fmt.Print(DrawInitSearch())
+		time.Sleep(400 * time.Millisecond)
+	}
 
 	s.Mode = f.FlgMode
 	s.Word = f.FlgWord
@@ -205,13 +210,15 @@ func RunSearch(s *Sch, f *Flags) {
 	s.Ext = fmt.Sprintf(".%s", f.FlgExt)
 	s.Maj = f.FlgMaj
 
-	dump.Semicolon.Println("id;Fichier;Date;Lien_Fichier;Lien")
-	Wb := excelize.NewFile()
-	_ = Wb.SetCellValue("Sheet1", "A1", "id")
-	_ = Wb.SetCellValue("Sheet1", "B1", "Fichier")
-	_ = Wb.SetCellValue("Sheet1", "C1", "Date")
-	_ = Wb.SetCellValue("Sheet1", "D1", "LienFichier")
-	_ = Wb.SetCellValue("Sheet1", "E1", "Lien")
+	if !f.FlgXl {
+		dump.Semicolon.Println("id;Fichier;Date;Lien_Fichier;Lien")
+		Wb = excelize.NewFile()
+		_ = Wb.SetCellValue("Sheet1", "A1", "id")
+		_ = Wb.SetCellValue("Sheet1", "B1", "Fichier")
+		_ = Wb.SetCellValue("Sheet1", "C1", "Date")
+		_ = Wb.SetCellValue("Sheet1", "D1", "LienFichier")
+		_ = Wb.SetCellValue("Sheet1", "E1", "Lien")
+	}
 
 	if s.PoolSize < 2 {
 		log.Info.Println("Set the PoolSize to 2")
@@ -220,8 +227,10 @@ func RunSearch(s *Sch, f *Flags) {
 	}
 	maxThr := s.PoolSize * 500
 
-	log.Info.Printf(fmt.Sprintf("Set max thread count to %v\n\n", maxThr))
-	fmt.Printf("Set max thread count to %v\n\n", maxThr)
+	if !f.FlgSuper {
+		log.Info.Printf(fmt.Sprintf("Set max thread count to %v\n\n", maxThr))
+		fmt.Printf("Set max thread count to %v\n\n", maxThr)
+	}
 
 	debug.SetMaxThreads(maxThr)
 
@@ -230,35 +239,39 @@ func RunSearch(s *Sch, f *Flags) {
 	fmt.Print("\033[s")
 	for w := 1; w <= s.PoolSize; w++ {
 		go func() {
-			err := s.loopFilesWorker()
+			err := s.loopFilesWorker(f.FlgSuper)
 			if err != nil {
 				log.Error.Println(err)
 			}
 		}()
 	}
 
-	log.Blank.Print(DrawRunSearch())
-	fmt.Print(DrawRunSearch())
-
-	time.Sleep(400 * time.Millisecond)
+	if !f.FlgSuper {
+		log.Blank.Print(DrawRunSearch())
+		fmt.Print(DrawRunSearch())
+		time.Sleep(400 * time.Millisecond)
+	}
 
 	LoopDirsFiles(s.SrcPath, f)
 
 	wg.Wait()
+
 	s.TimerSearch = time.Since(searchStart)
 
-	time.Sleep(1 * time.Second)
-
-	fmt.Print("\033[u\033[K")
-	log.Blank.Print(DrawEndSearch())
-	fmt.Print(DrawEndSearch())
-
-	time.Sleep(200 * time.Millisecond)
+	if !f.FlgSuper {
+		time.Sleep(1 * time.Second)
+		fmt.Print("\033[u\033[K")
+		log.Blank.Print(DrawEndSearch())
+		fmt.Print(DrawEndSearch())
+		time.Sleep(200 * time.Millisecond)
+	}
 
 	// Export Excel
 	if !f.FlgXl {
-		log.Blank.Print(DrawWriteExcel())
-		fmt.Print(DrawWriteExcel())
+		if !f.FlgSuper {
+			log.Blank.Print(DrawWriteExcel())
+			fmt.Print(DrawWriteExcel())
+		}
 
 		fmt.Print("\033[s")
 
@@ -287,10 +300,11 @@ func RunSearch(s *Sch, f *Flags) {
 			fmt.Println(err)
 		}
 
-		log.Blank.Print(DrawSaveExcel())
-		fmt.Println()
-		fmt.Print(DrawSaveExcel())
-
-		time.Sleep(600 * time.Millisecond)
+		if !f.FlgSuper {
+			log.Blank.Print(DrawSaveExcel())
+			fmt.Println()
+			fmt.Print(DrawSaveExcel())
+			time.Sleep(600 * time.Millisecond)
+		}
 	}
 }

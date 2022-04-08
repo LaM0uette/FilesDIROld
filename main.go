@@ -13,25 +13,30 @@ import (
 
 func main() {
 
-	FlgDevil := flag.Bool("devil", false, "Mode 'Démon' de l'application")
 	FlgMode := flag.String("mode", "%", "Mode de recherche")
 	FlgWord := flag.String("word", "", "Non de fichier")
 	FlgExt := flag.String("ext", "*", "Ext de fichier")
+
 	FlgMaj := flag.Bool("maj", false, "Autorise les majuscules")
-	FlgXlsx := flag.Bool("xl", false, "Lance l'export Excel à la fin")
+	FlgXl := flag.Bool("xl", false, "Lance l'export Excel à la fin")
+	FlgDevil := flag.Bool("devil", false, "Mode 'Démon' de l'application")
+	FlgSuper := flag.Bool("s", false, "Mode 'Super', évite toutes les choses inutiles")
 	flag.Parse()
 
 	f := task.Flags{
-		FlgDevil: *FlgDevil,
 		FlgMode:  *FlgMode,
 		FlgWord:  *FlgWord,
 		FlgExt:   *FlgExt,
 		FlgMaj:   *FlgMaj,
-		FlgXl:    *FlgXlsx,
+		FlgXl:    *FlgXl,
+		FlgDevil: *FlgDevil,
+		FlgSuper: *FlgSuper,
 	}
 
-	log.Blank.Print(task.DrawStart())
-	fmt.Print(task.DrawStart())
+	if !f.FlgSuper {
+		log.Blank.Print(task.DrawStart())
+		fmt.Print(task.DrawStart())
+	}
 
 	timerStart := time.Now()
 
