@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="benchmark">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2022_08_38__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2022_08_38__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/testPerf/V1.0.0/PoolSize=10.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/testPerf/V1.0.0/PoolSize=10.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/globals/globals.go" beforeDir="false" afterPath="$PROJECT_DIR$/globals/globals.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/task_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +71,7 @@
       <recent name="C:\Users\XD5965\go\src\FilesDIR" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestRunSearch in FilesDIR/task">
+  <component name="RunManager" selected="Go Test.TestRunSearch in FilesDIR/task (1)">
     <configuration name="FilesDIR" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$" />
@@ -80,7 +81,7 @@
       <filePath value="$PROJECT_DIR$/main.go" />
       <method v="2" />
     </configuration>
-    <configuration name="TestGenTempDir in FilesDIR/task" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestRunSearch in FilesDIR/task (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$/task" />
       <kind value="PACKAGE" />
@@ -88,7 +89,7 @@
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
-      <pattern value="^\QTestGenTempDir\E$" />
+      <pattern value="^\QTestRunSearch\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestRunSearch in FilesDIR/task" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -125,18 +126,18 @@
     </configuration>
     <list>
       <item itemvalue="Go Build.FilesDIR" />
+      <item itemvalue="Go Test.TestRunSearch in FilesDIR/task (1)" />
       <item itemvalue="Go Test.TestStr in FilesDIR/task" />
       <item itemvalue="Go Test.go test FilesDIR/task" />
-      <item itemvalue="Go Test.TestGenTempDir in FilesDIR/task" />
       <item itemvalue="Go Test.TestRunSearch in FilesDIR/task" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestRunSearch in FilesDIR/task (1)" />
         <item itemvalue="Go Test.TestRunSearch in FilesDIR/task" />
         <item itemvalue="Go Build.FilesDIR" />
         <item itemvalue="Go Test.go test FilesDIR/task" />
         <item itemvalue="Go Test.TestStr in FilesDIR/task" />
-        <item itemvalue="Go Test.TestGenTempDir in FilesDIR/task" />
       </list>
     </recent_temporary>
   </component>
