@@ -22,15 +22,16 @@ func TestRunSearch(t *testing.T) {
 		//Devil  Mode Word Ext    Maj      Xl   Result
 		{"false", "%", "", "*", "false", "true", "23"},
 		{"false", "%", "Devis", "*", "false", "true", "6"},
+		{"false", "%", "Devis", "*", "true", "true", "5"},
 	}
 
 	for i, tab := range tabs {
 
 		fmt.Printf(`
-==================   TEST N°%v   ==================
+==================         TEST N°%v         ==================
 DATA: Devil=%s  Mode=%s  Word=%s  Ext=%s  Maj=%s  Xl=%s
 
-`, i, tab[0], tab[1], tab[2], tab[3], tab[4], tab[5])
+`, i+1, tab[0], tab[1], tab[2], tab[3], tab[4], tab[5])
 
 		VDevil, _ := strconv.ParseBool(tab[0])
 		VMaj, _ := strconv.ParseBool(tab[4])
@@ -53,7 +54,6 @@ DATA: Devil=%s  Mode=%s  Word=%s  Ext=%s  Maj=%s  Xl=%s
 			t.Error(fmt.Sprintf("the number of files found is incorrect: %v found but %v file was expected", s.NbFiles, VResult))
 		}
 
-		fmt.Println()
 		fmt.Println()
 		fmt.Println()
 	}
