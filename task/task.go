@@ -4,6 +4,7 @@ import (
 	"FilesDIR/dump"
 	"FilesDIR/globals"
 	"FilesDIR/log"
+	"bufio"
 	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
 	"io/ioutil"
@@ -104,16 +105,20 @@ func (f *Flags) genReqOfSearched() string {
 }
 
 func (s *Sch) getBlackList(file string) {
-	fileBytes, err := ioutil.ReadFile(file)
+
+	readFile, err := os.Open(file)
 	if err != nil {
 		log.Crash.Println(err)
-		os.Exit(1)
 	}
 
-	if len(strings.Split(string(fileBytes), "\n")) > 1 {
-		s.BlackList = append(s.BlackList, strings.Split(string(fileBytes), "\n")...)
+	fileScanner := bufio.NewScanner(readFile)
+	fileScanner.Split(bufio.ScanLines)
+
+	for fileScanner.Scan() {
+		s.BlackList = append(s.BlackList, fileScanner.Text())
 	}
 
+	_ = readFile.Close()
 }
 
 func (s *Sch) isInBlackList(folderName string) bool {
