@@ -172,7 +172,6 @@ func (s *Sch) loopFilesWorker(super bool) error {
 				}
 			}
 		}
-
 		wg.Done()
 	}
 	return nil
