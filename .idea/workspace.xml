@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="ajout du mode blacklist">
-      <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/task_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +68,7 @@
       <recent name="C:\Users\XD5965\go\src\FilesDIR" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.FilesDIR">
+  <component name="RunManager" selected="Go Test.TestRunSearch in FilesDIR/task">
     <configuration name="FilesDIR" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$" />
@@ -130,8 +130,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.FilesDIR" />
         <item itemvalue="Go Test.TestRunSearch in FilesDIR/task" />
+        <item itemvalue="Go Build.FilesDIR" />
         <item itemvalue="Go Test.go test FilesDIR/task" />
         <item itemvalue="Go Test.TestStr in FilesDIR/task" />
         <item itemvalue="Go Test.TestGenTempDir in FilesDIR/task" />

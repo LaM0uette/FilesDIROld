@@ -19,36 +19,43 @@ func TestRunSearch(t *testing.T) {
 	}
 
 	tabs := [][]string{
-		//Devil  Mode Word Ext    Maj      Xl   Result
-		{"false", "%", "", "*", "false", "true", "26"},
-		{"false", "%", "Devis", "*", "false", "true", "6"},
-		{"false", "%", "Devis", "*", "true", "true", "5"},
-		{"false", "=", "Xl", "xlsx", "true", "true", "1"},
-		{"false", "%", "x", "txt", "false", "true", "3"},
-		{"false", "%", "", "txt", "false", "true", "21"},
-		{"devil", "%", "", "txt", "false", "true", "21"},
+		//Mode | Word | Ext | Maj | Xl | Devil | Super | BlackList | Result
+		{"%", "", "*", "false", "true", "false", "false", "false", "26"},
+		{"%", "Devis", "*", "false", "true", "false", "false", "false", "6"},
+		{"%", "Devis", "*", "true", "true", "false", "false", "false", "5"},
+		{"=", "Xl", "xlsx", "true", "true", "false", "false", "false", "1"},
+		{"%", "x", "txt", "false", "true", "false", "false", "false", "3"},
+		{"%", "", "txt", "false", "true", "true", "false", "false", "21"},
+		{"%", "", "txt", "false", "true", "false", "false", "false", "21"},
 	}
 
 	for i, tab := range tabs {
 
 		fmt.Printf(`
 ==================         TEST N°%v         ==================
-DATA: Devil=%s  Mode=%s  Word=%s  Ext=%s  Maj=%s  Xl=%s
+DATA:   Mode=%s  Word=%s  Ext=%s  Maj=%s  Xl=%s  Devil=%s  Super=%s  BlackList=%s
 
-`, i+1, tab[0], tab[1], tab[2], tab[3], tab[4], tab[5])
+`, i+1, tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6], tab[7])
 
-		VDevil, _ := strconv.ParseBool(tab[0])
-		VMaj, _ := strconv.ParseBool(tab[4])
-		VXl, _ := strconv.ParseBool(tab[5])
-		VResult, _ := strconv.Atoi(tab[6])
+		VMode := tab[0]
+		VWord := tab[1]
+		VExt := tab[2]
+		VMaj, _ := strconv.ParseBool(tab[3])
+		VXl, _ := strconv.ParseBool(tab[4])
+		VDevil, _ := strconv.ParseBool(tab[5])
+		VSuper, _ := strconv.ParseBool(tab[6])
+		VBlackList, _ := strconv.ParseBool(tab[7])
+		VResult, _ := strconv.Atoi(tab[8])
 
 		f := Flags{
-			FlgDevil: VDevil,
-			FlgMode:  tab[1],
-			FlgWord:  tab[2],
-			FlgExt:   tab[3],
-			FlgMaj:   VMaj,
-			FlgXl:    VXl,
+			FlgMode:      VMode,
+			FlgWord:      VWord,
+			FlgExt:       VExt,
+			FlgMaj:       VMaj,
+			FlgXl:        VXl,
+			FlgDevil:     VDevil,
+			FlgSuper:     VSuper,
+			FlgBlackList: VBlackList,
 		}
 
 		s.NbFiles = 0
