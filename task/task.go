@@ -299,7 +299,7 @@ func RunSearch(s *Sch, f *Flags) {
 		time.Sleep(200 * time.Millisecond)
 	}
 
-	// Export Excel
+	// Export xlsx
 	if !f.FlgXl || !f.FlgSuper {
 		if !f.FlgSuper {
 			log.Blank.Print(DrawWriteExcel())
