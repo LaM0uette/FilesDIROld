@@ -261,6 +261,11 @@ func RunSearch(s *Sch, f *Flags) {
 	debug.SetMaxThreads(maxThr)
 
 	searchStart := time.Now()
+	if !f.FlgSuper {
+		log.Blank.Print(DrawRunSearch())
+		fmt.Print(DrawRunSearch())
+		time.Sleep(400 * time.Millisecond)
+	}
 
 	fmt.Print("\033[s")
 	for w := 1; w <= s.PoolSize; w++ {
@@ -270,12 +275,6 @@ func RunSearch(s *Sch, f *Flags) {
 				log.Error.Println(err)
 			}
 		}()
-	}
-
-	if !f.FlgSuper {
-		log.Blank.Print(DrawRunSearch())
-		fmt.Print(DrawRunSearch())
-		time.Sleep(400 * time.Millisecond)
 	}
 
 	s.LoopDirsFiles(s.SrcPath, f)

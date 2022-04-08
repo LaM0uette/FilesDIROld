@@ -18,7 +18,7 @@ const (
 	Name       = "FilesDIR"
 	Author     = "LaM0uette"
 	Version    = "1.0.0"
-	SrcPathGen = "T:\\- 4 Suivi Appuis\\18-Partage\\de VILLELE DORIAN"
+	SrcPathGen = "T:\\- 4 Suivi Appuis\\18-Partage\\de VILLELE DORIAN\\07_LAND2FIBRE\\02_GABARITS"
 	//SrcPathGen = "F:\\testBis\\dl\\01_PRET\\01_FINI"
 )
 
