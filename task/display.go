@@ -28,16 +28,16 @@ func DrawInitSearch() string {
 
 func DrawRunSearch() string {
 	return fmt.Sprint(`
-|============================================================|
-                     DEBUT DES RECHERCHES                     
-|============================================================|
++============================================================+
+|                    DEBUT DES RECHERCHES                    |
++============================================================+
 `)
 }
 
 func DrawEndSearch() string {
-	return fmt.Sprint(`|============================================================|
-                      FIN DES RECHERCHES                      
-|============================================================|
+	return fmt.Sprint(`+============================================================+
+|                     FIN DES RECHERCHES                     |                      
++============================================================+
 `)
 }
 
@@ -53,9 +53,9 @@ func DrawSaveExcel() string {
 
 func DrawEnd(s *Sch, timerSearch time.Duration, timerTotal time.Duration) string {
 	return fmt.Sprintf(`
-|============================================================|
-                     BILAN DES RECHERCHES                     
-|============================================================|
++============================================================+
+|                    BILAN DES RECHERCHES                    |                     
++============================================================+
 
 #### - INFOS GENERALES :
 Dossiers principal: %s
@@ -72,16 +72,12 @@ Logs: %s
 Dumps: %s
 Export Excel: %s
 
-|============================================================|
 
 
 
-|============================================================|
-|                    ####  %s  ####                          |
-|                                                            |
-|Auteur: %s                             Version: %s          |
-|============================================================|
+| Auteur: %s                            Version: %s          |
++============================================================+
 
 
-`, s.SrcPath, s.PoolSize, s.NbGoroutine, s.NbFiles, timerSearch, timerTotal, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Name, globals.Author, globals.Version)
+`, s.SrcPath, s.PoolSize, s.NbGoroutine, s.NbFiles, timerSearch, timerTotal, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Author, globals.Version)
 }
