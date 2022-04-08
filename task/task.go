@@ -63,7 +63,7 @@ func strToLower(s string) string {
 
 func (s *Sch) checkFileSearched(file string) bool {
 	name := file[:strings.LastIndex(file, path.Ext(file))]
-	ext := file[strings.LastIndex(file, path.Ext(file)):]
+	ext := strToLower(file[strings.LastIndex(file, path.Ext(file))+1:])
 
 	if !s.Maj {
 		name = strToLower(name)
