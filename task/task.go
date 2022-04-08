@@ -146,11 +146,11 @@ func (s *Sch) loopFilesWorker(super bool) error {
 
 					if !super {
 						fmt.Print("\033[u\033[K", fmt.Sprintf("N°%v | Files: %s\n", s.NbFiles, file.Name()))
-
-						log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
-						dump.Semicolon.Printf(fmt.Sprintf("%v;%s;%s;%s;%s",
-							s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(pth, file.Name()), pth))
 					}
+
+					log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
+					dump.Semicolon.Printf(fmt.Sprintf("%v;%s;%s;%s;%s",
+						s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(pth, file.Name()), pth))
 
 					dataExp := exportData{
 						Id:       s.NbFiles,
