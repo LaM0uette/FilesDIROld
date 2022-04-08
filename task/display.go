@@ -51,7 +51,7 @@ func DrawSaveExcel() string {
 `)
 }
 
-func DrawEnd(s *Sch, timerSearch time.Duration, timerTotal time.Duration) string {
+func DrawEnd(s *Sch, PoolSize int, timerSearch time.Duration, timerTotal time.Duration) string {
 	return fmt.Sprintf(`
 +============================================================+
 |                    BILAN DES RECHERCHES                    |                     
@@ -76,5 +76,5 @@ Export Excel: %s
 
 +=========  Auteur: %s       Version: %s  =========+
 
-`, s.SrcPath, s.PoolSize, s.NbGoroutine, s.NbFiles, timerSearch, timerTotal, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Author, globals.Version)
+`, s.SrcPath, PoolSize, s.NbGoroutine, s.NbFiles, timerSearch, timerTotal, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Author, globals.Version)
 }

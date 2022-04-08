@@ -21,6 +21,7 @@ type Flags struct {
 	FlgMode      string
 	FlgWord      string
 	FlgExt       string
+	FlgPoolSize  int
 	FlgMaj       bool
 	FlgXl        bool
 	FlgDevil     bool
@@ -31,7 +32,6 @@ type Flags struct {
 type Sch struct {
 	SrcPath      string
 	DstPath      string
-	PoolSize     int
 	NbFiles      int
 	NbFilesTotal int
 	NbGoroutine  int
@@ -155,6 +155,8 @@ func (s *Sch) loopFilesWorker(super bool) error {
 							Path:     pth,
 						}
 						ExcelData = append(ExcelData, dataExp)
+					} else {
+						fmt.Print("\033[u\033[K", fmt.Sprintf("Nombres de fichiers traités: %v", s.NbFilesTotal))
 					}
 
 					log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
@@ -251,13 +253,13 @@ func RunSearch(s *Sch, f *Flags) {
 		_ = Wb.SetCellValue("Sheet1", "E1", "Lien")
 	}
 
-	if s.PoolSize < 2 {
+	if f.FlgPoolSize < 2 {
 		log.Info.Println("Set the PoolSize to 2")
 		fmt.Println("Set the PoolSize to 2")
-		s.PoolSize = 2
+		f.FlgPoolSize = 2
 	}
 
-	maxThr := s.PoolSize * 500
+	maxThr := f.FlgPoolSize * 500
 
 	if !f.FlgSuper {
 		log.Info.Printf(fmt.Sprintf("Set max thread count to %v\n", maxThr))
@@ -275,7 +277,7 @@ func RunSearch(s *Sch, f *Flags) {
 	searchStart := time.Now()
 
 	fmt.Print("\033[s")
-	for w := 1; w <= s.PoolSize; w++ {
+	for w := 1; w <= f.FlgPoolSize; w++ {
 		go func() {
 			err := s.loopFilesWorker(f.FlgSuper)
 			if err != nil {

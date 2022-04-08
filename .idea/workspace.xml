@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="modif des tests">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/testPerf/V0.5_DEVIL_poolsize=10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/testPerf/V0.5_DEVIL_poolsize=1000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/testPerf/V0.5_poolsize=1000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/testPerf/V1.0.0_poolsize=10.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/display.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
