@@ -218,16 +218,6 @@ func (s *Sch) LoopDirsFiles(path string, f *Flags) {
 
 func RunSearch(s *Sch, f *Flags) {
 
-	if !f.FlgSuper {
-		log.BlankDate.Print(DrawInitSearch())
-		fmt.Print(DrawInitSearch())
-		time.Sleep(400 * time.Millisecond)
-
-		if f.FlgBlackList {
-			s.getBlackList(filepath.Join(globals.TempPathGen, "blacklist", "__ALL__.txt"))
-		}
-	}
-
 	s.Mode = f.FlgMode
 	s.Word = f.FlgWord
 	if !f.FlgMaj {
@@ -235,6 +225,21 @@ func RunSearch(s *Sch, f *Flags) {
 	}
 	s.Ext = fmt.Sprintf(".%s", f.FlgExt)
 	s.Maj = f.FlgMaj
+
+	if !f.FlgSuper {
+		log.BlankDate.Print(DrawInitSearch())
+		fmt.Print(DrawInitSearch())
+		time.Sleep(400 * time.Millisecond)
+
+		if f.FlgBlackList {
+			s.getBlackList(filepath.Join(globals.TempPathGen, "blacklist", "__ALL__.txt"))
+
+			file := filepath.Join(globals.TempPathGen, "blacklist", fmt.Sprintf("%s.txt", strToLower(s.Word)))
+			if _, err := os.Stat(file); err == nil {
+				s.getBlackList(file)
+			}
+		}
+	}
 
 	if !f.FlgXl {
 		dump.Semicolon.Println("id;Fichier;Date;Lien_Fichier;Lien")
