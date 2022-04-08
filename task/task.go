@@ -71,6 +71,11 @@ func strToLower(s string) string {
 
 func (f *Flags) genReqOfSearched() string {
 
+	VWord := ""
+	if f.FlgWord != "" {
+		VWord = " -word=" + f.FlgWord
+	}
+
 	VMaj := ""
 	if f.FlgMaj {
 		VMaj = " -maj"
@@ -95,7 +100,7 @@ func (f *Flags) genReqOfSearched() string {
 	if f.FlgBlackList {
 		VBlackList = " -b"
 	}
-	return fmt.Sprintf("FilesDIR -mode=%s -word=%s -ext=%s -poolsize=%v%s%s%s%s%s\n", f.FlgMode, f.FlgWord, f.FlgExt, f.FlgPoolSize, VMaj, VXl, VDevil, VSuper, VBlackList)
+	return fmt.Sprintf("FilesDIR -mode=%s%s -ext=%s -poolsize=%v%s%s%s%s%s\n", f.FlgMode, VWord, f.FlgExt, f.FlgPoolSize, VMaj, VXl, VDevil, VSuper, VBlackList)
 }
 
 func (s *Sch) getBlackList(file string) {
