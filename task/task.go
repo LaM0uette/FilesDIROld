@@ -109,7 +109,11 @@ func (s *Sch) getBlackList(file string) {
 		log.Crash.Println(err)
 		os.Exit(1)
 	}
-	s.BlackList = append(s.BlackList, strings.Split(string(fileBytes), "\n")...)
+
+	if len(strings.Split(string(fileBytes), "\n")) > 1 {
+		s.BlackList = append(s.BlackList, strings.Split(string(fileBytes), "\n")...)
+	}
+
 }
 
 func (s *Sch) isInBlackList(folderName string) bool {

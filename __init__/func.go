@@ -15,6 +15,23 @@ func mkdirFolder(path string) {
 	}
 }
 
+func createFile(file string) {
+	var _, err = os.Stat(file)
+
+	if os.IsNotExist(err) {
+		var file, err = os.Create(file)
+		if err != nil {
+			log2.Fatal(err)
+		}
+		defer func(file *os.File) {
+			err := file.Close()
+			if err != nil {
+				log2.Fatal(err)
+			}
+		}(file)
+	}
+}
+
 func init() {
 	temp, err := user.Current()
 	if err != nil {
@@ -25,8 +42,12 @@ func init() {
 	logDir := filepath.Join(mainDir, "logs")
 	dumpDir := filepath.Join(mainDir, "dumps")
 	exportDir := filepath.Join(mainDir, "exports")
+	blacklistDir := filepath.Join(mainDir, "blacklist")
 
 	mkdirFolder(logDir)
 	mkdirFolder(dumpDir)
 	mkdirFolder(exportDir)
+	mkdirFolder(blacklistDir)
+
+	createFile(filepath.Join(blacklistDir, "__ALL__.txt"))
 }
