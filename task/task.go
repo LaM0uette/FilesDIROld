@@ -229,7 +229,7 @@ func RunSearch(s *Sch, f *Flags) {
 	if !f.FlgSuper {
 		log.BlankDate.Print(DrawInitSearch())
 		fmt.Print(DrawInitSearch())
-		time.Sleep(400 * time.Millisecond)
+		time.Sleep(800 * time.Millisecond)
 
 		if f.FlgBlackList {
 			s.getBlackList(filepath.Join(globals.TempPathGen, "blacklist", "__ALL__.txt"))
