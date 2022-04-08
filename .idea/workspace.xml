@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="ajout du mode blacklist">
-      <change beforePath="$PROJECT_DIR$/globals/globals.go" beforeDir="false" afterPath="$PROJECT_DIR$/globals/globals.go" afterDir="false" />
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="modif des tests">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/display.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +171,8 @@
     <MESSAGE value="Ajout des filtres de recherche" />
     <MESSAGE value="ajout du mode super" />
     <MESSAGE value="ajout du mode blacklist" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout du mode blacklist" />
+    <MESSAGE value="modif des tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="modif des tests" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

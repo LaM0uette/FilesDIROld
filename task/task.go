@@ -251,11 +251,12 @@ func RunSearch(s *Sch, f *Flags) {
 		fmt.Println("Set the PoolSize to 2")
 		s.PoolSize = 2
 	}
+
 	maxThr := s.PoolSize * 500
 
 	if !f.FlgSuper {
-		log.Info.Printf(fmt.Sprintf("Set max thread count to %v\n\n", maxThr))
-		fmt.Printf("Set max thread count to %v\n\n", maxThr)
+		log.Info.Printf(fmt.Sprintf("Set max thread count to %v\n", maxThr))
+		fmt.Printf("Set max thread count to %v\n", maxThr)
 	}
 
 	debug.SetMaxThreads(maxThr)
