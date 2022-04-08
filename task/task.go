@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
 	"io/ioutil"
+	"os"
 	"path"
 	"path/filepath"
 	"runtime"
@@ -16,13 +17,14 @@ import (
 )
 
 type Flags struct {
-	FlgMode  string
-	FlgWord  string
-	FlgExt   string
-	FlgMaj   bool
-	FlgXl    bool
-	FlgDevil bool
-	FlgSuper bool
+	FlgMode      string
+	FlgWord      string
+	FlgExt       string
+	FlgMaj       bool
+	FlgXl        bool
+	FlgDevil     bool
+	FlgSuper     bool
+	FlgBlackList bool
 }
 
 type Sch struct {
@@ -33,10 +35,11 @@ type Sch struct {
 	NbFilesTotal int
 	NbGoroutine  int
 
-	Mode string
-	Word string
-	Ext  string
-	Maj  bool
+	Mode      string
+	Word      string
+	BlackList []string
+	Ext       string
+	Maj       bool
 
 	TimerSearch time.Duration
 }
@@ -62,6 +65,15 @@ var (
 // ACTIONS:
 func strToLower(s string) string {
 	return strings.ToLower(s)
+}
+
+func (s *Sch) getBlackList(file string) {
+	fileBytes, err := ioutil.ReadFile(file)
+	if err != nil {
+		log.Crash.Println(err)
+		os.Exit(1)
+	}
+	s.BlackList = append(s.BlackList, strings.Split(string(fileBytes), "\n")...)
 }
 
 func (s *Sch) checkFileSearched(file string) bool {

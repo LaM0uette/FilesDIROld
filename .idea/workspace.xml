@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Ajout des filtres de recherche">
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="ajout du mode super">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/testPerf/V0.5_poolsize=10.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
     </list>
@@ -170,7 +169,8 @@
     <MESSAGE value="Ajout des flags - Devil" />
     <MESSAGE value="Ajout des flags" />
     <MESSAGE value="Ajout des filtres de recherche" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout des filtres de recherche" />
+    <MESSAGE value="ajout du mode super" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout du mode super" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

@@ -21,16 +21,18 @@ func main() {
 	FlgXl := flag.Bool("xl", false, "Lance l'export Excel à la fin")
 	FlgDevil := flag.Bool("devil", false, "Mode 'Démon' de l'application")
 	FlgSuper := flag.Bool("s", false, "Mode 'Super', évite toutes les choses inutiles")
+	FlgBlackList := flag.Bool("b", false, "Ajout d'une blacklist de dossier")
 	flag.Parse()
 
 	f := task.Flags{
-		FlgMode:  *FlgMode,
-		FlgWord:  *FlgWord,
-		FlgExt:   *FlgExt,
-		FlgMaj:   *FlgMaj,
-		FlgXl:    *FlgXl,
-		FlgDevil: *FlgDevil,
-		FlgSuper: *FlgSuper,
+		FlgMode:      *FlgMode,
+		FlgWord:      *FlgWord,
+		FlgExt:       *FlgExt,
+		FlgMaj:       *FlgMaj,
+		FlgXl:        *FlgXl,
+		FlgDevil:     *FlgDevil,
+		FlgSuper:     *FlgSuper,
+		FlgBlackList: *FlgBlackList,
 	}
 
 	if !f.FlgSuper {
