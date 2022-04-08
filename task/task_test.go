@@ -24,9 +24,13 @@ func TestRunSearch(t *testing.T) {
 		{"false", "%", "Devis", "*", "false", "true", "6"},
 	}
 
-	for _, tab := range tabs {
+	for i, tab := range tabs {
 
-		fmt.Println(tab[:])
+		fmt.Printf(`
+==================   TEST N°%v   ==================
+DATA: %s
+
+`, i, tab[:])
 
 		VDevil, _ := strconv.ParseBool(tab[0])
 		VMaj, _ := strconv.ParseBool(tab[4])
