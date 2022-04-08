@@ -6,7 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="ajout du constructeur de requete">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/fd1.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/var1.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/var2.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/var3.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/var4.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/var5.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/var6.PNG" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
