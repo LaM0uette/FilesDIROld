@@ -26,6 +26,7 @@ func TestRunSearch(t *testing.T) {
 		{"false", "=", "Xl", "xlsx", "true", "true", "1"},
 		{"false", "%", "x", "txt", "false", "true", "3"},
 		{"false", "%", "", "txt", "false", "true", "21"},
+		{"devil", "%", "", "txt", "false", "true", "21"},
 	}
 
 	for i, tab := range tabs {
