@@ -63,7 +63,7 @@ func strToLower(s string) string {
 
 func (s *Sch) checkFileSearched(file string) bool {
 	name := file[:strings.LastIndex(file, path.Ext(file))]
-	ext := strToLower(file[strings.LastIndex(file, path.Ext(file))+1:])
+	ext := strToLower(filepath.Ext(file))
 
 	if !s.Maj {
 		name = strToLower(name)
@@ -94,7 +94,7 @@ func (s *Sch) checkFileSearched(file string) bool {
 	}
 
 	// condition of extension file
-	if s.Ext != "*" && ext != s.Ext {
+	if s.Ext != ".*" && ext != s.Ext {
 		return false
 	}
 
@@ -194,7 +194,7 @@ func RunSearch(s *Sch, f *Flags) {
 	if !f.FlgMaj {
 		s.Word = strToLower(f.FlgWord)
 	}
-	s.Ext = f.FlgExt
+	s.Ext = fmt.Sprintf(".%s", f.FlgExt)
 	s.Maj = f.FlgMaj
 
 	dump.Semicolon.Println("id;Fichier;Date;Lien_Fichier;Lien")
