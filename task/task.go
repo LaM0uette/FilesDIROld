@@ -25,11 +25,12 @@ type Flags struct {
 }
 
 type Sch struct {
-	SrcPath     string
-	DstPath     string
-	PoolSize    int
-	NbFiles     int
-	NbGoroutine int
+	SrcPath      string
+	DstPath      string
+	PoolSize     int
+	NbFiles      int
+	NbFilesTotal int
+	NbGoroutine  int
 
 	Mode string
 	Word string
@@ -113,26 +114,33 @@ func (s *Sch) loopFilesWorker() error {
 		}
 
 		for _, file := range files {
-			if !file.IsDir() && s.checkFileSearched(file.Name()) {
-				s.NbFiles++
 
-				fmt.Printf("N°%v | Files: %s\n", s.NbFiles, file.Name())
+			if !file.IsDir() {
+				if s.checkFileSearched(file.Name()) {
+					s.NbFiles++
+					s.NbFilesTotal++
 
-				log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
-				dump.Semicolon.Printf(fmt.Sprintf("%v;%s;%s;%s;%s",
-					s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(pth, file.Name()), pth))
+					fmt.Print("\033[u\033[K", fmt.Sprintf("N°%v | Files: %s\n", s.NbFiles, file.Name()))
 
-				dataExp := exportData{
-					Id:       s.NbFiles,
-					File:     file.Name(),
-					Date:     file.ModTime().Format("02-01-2006 15:04:05"),
-					PathFile: filepath.Join(pth, file.Name()),
-					Path:     pth,
-				}
-				ExcelData = append(ExcelData, dataExp)
+					log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
+					dump.Semicolon.Printf(fmt.Sprintf("%v;%s;%s;%s;%s",
+						s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(pth, file.Name()), pth))
 
-				if runtime.NumGoroutine() > s.NbGoroutine {
-					s.NbGoroutine = runtime.NumGoroutine()
+					dataExp := exportData{
+						Id:       s.NbFiles,
+						File:     file.Name(),
+						Date:     file.ModTime().Format("02-01-2006 15:04:05"),
+						PathFile: filepath.Join(pth, file.Name()),
+						Path:     pth,
+					}
+					ExcelData = append(ExcelData, dataExp)
+
+					if runtime.NumGoroutine() > s.NbGoroutine {
+						s.NbGoroutine = runtime.NumGoroutine()
+					}
+				} else {
+					s.NbFilesTotal++
+					fmt.Print("\033[u\033[K", fmt.Sprintf("Nombres de fichiers traités: %v", s.NbFilesTotal))
 				}
 			}
 		}
@@ -187,7 +195,7 @@ func RunSearch(s *Sch, f *Flags) {
 	log.BlankDate.Print(DrawInitSearch())
 	fmt.Print(DrawInitSearch())
 
-	time.Sleep(600 * time.Millisecond)
+	time.Sleep(400 * time.Millisecond)
 
 	s.Mode = f.FlgMode
 	s.Word = f.FlgWord
@@ -219,6 +227,7 @@ func RunSearch(s *Sch, f *Flags) {
 
 	searchStart := time.Now()
 
+	fmt.Print("\033[s")
 	for w := 1; w <= s.PoolSize; w++ {
 		go func() {
 			err := s.loopFilesWorker()
@@ -240,6 +249,7 @@ func RunSearch(s *Sch, f *Flags) {
 
 	time.Sleep(1 * time.Second)
 
+	fmt.Print("\033[u\033[K")
 	log.Blank.Print(DrawEndSearch())
 	fmt.Print(DrawEndSearch())
 
