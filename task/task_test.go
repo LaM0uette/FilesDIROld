@@ -28,9 +28,9 @@ func TestRunSearch(t *testing.T) {
 
 		fmt.Printf(`
 ==================   TEST N°%v   ==================
-DATA: %s
+DATA: Devil=%s  Mode=%s  Word=%s  Ext=%s  Maj=%s  Xl=%s
 
-`, i, tab[:])
+`, i, tab[0], tab[1], tab[2], tab[3], tab[4], tab[5])
 
 		VDevil, _ := strconv.ParseBool(tab[0])
 		VMaj, _ := strconv.ParseBool(tab[4])
