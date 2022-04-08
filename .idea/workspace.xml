@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Refonte des draws + ajout dans le log">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="ajout du constructeur de requete">
       <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,7 +172,8 @@
     <MESSAGE value="modif des tests" />
     <MESSAGE value="benchmark" />
     <MESSAGE value="Refonte des draws + ajout dans le log" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refonte des draws + ajout dans le log" />
+    <MESSAGE value="ajout du constructeur de requete" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout du constructeur de requete" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
