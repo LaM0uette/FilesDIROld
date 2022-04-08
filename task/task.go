@@ -2,6 +2,7 @@ package task
 
 import (
 	"FilesDIR/dump"
+	"FilesDIR/globals"
 	"FilesDIR/log"
 	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
@@ -116,6 +117,15 @@ func (s *Sch) checkFileSearched(file string) bool {
 	return true
 }
 
+func (s *Sch) isInBlackList(folderName string) bool {
+	for _, black := range s.BlackList {
+		if strings.Contains(folderName, black) {
+			return true
+		}
+	}
+	return false
+}
+
 //...
 // WORKER:
 func (s *Sch) loopFilesWorker(super bool) error {
@@ -183,7 +193,7 @@ func writeExcelLineWorker(Wb *excelize.File, iMax int) {
 
 //...
 // MAIN FUNC:
-func LoopDirsFiles(path string, f *Flags) {
+func (s *Sch) LoopDirsFiles(path string, f *Flags) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		log.Error.Printf(fmt.Sprintf("Error with this path: %s\n\n", path))
@@ -195,12 +205,12 @@ func LoopDirsFiles(path string, f *Flags) {
 		jobs <- path
 	}()
 	for _, file := range files {
-		if file.IsDir() {
+		if file.IsDir() && !s.isInBlackList(file.Name()) {
 			if f.FlgDevil {
 				time.Sleep(20 * time.Millisecond)
-				go LoopDirsFiles(filepath.Join(path, file.Name()), f)
+				go s.LoopDirsFiles(filepath.Join(path, file.Name()), f)
 			} else {
-				LoopDirsFiles(filepath.Join(path, file.Name()), f)
+				s.LoopDirsFiles(filepath.Join(path, file.Name()), f)
 			}
 		}
 	}
@@ -212,6 +222,10 @@ func RunSearch(s *Sch, f *Flags) {
 		log.BlankDate.Print(DrawInitSearch())
 		fmt.Print(DrawInitSearch())
 		time.Sleep(400 * time.Millisecond)
+
+		if f.FlgBlackList {
+			s.getBlackList(filepath.Join(globals.TempPathGen, "blacklist", "__ALL__.txt"))
+		}
 	}
 
 	s.Mode = f.FlgMode
@@ -264,7 +278,7 @@ func RunSearch(s *Sch, f *Flags) {
 		time.Sleep(400 * time.Millisecond)
 	}
 
-	LoopDirsFiles(s.SrcPath, f)
+	s.LoopDirsFiles(s.SrcPath, f)
 
 	wg.Wait()
 
