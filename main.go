@@ -45,7 +45,7 @@ func main() {
 	if !f.FlgSuper {
 		log.Blank.Print(task.DrawStart())
 		fmt.Print(task.DrawStart())
-		time.Sleep(200 * time.Millisecond)
+		time.Sleep(1 * time.Second)
 	}
 
 	timerStart := time.Now()
