@@ -20,9 +20,10 @@ func TestRunSearch(t *testing.T) {
 
 	tabs := [][]string{
 		//Devil  Mode Word Ext    Maj      Xl   Result
-		{"false", "%", "", "*", "false", "true", "23"},
+		{"false", "%", "", "*", "false", "true", "26"},
 		{"false", "%", "Devis", "*", "false", "true", "6"},
 		{"false", "%", "Devis", "*", "true", "true", "5"},
+		{"false", "=", "Xl", "xlsx", "true", "true", "1"},
 	}
 
 	for i, tab := range tabs {
