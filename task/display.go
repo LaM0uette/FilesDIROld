@@ -59,6 +59,7 @@ func DrawEnd(s *Sch, PoolSize int, timerSearch time.Duration, timerTotal time.Du
 
 #### - INFOS GENERALES :
 Dossiers principal: %s
+Requête utilisée: %s
 Nombre de Threads: %v
 Nombre de Goroutines: %v
 
@@ -76,5 +77,5 @@ Export Excel: %s
 
 +=========  Auteur: %s       Version: %s  =========+
 
-`, s.SrcPath, PoolSize, s.NbGoroutine, s.NbFiles, timerSearch, timerTotal, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Author, globals.Version)
+`, s.SrcPath, s.ReqFinal, PoolSize, s.NbGoroutine, s.NbFiles, timerSearch, timerTotal, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Author, globals.Version)
 }

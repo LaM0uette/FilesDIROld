@@ -43,6 +43,7 @@ type Sch struct {
 	Maj       bool
 
 	TimerSearch time.Duration
+	ReqFinal    string
 }
 
 type exportData struct {
@@ -68,6 +69,35 @@ func strToLower(s string) string {
 	return strings.ToLower(s)
 }
 
+func (f *Flags) genReqOfSearched() string {
+
+	VMaj := ""
+	if f.FlgMaj {
+		VMaj = " -maj"
+	}
+
+	VXl := ""
+	if f.FlgXl {
+		VXl = " -xl"
+	}
+
+	VDevil := ""
+	if f.FlgDevil {
+		VDevil = " -devil"
+	}
+
+	VSuper := ""
+	if f.FlgSuper {
+		VSuper = " -s"
+	}
+
+	VBlackList := ""
+	if f.FlgBlackList {
+		VBlackList = " -b"
+	}
+	return fmt.Sprintf("FilesDIR -mode=%s -word=%s -ext=%s -poolsize=%v%s%s%s%s%s\n", f.FlgMode, f.FlgWord, f.FlgExt, f.FlgPoolSize, VMaj, VXl, VDevil, VSuper, VBlackList)
+}
+
 func (s *Sch) getBlackList(file string) {
 	fileBytes, err := ioutil.ReadFile(file)
 	if err != nil {
@@ -75,6 +105,15 @@ func (s *Sch) getBlackList(file string) {
 		os.Exit(1)
 	}
 	s.BlackList = append(s.BlackList, strings.Split(string(fileBytes), "\n")...)
+}
+
+func (s *Sch) isInBlackList(folderName string) bool {
+	for _, black := range s.BlackList {
+		if strings.Contains(strToLower(folderName), strToLower(black)) {
+			return true
+		}
+	}
+	return false
 }
 
 func (s *Sch) checkFileSearched(file string) bool {
@@ -115,15 +154,6 @@ func (s *Sch) checkFileSearched(file string) bool {
 	}
 
 	return true
-}
-
-func (s *Sch) isInBlackList(folderName string) bool {
-	for _, black := range s.BlackList {
-		if strings.Contains(strToLower(folderName), strToLower(black)) {
-			return true
-		}
-	}
-	return false
 }
 
 //...
@@ -226,6 +256,8 @@ func RunSearch(s *Sch, f *Flags) {
 	}
 	s.Ext = fmt.Sprintf(".%s", f.FlgExt)
 	s.Maj = f.FlgMaj
+
+	s.ReqFinal = f.genReqOfSearched()
 
 	if !f.FlgSuper {
 		log.BlankDate.Print(DrawInitSearch())
