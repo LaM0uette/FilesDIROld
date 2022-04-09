@@ -20,6 +20,7 @@ func main() {
 	FlgWord := flag.String("word", "", "Non de fichier")
 	FlgExt := flag.String("ext", "*", "Ext de fichier")
 	FlgPoolSize := flag.Int("poolsize", 10, "Nombre de tâches en simultanées")
+	FlgPath := flag.String("path", task.CurrentDir(), "Chemin de recherche")
 
 	// Flag of criteral of search
 	FlgMaj := flag.Bool("maj", false, "Autorise les majuscules")
@@ -37,6 +38,7 @@ func main() {
 		FlgWord:      *FlgWord,
 		FlgExt:       *FlgExt,
 		FlgPoolSize:  *FlgPoolSize,
+		FlgPath:      *FlgPath,
 		FlgMaj:       *FlgMaj,
 		FlgXl:        *FlgXl,
 		FlgDevil:     *FlgDevil,
@@ -53,7 +55,7 @@ func main() {
 	timerStart := time.Now()
 
 	s := task.Sch{
-		SrcPath: task.CurrentDir(),
+		SrcPath: *FlgPath,
 		DstPath: filepath.Join(globals.TempPathGen, "exports"),
 	}
 

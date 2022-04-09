@@ -23,6 +23,7 @@ type Flags struct {
 	FlgWord      string
 	FlgExt       string
 	FlgPoolSize  int
+	FlgPath      string
 	FlgMaj       bool
 	FlgXl        bool
 	FlgDevil     bool
@@ -208,6 +209,7 @@ func (s *Sch) loopFilesWorker(super bool) error {
 							Path:     pth,
 						}
 						ExcelData = append(ExcelData, dataExp)
+
 					} else {
 						fmt.Print(fmt.Sprintf("\rNombres de fichiers traités: %v", s.NbFilesTotal))
 					}
@@ -231,6 +233,7 @@ func (s *Sch) loopFilesWorker(super bool) error {
 }
 
 func writeExcelLineWorker(Wb *excelize.File, iMax int) {
+
 	for job := range jobsWritter {
 
 		fmt.Printf("\rSauvegarde du fichier Excel...  %v/%v", job, iMax)
@@ -342,6 +345,7 @@ func RunSearch(s *Sch, f *Flags) {
 	s.LoopDirsFiles(s.SrcPath, f)
 
 	wg.Wait()
+	wgWritter.Wait()
 
 	s.TimerSearch = time.Since(searchStart)
 
