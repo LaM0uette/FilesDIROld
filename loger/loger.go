@@ -39,7 +39,7 @@ func Blankln(v ...any) {
 
 func Blank(v ...any) {
 	vBlank.Print(v...)
-	fmt.Println(v...)
+	fmt.Print(v...)
 }
 
 func BlankDateln(v ...any) {
