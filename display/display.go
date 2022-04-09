@@ -22,8 +22,7 @@ func DrawStart() string {
 }
 
 func DrawInitSearch() string {
-	return fmt.Sprint(`Initialisation du programme...
-`)
+	return fmt.Sprint(`Initialisation du programme...`)
 }
 
 func DrawRunSearch() string {

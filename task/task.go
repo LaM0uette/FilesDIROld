@@ -14,7 +14,6 @@ import (
 	"path"
 	"path/filepath"
 	"runtime"
-	"runtime/debug"
 	"strings"
 	"sync"
 	"time"
@@ -228,7 +227,7 @@ func (s *Search) LoopDirsFiles(path string, f *construct.Flags) {
 	}
 }
 
-func RunSearch(s *Search, f *construct.Flags) {
+func (s *Search) RunSearch(f *construct.Flags) {
 
 	s.Mode = f.FlgMode
 	s.Word = f.FlgWord
@@ -237,26 +236,23 @@ func RunSearch(s *Search, f *construct.Flags) {
 	}
 	s.Ext = fmt.Sprintf(".%s", f.FlgExt)
 	s.Maj = f.FlgMaj
-
 	s.ReqFinal = f.GetReqOfSearched()
 
-	if !f.FlgSuper {
-		log.BlankDate.Print(display.DrawInitSearch())
-		fmt.Print(display.DrawInitSearch())
-		time.Sleep(800 * time.Millisecond)
+	f.DrawInitSearch()
 
-		if f.FlgBlackList {
-			s.getBlackList(filepath.Join(globals.TempPathGen, "blacklist", "__ALL__.txt"))
+	// Check blacklist if enabled and add items in it
+	if f.FlgBlackList {
+		s.getBlackList(filepath.Join(globals.TempPathGen, "blacklist", "__ALL__.txt"))
 
-			file := filepath.Join(globals.TempPathGen, "blacklist", fmt.Sprintf("%s.txt", strToLower(s.Word)))
-			if _, err := os.Stat(file); err == nil {
-				s.getBlackList(file)
-			}
+		file := filepath.Join(globals.TempPathGen, "blacklist", fmt.Sprintf("%s.txt", strToLower(s.Word)))
+		if _, err := os.Stat(file); err == nil {
+			s.getBlackList(file)
 		}
 	}
 
-	if !f.FlgXl && !f.FlgSuper {
+	if f.ExportExcelActivate() {
 		dump.Semicolon.Println("id;Fichier;Date;Lien_Fichier;Lien")
+
 		Wb = excelize.NewFile()
 		_ = Wb.SetCellValue("Sheet1", "A1", "id")
 		_ = Wb.SetCellValue("Sheet1", "B1", "Fichier")
@@ -265,26 +261,11 @@ func RunSearch(s *Search, f *construct.Flags) {
 		_ = Wb.SetCellValue("Sheet1", "E1", "Lien")
 	}
 
-	if f.FlgPoolSize < 2 {
-		log.Info.Println("Set the PoolSize to 2")
-		fmt.Println("Set the PoolSize to 2")
-		f.FlgPoolSize = 2
-	}
+	f.CheckMinimumPoolSize()
 
-	maxThr := f.FlgPoolSize * 500
+	f.SetMaxThread()
 
-	if !f.FlgSuper {
-		log.Info.Printf(fmt.Sprintf("Set max thread count to %v\n", maxThr))
-		fmt.Printf("Set max thread count to %v\n", maxThr)
-	}
-
-	debug.SetMaxThreads(maxThr)
-
-	if !f.FlgSuper {
-		log.Blank.Print(display.DrawRunSearch())
-		fmt.Print(display.DrawRunSearch())
-		time.Sleep(400 * time.Millisecond)
-	}
+	f.DrawRunSearch()
 
 	searchStart := time.Now()
 

@@ -7,6 +7,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"runtime/debug"
 	"time"
 )
 
@@ -23,6 +24,8 @@ type Flags struct {
 	FlgBlackList bool
 }
 
+//...
+// ACTIONS:
 func (f *Flags) GetReqOfSearched() string {
 
 	VWord := ""
@@ -57,12 +60,57 @@ func (f *Flags) GetReqOfSearched() string {
 	return fmt.Sprintf("FilesDIR -mode=%s%s -ext=%s -poolsize=%v%s%s%s%s%s\n", f.FlgMode, VWord, f.FlgExt, f.FlgPoolSize, VMaj, VXl, VDevil, VSuper, VBlackList)
 }
 
+func (f *Flags) ExportExcelActivate() bool {
+	if f.FlgXl && f.FlgSuper {
+		return false
+	}
+	return true
+}
+
+func (f *Flags) CheckMinimumPoolSize() {
+	if f.FlgPoolSize < 2 {
+		f.FlgPoolSize = 2
+		loger.Info("Set the PoolSize to 2")
+	}
+}
+
+func (f *Flags) SetMaxThread() {
+	maxThr := f.FlgPoolSize * 500
+	debug.SetMaxThreads(maxThr)
+
+	if f.FlgSuper {
+		return
+	}
+
+	loger.Info(fmt.Sprintf("Set max thread count to %v", maxThr))
+}
+
+//...
+// DRAWS:
 func (f *Flags) DrawStart() {
 	if f.FlgSuper {
 		return
 	}
 	loger.Blank(display.DrawStart())
 	time.Sleep(1 * time.Second)
+}
+
+func (f *Flags) DrawInitSearch() {
+	if f.FlgSuper {
+		return
+	}
+
+	loger.BlankDate(display.DrawInitSearch())
+	time.Sleep(800 * time.Millisecond)
+}
+
+func (f *Flags) DrawRunSearch() {
+	if f.FlgSuper {
+		return
+	}
+
+	loger.Blank(display.DrawRunSearch())
+	time.Sleep(400 * time.Millisecond)
 }
 
 func (f *Flags) DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles int, TimerSearch, timerEnd time.Duration) {

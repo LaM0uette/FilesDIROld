@@ -50,7 +50,7 @@ func main() {
 
 	timerStart := time.Now()
 
-	task.RunSearch(&s, &f)
+	s.RunSearch(&f)
 
 	timerEnd := time.Since(timerStart)
 
