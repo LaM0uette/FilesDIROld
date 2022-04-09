@@ -53,7 +53,7 @@ func main() {
 	timerStart := time.Now()
 
 	s := task.Sch{
-		SrcPath: globals.SrcPathGen,
+		SrcPath: task.CurrentDir(),
 		DstPath: filepath.Join(globals.TempPathGen, "exports"),
 	}
 

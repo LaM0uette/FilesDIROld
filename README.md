@@ -40,7 +40,7 @@ Ex: `-poolsize=100`
 `-maj` : Allows if set to take into account uppercase letters.     
 `-xl` : Allows data to be exported to an Excel file.   
 
-`-devil` : This is the extreme speed mode but it is not 100% reliable and will slow down the pc.   
+`-devil` : This is the extreme speed mode but it will allocate all available PC power, so lags are to be expected.   
 `-s` : This id the 'Silent mode', he hide all the messages and various actions.   
 `-b` : For active the blacklist folder, add folder name in file generated on : %USER%\FilesDIR\blacklist\...     
 you can add a text file to the name of the searched keyword or simply add folder names in the `__ALL__`.txt file   
