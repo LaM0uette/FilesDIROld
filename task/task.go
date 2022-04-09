@@ -1,6 +1,7 @@
 package task
 
 import (
+	"FilesDIR/display"
 	"FilesDIR/dump"
 	"FilesDIR/globals"
 	"FilesDIR/log"
@@ -286,8 +287,8 @@ func RunSearch(s *Sch, f *Flags) {
 	s.ReqFinal = f.genReqOfSearched()
 
 	if !f.FlgSuper {
-		log.BlankDate.Print(DrawInitSearch())
-		fmt.Print(DrawInitSearch())
+		log.BlankDate.Print(display.DrawInitSearch())
+		fmt.Print(display.DrawInitSearch())
 		time.Sleep(800 * time.Millisecond)
 
 		if f.FlgBlackList {
@@ -326,8 +327,8 @@ func RunSearch(s *Sch, f *Flags) {
 	debug.SetMaxThreads(maxThr)
 
 	if !f.FlgSuper {
-		log.Blank.Print(DrawRunSearch())
-		fmt.Print(DrawRunSearch())
+		log.Blank.Print(display.DrawRunSearch())
+		fmt.Print(display.DrawRunSearch())
 		time.Sleep(400 * time.Millisecond)
 	}
 
@@ -351,20 +352,20 @@ func RunSearch(s *Sch, f *Flags) {
 
 	if !f.FlgSuper {
 		time.Sleep(1 * time.Second)
-		log.Blank.Print(DrawEndSearch())
-		fmt.Print(DrawEndSearch())
+		log.Blank.Print(display.DrawEndSearch())
+		fmt.Print(display.DrawEndSearch())
 		time.Sleep(200 * time.Millisecond)
 	}
 
 	// Export xlsx
 	if !f.FlgXl && !f.FlgSuper {
 		if !f.FlgSuper {
-			log.Blank.Print(DrawWriteExcel())
-			fmt.Print(DrawWriteExcel())
+			log.Blank.Print(display.DrawWriteExcel())
+			fmt.Print(display.DrawWriteExcel())
 		}
 
 		iMax := len(ExcelData)
-		for w := 1; w <= 500; w++ {
+		for w := 1; w <= 300; w++ {
 			go writeExcelLineWorker(Wb, iMax)
 		}
 
@@ -388,9 +389,9 @@ func RunSearch(s *Sch, f *Flags) {
 		}
 
 		if !f.FlgSuper {
-			log.Blank.Print(DrawSaveExcel())
+			log.Blank.Print(display.DrawSaveExcel())
 			fmt.Println()
-			fmt.Print(DrawSaveExcel())
+			fmt.Print(display.DrawSaveExcel())
 			time.Sleep(600 * time.Millisecond)
 		}
 	}

@@ -1,4 +1,4 @@
-package task
+package display
 
 import (
 	"FilesDIR/globals"
@@ -50,7 +50,7 @@ func DrawSaveExcel() string {
 	return fmt.Sprint(`Fichier Excel sauvegardé avec succes.`)
 }
 
-func DrawEnd(s *Sch, PoolSize int, timerSearch time.Duration, timerTotal time.Duration) string {
+func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize int, timerSearch time.Duration, timerTotal time.Duration) string {
 	return fmt.Sprintf(`
 
 +============================================================+
@@ -77,5 +77,5 @@ Export Excel: %s
 
 +=========  Auteur: %s       Version: %s  =========+
 
-`, s.SrcPath, s.ReqFinal, PoolSize, s.NbGoroutine, s.NbFiles, timerSearch, timerTotal, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), s.DstPath, globals.Author, globals.Version)
+`, SrcPath, ReqFinal, PoolSize, NbGoroutine, NbFiles, timerSearch, timerTotal, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), DstPath, globals.Author, globals.Version)
 }

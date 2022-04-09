@@ -2,6 +2,7 @@ package main
 
 import (
 	_ "FilesDIR/__init__"
+	"FilesDIR/display"
 	"FilesDIR/globals"
 	"FilesDIR/log"
 	"FilesDIR/task"
@@ -30,7 +31,6 @@ func main() {
 	FlgDevil := flag.Bool("devil", false, "Mode 'Démon' de l'application")
 	FlgSuper := flag.Bool("s", false, "Mode 'Super', évite toutes les choses inutiles")
 	FlgBlackList := flag.Bool("b", false, "Ajout d'une blacklist de dossier")
-
 	flag.Parse() // Parse all Flags
 
 	f := task.Flags{
@@ -47,8 +47,8 @@ func main() {
 	}
 
 	if !f.FlgSuper {
-		log.Blank.Print(task.DrawStart())
-		fmt.Print(task.DrawStart())
+		log.Blank.Print(display.DrawStart())
+		fmt.Print(display.DrawStart())
 		time.Sleep(1 * time.Second)
 	}
 
@@ -63,8 +63,9 @@ func main() {
 
 	timerEnd := time.Since(timerStart)
 
-	log.Blank.Print(task.DrawEnd(&s, f.FlgPoolSize, s.TimerSearch, timerEnd))
-	fmt.Print(task.DrawEnd(&s, f.FlgPoolSize, s.TimerSearch, timerEnd))
+	disp := display.DrawEnd(s.SrcPath, s.DstPath, s.ReqFinal, s.NbGoroutine, s.NbFiles, f.FlgPoolSize, s.TimerSearch, timerEnd)
+	log.Blank.Print(disp)
+	fmt.Print(disp)
 
 	fmt.Print("Appuyer sur Entrée pour quitter...")
 	_, err := bufio.NewReader(os.Stdin).ReadBytes('\n')
