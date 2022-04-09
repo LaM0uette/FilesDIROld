@@ -3,14 +3,9 @@ package main
 import (
 	_ "FilesDIR/__init__"
 	"FilesDIR/construct"
-	"FilesDIR/display"
 	"FilesDIR/globals"
-	"FilesDIR/log"
 	"FilesDIR/task"
-	"bufio"
 	"flag"
-	"fmt"
-	"os"
 	"path/filepath"
 	"time"
 )
@@ -46,26 +41,18 @@ func main() {
 		FlgBlackList: *FlgBlackList,
 	}
 
-	f.DrawStart()
-
-	timerStart := time.Now()
-
 	s := task.Search{
 		SrcPath: *FlgPath,
 		DstPath: filepath.Join(globals.TempPathGen, "exports"),
 	}
 
+	f.DrawStart()
+
+	timerStart := time.Now()
+
 	task.RunSearch(&s, &f)
 
 	timerEnd := time.Since(timerStart)
 
-	disp := display.DrawEnd(s.SrcPath, s.DstPath, s.ReqFinal, s.NbGoroutine, s.NbFiles, f.FlgPoolSize, s.TimerSearch, timerEnd)
-	log.Blank.Print(disp)
-	fmt.Print(disp)
-
-	fmt.Print("Appuyer sur Entrée pour quitter...")
-	_, err := bufio.NewReader(os.Stdin).ReadBytes('\n')
-	if err != nil {
-		log.Crash.Println(err)
-	}
+	f.DrawEnd(&s, timerEnd)
 }
