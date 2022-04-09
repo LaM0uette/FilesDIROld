@@ -345,15 +345,8 @@ func RunSearch(s *Sch, f *Flags) {
 		time.Sleep(200 * time.Millisecond)
 	}
 
-	ExpXl := true
-	if f.FlgSuper && !f.FlgXl {
-		ExpXl = false
-	} else if !f.FlgSuper && f.FlgXl {
-		ExpXl = false
-	}
-
 	// Export xlsx
-	if ExpXl {
+	if !f.FlgXl || !f.FlgSuper {
 		if !f.FlgSuper {
 			log.Blank.Print(DrawWriteExcel())
 			fmt.Print(DrawWriteExcel())
