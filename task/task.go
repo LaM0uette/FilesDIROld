@@ -267,8 +267,9 @@ func (s *Search) RunSearch(f *construct.Flags) {
 
 	f.DrawRunSearch()
 
-	searchStart := time.Now()
+	timeSearchStart := time.Now()
 
+	// Creation of workers for search
 	for w := 1; w <= f.FlgPoolSize; w++ {
 		go func() {
 			err := s.loopFilesWorker(f.FlgSuper)
@@ -277,20 +278,14 @@ func (s *Search) RunSearch(f *construct.Flags) {
 			}
 		}()
 	}
-
+	// Run search loop
 	s.LoopDirsFiles(s.SrcPath, f)
 
-	wg.Wait()
-	wgWritter.Wait()
+	wg.Wait() // Wait for all search loops to complete
 
-	s.TimerSearch = time.Since(searchStart)
+	s.TimerSearch = time.Since(timeSearchStart)
 
-	if !f.FlgSuper {
-		time.Sleep(1 * time.Second)
-		log.Blank.Print(display.DrawEndSearch())
-		fmt.Print(display.DrawEndSearch())
-		time.Sleep(200 * time.Millisecond)
-	}
+	f.DrawEndSearch()
 
 	// Export xlsx
 	if !f.FlgXl && !f.FlgSuper {

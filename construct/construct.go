@@ -113,6 +113,16 @@ func (f *Flags) DrawRunSearch() {
 	time.Sleep(400 * time.Millisecond)
 }
 
+func (f *Flags) DrawEndSearch() {
+	if f.FlgSuper {
+		return
+	}
+
+	time.Sleep(1 * time.Second)
+	loger.Blank(display.DrawEndSearch())
+	time.Sleep(200 * time.Millisecond)
+}
+
 func (f *Flags) DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles int, TimerSearch, timerEnd time.Duration) {
 	disp := display.DrawEnd(SrcPath, DstPath, ReqFinal, NbGoroutine, NbFiles, f.FlgPoolSize, TimerSearch, timerEnd)
 	log.Blank.Print(disp)
