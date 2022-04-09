@@ -77,5 +77,19 @@ Export Excel: %s
 
 +=========  Auteur: %s       Version: %s  =========+
 
-`, SrcPath, ReqFinal, PoolSize, NbGoroutine, NbFiles, timerSearch, timerTotal, filepath.Join(globals.TempPathGen, "logs"), filepath.Join(globals.TempPathGen, "dumps"), DstPath, globals.Author, globals.Version)
+`,
+		SrcPath,
+		ReqFinal,
+		PoolSize,
+		NbGoroutine,
+
+		NbFiles,
+		timerSearch,
+		timerTotal,
+
+		filepath.Join(globals.TempPathGen, "logs"),
+		filepath.Join(globals.TempPathGen, "dumps"),
+		DstPath,
+
+		globals.Author, globals.Version)
 }

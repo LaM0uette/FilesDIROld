@@ -15,6 +15,7 @@ import (
 )
 
 func main() {
+	log.Bln("test")
 
 	// Flag of search
 	FlgMode := flag.String("mode", "%", "Mode de recherche")
@@ -47,8 +48,10 @@ func main() {
 	}
 
 	if !f.FlgSuper {
+
 		log.Blank.Print(display.DrawStart())
 		fmt.Print(display.DrawStart())
+
 		time.Sleep(1 * time.Second)
 	}
 

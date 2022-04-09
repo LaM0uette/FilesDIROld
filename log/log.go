@@ -31,3 +31,8 @@ func init() {
 	Error = log.New(file, "[ERROR]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
 	Crash = log.New(file, "[CRASH]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
 }
+
+func Bln(v ...any) {
+	Blank.Println(v)
+	fmt.Println(v)
+}

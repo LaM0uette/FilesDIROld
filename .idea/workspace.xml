@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="docs">
-      <change afterPath="$PROJECT_DIR$/construct/construct.go" afterDir="false" />
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Nettoyage">
+      <change afterPath="$PROJECT_DIR$/loger/loger.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/FilesDIR.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/display/display.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/FilesDIR.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/construct/construct.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/display/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/display/display.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/log.go" beforeDir="false" afterPath="$PROJECT_DIR$/log/log.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +68,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.goide.configuration.GoProjectSettingsConfigurable"
+    "settings.editor.selected.configurable": "editor.reader.mode"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -183,7 +184,8 @@
     <MESSAGE value="Refonte des draws + ajout dans le log" />
     <MESSAGE value="ajout du constructeur de requete" />
     <MESSAGE value="docs" />
-    <option name="LAST_COMMIT_MESSAGE" value="docs" />
+    <MESSAGE value="Nettoyage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nettoyage" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
