@@ -70,7 +70,7 @@ func (f *Flags) ExportExcelActivate() bool {
 func (f *Flags) CheckMinimumPoolSize() {
 	if f.FlgPoolSize < 2 {
 		f.FlgPoolSize = 2
-		loger.Infoln("Set the PoolSize to 2")
+		loger.Infoln("Poolsize mise à 2 (ne peut pas être inférieur à 2)")
 	}
 }
 
@@ -82,7 +82,7 @@ func (f *Flags) SetMaxThread() {
 		return
 	}
 
-	loger.Infoln(fmt.Sprintf("Set max thread count to %v", maxThr))
+	loger.Infoln(fmt.Sprintf("Nombre de threads mis à : %v", maxThr))
 }
 
 func (f *Flags) SetSaveWord() string {
