@@ -1,7 +1,7 @@
 package globals
 
 import (
-	log2 "log"
+	"log"
 	"os/user"
 	"path/filepath"
 )
@@ -9,7 +9,7 @@ import (
 func tempPathGen() string {
 	temp, err := user.Current()
 	if err != nil {
-		log2.Fatal(err)
+		log.Fatal(err)
 	}
 	return filepath.Join(temp.HomeDir, Name)
 }
