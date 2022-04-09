@@ -54,5 +54,5 @@ func main() {
 
 	timerEnd := time.Since(timerStart)
 
-	f.DrawEnd(&s, timerEnd)
+	f.DrawEnd(s.SrcPath, s.DstPath, s.ReqFinal, s.NbGoroutine, s.NbFiles, s.TimerSearch, timerEnd)
 }

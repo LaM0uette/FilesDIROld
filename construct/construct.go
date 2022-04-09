@@ -4,7 +4,6 @@ import (
 	"FilesDIR/display"
 	"FilesDIR/log"
 	"FilesDIR/loger"
-	"FilesDIR/task"
 	"bufio"
 	"fmt"
 	"os"
@@ -66,8 +65,8 @@ func (f *Flags) DrawStart() {
 	time.Sleep(1 * time.Second)
 }
 
-func (f *Flags) DrawEnd(s *task.Search, timerEnd time.Duration) {
-	disp := display.DrawEnd(s.SrcPath, s.DstPath, s.ReqFinal, s.NbGoroutine, s.NbFiles, f.FlgPoolSize, s.TimerSearch, timerEnd)
+func (f *Flags) DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles int, TimerSearch, timerEnd time.Duration) {
+	disp := display.DrawEnd(SrcPath, DstPath, ReqFinal, NbGoroutine, NbFiles, f.FlgPoolSize, TimerSearch, timerEnd)
 	log.Blank.Print(disp)
 	fmt.Print(disp)
 
