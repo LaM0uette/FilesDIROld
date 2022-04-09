@@ -4,7 +4,7 @@ import (
 	"FilesDIR/construct"
 	"FilesDIR/dump"
 	"FilesDIR/globals"
-	"FilesDIR/log"
+	"FilesDIR/loger"
 	"bufio"
 	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
@@ -71,7 +71,7 @@ func (s *Search) getBlackList(file string) {
 
 	readFile, err := os.Open(file)
 	if err != nil {
-		log.Crash.Println(err)
+		loger.Crashln(err)
 	}
 
 	fileScanner := bufio.NewScanner(readFile)
@@ -139,7 +139,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 	for pth := range jobs {
 		files, err := ioutil.ReadDir(pth)
 		if err != nil {
-			log.Crash.Printf(fmt.Sprintf("Crash with this path: %s\n\n", pth))
+			loger.Crashln(fmt.Sprintf("Crash with this path: %s", pth))
 			wg.Done()
 			return err
 		}
@@ -167,7 +167,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 						fmt.Print(fmt.Sprintf("\rNombres de fichiers traités: %v", s.NbFilesTotal))
 					}
 
-					log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
+					loger.BlankDateln(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
 					dump.Semicolon.Printf(fmt.Sprintf("%v;%s;%s;%s;%s",
 						s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(pth, file.Name()), pth))
 
@@ -206,8 +206,7 @@ func writeExcelLineWorker(Wb *excelize.File, iMax int) {
 func (s *Search) LoopDirsFiles(path string, f *construct.Flags) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		log.Error.Printf(fmt.Sprintf("Error with this path: %s\n\n", path))
-		fmt.Printf("Error with this path: %s\n\n", path)
+		loger.Errorln(fmt.Sprintf("Error with this path: %s", path))
 	}
 
 	go func() {
@@ -273,7 +272,7 @@ func (s *Search) RunSearch(f *construct.Flags) {
 		go func() {
 			err := s.loopFilesWorker(f.FlgSuper)
 			if err != nil {
-				log.Error.Println(err)
+				loger.Errorln(err)
 			}
 		}()
 	}
