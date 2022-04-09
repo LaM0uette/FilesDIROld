@@ -2,7 +2,6 @@ package task
 
 import (
 	"FilesDIR/construct"
-	"FilesDIR/display"
 	"FilesDIR/dump"
 	"FilesDIR/globals"
 	"FilesDIR/log"
@@ -288,17 +287,16 @@ func (s *Search) RunSearch(f *construct.Flags) {
 	f.DrawEndSearch()
 
 	// Export xlsx
-	if !f.FlgXl && !f.FlgSuper {
-		if !f.FlgSuper {
-			log.Blank.Print(display.DrawWriteExcel())
-			fmt.Print(display.DrawWriteExcel())
-		}
+	if f.ExportExcelActivate() {
 
+		f.DrawWriteExcel()
+
+		// Creation of workers for write line in excel file
 		iMax := len(ExcelData)
 		for w := 1; w <= 300; w++ {
 			go writeExcelLineWorker(Wb, iMax)
 		}
-
+		// Run writing loop
 		for i := 0; i < iMax-1; i++ {
 			i := i
 			go func() {
@@ -307,22 +305,16 @@ func (s *Search) RunSearch(f *construct.Flags) {
 			}()
 		}
 
-		wgWritter.Wait()
+		wgWritter.Wait() // Wait for all write loops to complete
 
-		saveWord := f.FlgWord
-		if len(f.FlgWord) < 1 {
-			saveWord = "Export"
-		}
+		// Generate a default word if is none
+		saveWord := f.SetSaveWord()
 
+		// Save Excel file
 		if err := Wb.SaveAs(filepath.Join(s.DstPath, saveWord+fmt.Sprintf("_%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
 			fmt.Println(err)
 		}
 
-		if !f.FlgSuper {
-			log.Blank.Print(display.DrawSaveExcel())
-			fmt.Println()
-			fmt.Print(display.DrawSaveExcel())
-			time.Sleep(600 * time.Millisecond)
-		}
+		f.DrawSaveExcel()
 	}
 }

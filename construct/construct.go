@@ -85,6 +85,16 @@ func (f *Flags) SetMaxThread() {
 	loger.Info(fmt.Sprintf("Set max thread count to %v", maxThr))
 }
 
+func (f *Flags) SetSaveWord() string {
+	word := f.FlgWord
+	if len(f.FlgWord) < 1 {
+		word = "Export"
+		loger.Info(fmt.Sprintf("Set default word to : %v", word))
+	}
+
+	return word
+}
+
 //...
 // DRAWS:
 func (f *Flags) DrawStart() {
@@ -120,6 +130,24 @@ func (f *Flags) DrawEndSearch() {
 
 	time.Sleep(1 * time.Second)
 	loger.Blank(display.DrawEndSearch())
+	time.Sleep(200 * time.Millisecond)
+}
+
+func (f *Flags) DrawWriteExcel() {
+	if f.FlgSuper {
+		return
+	}
+
+	loger.Blank(display.DrawWriteExcel())
+	time.Sleep(200 * time.Millisecond)
+}
+
+func (f *Flags) DrawSaveExcel() {
+	if f.FlgSuper {
+		return
+	}
+	//fmt.Println()
+	loger.Blank(display.DrawSaveExcel())
 	time.Sleep(200 * time.Millisecond)
 }
 
