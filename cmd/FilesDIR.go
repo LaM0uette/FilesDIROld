@@ -2,6 +2,7 @@ package main
 
 import (
 	_ "FilesDIR/__init__"
+	"FilesDIR/construct"
 	"FilesDIR/display"
 	"FilesDIR/globals"
 	"FilesDIR/log"
@@ -15,7 +16,6 @@ import (
 )
 
 func main() {
-	log.Bln("test")
 
 	// Flag of search
 	FlgMode := flag.String("mode", "%", "Mode de recherche")
@@ -34,7 +34,7 @@ func main() {
 	FlgBlackList := flag.Bool("b", false, "Ajout d'une blacklist de dossier")
 	flag.Parse() // Parse all Flags
 
-	f := task.Flags{
+	f := construct.Flags{
 		FlgMode:      *FlgMode,
 		FlgWord:      *FlgWord,
 		FlgExt:       *FlgExt,

@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Nettoyage">
-      <change afterPath="$PROJECT_DIR$/loger/loger.go" afterDir="false" />
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="Nettoyage + log perso">
+      <change afterPath="$PROJECT_DIR$/construct/construct.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/FilesDIR.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/construct/construct.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/display/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/display/display.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/log.go" beforeDir="false" afterPath="$PROJECT_DIR$/log/log.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +183,8 @@
     <MESSAGE value="ajout du constructeur de requete" />
     <MESSAGE value="docs" />
     <MESSAGE value="Nettoyage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nettoyage" />
+    <MESSAGE value="Nettoyage + log perso" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nettoyage + log perso" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

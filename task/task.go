@@ -1,6 +1,7 @@
 package task
 
 import (
+	"FilesDIR/construct"
 	"FilesDIR/display"
 	"FilesDIR/dump"
 	"FilesDIR/globals"
@@ -18,19 +19,6 @@ import (
 	"sync"
 	"time"
 )
-
-type Flags struct {
-	FlgMode      string
-	FlgWord      string
-	FlgExt       string
-	FlgPoolSize  int
-	FlgPath      string
-	FlgMaj       bool
-	FlgXl        bool
-	FlgDevil     bool
-	FlgSuper     bool
-	FlgBlackList bool
-}
 
 type Sch struct {
 	SrcPath      string
@@ -79,40 +67,6 @@ func CurrentDir() string {
 
 func strToLower(s string) string {
 	return strings.ToLower(s)
-}
-
-func (f *Flags) genReqOfSearched() string {
-
-	VWord := ""
-	if f.FlgWord != "" {
-		VWord = " -word=" + f.FlgWord
-	}
-
-	VMaj := ""
-	if f.FlgMaj {
-		VMaj = " -maj"
-	}
-
-	VXl := ""
-	if f.FlgXl {
-		VXl = " -xl"
-	}
-
-	VDevil := ""
-	if f.FlgDevil {
-		VDevil = " -devil"
-	}
-
-	VSuper := ""
-	if f.FlgSuper {
-		VSuper = " -s"
-	}
-
-	VBlackList := ""
-	if f.FlgBlackList {
-		VBlackList = " -b"
-	}
-	return fmt.Sprintf("FilesDIR -mode=%s%s -ext=%s -poolsize=%v%s%s%s%s%s\n", f.FlgMode, VWord, f.FlgExt, f.FlgPoolSize, VMaj, VXl, VDevil, VSuper, VBlackList)
 }
 
 func (s *Sch) getBlackList(file string) {
@@ -251,7 +205,7 @@ func writeExcelLineWorker(Wb *excelize.File, iMax int) {
 
 //...
 // MAIN FUNC:
-func (s *Sch) LoopDirsFiles(path string, f *Flags) {
+func (s *Sch) LoopDirsFiles(path string, f *construct.Flags) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		log.Error.Printf(fmt.Sprintf("Error with this path: %s\n\n", path))
@@ -274,7 +228,7 @@ func (s *Sch) LoopDirsFiles(path string, f *Flags) {
 	}
 }
 
-func RunSearch(s *Sch, f *Flags) {
+func RunSearch(s *Sch, f *construct.Flags) {
 
 	s.Mode = f.FlgMode
 	s.Word = f.FlgWord
@@ -284,7 +238,7 @@ func RunSearch(s *Sch, f *Flags) {
 	s.Ext = fmt.Sprintf(".%s", f.FlgExt)
 	s.Maj = f.FlgMaj
 
-	s.ReqFinal = f.genReqOfSearched()
+	s.ReqFinal = f.GetReqOfSearched()
 
 	if !f.FlgSuper {
 		log.BlankDate.Print(display.DrawInitSearch())
