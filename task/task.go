@@ -20,7 +20,7 @@ import (
 	"time"
 )
 
-type Sch struct {
+type Search struct {
 	SrcPath      string
 	DstPath      string
 	NbFiles      int
@@ -69,7 +69,7 @@ func strToLower(s string) string {
 	return strings.ToLower(s)
 }
 
-func (s *Sch) getBlackList(file string) {
+func (s *Search) getBlackList(file string) {
 
 	readFile, err := os.Open(file)
 	if err != nil {
@@ -86,7 +86,7 @@ func (s *Sch) getBlackList(file string) {
 	_ = readFile.Close()
 }
 
-func (s *Sch) isInBlackList(folderName string) bool {
+func (s *Search) isInBlackList(folderName string) bool {
 	for _, black := range s.BlackList {
 		if strings.Contains(strToLower(folderName), strToLower(black)) {
 			return true
@@ -95,7 +95,7 @@ func (s *Sch) isInBlackList(folderName string) bool {
 	return false
 }
 
-func (s *Sch) checkFileSearched(file string) bool {
+func (s *Search) checkFileSearched(file string) bool {
 	name := file[:strings.LastIndex(file, path.Ext(file))]
 	ext := strToLower(filepath.Ext(file))
 
@@ -137,7 +137,7 @@ func (s *Sch) checkFileSearched(file string) bool {
 
 //...
 // WORKER:
-func (s *Sch) loopFilesWorker(super bool) error {
+func (s *Search) loopFilesWorker(super bool) error {
 	for pth := range jobs {
 		files, err := ioutil.ReadDir(pth)
 		if err != nil {
@@ -205,7 +205,7 @@ func writeExcelLineWorker(Wb *excelize.File, iMax int) {
 
 //...
 // MAIN FUNC:
-func (s *Sch) LoopDirsFiles(path string, f *construct.Flags) {
+func (s *Search) LoopDirsFiles(path string, f *construct.Flags) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		log.Error.Printf(fmt.Sprintf("Error with this path: %s\n\n", path))
@@ -228,7 +228,7 @@ func (s *Sch) LoopDirsFiles(path string, f *construct.Flags) {
 	}
 }
 
-func RunSearch(s *Sch, f *construct.Flags) {
+func RunSearch(s *Search, f *construct.Flags) {
 
 	s.Mode = f.FlgMode
 	s.Word = f.FlgWord

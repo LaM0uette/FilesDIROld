@@ -1,4 +1,4 @@
-package log
+package loger
 
 import (
 	"FilesDIR/globals"
@@ -33,32 +33,32 @@ func init() {
 }
 
 func Blank(v ...any) {
-	vBlank.Println(v)
-	fmt.Println(v)
+	vBlank.Println(v...)
+	fmt.Println(v...)
 }
 
 func BlankDate(v ...any) {
-	vBlankDate.Println(v)
-	fmt.Println(v)
+	vBlankDate.Println(v...)
+	fmt.Println(v...)
 }
 
 func Info(v ...any) {
-	vInfo.Println(v)
-	fmt.Println(v)
+	vInfo.Println(v...)
+	fmt.Println(v...)
 }
 
 func Warning(v ...any) {
-	vWarning.Println(v)
-	fmt.Println(v)
+	vWarning.Println(v...)
+	fmt.Println(v...)
 }
 
 func Error(v ...any) {
-	vError.Println(v)
-	fmt.Println(v)
+	vError.Println(v...)
+	fmt.Println(v...)
 }
 
 func Crash(v ...any) {
-	vCrash.Println(v)
-	fmt.Println(v)
+	vCrash.Println(v...)
+	fmt.Println(v...)
 	os.Exit(1)
 }

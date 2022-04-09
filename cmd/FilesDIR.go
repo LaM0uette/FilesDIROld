@@ -23,16 +23,15 @@ func main() {
 	FlgExt := flag.String("ext", "*", "Ext de fichier")
 	FlgPoolSize := flag.Int("poolsize", 10, "Nombre de tâches en simultanées")
 	FlgPath := flag.String("path", task.CurrentDir(), "Chemin de recherche")
-
 	// Flag of criteral of search
 	FlgMaj := flag.Bool("maj", false, "Autorise les majuscules")
 	FlgXl := flag.Bool("xl", false, "Lance l'export Excel à la fin")
-
 	// Flag of special mode
 	FlgDevil := flag.Bool("devil", false, "Mode 'Démon' de l'application")
 	FlgSuper := flag.Bool("s", false, "Mode 'Super', évite toutes les choses inutiles")
 	FlgBlackList := flag.Bool("b", false, "Ajout d'une blacklist de dossier")
-	flag.Parse() // Parse all Flags
+	// Parse all Flags
+	flag.Parse()
 
 	f := construct.Flags{
 		FlgMode:      *FlgMode,
@@ -47,17 +46,11 @@ func main() {
 		FlgBlackList: *FlgBlackList,
 	}
 
-	if !f.FlgSuper {
-
-		log.Blank.Print(display.DrawStart())
-		fmt.Print(display.DrawStart())
-
-		time.Sleep(1 * time.Second)
-	}
+	f.DrawStart()
 
 	timerStart := time.Now()
 
-	s := task.Sch{
+	s := task.Search{
 		SrcPath: *FlgPath,
 		DstPath: filepath.Join(globals.TempPathGen, "exports"),
 	}

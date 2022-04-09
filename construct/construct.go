@@ -1,6 +1,11 @@
 package construct
 
-import "fmt"
+import (
+	"FilesDIR/display"
+	"FilesDIR/loger"
+	"fmt"
+	"time"
+)
 
 type Flags struct {
 	FlgMode      string
@@ -47,4 +52,12 @@ func (f *Flags) GetReqOfSearched() string {
 		VBlackList = " -b"
 	}
 	return fmt.Sprintf("FilesDIR -mode=%s%s -ext=%s -poolsize=%v%s%s%s%s%s\n", f.FlgMode, VWord, f.FlgExt, f.FlgPoolSize, VMaj, VXl, VDevil, VSuper, VBlackList)
+}
+
+func (f *Flags) DrawStart() {
+	if f.FlgSuper {
+		return
+	}
+	loger.Blank(display.DrawStart())
+	time.Sleep(1 * time.Second)
 }

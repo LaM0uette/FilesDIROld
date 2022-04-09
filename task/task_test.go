@@ -12,7 +12,7 @@ const (
 )
 
 func TestRunSearch(t *testing.T) {
-	s := Sch{
+	s := Search{
 		SrcPath: scrTest,
 		DstPath: DstPath,
 	}
