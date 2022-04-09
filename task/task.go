@@ -189,7 +189,7 @@ func (s *Sch) loopFilesWorker(super bool) error {
 					s.NbFilesTotal++
 
 					if !super {
-						fmt.Print("\033[u\033[K", fmt.Sprintf("N°%v | Files: %s\n", s.NbFiles, file.Name()))
+						fmt.Print(fmt.Sprintf("N°%v | Files: %s\n", s.NbFiles, file.Name()))
 
 						dataExp := exportData{
 							Id:       s.NbFiles,
@@ -200,7 +200,7 @@ func (s *Sch) loopFilesWorker(super bool) error {
 						}
 						ExcelData = append(ExcelData, dataExp)
 					} else {
-						fmt.Print("\033[u\033[K", fmt.Sprintf("Nombres de fichiers traités: %v", s.NbFilesTotal))
+						fmt.Print(fmt.Sprintf("\rNombres de fichiers traités: %v", s.NbFilesTotal))
 					}
 
 					log.BlankDate.Printf(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
@@ -212,7 +212,7 @@ func (s *Sch) loopFilesWorker(super bool) error {
 					}
 				} else {
 					s.NbFilesTotal++
-					fmt.Print("\033[u\033[K", fmt.Sprintf("Nombres de fichiers traités: %v", s.NbFilesTotal))
+					fmt.Print(fmt.Sprintf("\nNombres de fichiers traités: %v", s.NbFilesTotal))
 				}
 			}
 		}
@@ -223,8 +223,8 @@ func (s *Sch) loopFilesWorker(super bool) error {
 
 func writeExcelLineWorker(Wb *excelize.File, iMax int) {
 	for job := range jobsWritter {
-		fmt.Print("\033[u\033[K")
-		fmt.Printf("%v/%v", job, iMax)
+
+		fmt.Printf("\rSauvegarde du fichier Excel...  %v/%v", job, iMax)
 
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job+2), ExcelData[job].Id)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job+2), ExcelData[job].File)
@@ -321,7 +321,6 @@ func RunSearch(s *Sch, f *Flags) {
 
 	searchStart := time.Now()
 
-	fmt.Print("\033[s")
 	for w := 1; w <= f.FlgPoolSize; w++ {
 		go func() {
 			err := s.loopFilesWorker(f.FlgSuper)
@@ -339,7 +338,6 @@ func RunSearch(s *Sch, f *Flags) {
 
 	if !f.FlgSuper {
 		time.Sleep(1 * time.Second)
-		fmt.Print("\033[u\033[K")
 		log.Blank.Print(DrawEndSearch())
 		fmt.Print(DrawEndSearch())
 		time.Sleep(200 * time.Millisecond)
@@ -351,8 +349,6 @@ func RunSearch(s *Sch, f *Flags) {
 			log.Blank.Print(DrawWriteExcel())
 			fmt.Print(DrawWriteExcel())
 		}
-
-		fmt.Print("\033[s")
 
 		iMax := len(ExcelData)
 		for w := 1; w <= 500; w++ {
@@ -374,7 +370,6 @@ func RunSearch(s *Sch, f *Flags) {
 			saveWord = "Export"
 		}
 
-		fmt.Print("\033[u\033[K")
 		if err := Wb.SaveAs(filepath.Join(s.DstPath, saveWord+fmt.Sprintf("_%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
 			fmt.Println(err)
 		}

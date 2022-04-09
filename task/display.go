@@ -47,12 +47,12 @@ Sauvegarde du fichier Excel...  `)
 }
 
 func DrawSaveExcel() string {
-	return fmt.Sprint(`Fichier Excel sauvegardé avec succes.
-`)
+	return fmt.Sprint(`Fichier Excel sauvegardé avec succes.`)
 }
 
 func DrawEnd(s *Sch, PoolSize int, timerSearch time.Duration, timerTotal time.Duration) string {
 	return fmt.Sprintf(`
+
 +============================================================+
 |                    BILAN DES RECHERCHES                    |                     
 +============================================================+
