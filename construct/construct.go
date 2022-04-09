@@ -90,7 +90,7 @@ func (f *Flags) SetSaveWord() string {
 	if len(f.FlgWord) < 1 {
 		word = "Export"
 		time.Sleep(600 * time.Millisecond)
-		loger.Infoln(fmt.Sprintf("Set default word to : %v", word))
+		loger.Infoln(fmt.Sprintf("\nNom du fichier de sauvergarde mis par défaut : %v", word))
 	}
 
 	return word
