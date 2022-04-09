@@ -2,7 +2,6 @@ package construct
 
 import (
 	"FilesDIR/display"
-	"FilesDIR/log"
 	"FilesDIR/loger"
 	"bufio"
 	"fmt"
@@ -154,12 +153,12 @@ func (f *Flags) DrawSaveExcel() {
 
 func (f *Flags) DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles int, TimerSearch, timerEnd time.Duration) {
 	disp := display.DrawEnd(SrcPath, DstPath, ReqFinal, NbGoroutine, NbFiles, f.FlgPoolSize, TimerSearch, timerEnd)
-	log.Blank.Print(disp)
+	loger.Blankln(disp)
 	fmt.Print(disp)
 
 	fmt.Print("Appuyer sur Entrée pour quitter...")
 	_, err := bufio.NewReader(os.Stdin).ReadBytes('\n')
 	if err != nil {
-		log.Crash.Println(err)
+		loger.Crashln(err)
 	}
 }
