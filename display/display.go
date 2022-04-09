@@ -34,15 +34,15 @@ func DrawRunSearch() string {
 }
 
 func DrawEndSearch() string {
-	return fmt.Sprint(`+============================================================+
+	return fmt.Sprint(`
++============================================================+
 |                     FIN DES RECHERCHES                     |                      
 +============================================================+
 `)
 }
 
 func DrawWriteExcel() string {
-	return fmt.Sprint(`
-Sauvegarde du fichier Excel...  `)
+	return fmt.Sprint(`Sauvegarde du fichier Excel...  `)
 }
 
 func DrawSaveExcel() string {

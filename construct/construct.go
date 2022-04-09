@@ -70,7 +70,7 @@ func (f *Flags) ExportExcelActivate() bool {
 func (f *Flags) CheckMinimumPoolSize() {
 	if f.FlgPoolSize < 2 {
 		f.FlgPoolSize = 2
-		loger.Info("Set the PoolSize to 2")
+		loger.Infoln("Set the PoolSize to 2")
 	}
 }
 
@@ -82,14 +82,15 @@ func (f *Flags) SetMaxThread() {
 		return
 	}
 
-	loger.Info(fmt.Sprintf("Set max thread count to %v", maxThr))
+	loger.Infoln(fmt.Sprintf("Set max thread count to %v", maxThr))
 }
 
 func (f *Flags) SetSaveWord() string {
 	word := f.FlgWord
 	if len(f.FlgWord) < 1 {
 		word = "Export"
-		loger.Info(fmt.Sprintf("Set default word to : %v", word))
+		time.Sleep(600 * time.Millisecond)
+		loger.Infoln(fmt.Sprintf("Set default word to : %v", word))
 	}
 
 	return word
@@ -101,7 +102,7 @@ func (f *Flags) DrawStart() {
 	if f.FlgSuper {
 		return
 	}
-	loger.Blank(display.DrawStart())
+	loger.Blankln(display.DrawStart())
 	time.Sleep(1 * time.Second)
 }
 
@@ -110,7 +111,7 @@ func (f *Flags) DrawInitSearch() {
 		return
 	}
 
-	loger.BlankDate(display.DrawInitSearch())
+	loger.BlankDateln(display.DrawInitSearch())
 	time.Sleep(800 * time.Millisecond)
 }
 
@@ -119,7 +120,7 @@ func (f *Flags) DrawRunSearch() {
 		return
 	}
 
-	loger.Blank(display.DrawRunSearch())
+	loger.Blankln(display.DrawRunSearch())
 	time.Sleep(400 * time.Millisecond)
 }
 
@@ -129,7 +130,7 @@ func (f *Flags) DrawEndSearch() {
 	}
 
 	time.Sleep(1 * time.Second)
-	loger.Blank(display.DrawEndSearch())
+	loger.Blankln(display.DrawEndSearch())
 	time.Sleep(200 * time.Millisecond)
 }
 
@@ -147,7 +148,7 @@ func (f *Flags) DrawSaveExcel() {
 		return
 	}
 	//fmt.Println()
-	loger.Blank(display.DrawSaveExcel())
+	loger.Blankln(display.DrawSaveExcel())
 	time.Sleep(200 * time.Millisecond)
 }
 

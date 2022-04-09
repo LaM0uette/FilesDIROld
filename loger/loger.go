@@ -32,32 +32,37 @@ func init() {
 	vCrash = log.New(file, "[CRASH]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
 }
 
-func Blank(v ...any) {
+func Blankln(v ...any) {
 	vBlank.Println(v...)
 	fmt.Println(v...)
 }
 
-func BlankDate(v ...any) {
+func Blank(v ...any) {
+	vBlank.Print(v...)
+	fmt.Println(v...)
+}
+
+func BlankDateln(v ...any) {
 	vBlankDate.Println(v...)
 	fmt.Println(v...)
 }
 
-func Info(v ...any) {
+func Infoln(v ...any) {
 	vInfo.Println(v...)
 	fmt.Println(v...)
 }
 
-func Warning(v ...any) {
+func Warningln(v ...any) {
 	vWarning.Println(v...)
 	fmt.Println(v...)
 }
 
-func Error(v ...any) {
+func Errorln(v ...any) {
 	vError.Println(v...)
 	fmt.Println(v...)
 }
 
-func Crash(v ...any) {
+func Crashln(v ...any) {
 	vCrash.Println(v...)
 	fmt.Println(v...)
 	os.Exit(1)
