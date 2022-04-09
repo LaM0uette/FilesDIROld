@@ -71,8 +71,6 @@ Logs: %s
 Dumps: %s
 Export Excel: %s
 
-
-
 +=========  Auteur: %s       Version: %s  =========+
 
 `,
