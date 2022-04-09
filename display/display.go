@@ -51,7 +51,6 @@ func DrawSaveExcel() string {
 
 func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize int, timerSearch time.Duration, timerTotal time.Duration) string {
 	return fmt.Sprintf(`
-
 +============================================================+
 |                    BILAN DES RECHERCHES                    |                     
 +============================================================+
