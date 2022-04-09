@@ -5,8 +5,10 @@ import (
 	"FilesDIR/globals"
 	"FilesDIR/log"
 	"FilesDIR/task"
+	"bufio"
 	"flag"
 	"fmt"
+	"os"
 	"path/filepath"
 	"time"
 )
@@ -61,4 +63,10 @@ func main() {
 
 	log.Blank.Print(task.DrawEnd(&s, f.FlgPoolSize, s.TimerSearch, timerEnd))
 	fmt.Print(task.DrawEnd(&s, f.FlgPoolSize, s.TimerSearch, timerEnd))
+
+	fmt.Print("Appuyer sur Entrée pour quitter...")
+	_, err := bufio.NewReader(os.Stdin).ReadBytes('\n')
+	if err != nil {
+		log.Crash.Println(err)
+	}
 }
