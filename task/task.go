@@ -288,7 +288,7 @@ func RunSearch(s *Sch, f *Flags) {
 		}
 	}
 
-	if !f.FlgXl || !f.FlgSuper {
+	if !f.FlgXl && !f.FlgSuper {
 		dump.Semicolon.Println("id;Fichier;Date;Lien_Fichier;Lien")
 		Wb = excelize.NewFile()
 		_ = Wb.SetCellValue("Sheet1", "A1", "id")
@@ -346,7 +346,7 @@ func RunSearch(s *Sch, f *Flags) {
 	}
 
 	// Export xlsx
-	if !f.FlgXl || !f.FlgSuper {
+	if !f.FlgXl && !f.FlgSuper {
 		if !f.FlgSuper {
 			log.Blank.Print(DrawWriteExcel())
 			fmt.Print(DrawWriteExcel())
