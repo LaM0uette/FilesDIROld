@@ -5,8 +5,11 @@ import (
 	"FilesDIR/loger"
 	"bufio"
 	"fmt"
+	"github.com/360EntSecGroup-Skylar/excelize"
 	"os"
+	"path/filepath"
 	"runtime/debug"
+	"sync"
 	"time"
 )
 
@@ -22,6 +25,22 @@ type Flags struct {
 	FlgSuper     bool
 	FlgBlackList bool
 }
+
+type ExportData struct {
+	Id       int    `json:"id"`
+	File     string `json:"Fichier"`
+	Date     string `json:"Date"`
+	PathFile string `json:"Lien_Fichier"`
+	Path     string `json:"Lien"`
+}
+
+var (
+	wg   sync.WaitGroup
+	jobs = make(chan int)
+	Wb   = &excelize.File{}
+
+	ExcelData []ExportData
+)
 
 //...
 // ACTIONS:
@@ -59,13 +78,6 @@ func (f *Flags) GetReqOfSearched() string {
 	return fmt.Sprintf("FilesDIR -mode=%s%s -ext=%s -poolsize=%v%s%s%s%s%s\n", f.FlgMode, VWord, f.FlgExt, f.FlgPoolSize, VMaj, VXl, VDevil, VSuper, VBlackList)
 }
 
-func (f *Flags) ExportExcelActivate() bool {
-	if f.FlgXl && f.FlgSuper {
-		return false
-	}
-	return true
-}
-
 func (f *Flags) CheckMinimumPoolSize() {
 	if f.FlgPoolSize < 2 {
 		f.FlgPoolSize = 2
@@ -93,6 +105,62 @@ func (f *Flags) SetSaveWord() string {
 	}
 
 	return word
+}
+
+func (f *Flags) writeExcelLineWorker(Wb *excelize.File, iMax int) {
+	for job := range jobs {
+
+		fmt.Printf("\rSauvegarde du fichier Excel...  %v/%v", job, iMax)
+
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job+2), ExcelData[job].Id)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job+2), ExcelData[job].File)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", job+2), ExcelData[job].Date)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", job+2), ExcelData[job].PathFile)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", job+2), ExcelData[job].Path)
+
+		wg.Done()
+	}
+}
+
+func (f *Flags) GenerateExcelSave(DstPath string) {
+	if f.FlgXl && f.FlgSuper {
+		return
+	}
+
+	Wb = excelize.NewFile()
+	_ = Wb.SetCellValue("Sheet1", "A1", "id")
+	_ = Wb.SetCellValue("Sheet1", "B1", "Fichier")
+	_ = Wb.SetCellValue("Sheet1", "C1", "Date")
+	_ = Wb.SetCellValue("Sheet1", "D1", "LienFichier")
+	_ = Wb.SetCellValue("Sheet1", "E1", "Lien")
+
+	f.DrawWriteExcel()
+
+	// Creation of workers for write line in excel file
+	iMax := len(ExcelData)
+	for w := 1; w <= 300; w++ {
+		go f.writeExcelLineWorker(Wb, iMax)
+	}
+	// Run writing loop
+	for i := 0; i < iMax-1; i++ {
+		i := i
+		go func() {
+			wg.Add(1)
+			jobs <- i
+		}()
+	}
+
+	wg.Wait() // Wait for all write loops to complete
+
+	// Generate a default word if is none
+	saveWord := f.SetSaveWord()
+
+	// Save Excel file
+	if err := Wb.SaveAs(filepath.Join(DstPath, saveWord+fmt.Sprintf("_%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
+		fmt.Println(err)
+	}
+
+	f.DrawSaveExcel()
 }
 
 //...

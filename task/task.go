@@ -6,7 +6,6 @@ import (
 	"FilesDIR/loger"
 	"bufio"
 	"fmt"
-	"github.com/360EntSecGroup-Skylar/excelize"
 	"io/ioutil"
 	"os"
 	"path"
@@ -34,21 +33,9 @@ type Search struct {
 	ReqFinal    string
 }
 
-type exportData struct {
-	Id       int    `json:"id"`
-	File     string `json:"Fichier"`
-	Date     string `json:"Date"`
-	PathFile string `json:"Lien_Fichier"`
-	Path     string `json:"Lien"`
-}
-
 var (
-	wg          sync.WaitGroup
-	wgWritter   sync.WaitGroup
-	jobs        = make(chan string)
-	jobsWritter = make(chan int)
-	ExcelData   []exportData
-	Wb          = &excelize.File{}
+	wg   sync.WaitGroup
+	jobs = make(chan string)
 )
 
 //...
@@ -153,14 +140,14 @@ func (s *Search) loopFilesWorker(super bool) error {
 					if !super {
 						fmt.Print(fmt.Sprintf("N°%v | Files: %s\n", s.NbFiles, file.Name()))
 
-						dataExp := exportData{
+						dataExp := construct.ExportData{
 							Id:       s.NbFiles,
 							File:     file.Name(),
 							Date:     file.ModTime().Format("02-01-2006 15:04:05"),
 							PathFile: filepath.Join(pth, file.Name()),
 							Path:     pth,
 						}
-						ExcelData = append(ExcelData, dataExp)
+						construct.ExcelData = append(construct.ExcelData, dataExp)
 
 					} else {
 						fmt.Print(fmt.Sprintf("\rNombres de fichiers traités: %v", s.NbFilesTotal))
@@ -182,22 +169,6 @@ func (s *Search) loopFilesWorker(super bool) error {
 		wg.Done()
 	}
 	return nil
-}
-
-func writeExcelLineWorker(Wb *excelize.File, iMax int) {
-
-	for job := range jobsWritter {
-
-		fmt.Printf("\rSauvegarde du fichier Excel...  %v/%v", job, iMax)
-
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job+2), ExcelData[job].Id)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job+2), ExcelData[job].File)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", job+2), ExcelData[job].Date)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", job+2), ExcelData[job].PathFile)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", job+2), ExcelData[job].Path)
-
-		wgWritter.Done()
-	}
 }
 
 //...
@@ -247,20 +218,12 @@ func (s *Search) RunSearch(f *construct.Flags) {
 		}
 	}
 
-	if f.ExportExcelActivate() {
-		loger.Semicolonln("id;Fichier;Date;Lien_Fichier;Lien")
-
-		Wb = excelize.NewFile()
-		_ = Wb.SetCellValue("Sheet1", "A1", "id")
-		_ = Wb.SetCellValue("Sheet1", "B1", "Fichier")
-		_ = Wb.SetCellValue("Sheet1", "C1", "Date")
-		_ = Wb.SetCellValue("Sheet1", "D1", "LienFichier")
-		_ = Wb.SetCellValue("Sheet1", "E1", "Lien")
-	}
-
 	f.CheckMinimumPoolSize()
 
 	f.SetMaxThread()
+
+	// Generate column of dump
+	loger.Semicolonln("id;Fichier;Date;Lien_Fichier;Lien")
 
 	f.DrawRunSearch()
 
@@ -285,34 +248,5 @@ func (s *Search) RunSearch(f *construct.Flags) {
 	f.DrawEndSearch()
 
 	// Export xlsx
-	if f.ExportExcelActivate() {
-
-		f.DrawWriteExcel()
-
-		// Creation of workers for write line in excel file
-		iMax := len(ExcelData)
-		for w := 1; w <= 300; w++ {
-			go writeExcelLineWorker(Wb, iMax)
-		}
-		// Run writing loop
-		for i := 0; i < iMax-1; i++ {
-			i := i
-			go func() {
-				wgWritter.Add(1)
-				jobsWritter <- i
-			}()
-		}
-
-		wgWritter.Wait() // Wait for all write loops to complete
-
-		// Generate a default word if is none
-		saveWord := f.SetSaveWord()
-
-		// Save Excel file
-		if err := Wb.SaveAs(filepath.Join(s.DstPath, saveWord+fmt.Sprintf("_%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
-			fmt.Println(err)
-		}
-
-		f.DrawSaveExcel()
-	}
+	f.GenerateExcelSave(s.DstPath)
 }
