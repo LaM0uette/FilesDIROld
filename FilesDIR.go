@@ -62,7 +62,7 @@ func main() {
 		pkg.ClsTempFiles()
 		construct.DrawEndCls()
 	} else if *FlgCompiler {
-		pkg.CompilerFicheAppuiFt()
+		pkg.CompilerFicheAppuiFt(s.SrcPath)
 		construct.DrawEndCompilerFicheAppuiFt()
 	} else {
 

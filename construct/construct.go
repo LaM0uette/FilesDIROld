@@ -107,22 +107,6 @@ func (f *Flags) SetSaveWord() string {
 	return word
 }
 
-func (f *Flags) writeExcelLineWorker(Wb *excelize.File, iMax int) {
-	for job := range jobs {
-
-		fmt.Print("\r")
-		fmt.Printf("\rSauvegarde du fichier Excel...  %v/%v", job, iMax)
-
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job+2), ExcelData[job].Id)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job+2), ExcelData[job].File)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", job+2), ExcelData[job].Date)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", job+2), ExcelData[job].PathFile)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", job+2), ExcelData[job].Path)
-
-		wg.Done()
-	}
-}
-
 func (f *Flags) GenerateExcelSave(DstPath string) {
 	if f.FlgXl || f.FlgSuper {
 		return
@@ -164,6 +148,24 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 	}
 
 	f.DrawSaveExcel()
+}
+
+//...
+// WORKER:
+func (f *Flags) writeExcelLineWorker(Wb *excelize.File, iMax int) {
+	for job := range jobs {
+
+		fmt.Print("\r")
+		fmt.Printf("\rSauvegarde du fichier Excel...  %v/%v", job, iMax)
+
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job+2), ExcelData[job].Id)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job+2), ExcelData[job].File)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", job+2), ExcelData[job].Date)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", job+2), ExcelData[job].PathFile)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", job+2), ExcelData[job].Path)
+
+		wg.Done()
+	}
 }
 
 //...
