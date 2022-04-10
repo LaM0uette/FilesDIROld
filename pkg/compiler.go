@@ -191,10 +191,6 @@ func workerFicheAppuiFt() {
 		rgbEffort2, _ := f.GetCellStyle(sht, "U26")
 		rgbEffort3, _ := f.GetCellStyle(sht, "W26")
 
-		fmt.Println(rgbEffort1, effort1)
-		fmt.Println(rgbEffort2, effort2)
-		fmt.Println(rgbEffort3, effort3)
-
 		lat, _ := f.GetCellValue(sht, "P5")
 		lon, _ := f.GetCellValue(sht, "P6")
 		operateur, _ := f.GetCellValue(sht, "J3")
