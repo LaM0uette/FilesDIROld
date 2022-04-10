@@ -153,7 +153,7 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 
 	wg.Wait() // Wait for all write loops to complete
 	time.Sleep(1 * time.Second)
-	fmt.Printf("\rNombre de lignes sauvegardées :  %v/%v\n", iMax-1, iMax-1)
+	fmt.Printf("\rNombre de lignes sauvegardées :  %v/%v\n", iMax, iMax)
 
 	// Generate a default word if is none
 	saveWord := f.SetSaveWord()

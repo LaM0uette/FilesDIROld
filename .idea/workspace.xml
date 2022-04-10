@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="Export excel dans un autre package">
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="amélioration de l'affichage">
       <change beforePath="$PROJECT_DIR$/construct/construct.go" beforeDir="false" afterPath="$PROJECT_DIR$/construct/construct.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +90,8 @@
     <MESSAGE value=".idea" />
     <MESSAGE value="Dump" />
     <MESSAGE value="Export excel dans un autre package" />
-    <option name="LAST_COMMIT_MESSAGE" value="Export excel dans un autre package" />
+    <MESSAGE value="amélioration de l'affichage" />
+    <option name="LAST_COMMIT_MESSAGE" value="amélioration de l'affichage" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
