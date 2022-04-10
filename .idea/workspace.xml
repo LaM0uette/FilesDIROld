@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="Ajout du flag Clear pour vider les logs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init__/func.go" beforeDir="false" afterPath="$PROJECT_DIR$/__init__/func.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/construct/construct.go" beforeDir="false" afterPath="$PROJECT_DIR$/construct/construct.go" afterDir="false" />
-    </list>
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="Ajout du flag Clear pour vider les logs" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
