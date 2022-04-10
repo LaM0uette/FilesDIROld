@@ -24,6 +24,7 @@ type Flags struct {
 	FlgDevil     bool
 	FlgSuper     bool
 	FlgBlackList bool
+	FlgClear     bool
 }
 
 type ExportData struct {
@@ -164,6 +165,14 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 	}
 
 	f.DrawSaveExcel()
+}
+
+func (f *Flags) ClearTempFiles() {
+	if !f.FlgClear {
+		return
+	}
+
+	os.Exit(0)
 }
 
 //...
