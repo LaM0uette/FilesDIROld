@@ -1,6 +1,7 @@
 package task
 
 import (
+	"FilesDIR/construct"
 	"fmt"
 	"strconv"
 	"testing"
@@ -47,7 +48,7 @@ DATA:   Mode=%s  Word=%s  Ext=%s  PoolSize=%s  Maj=%s  Xl=%s  Devil=%s  Super=%s
 		VBlackList, _ := strconv.ParseBool(tab[8])
 		VResult, _ := strconv.Atoi(tab[9])
 
-		f := Flags{
+		f := construct.Flags{
 			FlgMode:      VMode,
 			FlgWord:      VWord,
 			FlgExt:       VExt,
@@ -60,7 +61,7 @@ DATA:   Mode=%s  Word=%s  Ext=%s  PoolSize=%s  Maj=%s  Xl=%s  Devil=%s  Super=%s
 		}
 
 		s.NbFiles = 0
-		RunSearch(&s, &f)
+		s.RunSearch(&f)
 
 		if s.NbFiles != VResult {
 			t.Error(fmt.Sprintf("the number of files found is incorrect: %v found but %v file was expected", s.NbFiles, VResult))
