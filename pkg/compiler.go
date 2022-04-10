@@ -35,6 +35,31 @@ func ClsTempFiles() {
 	_ = os.RemoveAll(globals.FolderExports)
 }
 
+func getStyleRgb(effort int) int {
+	styleOk, err := Wb.NewStyle(`{"fill":{"type":"pattern","color":["#92D050"],"pattern":1}}`)
+	if err != nil {
+		loger.Errorln(err)
+	}
+	styleNok, err := Wb.NewStyle(`{"fill":{"type":"pattern","color":["#FF0000"],"pattern":1}}`)
+	if err != nil {
+		loger.Errorln(err)
+	}
+	styleBlank, err := Wb.NewStyle(`{"fill":{"type":"pattern","color":["#FFFFFF"],"pattern":1}}`)
+	if err != nil {
+		loger.Errorln(err)
+	}
+
+	switch effort {
+	case 118, 131:
+		effort = styleOk
+	case 132:
+		effort = styleNok
+	default:
+		effort = styleBlank
+	}
+	return effort
+}
+
 func CompilerFicheAppuiFt(path string) {
 
 	loger.BlankDateln(display.DrawInitCompiler())
@@ -166,6 +191,10 @@ func workerFicheAppuiFt() {
 		rgbEffort2, _ := f.GetCellStyle(sht, "U26")
 		rgbEffort3, _ := f.GetCellStyle(sht, "W26")
 
+		fmt.Println(rgbEffort1, effort1)
+		fmt.Println(rgbEffort2, effort2)
+		fmt.Println(rgbEffort3, effort3)
+
 		lat, _ := f.GetCellValue(sht, "P5")
 		lon, _ := f.GetCellValue(sht, "P6")
 		operateur, _ := f.GetCellValue(sht, "J3")
@@ -206,9 +235,9 @@ func workerFicheAppuiFt() {
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("V%v", job.Id), pb)
 
 		// add style of cells
-		_ = Wb.SetCellStyle("Sheet1", "S26", "S26", rgbEffort1)
-		_ = Wb.SetCellStyle("Sheet1", "U26", "U26", rgbEffort2)
-		_ = Wb.SetCellStyle("Sheet1", "W26", "W26", rgbEffort3)
+		_ = Wb.SetCellStyle("Sheet1", fmt.Sprintf("I%v", job.Id), fmt.Sprintf("I%v", job.Id), getStyleRgb(rgbEffort1))
+		_ = Wb.SetCellStyle("Sheet1", fmt.Sprintf("I%v", job.Id), fmt.Sprintf("I%v", job.Id), getStyleRgb(rgbEffort2))
+		_ = Wb.SetCellStyle("Sheet1", fmt.Sprintf("K%v", job.Id), fmt.Sprintf("K%v", job.Id), getStyleRgb(rgbEffort3))
 
 		wg.Done()
 	}
