@@ -143,7 +143,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 					s.NbFilesTotal++
 
 					if !super {
-						fmt.Print(fmt.Sprintf("N°%v | Files: %s\n", s.NbFiles, file.Name()))
+						fmt.Print(fmt.Sprintf("\rN°%v | Files: %s\n", s.NbFiles, file.Name()))
 
 						dataExp := construct.ExportData{
 							Id:       s.NbFiles,
@@ -167,7 +167,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 					}
 				} else {
 					s.NbFilesTotal++
-					fmt.Print(fmt.Sprintf("\nNombres de fichiers traités: %v", s.NbFilesTotal))
+					fmt.Print(fmt.Sprintf("\rNombres de fichiers traités: %v", s.NbFilesTotal))
 				}
 			}
 		}
