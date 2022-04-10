@@ -173,18 +173,9 @@ func (f *Flags) ClearTempFiles() {
 		return
 	}
 
-	err := os.RemoveAll(globals.FolderLogs)
-	if err != nil {
-		os.Exit(1)
-	}
-	err = os.RemoveAll(globals.FolderDumps)
-	if err != nil {
-		os.Exit(1)
-	}
-	err = os.RemoveAll(globals.FolderExports)
-	if err != nil {
-		os.Exit(1)
-	}
+	_ = os.RemoveAll(globals.FolderLogs)
+	_ = os.RemoveAll(globals.FolderDumps)
+	_ = os.RemoveAll(globals.FolderExports)
 
 	os.Exit(0)
 }

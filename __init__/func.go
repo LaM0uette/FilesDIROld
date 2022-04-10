@@ -2,7 +2,7 @@ package __init__
 
 import (
 	"FilesDIR/globals"
-	log2 "log"
+	"log"
 	"os"
 	"os/user"
 	"path/filepath"
@@ -11,7 +11,7 @@ import (
 func mkdirFolder(path string) {
 	err := os.MkdirAll(path, os.ModePerm)
 	if err != nil {
-		log2.Fatal(err)
+		log.Fatal(err)
 	}
 }
 
@@ -21,12 +21,12 @@ func createFile(file string) {
 	if os.IsNotExist(err) {
 		var file, err = os.Create(file)
 		if err != nil {
-			log2.Fatal(err)
+			log.Fatal(err)
 		}
 		defer func(file *os.File) {
 			err := file.Close()
 			if err != nil {
-				log2.Fatal(err)
+				log.Fatal(err)
 			}
 		}(file)
 	}
