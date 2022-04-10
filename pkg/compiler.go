@@ -115,10 +115,11 @@ func CompilerFicheAppuiFt(path string) {
 
 	wg.Wait()
 	time.Sleep(1 * time.Second)
-	loger.BlankDateln(fmt.Sprintf("\rNombre de lignes compilées : %v", Id-1))
-	time.Sleep(800 * time.Millisecond)
 
 	loger.BlankDateln(display.DrawEndCompiler())
+
+	loger.BlankDateln(fmt.Sprintf("\rNombre de lignes compilées : %v", Id-1))
+	time.Sleep(800 * time.Millisecond)
 
 	if err := Wb.SaveAs(filepath.Join(path, fmt.Sprintf("__COMPILATION__%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
 		fmt.Println(err)
