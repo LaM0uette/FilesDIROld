@@ -118,7 +118,7 @@ func CompilerFicheAppuiFt(path string) {
 
 	loger.BlankDateln(display.DrawEndCompiler())
 
-	loger.BlankDateln(fmt.Sprintf("Nombre de lignes compilées : %v", Id-1))
+	loger.BlankDateln(fmt.Sprintf("Nombre de fiches compilées : %v", Id-1))
 	time.Sleep(800 * time.Millisecond)
 
 	if err := Wb.SaveAs(filepath.Join(path, fmt.Sprintf("__COMPILATION__%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
@@ -134,7 +134,7 @@ func CompilerFicheAppuiFt(path string) {
 //WORKER:
 func workerFicheAppuiFt() {
 	for job := range jobs {
-		loger.BlankDateln(fmt.Sprintf("\rN° de la lignes compilées :  %v", job.Id-1))
+		loger.BlankDateln(fmt.Sprintf("\rN°%v | Files: %s", job.Id, filepath.Base(job.Path)))
 
 		excelFile := job.Path
 		f, err := excelize.OpenFile(excelFile)
