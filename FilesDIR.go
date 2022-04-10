@@ -59,11 +59,9 @@ func main() {
 	f.DrawStart()
 
 	if *FlgCls {
-
 		pkg.ClsTempFiles()
 		construct.DrawEndCls()
 	} else if *FlgCompiler {
-
 		pkg.FicheAppuiFt()
 	} else {
 
