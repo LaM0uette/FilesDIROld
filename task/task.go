@@ -49,7 +49,7 @@ func CurrentDir() string {
 	return pwd
 }
 
-func strToLower(s string) string {
+func StrToLower(s string) string {
 	return strings.ToLower(s)
 }
 
@@ -72,7 +72,7 @@ func (s *Search) getBlackList(file string) {
 
 func (s *Search) isInBlackList(folderName string) bool {
 	for _, black := range s.BlackList {
-		if strings.Contains(strToLower(folderName), strToLower(black)) {
+		if strings.Contains(StrToLower(folderName), StrToLower(black)) {
 			return true
 		}
 	}
@@ -81,10 +81,10 @@ func (s *Search) isInBlackList(folderName string) bool {
 
 func (s *Search) checkFileSearched(file string) bool {
 	name := file[:strings.LastIndex(file, path.Ext(file))]
-	ext := strToLower(filepath.Ext(file))
+	ext := StrToLower(filepath.Ext(file))
 
 	if !s.Maj {
-		name = strToLower(name)
+		name = StrToLower(name)
 	}
 
 	// condition of search Mode ( = | % | ^ | $ )
@@ -205,7 +205,7 @@ func (s *Search) RunSearch(f *construct.Flags) {
 	s.Mode = f.FlgMode
 	s.Word = f.FlgWord
 	if !f.FlgMaj {
-		s.Word = strToLower(f.FlgWord)
+		s.Word = StrToLower(f.FlgWord)
 	}
 	s.Ext = fmt.Sprintf(".%s", f.FlgExt)
 	s.Maj = f.FlgMaj
@@ -217,7 +217,7 @@ func (s *Search) RunSearch(f *construct.Flags) {
 	if f.FlgBlackList {
 		s.getBlackList(filepath.Join(globals.TempPathGen, "blacklist", "__ALL__.txt"))
 
-		file := filepath.Join(globals.TempPathGen, "blacklist", fmt.Sprintf("%s.txt", strToLower(s.Word)))
+		file := filepath.Join(globals.TempPathGen, "blacklist", fmt.Sprintf("%s.txt", StrToLower(s.Word)))
 		if _, err := os.Stat(file); err == nil {
 			s.getBlackList(file)
 		}

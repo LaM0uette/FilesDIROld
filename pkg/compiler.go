@@ -3,6 +3,7 @@ package pkg
 import (
 	"FilesDIR/globals"
 	"FilesDIR/loger"
+	"FilesDIR/task"
 	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
 	"io/ioutil"
@@ -82,9 +83,35 @@ func workerFicheAppuiFt() {
 
 		sht := f.GetSheetName(f.GetActiveSheetIndex())
 
-		adresse, _ := Wb.GetCellValue(sht, "D5")
+		adresse, _ := f.GetCellValue(sht, "D5")
+		ville, _ := f.GetCellValue(sht, "D4")
+		numAppui, _ := f.GetCellValue(sht, "D3")
+		type1, _ := f.GetCellValue(sht, "C26")
+		typeNApp, _ := f.GetCellValue(sht, "M52")
+		natureTvx, _ := f.GetCellValue(sht, "M53")
 
-		fmt.Print("\r", adresse)
+		etiquetteJaune, _ := f.GetCellValue(sht, "U12")
+		switch task.StrToLower(etiquetteJaune) {
+		case "oui":
+			etiquetteJaune = "non"
+		case "non":
+			etiquetteJaune = "oui"
+		}
+
+		effort1, _ := f.GetCellValue(sht, "S26")
+		effort2, _ := f.GetCellValue(sht, "U26")
+		effort3, _ := f.GetCellValue(sht, "W26")
+		lat, _ := f.GetCellValue(sht, "P5")
+		lon, _ := f.GetCellValue(sht, "P6")
+		operateur, _ := f.GetCellValue(sht, "J3")
+		utilisableEnEtat, _ := f.GetCellValue(sht, "W12")
+		environnement, _ := f.GetCellValue(sht, "W52")
+		commentaireEtatAppui, _ := f.GetCellValue(sht, "F13")
+		commentaireGlobal, _ := f.GetCellValue(sht, "A55")
+		proxiEnedis, _ := f.GetCellValue(sht, "W53")
+		idMetier, _ := fmt.Sprintf("%s/%s", numAppui, f.GetCellValue(sht, "V4"))
+		date, _ := f.GetCellValue(sht, "T1")
+		pb, _ := f.GetCellValue(sht, "N18")
 
 		wg.Done()
 	}
