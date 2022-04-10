@@ -31,7 +31,7 @@ func main() {
 	FlgSuper := flag.Bool("s", false, "Mode 'Super', évite toutes les choses inutiles")
 	FlgBlackList := flag.Bool("b", false, "Ajout d'une blacklist de dossier")
 	// Flag of Packages
-	FlgClear := flag.Bool("clear", false, "Nettoie les dossiers logs, dumps et exports")
+	FlgCls := flag.Bool("cls", false, "Nettoie les dossiers logs, dumps et exports")
 	FlgCompiler := flag.Bool("c", false, "Lance le packager de compilation")
 	// Parse all Flags
 	flag.Parse()
@@ -47,7 +47,7 @@ func main() {
 		FlgDevil:     *FlgDevil,
 		FlgSuper:     *FlgSuper,
 		FlgBlackList: *FlgBlackList,
-		FlgClear:     *FlgClear,
+		FlgCls:       *FlgCls,
 		FlgCompiler:  *FlgCompiler,
 	}
 
@@ -58,9 +58,12 @@ func main() {
 
 	f.DrawStart()
 
-	if *FlgClear {
-		pkg.ClearTempFiles()
+	if *FlgCls {
+
+		pkg.ClsTempFiles()
+		construct.DrawEndCls()
 	} else if *FlgCompiler {
+
 		pkg.FicheAppuiFt()
 	} else {
 

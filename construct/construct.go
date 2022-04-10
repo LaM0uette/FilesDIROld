@@ -22,7 +22,7 @@ type Flags struct {
 	FlgDevil     bool
 	FlgSuper     bool
 	FlgBlackList bool
-	FlgClear     bool
+	FlgCls       bool
 	FlgCompiler  bool
 }
 
@@ -225,4 +225,10 @@ func (f *Flags) DrawSaveExcel() {
 func (f *Flags) DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles int, TimerSearch, timerEnd time.Duration) {
 	disp := display.DrawEnd(SrcPath, DstPath, ReqFinal, NbGoroutine, NbFiles, f.FlgPoolSize, TimerSearch, timerEnd)
 	loger.Blankln(disp)
+}
+
+//...
+// Pkg
+func DrawEndCls() {
+	loger.Blankln("*** Dossiers de logs et dumps nettoyés ! ***\n")
 }

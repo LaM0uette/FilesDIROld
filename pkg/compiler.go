@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func ClearTempFiles() {
+func ClsTempFiles() {
 
 	_ = os.RemoveAll(globals.FolderLogs)
 	_ = os.RemoveAll(globals.FolderDumps)
