@@ -47,7 +47,7 @@ func main() {
 
 	s := task.Search{
 		SrcPath: *FlgPath,
-		DstPath: filepath.Join(globals.TempPathGen, "exports"),
+		DstPath: filepath.Join(globals.FolderExports),
 	}
 
 	f.DrawStart()

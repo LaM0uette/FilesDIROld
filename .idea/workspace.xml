@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="amélioration de l'affichage">
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="Ajout du flag Clear pour vider les logs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/construct/construct.go" beforeDir="false" afterPath="$PROJECT_DIR$/construct/construct.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/globals/globals.go" beforeDir="false" afterPath="$PROJECT_DIR$/globals/globals.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loger/loger.go" beforeDir="false" afterPath="$PROJECT_DIR$/loger/loger.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +95,8 @@
     <MESSAGE value="Dump" />
     <MESSAGE value="Export excel dans un autre package" />
     <MESSAGE value="amélioration de l'affichage" />
-    <option name="LAST_COMMIT_MESSAGE" value="amélioration de l'affichage" />
+    <MESSAGE value="Ajout du flag Clear pour vider les logs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout du flag Clear pour vider les logs" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

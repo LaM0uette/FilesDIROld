@@ -21,5 +21,8 @@ const (
 )
 
 var (
-	TempPathGen = tempPathGen()
+	TempPathGen   = tempPathGen()
+	FolderLogs    = filepath.Join(tempPathGen(), "logs")
+	FolderDumps   = filepath.Join(tempPathGen(), "dumps")
+	FolderExports = filepath.Join(tempPathGen(), "exports")
 )

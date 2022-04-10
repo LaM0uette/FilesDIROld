@@ -2,6 +2,7 @@ package construct
 
 import (
 	"FilesDIR/display"
+	"FilesDIR/globals"
 	"FilesDIR/loger"
 	"bufio"
 	"fmt"
@@ -170,6 +171,19 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 func (f *Flags) ClearTempFiles() {
 	if !f.FlgClear {
 		return
+	}
+
+	err := os.RemoveAll(globals.FolderLogs)
+	if err != nil {
+		os.Exit(1)
+	}
+	err = os.RemoveAll(globals.FolderDumps)
+	if err != nil {
+		os.Exit(1)
+	}
+	err = os.RemoveAll(globals.FolderExports)
+	if err != nil {
+		os.Exit(1)
 	}
 
 	os.Exit(0)
