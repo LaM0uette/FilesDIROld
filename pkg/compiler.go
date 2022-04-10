@@ -162,6 +162,10 @@ func workerFicheAppuiFt() {
 		effort1, _ := f.GetCellValue(sht, "S26")
 		effort2, _ := f.GetCellValue(sht, "U26")
 		effort3, _ := f.GetCellValue(sht, "W26")
+		rgbEffort1, _ := f.GetCellStyle(sht, "S26")
+		rgbEffort2, _ := f.GetCellStyle(sht, "U26")
+		rgbEffort3, _ := f.GetCellStyle(sht, "W26")
+
 		lat, _ := f.GetCellValue(sht, "P5")
 		lon, _ := f.GetCellValue(sht, "P6")
 		operateur, _ := f.GetCellValue(sht, "J3")
@@ -177,6 +181,7 @@ func workerFicheAppuiFt() {
 		date, _ := f.GetCellValue(sht, "T1")
 		pb, _ := f.GetCellValue(sht, "N18")
 
+		// insert value
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job.Id), job.Path)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job.Id), adresse)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", job.Id), ville)
@@ -199,6 +204,11 @@ func workerFicheAppuiFt() {
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("T%v", job.Id), idMetier)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("U%v", job.Id), date)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("V%v", job.Id), pb)
+
+		// add style of cells
+		_ = Wb.SetCellStyle("Sheet1", "S26", "S26", rgbEffort1)
+		_ = Wb.SetCellStyle("Sheet1", "U26", "U26", rgbEffort2)
+		_ = Wb.SetCellStyle("Sheet1", "W26", "W26", rgbEffort3)
 
 		wg.Done()
 	}
