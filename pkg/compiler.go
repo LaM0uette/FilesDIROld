@@ -115,8 +115,7 @@ func CompilerFicheAppuiFt(path string) {
 
 	wg.Wait()
 	time.Sleep(1 * time.Second)
-
-	loger.BlankDateln(fmt.Printf("\rNombre de lignes compilées : %v\n", Id))
+	loger.BlankDateln(fmt.Sprintf("\rNombre de lignes compilées : %v", Id-1))
 	time.Sleep(800 * time.Millisecond)
 
 	loger.BlankDateln(display.DrawEndCompiler())
@@ -126,6 +125,7 @@ func CompilerFicheAppuiFt(path string) {
 	}
 
 	loger.Blankln(display.DrawSaveExcel())
+	fmt.Println()
 	time.Sleep(200 * time.Millisecond)
 }
 
@@ -133,7 +133,7 @@ func CompilerFicheAppuiFt(path string) {
 //WORKER:
 func workerFicheAppuiFt() {
 	for job := range jobs {
-		loger.BlankDateln(fmt.Printf("\rN° de la lignes compilées :  %v", job.Id-1))
+		loger.BlankDateln(fmt.Sprintf("\rN° de la lignes compilées :  %v", job.Id-1))
 
 		excelFile := job.Path
 		f, err := excelize.OpenFile(excelFile)
