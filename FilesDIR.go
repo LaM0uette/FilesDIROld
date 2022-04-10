@@ -25,7 +25,9 @@ func main() {
 	FlgDevil := flag.Bool("devil", false, "Mode 'Démon' de l'application")
 	FlgSuper := flag.Bool("s", false, "Mode 'Super', évite toutes les choses inutiles")
 	FlgBlackList := flag.Bool("b", false, "Ajout d'une blacklist de dossier")
+	// Flag of Packages
 	FlgClear := flag.Bool("clear", false, "Nettoie les dossiers logs, dumps et exports")
+	FlgCompiler := flag.Bool("c", false, "Lance le packager de compilation")
 	// Parse all Flags
 	flag.Parse()
 
@@ -41,9 +43,11 @@ func main() {
 		FlgSuper:     *FlgSuper,
 		FlgBlackList: *FlgBlackList,
 		FlgClear:     *FlgClear,
+		FlgCompiler:  *FlgCompiler,
 	}
 
 	f.ClearTempFiles()
+	f.CompilerFicheAppuiFt()
 
 	s := task.Search{
 		SrcPath: *FlgPath,

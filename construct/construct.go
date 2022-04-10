@@ -4,6 +4,7 @@ import (
 	"FilesDIR/display"
 	"FilesDIR/globals"
 	"FilesDIR/loger"
+	"FilesDIR/pkg"
 	"bufio"
 	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
@@ -26,6 +27,7 @@ type Flags struct {
 	FlgSuper     bool
 	FlgBlackList bool
 	FlgClear     bool
+	FlgCompiler  bool
 }
 
 type ExportData struct {
@@ -145,7 +147,7 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 		go f.writeExcelLineWorker(Wb, iMax)
 	}
 	// Run writing loop
-	for i := 0; i < iMax-1; i++ {
+	for i := 0; i < iMax; i++ {
 		i := i
 		go func() {
 			wg.Add(1)
@@ -177,6 +179,15 @@ func (f *Flags) ClearTempFiles() {
 	_ = os.RemoveAll(globals.FolderDumps)
 	_ = os.RemoveAll(globals.FolderExports)
 
+	os.Exit(0)
+}
+
+func (f *Flags) CompilerFicheAppuiFt() {
+	if !f.FlgCompiler {
+		return
+	}
+
+	pkg.FicheAppuiFt()
 	os.Exit(0)
 }
 
