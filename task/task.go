@@ -2,7 +2,6 @@ package task
 
 import (
 	"FilesDIR/construct"
-	"FilesDIR/dump"
 	"FilesDIR/globals"
 	"FilesDIR/loger"
 	"bufio"
@@ -168,7 +167,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 					}
 
 					loger.BlankDateln(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
-					dump.Semicolon.Printf(fmt.Sprintf("%v;%s;%s;%s;%s",
+					loger.Semicolonln(fmt.Sprintf("%v;%s;%s;%s;%s",
 						s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(pth, file.Name()), pth))
 
 					if runtime.NumGoroutine() > s.NbGoroutine {
@@ -249,7 +248,7 @@ func (s *Search) RunSearch(f *construct.Flags) {
 	}
 
 	if f.ExportExcelActivate() {
-		dump.Semicolon.Println("id;Fichier;Date;Lien_Fichier;Lien")
+		loger.Semicolonln("id;Fichier;Date;Lien_Fichier;Lien")
 
 		Wb = excelize.NewFile()
 		_ = Wb.SetCellValue("Sheet1", "A1", "id")
