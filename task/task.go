@@ -116,6 +116,11 @@ func (s *Search) checkFileSearched(file string) bool {
 		return false
 	}
 
+	// condition of open file
+	if strings.Contains(name, "~") {
+		return false
+	}
+
 	return true
 }
 
@@ -153,7 +158,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 						fmt.Print(fmt.Sprintf("\rNombres de fichiers traités: %v", s.NbFilesTotal))
 					}
 
-					loger.BlankDateln(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
+					loger.LOBlankDateln(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
 					loger.Semicolonln(fmt.Sprintf("%v;%s;%s;%s;%s",
 						s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(pth, file.Name()), pth))
 

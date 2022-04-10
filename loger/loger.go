@@ -42,7 +42,7 @@ func init() {
 }
 
 //...
-// Log
+// Log + msg
 func Blank(v ...any) {
 	vBlank.Print(v...)
 	fmt.Print(v...)
@@ -77,6 +77,12 @@ func Crashln(v ...any) {
 	vCrash.Println(v...)
 	fmt.Println(v...)
 	os.Exit(1)
+}
+
+//...
+// Log only
+func LOBlankDateln(v ...any) {
+	vBlankDate.Println(v...)
 }
 
 //...
