@@ -2,13 +2,9 @@ package construct
 
 import (
 	"FilesDIR/display"
-	"FilesDIR/globals"
 	"FilesDIR/loger"
-	"FilesDIR/pkg"
-	"bufio"
 	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
-	"os"
 	"path/filepath"
 	"runtime/debug"
 	"sync"
@@ -170,27 +166,6 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 	f.DrawSaveExcel()
 }
 
-func (f *Flags) ClearTempFiles() {
-	if !f.FlgClear {
-		return
-	}
-
-	_ = os.RemoveAll(globals.FolderLogs)
-	_ = os.RemoveAll(globals.FolderDumps)
-	_ = os.RemoveAll(globals.FolderExports)
-
-	os.Exit(0)
-}
-
-func (f *Flags) CompilerFicheAppuiFt() {
-	if !f.FlgCompiler {
-		return
-	}
-
-	pkg.FicheAppuiFt()
-	os.Exit(0)
-}
-
 //...
 // DRAWS:
 func (f *Flags) DrawStart() {
@@ -250,10 +225,4 @@ func (f *Flags) DrawSaveExcel() {
 func (f *Flags) DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles int, TimerSearch, timerEnd time.Duration) {
 	disp := display.DrawEnd(SrcPath, DstPath, ReqFinal, NbGoroutine, NbFiles, f.FlgPoolSize, TimerSearch, timerEnd)
 	loger.Blankln(disp)
-
-	fmt.Print("Appuyer sur Entrée pour quitter...")
-	_, err := bufio.NewReader(os.Stdin).ReadBytes('\n')
-	if err != nil {
-		loger.Crashln(err)
-	}
 }

@@ -4,8 +4,13 @@ import (
 	_ "FilesDIR/__init__"
 	"FilesDIR/construct"
 	"FilesDIR/globals"
+	"FilesDIR/loger"
+	"FilesDIR/pkg"
 	"FilesDIR/task"
+	"bufio"
 	"flag"
+	"fmt"
+	"os"
 	"path/filepath"
 	"time"
 )
@@ -46,9 +51,6 @@ func main() {
 		FlgCompiler:  *FlgCompiler,
 	}
 
-	f.ClearTempFiles()
-	f.CompilerFicheAppuiFt()
-
 	s := task.Search{
 		SrcPath: *FlgPath,
 		DstPath: filepath.Join(globals.FolderExports),
@@ -56,11 +58,22 @@ func main() {
 
 	f.DrawStart()
 
-	timerStart := time.Now()
+	if *FlgClear {
+		pkg.ClearTempFiles()
+	} else if *FlgCompiler {
+		pkg.FicheAppuiFt()
+	} else {
 
-	s.RunSearch(&f)
+		timerStart := time.Now()
+		s.RunSearch(&f)
+		timerEnd := time.Since(timerStart)
 
-	timerEnd := time.Since(timerStart)
+		f.DrawEnd(s.SrcPath, s.DstPath, s.ReqFinal, s.NbGoroutine, s.NbFiles, s.TimerSearch, timerEnd)
+	}
 
-	f.DrawEnd(s.SrcPath, s.DstPath, s.ReqFinal, s.NbGoroutine, s.NbFiles, s.TimerSearch, timerEnd)
+	fmt.Print("Appuyer sur Entrée pour quitter...")
+	_, err := bufio.NewReader(os.Stdin).ReadBytes('\n')
+	if err != nil {
+		loger.Crashln(err)
+	}
 }
