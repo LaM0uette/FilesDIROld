@@ -110,6 +110,7 @@ func (f *Flags) SetSaveWord() string {
 func (f *Flags) writeExcelLineWorker(Wb *excelize.File, iMax int) {
 	for job := range jobs {
 
+		fmt.Print("\r")
 		fmt.Printf("\rSauvegarde du fichier Excel...  %v/%v", job, iMax)
 
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job+2), ExcelData[job].Id)
@@ -151,6 +152,8 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 	}
 
 	wg.Wait() // Wait for all write loops to complete
+
+	fmt.Printf("\rNombre de lignes sauvegardées :  %v/%v", iMax, iMax)
 
 	// Generate a default word if is none
 	saveWord := f.SetSaveWord()
