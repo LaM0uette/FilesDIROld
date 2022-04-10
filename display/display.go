@@ -89,3 +89,23 @@ Export Excel: %s
 
 		globals.Author, globals.Version)
 }
+
+func DrawInitCompiler() string {
+	return fmt.Sprint(`Initialisation de la compilation...`)
+}
+
+func DrawRunCompiler() string {
+	return fmt.Sprint(`
++============================================================+
+|                   DEBUT DES COMPILATIONS                   |
++============================================================+
+`)
+}
+
+func DrawEndCompiler() string {
+	return fmt.Sprint(`
++============================================================+
+|                    FIN DES COMPILATIONS                    |
++============================================================+
+`)
+}

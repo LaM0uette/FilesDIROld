@@ -1,6 +1,7 @@
 package pkg
 
 import (
+	"FilesDIR/display"
 	"FilesDIR/globals"
 	"FilesDIR/loger"
 	"FilesDIR/task"
@@ -35,6 +36,12 @@ func ClsTempFiles() {
 }
 
 func CompilerFicheAppuiFt(path string) {
+
+	loger.BlankDateln(display.DrawInitCompiler())
+	time.Sleep(800 * time.Millisecond)
+
+	loger.BlankDateln(display.DrawRunCompiler())
+
 	Id = 1
 
 	Wb = excelize.NewFile()
@@ -108,16 +115,25 @@ func CompilerFicheAppuiFt(path string) {
 
 	wg.Wait()
 	time.Sleep(1 * time.Second)
-	//fmt.Printf("\rNombre de lignes compilées :  %v/%v\n", iMax, iMax)
+
+	loger.BlankDateln(fmt.Printf("\rNombre de lignes compilées : %v\n", Id))
+	time.Sleep(800 * time.Millisecond)
+
+	loger.BlankDateln(display.DrawEndCompiler())
+
 	if err := Wb.SaveAs(filepath.Join(path, fmt.Sprintf("__COMPILATION__%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
 		fmt.Println(err)
 	}
+
+	loger.Blankln(display.DrawSaveExcel())
+	time.Sleep(200 * time.Millisecond)
 }
 
 //...
 //WORKER:
 func workerFicheAppuiFt() {
 	for job := range jobs {
+		loger.BlankDateln(fmt.Printf("\rN° de la lignes compilées :  %v", job.Id-1))
 
 		excelFile := job.Path
 		f, err := excelize.OpenFile(excelFile)

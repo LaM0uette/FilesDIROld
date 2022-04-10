@@ -63,7 +63,6 @@ func main() {
 		construct.DrawEndCls()
 	} else if *FlgCompiler {
 		pkg.CompilerFicheAppuiFt(s.SrcPath)
-		construct.DrawEndCompilerFicheAppuiFt()
 	} else {
 
 		timerStart := time.Now()
