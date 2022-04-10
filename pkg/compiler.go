@@ -9,15 +9,21 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 	"sync"
 	"time"
 )
 
+type compilData struct {
+	Path string
+	Id   int
+}
+
 var (
-	wg      sync.WaitGroup
-	jobs    = make(chan string)
-	Wb      = &excelize.File{}
-	AppuiId int
+	wg   sync.WaitGroup
+	jobs = make(chan compilData)
+	Wb   = &excelize.File{}
+	Id   int
 )
 
 //...
@@ -29,7 +35,7 @@ func ClsTempFiles() {
 }
 
 func CompilerFicheAppuiFt(path string) {
-	AppuiId = 1
+	Id = 1
 
 	Wb = excelize.NewFile()
 	_ = Wb.SetCellValue("Sheet1", "A1", "Chemin de la fiche")
@@ -65,7 +71,7 @@ func CompilerFicheAppuiFt(path string) {
 	}
 
 	for _, file := range files {
-		if !file.IsDir() {
+		if !file.IsDir() && !strings.Contains(file.Name(), "__COMPILATION__") {
 
 			excelFile := filepath.Join(path, file.Name())
 			f, err := excelize.OpenFile(excelFile)
@@ -84,9 +90,17 @@ func CompilerFicheAppuiFt(path string) {
 				}
 
 				r := row[3]
+
 				go func() {
 					wg.Add(1)
-					jobs <- r
+					Id++
+
+					a := compilData{
+						Path: r,
+						Id:   Id,
+					}
+
+					jobs <- a
 				}()
 			}
 		}
@@ -104,9 +118,8 @@ func CompilerFicheAppuiFt(path string) {
 //WORKER:
 func workerFicheAppuiFt() {
 	for job := range jobs {
-		AppuiId++
 
-		excelFile := job
+		excelFile := job.Path
 		f, err := excelize.OpenFile(excelFile)
 		if err != nil {
 			loger.Crashln(fmt.Sprintf("Crash with this files: %s", excelFile))
@@ -147,28 +160,28 @@ func workerFicheAppuiFt() {
 		date, _ := f.GetCellValue(sht, "T1")
 		pb, _ := f.GetCellValue(sht, "N18")
 
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", AppuiId), job)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", AppuiId), adresse)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", AppuiId), ville)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", AppuiId), numAppui)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", AppuiId), type1)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("F%v", AppuiId), typeNApp)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("G%v", AppuiId), natureTvx)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("H%v", AppuiId), etiquetteJaune)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("I%v", AppuiId), effort1)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("J%v", AppuiId), effort2)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("K%v", AppuiId), effort3)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("L%v", AppuiId), lat)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("M%v", AppuiId), lon)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("N%v", AppuiId), operateur)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("O%v", AppuiId), utilisableEnEtat)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("P%v", AppuiId), environnement)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("Q%v", AppuiId), commentaireEtatAppui)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("R%v", AppuiId), commentaireGlobal)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("S%v", AppuiId), proxiEnedis)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("T%v", AppuiId), idMetier)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("U%v", AppuiId), date)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("V%v", AppuiId), pb)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job.Id), job.Path)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job.Id), adresse)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", job.Id), ville)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", job.Id), numAppui)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", job.Id), type1)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("F%v", job.Id), typeNApp)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("G%v", job.Id), natureTvx)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("H%v", job.Id), etiquetteJaune)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("I%v", job.Id), effort1)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("J%v", job.Id), effort2)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("K%v", job.Id), effort3)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("L%v", job.Id), lat)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("M%v", job.Id), lon)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("N%v", job.Id), operateur)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("O%v", job.Id), utilisableEnEtat)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("P%v", job.Id), environnement)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("Q%v", job.Id), commentaireEtatAppui)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("R%v", job.Id), commentaireGlobal)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("S%v", job.Id), proxiEnedis)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("T%v", job.Id), idMetier)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("U%v", job.Id), date)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("V%v", job.Id), pb)
 
 		wg.Done()
 	}
