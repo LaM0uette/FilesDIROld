@@ -232,3 +232,7 @@ func (f *Flags) DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles 
 func DrawEndCls() {
 	loger.Blankln("*** Dossiers de logs et dumps nettoyés ! ***\n")
 }
+
+func DrawEndCompilerFicheAppuiFt() {
+	loger.Blankln("*** Toutes les fiches appuis ont étés compilées ***\n")
+}

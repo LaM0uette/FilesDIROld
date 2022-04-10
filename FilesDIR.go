@@ -62,7 +62,8 @@ func main() {
 		pkg.ClsTempFiles()
 		construct.DrawEndCls()
 	} else if *FlgCompiler {
-		pkg.FicheAppuiFt()
+		pkg.CompilerFicheAppuiFt()
+		construct.DrawEndCompilerFicheAppuiFt()
 	} else {
 
 		timerStart := time.Now()

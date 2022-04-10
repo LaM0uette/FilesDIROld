@@ -11,6 +11,6 @@ func ClsTempFiles() {
 	_ = os.RemoveAll(globals.FolderExports)
 }
 
-func FicheAppuiFt() {
+func CompilerFicheAppuiFt() {
 	return
 }
