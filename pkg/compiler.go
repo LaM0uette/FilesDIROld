@@ -38,9 +38,10 @@ func CompilerFicheAppuiFt(path string) {
 	for _, file := range files {
 		if !file.IsDir() {
 
-			f, err := excelize.OpenFile(path + file.Name())
+			excelFile := filepath.Join(path, file.Name())
+			f, err := excelize.OpenFile(excelFile)
 			if err != nil {
-				loger.Crashln(fmt.Sprintf("Crash with this files: %s", filepath.Join(path, file.Name())))
+				loger.Crashln(fmt.Sprintf("Crash with this files: %s", excelFile))
 			}
 
 			rows, err := f.GetRows("Sheet1")
@@ -48,11 +49,11 @@ func CompilerFicheAppuiFt(path string) {
 				loger.Crashln(err)
 			}
 
-			for _, row := range rows {
-				for _, colCell := range row {
-					fmt.Print(colCell, "\t")
+			for ir, row := range rows {
+				if ir == 0 {
+					continue
 				}
-				fmt.Println()
+				fmt.Println(row[3])
 			}
 		}
 	}
