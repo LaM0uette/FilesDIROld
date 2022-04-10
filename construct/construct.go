@@ -123,7 +123,7 @@ func (f *Flags) writeExcelLineWorker(Wb *excelize.File, iMax int) {
 }
 
 func (f *Flags) GenerateExcelSave(DstPath string) {
-	if !f.FlgXl && !f.FlgSuper {
+	if f.FlgXl || f.FlgSuper {
 		return
 	}
 
