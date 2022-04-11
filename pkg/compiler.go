@@ -148,12 +148,6 @@ func workerFicheAppuiFt() {
 
 		sht := f.GetSheetName(f.GetActiveSheetIndex())
 
-		//_, err = f.GetCellValue(sht, "A1")
-		//if err != nil {
-		//	loger.Errorln(fmt.Sprintf("Crash with this files: %s", filepath.Base(excelFile)))
-		//	continue
-		//}
-
 		adresse, _ := f.GetCellValue(sht, "D5")
 		ville, _ := f.GetCellValue(sht, "D4")
 		numAppui, _ := f.GetCellValue(sht, "D3")
