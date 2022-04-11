@@ -48,6 +48,7 @@ func getCellValue(sht *xlsx.Sheet, r, c int) string {
 }
 
 func CompilerFicheAppuiFt(path string) {
+	path = "C:\\Users\\XD5965\\OneDrive - EQUANS\\Bureau\\Nouveau dossier"
 
 	loger.BlankDateln(display.DrawInitCompiler())
 	time.Sleep(800 * time.Millisecond)
@@ -160,6 +161,13 @@ func workerFicheAppuiFt() {
 		}
 
 		sht := f.Sheets[0]
+
+		verifFA := getCellValue(sht, 0, 0)
+		if !strings.Contains(task.StrToLower(verifFA), "appui") {
+			loger.Errorln(fmt.Sprintf("Ce n'est pas le bon format de fiche appui: %s", filepath.Base(excelFile)))
+			wg.Done()
+			continue
+		}
 
 		adresse := getCellValue(sht, 4, 3)
 		ville := getCellValue(sht, 3, 3)
