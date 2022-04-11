@@ -47,6 +47,16 @@ func getCellValue(sht *xlsx.Sheet, r, c int) string {
 	return cell.Value
 }
 
+func setCellBgColor(r, c int, style *xlsx.Style) {
+	cell, _ := Sht.Cell(r, c)
+	cell.SetStyle(style)
+}
+
+func getCellBgColor(sht *xlsx.Sheet, r, c int) string {
+	cell, _ := sht.Cell(r, c)
+	return cell.GetStyle().Fill.BgColor
+}
+
 func CompilerFicheAppuiFt(path string) {
 	path = "C:\\Users\\XD5965\\OneDrive - EQUANS\\Bureau\\Nouveau dossier"
 
@@ -188,6 +198,10 @@ func workerFicheAppuiFt() {
 		effort2 := getCellValue(sht, 25, 20)
 		effort3 := getCellValue(sht, 25, 22)
 
+		rgb1 := getCellBgColor(sht, 25, 18)
+		rgb2 := getCellBgColor(sht, 25, 20)
+		rgb3 := getCellBgColor(sht, 25, 22)
+
 		lat := getCellValue(sht, 4, 15)
 		lon := getCellValue(sht, 5, 15)
 		operateur := getCellValue(sht, 2, 9)
@@ -225,6 +239,19 @@ func workerFicheAppuiFt() {
 		setCellValue(job.Id, 19, idMetier)
 		setCellValue(job.Id, 20, date)
 		setCellValue(job.Id, 21, pb)
+
+		rgb1Style := xlsx.NewStyle()
+		rgb1Style.Fill.BgColor = rgb1
+
+		rgb2Style := xlsx.NewStyle()
+		rgb2Style.Fill.BgColor = rgb2
+
+		rgb3Style := xlsx.NewStyle()
+		rgb3Style.Fill.BgColor = rgb3
+
+		setCellBgColor(job.Id, 8, rgb1Style)
+		setCellBgColor(job.Id, 9, rgb2Style)
+		setCellBgColor(job.Id, 10, rgb3Style)
 
 		wg.Done()
 	}
