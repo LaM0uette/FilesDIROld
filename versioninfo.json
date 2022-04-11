@@ -21,15 +21,15 @@
   "StringFileInfo": {
     "Comments": "",
     "CompanyName": "LaM0uette",
-    "FileDescription": "FilesDIR 1.0.2",
-    "FileVersion": "1.0.2",
+    "FileDescription": "FilesDIR 1.0.4",
+    "FileVersion": "1.0.4",
     "InternalName": "FilesDIR",
     "LegalCopyright": "© 2022 - 2030 LaM0uette",
     "LegalTrademarks": "",
     "OriginalFilename": "FilesDIR.exe",
     "PrivateBuild": "",
     "ProductName": "FilesDIR",
-    "ProductVersion": "1.0.2",
+    "ProductVersion": "1.0.4",
     "SpecialBuild": ""
   },
   "VarFileInfo": {

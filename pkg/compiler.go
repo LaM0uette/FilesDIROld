@@ -136,15 +136,23 @@ func CompilerFicheAppuiFt(path string) {
 //WORKER:
 func workerFicheAppuiFt() {
 	for job := range jobs {
-		loger.BlankDateln(fmt.Sprintf("\rN°%v | Files: %s", job.Id, filepath.Base(job.Path)))
+		loger.BlankDateln(fmt.Sprintf("N°%v | Files: %s", job.Id, filepath.Base(job.Path)))
 
 		excelFile := job.Path
 		f, err := excelize.OpenFile(excelFile)
 		if err != nil {
-			loger.Errorln(fmt.Sprintf("Crash with this files: %s", excelFile))
+			loger.Errorln(fmt.Sprintf("Crash with this files: %s", filepath.Base(excelFile)))
+			wg.Done()
+			continue
 		}
 
 		sht := f.GetSheetName(f.GetActiveSheetIndex())
+
+		//_, err = f.GetCellValue(sht, "A1")
+		//if err != nil {
+		//	loger.Errorln(fmt.Sprintf("Crash with this files: %s", filepath.Base(excelFile)))
+		//	continue
+		//}
 
 		adresse, _ := f.GetCellValue(sht, "D5")
 		ville, _ := f.GetCellValue(sht, "D4")
