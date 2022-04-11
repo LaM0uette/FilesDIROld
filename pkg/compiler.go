@@ -94,7 +94,7 @@ func CompilerFicheAppuiFt(path string) {
 			maxRow := sht.MaxRow
 
 			for i := 0; i < maxRow; i++ {
-				row, err := sht.Row(1)
+				row, err := sht.Row(i)
 				if err != nil {
 					panic(err)
 				}
