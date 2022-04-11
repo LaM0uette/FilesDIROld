@@ -7,7 +7,6 @@
     <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="ajout des couleur sur certains cellules">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/compiler.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/compiler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource.syso" beforeDir="false" afterPath="$PROJECT_DIR$/resource.syso" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

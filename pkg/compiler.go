@@ -26,6 +26,7 @@ var (
 	jobs = make(chan compilData)
 	Wb   = &xlsx.File{}
 	Sht  = &xlsx.Sheet{}
+	Mut  = sync.RWMutex{}
 	Id   int
 )
 
@@ -119,15 +120,15 @@ func CompilerFicheAppuiFt(path string) {
 				r := row[3]
 
 				go func() {
+					Mut.Lock()
 					wg.Add(1)
 					Id++
 
-					a := compilData{
+					jobs <- compilData{
 						Path: r,
 						Id:   Id,
 					}
-
-					jobs <- a
+					Mut.Unlock()
 				}()
 			}
 		}
