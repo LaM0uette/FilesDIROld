@@ -36,6 +36,7 @@ func ClsTempFiles() {
 }
 
 func CompilerFicheAppuiFt(path string) {
+	path = "C:\\Users\\doria\\FilesDIR\\Nouveau dossier"
 
 	loger.BlankDateln(display.DrawInitCompiler())
 	time.Sleep(800 * time.Millisecond)

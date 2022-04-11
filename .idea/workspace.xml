@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="ajout des couleur sur certains cellules">
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="création app avec infos + logo">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_04_2022_08_24__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_04_2022_08_24__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/compiler.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/compiler.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Go File" />
+        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -23,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="V1.0.0" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,8 +38,8 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="27OTRPMhDkAACpQVLlFmorZ3OkL" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectId" id="27bIcZpNIUDb8iyru69ynz88YMu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -44,7 +48,6 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -54,44 +57,22 @@
     &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;configurable..is.expanded&quot;: &quot;false&quot;,
-    &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/XD5965/go/src/__TEST__&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/doria/go/src&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
 }</component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\XD5965\go\src\FilesDIR" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\doria\go\src\FilesDIR" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestRunSearch in FilesDIR/task">
-    <configuration name="FilesDIR" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
-      <module name="FilesDIR" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <package value="FilesDIR" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/main.go" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestGenTempDir in FilesDIR/task" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="FilesDIR" />
-      <working_directory value="$PROJECT_DIR$/task" />
-      <kind value="PACKAGE" />
-      <package value="FilesDIR/task" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestGenTempDir\E$" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration name="TestRunSearch in FilesDIR/task" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$/task" />
@@ -103,41 +84,9 @@
       <pattern value="^\QTestRunSearch\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestStr in FilesDIR/task" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="FilesDIR" />
-      <working_directory value="$PROJECT_DIR$/task" />
-      <kind value="PACKAGE" />
-      <package value="FilesDIR/task" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestStr\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go test FilesDIR/task" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="FilesDIR" />
-      <working_directory value="$PROJECT_DIR$/task" />
-      <kind value="PACKAGE" />
-      <package value="FilesDIR/task" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Go Build.FilesDIR" />
-      <item itemvalue="Go Test.TestStr in FilesDIR/task" />
-      <item itemvalue="Go Test.go test FilesDIR/task" />
-      <item itemvalue="Go Test.TestGenTempDir in FilesDIR/task" />
-      <item itemvalue="Go Test.TestRunSearch in FilesDIR/task" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Go Test.TestRunSearch in FilesDIR/task" />
-        <item itemvalue="Go Build.FilesDIR" />
-        <item itemvalue="Go Test.go test FilesDIR/task" />
-        <item itemvalue="Go Test.TestStr in FilesDIR/task" />
-        <item itemvalue="Go Test.TestGenTempDir in FilesDIR/task" />
       </list>
     </recent_temporary>
   </component>
@@ -157,32 +106,17 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ajout du waitGroup" />
-    <MESSAGE value="Ajout du timer" />
-    <MESSAGE value="test" />
-    <MESSAGE value="test boost vitesse" />
-    <MESSAGE value="Boucle ultra rapide en limitant les thread" />
-    <MESSAGE value="Création des logs" />
-    <MESSAGE value="Optimisation de vitesse/ correction bug" />
-    <MESSAGE value="Log dump création" />
-    <MESSAGE value="Création des fichiers/dossier tempo" />
-    <MESSAGE value="création du fichier d'export excel" />
-    <MESSAGE value="Ajout des flags - Devil" />
-    <MESSAGE value="Ajout des flags" />
-    <MESSAGE value="Ajout des filtres de recherche" />
-    <MESSAGE value="ajout du mode super" />
-    <MESSAGE value="ajout du mode blacklist" />
-    <MESSAGE value="modif des tests" />
-    <MESSAGE value="benchmark" />
-    <MESSAGE value="correct bug" />
-    <MESSAGE value="ajout des couleur sur certains cellules" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout des couleur sur certains cellules" />
+    <MESSAGE value=".idea" />
+    <MESSAGE value="Dump" />
+    <MESSAGE value="Export excel dans un autre package" />
+    <MESSAGE value="amélioration de l'affichage" />
+    <MESSAGE value="Ajout du flag Clear pour vider les logs" />
+    <MESSAGE value="Ajout du flag FlgCompiler pour lancer la compilatopin des fiches appuis ft" />
+    <MESSAGE value="création app avec infos + logo" />
+    <option name="LAST_COMMIT_MESSAGE" value="création app avec infos + logo" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
     <settings-migrated>true</settings-migrated>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/FilesDIR$TestLoopDirsFiles.out" NAME="TestLoopDirsFiles Coverage Results" MODIFIED="1649233651525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
