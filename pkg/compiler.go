@@ -98,20 +98,15 @@ func CompilerFicheAppuiFt(path string) {
 				if err != nil {
 					panic(err)
 				}
-				fmt.Println(row)
 
 				go func() {
 					wg.Add(1)
 					Id++
 
-					r := row.GetCell(3).String()
-
-					a := compilData{
-						Path: r,
+					jobs <- compilData{
+						Path: row.GetCell(3).String(),
 						Id:   Id,
 					}
-
-					jobs <- a
 				}()
 			}
 		}
