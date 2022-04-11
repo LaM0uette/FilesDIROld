@@ -136,78 +136,72 @@ func workerFicheAppuiFt() {
 		loger.BlankDateln(fmt.Sprintf("N°%v | Files: %s", job.Id, filepath.Base(job.Path)))
 
 		excelFile := job.Path
-		f, err := excelize.OpenFile(excelFile)
+		f, err := xlsx.OpenFile(excelFile)
 		if err != nil {
 			loger.Errorln(fmt.Sprintf("Crash with this files: %s", filepath.Base(excelFile)))
 			wg.Done()
 			continue
 		}
 
-		sht := f.GetSheetName(f.GetActiveSheetIndex())
+		sht := f.Sheets[0]
 
-		adresse, _ := f.GetCellValue(sht, "D5")
-		ville, _ := f.GetCellValue(sht, "D4")
-		numAppui, _ := f.GetCellValue(sht, "D3")
-		type1, _ := f.GetCellValue(sht, "C26")
-		typeNApp, _ := f.GetCellValue(sht, "M52")
-		natureTvx, _ := f.GetCellValue(sht, "M53")
+		adresse, _ := sht.Cell(4, 3)
+		ville, _ := sht.Cell(3, 3)
+		numAppui, _ := sht.Cell(2, 3)
+		type1, _ := sht.Cell(25, 2)
+		typeNApp, _ := sht.Cell(51, 12)
+		natureTvx, _ := sht.Cell(52, 12)
 
-		etiquetteJaune, _ := f.GetCellValue(sht, "U12")
-		switch task.StrToLower(etiquetteJaune) {
+		cellEtiquetteJaune, _ := sht.Cell(11, 20)
+		etiquetteJaune := ""
+		switch task.StrToLower(cellEtiquetteJaune.Value) {
 		case "oui":
 			etiquetteJaune = "non"
 		case "non":
 			etiquetteJaune = "oui"
 		}
 
-		effort1, _ := f.GetCellValue(sht, "S26")
-		effort2, _ := f.GetCellValue(sht, "U26")
-		effort3, _ := f.GetCellValue(sht, "W26")
+		effort1, _ := sht.Cell(25, 18)
+		effort2, _ := sht.Cell(25, 20)
+		effort3, _ := sht.Cell(25, 22)
 
-		lat, _ := f.GetCellValue(sht, "P5")
-		lon, _ := f.GetCellValue(sht, "P6")
-		operateur, _ := f.GetCellValue(sht, "J3")
-		utilisableEnEtat, _ := f.GetCellValue(sht, "W12")
-		environnement, _ := f.GetCellValue(sht, "W52")
-		commentaireEtatAppui, _ := f.GetCellValue(sht, "F13")
-		commentaireGlobal, _ := f.GetCellValue(sht, "A55")
-		proxiEnedis, _ := f.GetCellValue(sht, "W53")
+		lat, _ := sht.Cell(4, 15)
+		lon, _ := sht.Cell(5, 15)
+		operateur, _ := sht.Cell(2, 9)
+		utilisableEnEtat, _ := sht.Cell(11, 22)
+		environnement, _ := sht.Cell(51, 22)
+		commentaireEtatAppui, _ := sht.Cell(12, 5)
+		commentaireGlobal, _ := sht.Cell(54, 0)
+		proxiEnedis, _ := sht.Cell(52, 22)
 
-		insee, _ := f.GetCellValue(sht, "V4")
-		idMetier := fmt.Sprintf("%s/%s", numAppui, insee)
-
-		date, _ := f.GetCellValue(sht, "T1")
-		pb, _ := f.GetCellValue(sht, "N18")
+		insee, _ := sht.Cell(3, 21)
+		idMetier := fmt.Sprintf("%s/%s", numAppui.Value, insee.Value)
+		date, _ := sht.Cell(0, 19)
+		pb, _ := sht.Cell(17, 13)
 
 		// insert value
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job.Id), job.Path)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job.Id), adresse)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", job.Id), ville)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", job.Id), numAppui)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", job.Id), type1)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("F%v", job.Id), typeNApp)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("G%v", job.Id), natureTvx)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job.Id), adresse.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", job.Id), ville.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", job.Id), numAppui.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", job.Id), type1.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("F%v", job.Id), typeNApp.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("G%v", job.Id), natureTvx.Value)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("H%v", job.Id), etiquetteJaune)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("I%v", job.Id), effort1)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("J%v", job.Id), effort2)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("K%v", job.Id), effort3)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("L%v", job.Id), lat)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("M%v", job.Id), lon)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("N%v", job.Id), operateur)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("O%v", job.Id), utilisableEnEtat)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("P%v", job.Id), environnement)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("Q%v", job.Id), commentaireEtatAppui)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("R%v", job.Id), commentaireGlobal)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("S%v", job.Id), proxiEnedis)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("I%v", job.Id), effort1.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("J%v", job.Id), effort2.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("K%v", job.Id), effort3.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("L%v", job.Id), lat.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("M%v", job.Id), lon.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("N%v", job.Id), operateur.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("O%v", job.Id), utilisableEnEtat.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("P%v", job.Id), environnement.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("Q%v", job.Id), commentaireEtatAppui.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("R%v", job.Id), commentaireGlobal.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("S%v", job.Id), proxiEnedis.Value)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("T%v", job.Id), idMetier)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("U%v", job.Id), date)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("V%v", job.Id), pb)
-
-		err = f.Close()
-		if err != nil {
-			loger.Errorln(fmt.Sprintf("Crash with this files: %s", excelFile))
-			continue
-		}
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("U%v", job.Id), date.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("V%v", job.Id), pb.Value)
 
 		wg.Done()
 	}
