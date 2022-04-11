@@ -42,19 +42,14 @@ func setCellValue(r, c int, val any) {
 	cell.SetValue(val)
 }
 
-func getCellValue(sht *xlsx.Sheet, r, c int) string {
+func getCellValue(sht *xlsx.Sheet, r, c int) (str string, style *xlsx.Style) {
 	cell, _ := sht.Cell(r, c)
-	return cell.Value
+	return cell.Value, cell.GetStyle()
 }
 
 func setCellBgColor(r, c int, style *xlsx.Style) {
 	cell, _ := Sht.Cell(r, c)
 	cell.SetStyle(style)
-}
-
-func getCellBgColor(sht *xlsx.Sheet, r, c int) *xlsx.Style {
-	cell, _ := sht.Cell(r, c)
-	return cell.GetStyle()
 }
 
 func CompilerFicheAppuiFt(path string) {
@@ -160,6 +155,7 @@ func CompilerFicheAppuiFt(path string) {
 //WORKER:
 func workerFicheAppuiFt() {
 	for job := range jobs {
+		loger.BlankDateln(fmt.Sprintf("N°%v | Files: %s", job.Id, filepath.Base(job.Path)))
 
 		excelFile := job.Path
 		f, err := xlsx.OpenFile(excelFile)
@@ -171,21 +167,21 @@ func workerFicheAppuiFt() {
 
 		sht := f.Sheets[0]
 
-		verifFA := getCellValue(sht, 0, 0)
+		verifFA, _ := getCellValue(sht, 0, 0)
 		if !strings.Contains(task.StrToLower(verifFA), "appui") {
 			loger.Errorln(fmt.Sprintf("Ce n'est pas le bon format de fiche appui: %s", filepath.Base(excelFile)))
 			wg.Done()
 			continue
 		}
 
-		adresse := getCellValue(sht, 4, 3)
-		ville := getCellValue(sht, 3, 3)
-		numAppui := getCellValue(sht, 2, 3)
-		type1 := getCellValue(sht, 25, 2)
-		typeNApp := getCellValue(sht, 51, 12)
-		natureTvx := getCellValue(sht, 52, 12)
+		adresse, _ := getCellValue(sht, 4, 3)
+		ville, _ := getCellValue(sht, 3, 3)
+		numAppui, _ := getCellValue(sht, 2, 3)
+		type1, _ := getCellValue(sht, 25, 2)
+		typeNApp, _ := getCellValue(sht, 51, 12)
+		natureTvx, _ := getCellValue(sht, 52, 12)
 
-		etiquetteJaune := getCellValue(sht, 11, 20)
+		etiquetteJaune, _ := getCellValue(sht, 11, 20)
 		switch task.StrToLower(etiquetteJaune) {
 		case "oui":
 			etiquetteJaune = "non"
@@ -193,27 +189,23 @@ func workerFicheAppuiFt() {
 			etiquetteJaune = "oui"
 		}
 
-		effort1 := getCellValue(sht, 25, 18)
-		effort2 := getCellValue(sht, 25, 20)
-		effort3 := getCellValue(sht, 25, 22)
+		effort1, rgb1 := getCellValue(sht, 25, 18)
+		effort2, rgb2 := getCellValue(sht, 25, 20)
+		effort3, rgb3 := getCellValue(sht, 25, 22)
 
-		rgb1 := getCellBgColor(sht, 25, 18)
-		rgb2 := getCellBgColor(sht, 25, 20)
-		rgb3 := getCellBgColor(sht, 25, 22)
+		lat, _ := getCellValue(sht, 4, 15)
+		lon, _ := getCellValue(sht, 5, 15)
+		operateur, _ := getCellValue(sht, 2, 9)
+		utilisableEnEtat, _ := getCellValue(sht, 11, 22)
+		environnement, _ := getCellValue(sht, 51, 22)
+		commentaireEtatAppui, _ := getCellValue(sht, 12, 5)
+		commentaireGlobal, _ := getCellValue(sht, 54, 0)
+		proxiEnedis, _ := getCellValue(sht, 52, 22)
 
-		lat := getCellValue(sht, 4, 15)
-		lon := getCellValue(sht, 5, 15)
-		operateur := getCellValue(sht, 2, 9)
-		utilisableEnEtat := getCellValue(sht, 11, 22)
-		environnement := getCellValue(sht, 51, 22)
-		commentaireEtatAppui := getCellValue(sht, 12, 5)
-		commentaireGlobal := getCellValue(sht, 54, 0)
-		proxiEnedis := getCellValue(sht, 52, 22)
-
-		insee := getCellValue(sht, 3, 21)
+		insee, _ := getCellValue(sht, 3, 21)
 		idMetier := fmt.Sprintf("%s/%s", numAppui, insee)
-		date := getCellValue(sht, 0, 19)
-		pb := getCellValue(sht, 17, 13)
+		date, _ := getCellValue(sht, 0, 19)
+		pb, _ := getCellValue(sht, 17, 13)
 
 		// insert value
 		setCellValue(job.Id, 0, job.Path)
@@ -243,7 +235,6 @@ func workerFicheAppuiFt() {
 		setCellBgColor(job.Id, 9, rgb2)
 		setCellBgColor(job.Id, 10, rgb3)
 
-		loger.BlankDateln(fmt.Sprintf("N°%v | Files: %s", job.Id, filepath.Base(job.Path)))
 		wg.Done()
 	}
 }
