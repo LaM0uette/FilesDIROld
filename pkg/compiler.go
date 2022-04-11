@@ -83,12 +83,14 @@ func CompilerFicheAppuiFt(path string) {
 			excelFile := filepath.Join(path, file.Name())
 			f, err := excelize.OpenFile(excelFile)
 			if err != nil {
-				loger.Crashln(fmt.Sprintf("Crash with this files: %s", excelFile))
+				loger.Errorln(fmt.Sprintf("Crash with this files: %s", excelFile))
+				continue
 			}
 
 			rows, err := f.GetRows("Sheet1")
 			if err != nil {
-				loger.Crashln(err)
+				loger.Errorln(err)
+				continue
 			}
 
 			for ir, row := range rows {
@@ -139,7 +141,7 @@ func workerFicheAppuiFt() {
 		excelFile := job.Path
 		f, err := excelize.OpenFile(excelFile)
 		if err != nil {
-			loger.Crashln(fmt.Sprintf("Crash with this files: %s", excelFile))
+			loger.Errorln(fmt.Sprintf("Crash with this files: %s", excelFile))
 		}
 
 		sht := f.GetSheetName(f.GetActiveSheetIndex())
