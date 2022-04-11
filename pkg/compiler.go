@@ -52,9 +52,9 @@ func setCellBgColor(r, c int, style *xlsx.Style) {
 	cell.SetStyle(style)
 }
 
-func getCellBgColor(sht *xlsx.Sheet, r, c int) string {
+func getCellBgColor(sht *xlsx.Sheet, r, c int) *xlsx.Style {
 	cell, _ := sht.Cell(r, c)
-	return cell.GetStyle().Fill.BgColor
+	return cell.GetStyle()
 }
 
 func CompilerFicheAppuiFt(path string) {
@@ -160,7 +160,6 @@ func CompilerFicheAppuiFt(path string) {
 //WORKER:
 func workerFicheAppuiFt() {
 	for job := range jobs {
-		loger.BlankDateln(fmt.Sprintf("N°%v | Files: %s", job.Id, filepath.Base(job.Path)))
 
 		excelFile := job.Path
 		f, err := xlsx.OpenFile(excelFile)
@@ -240,19 +239,11 @@ func workerFicheAppuiFt() {
 		setCellValue(job.Id, 20, date)
 		setCellValue(job.Id, 21, pb)
 
-		rgb1Style := xlsx.NewStyle()
-		rgb1Style.Fill.BgColor = rgb1
+		setCellBgColor(job.Id, 8, rgb1)
+		setCellBgColor(job.Id, 9, rgb2)
+		setCellBgColor(job.Id, 10, rgb3)
 
-		rgb2Style := xlsx.NewStyle()
-		rgb2Style.Fill.BgColor = rgb2
-
-		rgb3Style := xlsx.NewStyle()
-		rgb3Style.Fill.BgColor = rgb3
-
-		setCellBgColor(job.Id, 8, rgb1Style)
-		setCellBgColor(job.Id, 9, rgb2Style)
-		setCellBgColor(job.Id, 10, rgb3Style)
-
+		loger.BlankDateln(fmt.Sprintf("N°%v | Files: %s", job.Id, filepath.Base(job.Path)))
 		wg.Done()
 	}
 }
