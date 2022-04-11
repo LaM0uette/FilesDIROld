@@ -69,7 +69,7 @@ func CompilerFicheAppuiFt(path string) {
 	_ = Wb.SetCellValue("Sheet1", "U1", "Date")
 	_ = Wb.SetCellValue("Sheet1", "V1", "PB")
 
-	for w := 1; w <= 500; w++ {
+	for w := 1; w <= 10; w++ {
 		go workerFicheAppuiFt()
 	}
 
@@ -112,6 +112,12 @@ func CompilerFicheAppuiFt(path string) {
 
 					jobs <- a
 				}()
+			}
+
+			err = f.Close()
+			if err != nil {
+				loger.Errorln(fmt.Sprintf("Crash with this files: %s", excelFile))
+				continue
 			}
 		}
 	}
@@ -206,6 +212,12 @@ func workerFicheAppuiFt() {
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("T%v", job.Id), idMetier)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("U%v", job.Id), date)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("V%v", job.Id), pb)
+
+		err = f.Close()
+		if err != nil {
+			loger.Errorln(fmt.Sprintf("Crash with this files: %s", excelFile))
+			continue
+		}
 
 		wg.Done()
 	}
