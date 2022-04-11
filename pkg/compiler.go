@@ -7,6 +7,7 @@ import (
 	"FilesDIR/task"
 	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
+	"github.com/tealeg/xlsx"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -82,28 +83,28 @@ func CompilerFicheAppuiFt(path string) {
 		if !file.IsDir() && !strings.Contains(file.Name(), "__COMPILATION__") {
 
 			excelFile := filepath.Join(path, file.Name())
-			f, err := excelize.OpenFile(excelFile)
+			f, err := xlsx.OpenFile(excelFile)
 			if err != nil {
 				loger.Errorln(fmt.Sprintf("Crash with this files: %s", excelFile))
 				continue
 			}
 
-			rows, err := f.GetRows("Sheet1")
-			if err != nil {
-				loger.Errorln(err)
-				continue
-			}
+			sht := f.Sheets[0]
 
-			for ir, row := range rows {
-				if ir == 0 {
-					continue
+			maxRow := sht.MaxRow
+
+			for i := 0; i < maxRow; i++ {
+				row, err := sht.Row(1)
+				if err != nil {
+					panic(err)
 				}
-
-				r := row[3]
+				fmt.Println(row)
 
 				go func() {
 					wg.Add(1)
 					Id++
+
+					r := row.GetCell(3).String()
 
 					a := compilData{
 						Path: r,
@@ -112,12 +113,6 @@ func CompilerFicheAppuiFt(path string) {
 
 					jobs <- a
 				}()
-			}
-
-			err = f.Close()
-			if err != nil {
-				loger.Errorln(fmt.Sprintf("Crash with this files: %s", excelFile))
-				continue
 			}
 		}
 	}
