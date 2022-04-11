@@ -40,7 +40,7 @@ func CompilerFicheAppuiFt(path string) {
 	loger.BlankDateln(display.DrawInitCompiler())
 	time.Sleep(800 * time.Millisecond)
 
-	loger.BlankDateln(display.DrawRunCompiler())
+	loger.Blankln(display.DrawRunCompiler())
 
 	Id = 1
 
