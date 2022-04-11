@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="correction bug excel loop">
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="correction bug excel loop strcut">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/compiler.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/compiler.go" afterDir="false" />
     </list>
@@ -112,7 +112,8 @@
     <MESSAGE value="Ajout du flag FlgCompiler pour lancer la compilatopin des fiches appuis ft" />
     <MESSAGE value="création app avec infos + logo" />
     <MESSAGE value="correction bug excel loop" />
-    <option name="LAST_COMMIT_MESSAGE" value="correction bug excel loop" />
+    <MESSAGE value="correction bug excel loop strcut" />
+    <option name="LAST_COMMIT_MESSAGE" value="correction bug excel loop strcut" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
@@ -123,7 +124,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/pkg/compiler.go</url>
-          <line>158</line>
+          <line>105</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
