@@ -68,7 +68,7 @@ func CompilerFicheAppuiFt(path string) {
 	_ = Wb.SetCellValue("Sheet1", "U1", "Date")
 	_ = Wb.SetCellValue("Sheet1", "V1", "PB")
 
-	for w := 1; w <= 300; w++ {
+	for w := 1; w <= 500; w++ {
 		go workerFicheAppuiFt()
 	}
 
