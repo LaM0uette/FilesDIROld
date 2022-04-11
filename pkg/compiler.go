@@ -203,6 +203,14 @@ func workerFicheAppuiFt() {
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("U%v", job.Id), date.Value)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("V%v", job.Id), pb.Value)
 
+		fmt.Println(effort1.GetStyle().Fill.BgColor)
+
+		style, _ := Wb.NewStyle(fmt.Sprintf("{\"fill\":{\"type\":\"pattern\",\"color\":[\"#%s\"],\"pattern\":1}}", effort1.GetStyle().Fill.BgColor))
+		if err != nil {
+			fmt.Println(err)
+		}
+		Wb.SetCellStyle("Sheet1", fmt.Sprintf("I%v", job.Id), fmt.Sprintf("I%v", job.Id), style)
+
 		wg.Done()
 	}
 }
