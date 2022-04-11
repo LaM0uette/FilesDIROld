@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="benchmark">
+    <list default="true" id="486bdc94-58a0-47fb-a875-1e4008e24fd1" name="Changes" comment="correct bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modop.indd" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modop.indd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modop.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modop.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/compiler.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/compiler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource.syso" beforeDir="false" afterPath="$PROJECT_DIR$/resource.syso" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/globals/globals.go" beforeDir="false" afterPath="$PROJECT_DIR$/globals/globals.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/versioninfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/versioninfo.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +176,8 @@
     <MESSAGE value="ajout du mode blacklist" />
     <MESSAGE value="modif des tests" />
     <MESSAGE value="benchmark" />
-    <option name="LAST_COMMIT_MESSAGE" value="benchmark" />
+    <MESSAGE value="correct bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="correct bug" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
