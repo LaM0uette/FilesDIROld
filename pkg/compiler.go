@@ -42,14 +42,17 @@ func setCellValue(r, c int, val any) {
 	cell.SetValue(val)
 }
 
+func getCellValue(sht *xlsx.Sheet, r, c int) string {
+	cell, _ := sht.Cell(r, c)
+	return cell.Value
+}
+
 func CompilerFicheAppuiFt(path string) {
 
 	loger.BlankDateln(display.DrawInitCompiler())
 	time.Sleep(800 * time.Millisecond)
 
 	loger.Blankln(display.DrawRunCompiler())
-
-	Id = 1
 
 	Wb = xlsx.NewFile()
 	Sht, _ = Wb.AddSheet("Sheet1")
@@ -125,7 +128,7 @@ func CompilerFicheAppuiFt(path string) {
 	}
 
 	wg.Wait()
-	time.Sleep(2 * time.Second)
+	time.Sleep(500 * time.Millisecond)
 
 	loger.BlankDateln(display.DrawEndCompiler())
 
@@ -149,23 +152,23 @@ func workerFicheAppuiFt() {
 		loger.BlankDateln(fmt.Sprintf("N°%v | Files: %s", job.Id, filepath.Base(job.Path)))
 
 		excelFile := job.Path
-		f, err := excelize.OpenFile(excelFile)
+		f, err := xlsx.OpenFile(excelFile)
 		if err != nil {
 			loger.Errorln(fmt.Sprintf("Crash with this files: %s", filepath.Base(excelFile)))
 			wg.Done()
 			continue
 		}
 
-		sht := f.GetSheetName(f.GetActiveSheetIndex())
+		sht := f.Sheets[0]
 
-		adresse, _ := f.GetCellValue(sht, "D5")
-		ville, _ := f.GetCellValue(sht, "D4")
-		numAppui, _ := f.GetCellValue(sht, "D3")
-		type1, _ := f.GetCellValue(sht, "C26")
-		typeNApp, _ := f.GetCellValue(sht, "M52")
-		natureTvx, _ := f.GetCellValue(sht, "M53")
+		adresse := getCellValue(sht, 4, 3)
+		ville := getCellValue(sht, 3, 3)
+		numAppui := getCellValue(sht, 2, 3)
+		type1 := getCellValue(sht, 25, 2)
+		typeNApp := getCellValue(sht, 51, 12)
+		natureTvx := getCellValue(sht, 52, 12)
 
-		etiquetteJaune, _ := f.GetCellValue(sht, "U12")
+		etiquetteJaune := getCellValue(sht, 11, 20)
 		switch task.StrToLower(etiquetteJaune) {
 		case "oui":
 			etiquetteJaune = "non"
@@ -173,24 +176,23 @@ func workerFicheAppuiFt() {
 			etiquetteJaune = "oui"
 		}
 
-		effort1, _ := f.GetCellValue(sht, "S26")
-		effort2, _ := f.GetCellValue(sht, "U26")
-		effort3, _ := f.GetCellValue(sht, "W26")
+		effort1 := getCellValue(sht, 25, 18)
+		effort2 := getCellValue(sht, 25, 20)
+		effort3 := getCellValue(sht, 25, 22)
 
-		lat, _ := f.GetCellValue(sht, "P5")
-		lon, _ := f.GetCellValue(sht, "P6")
-		operateur, _ := f.GetCellValue(sht, "J3")
-		utilisableEnEtat, _ := f.GetCellValue(sht, "W12")
-		environnement, _ := f.GetCellValue(sht, "W52")
-		commentaireEtatAppui, _ := f.GetCellValue(sht, "F13")
-		commentaireGlobal, _ := f.GetCellValue(sht, "A55")
-		proxiEnedis, _ := f.GetCellValue(sht, "W53")
+		lat := getCellValue(sht, 4, 15)
+		lon := getCellValue(sht, 5, 15)
+		operateur := getCellValue(sht, 2, 9)
+		utilisableEnEtat := getCellValue(sht, 11, 22)
+		environnement := getCellValue(sht, 51, 22)
+		commentaireEtatAppui := getCellValue(sht, 12, 5)
+		commentaireGlobal := getCellValue(sht, 54, 0)
+		proxiEnedis := getCellValue(sht, 52, 22)
 
-		insee, _ := f.GetCellValue(sht, "V4")
+		insee := getCellValue(sht, 3, 21)
 		idMetier := fmt.Sprintf("%s/%s", numAppui, insee)
-
-		date, _ := f.GetCellValue(sht, "T1")
-		pb, _ := f.GetCellValue(sht, "N18")
+		date := getCellValue(sht, 0, 19)
+		pb := getCellValue(sht, 17, 13)
 
 		// insert value
 		setCellValue(job.Id, 0, job.Path)
