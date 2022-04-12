@@ -150,13 +150,14 @@ func workerFicheAppuiFt() {
 		excelFile := job.Path
 		f, err := xlsx.OpenFile(excelFile)
 		if err != nil {
-			loger.Okln(display.DrawFileSearchedFailed(job.Id, filepath.Base(job.Path)))
+			loger.Ok(display.DrawFileSearchedFailed(job.Id, filepath.Base(job.Path)))
 			_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job.Id), job.Path)
 			wg.Done()
+			time.Sleep(800 * time.Millisecond)
 			continue
 		}
 
-		loger.Okln(display.DrawFileSearched(job.Id, filepath.Base(job.Path)))
+		loger.Ok(display.DrawFileSearched(job.Id, filepath.Base(job.Path)))
 
 		sht := f.Sheets[0]
 
