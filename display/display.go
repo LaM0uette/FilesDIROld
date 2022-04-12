@@ -83,28 +83,28 @@ func DrawSaveExcel() string {
 }
 
 func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize int, timerSearch time.Duration, timerTotal time.Duration) string {
-	return fmt.Sprintf(`<fg=%[1]s>
+	return fmt.Sprintf(`<fg=%[3]s>
 +============================================================+
 |                    BILAN DES RECHERCHES                    |                     
 +============================================================+
 </>
 <fg=%[3]s>#### - INFOS GENERALES :</>
-<fg=%[1]s>Dossiers principal:</> <fg=%[2]s>%[3]s</>
-<fg=%[1]s>Requête utilisée:</> <fg=%[2]s>%[4]s</>
-<fg=%[1]s>Nombre de Threads:</> <fg=%[2]s>%[5]v</>
-<fg=%[1]s>Nombre de Goroutines:</> <fg=%[2]s>%[6]v</>
+<fg=%[1]s>Dossiers principal:</> <fg=%[2]s>%[4]s</>
+<fg=%[1]s>Requête utilisée:</> <fg=%[2]s>%[5]s</>
+<fg=%[1]s>Nombre de Threads:</> <fg=%[2]s>%[6]v</>
+<fg=%[1]s>Nombre de Goroutines:</> <fg=%[2]s>%[7]v</>
 
 <fg=%[3]s>#### - RESULTATS :</>
-<fg=%[1]s>Fichiers trouvés:</> <fg=%[2]s>%[7]v</>
-<fg=%[1]s>Temps d'exécution de la recherche:</> <fg=%[2]s>%[8]v</>
-<fg=%[1]s>Temps d'exécution total:</> <fg=%[2]s>%[9]v</>
+<fg=%[1]s>Fichiers trouvés:</> <fg=%[2]s>%[8]v</>
+<fg=%[1]s>Temps d'exécution de la recherche:</> <fg=%[2]s>%[9]v</>
+<fg=%[1]s>Temps d'exécution total:</> <fg=%[2]s>%[10]v</>
 
 <fg=%[3]s>#### - EXPORTS :</>
-<fg=%[1]s>Logs:</> <fg=%[2]s>%[10]s</>
-<fg=%[1]s>Dumps:</> <fg=%[2]s>%[11]s</>
-<fg=%[1]s>Export Excel:</> <fg=%[2]s>%[12]s</>
+<fg=%[1]s>Logs:</> <fg=%[2]s>%[11]s</>
+<fg=%[1]s>Dumps:</> <fg=%[2]s>%[12]s</>
+<fg=%[1]s>Export Excel:</> <fg=%[2]s>%[13]s</>
 
-<fg=%[1]s>+=========  Auteur:</> <fg=%[2]s>%[13]s</>       <fg=%[1]s>Version:</> <fg=%[2]s>%[14]s</>  <fg=%[1]s>=========+</>
+<fg=%[3]s>+=========  Auteur:</> <fg=%[2]s>%[14]s</>       <fg=%[3]s>Version:</> <fg=%[2]s>%[15]s</>  <fg=%[3]s>=========+</>
 `,
 		globals.Param,
 		globals.Th1,
