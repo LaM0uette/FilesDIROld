@@ -25,6 +25,7 @@ var (
 	wg   sync.WaitGroup
 	jobs = make(chan compilData)
 	Wb   = &excelize.File{}
+	Mu   sync.Mutex
 	Id   int
 )
 
@@ -37,14 +38,13 @@ func ClsTempFiles() {
 }
 
 func CompilerFicheAppuiFt(path string) {
-	path = "C:\\Users\\XD5965\\OneDrive - EQUANS\\Bureau\\Nouveau dossier"
 
 	loger.BlankDateln(display.DrawInitCompiler())
 	time.Sleep(800 * time.Millisecond)
 
-	loger.Blankln(display.DrawRunCompiler())
+	timeStart := time.Now()
 
-	Id = 1
+	loger.Blankln(display.DrawRunCompiler())
 
 	Wb = excelize.NewFile()
 	_ = Wb.SetCellValue("Sheet1", "A1", "Chemin de la fiche")
@@ -100,6 +100,7 @@ func CompilerFicheAppuiFt(path string) {
 				}
 
 				go func() {
+					Mu.Lock()
 					wg.Add(1)
 					Id++
 
@@ -107,17 +108,23 @@ func CompilerFicheAppuiFt(path string) {
 						Path: row.GetCell(3).String(),
 						Id:   Id,
 					}
+					Mu.Unlock()
 				}()
 			}
 		}
 	}
 
 	wg.Wait()
+
+	timeEnd := time.Since(timeStart)
+
 	time.Sleep(1 * time.Second)
 
 	loger.BlankDateln(display.DrawEndCompiler())
 
 	loger.BlankDateln(fmt.Sprintf("Nombre de fiches compilées : %v", Id-1))
+	time.Sleep(800 * time.Millisecond)
+	loger.BlankDateln(fmt.Sprintf("Temps écoulé : %v", timeEnd))
 	time.Sleep(800 * time.Millisecond)
 
 	if err := Wb.SaveAs(filepath.Join(path, fmt.Sprintf("__COMPILATION__%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
