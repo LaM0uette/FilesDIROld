@@ -76,6 +76,6 @@ func main() {
 	fmt.Print("Appuyer sur Entrée pour quitter...")
 	_, err := bufio.NewReader(os.Stdin).ReadBytes('\n')
 	if err != nil {
-		loger.Crashln(err)
+		loger.Crash(err)
 	}
 }

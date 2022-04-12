@@ -57,7 +57,7 @@ func (s *Search) getBlackList(file string) {
 
 	readFile, err := os.Open(file)
 	if err != nil {
-		loger.Crashln(err)
+		loger.Crash(err)
 	}
 
 	fileScanner := bufio.NewScanner(readFile)
@@ -130,7 +130,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 	for pth := range jobs {
 		files, err := ioutil.ReadDir(pth)
 		if err != nil {
-			loger.Crashln(fmt.Sprintf("Crash with this path: %s", pth))
+			loger.Crash(fmt.Sprintf("Crash with this path: %s", pth))
 			wg.Done()
 			return err
 		}

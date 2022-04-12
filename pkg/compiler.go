@@ -78,7 +78,7 @@ func CompilerFicheAppuiFt(path string) {
 
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		loger.Crashln(fmt.Sprintf("Crash with this path: %s", path))
+		loger.Crash(fmt.Sprintf("Crash with this path: %s", path))
 	}
 
 	for _, file := range files {

@@ -17,13 +17,14 @@ var (
 	vInfo      *log.Logger
 	vWarning   *log.Logger
 	vError     *log.Logger
-	vCrash     *log.Logger
+	crash      *log.Logger
 
 	// dumps
 	vSemicolon *log.Logger
 
 	// colors
 	Cyan = color.New(color.FgCyan).SprintFunc()
+	Red  = color.New(color.FgRed).SprintFunc()
 )
 
 func init() {
@@ -42,7 +43,7 @@ func init() {
 	vInfo = log.New(logFile, "[INFO]: ", log.Ltime|log.Lmsgprefix)
 	vWarning = log.New(logFile, "[WARNING]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
 	vError = log.New(logFile, "[ERROR]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
-	vCrash = log.New(logFile, "[CRASH]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
+	crash = log.New(logFile, "[CRASH]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
 
 	vSemicolon = log.New(dumpFile, "", 0)
 }
@@ -52,6 +53,12 @@ func init() {
 func Ui(v ...any) {
 	ui.Println(v...)
 	fmt.Println(Cyan(v...))
+}
+
+func Crash(v ...any) {
+	crash.Println(v...)
+	fmt.Println(Red(v...))
+	os.Exit(1)
 }
 
 func Blank(v ...any) {
@@ -82,12 +89,6 @@ func Warningln(v ...any) {
 func Errorln(v ...any) {
 	vError.Println(v...)
 	fmt.Println(v...)
-}
-
-func Crashln(v ...any) {
-	vCrash.Println(v...)
-	fmt.Println(v...)
-	os.Exit(1)
 }
 
 //...
