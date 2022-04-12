@@ -39,7 +39,7 @@ func ClsTempFiles() {
 
 func CompilerFicheAppuiFt(path string) {
 
-	loger.BlankDateln(display.DrawInitCompiler())
+	loger.Ui(display.DrawInitCompiler())
 	time.Sleep(800 * time.Millisecond)
 
 	timeStart := time.Now()
@@ -126,11 +126,11 @@ func CompilerFicheAppuiFt(path string) {
 
 	time.Sleep(1 * time.Second)
 
-	loger.BlankDateln(display.DrawEndCompiler())
+	loger.Ui(display.DrawEndCompiler())
 
-	loger.BlankDateln(fmt.Sprintf("Nombre de fiches compilées : %v", Id-1))
+	loger.Action(fmt.Sprintf("Nombre de fiches compilées : %v", Id-1))
 	time.Sleep(800 * time.Millisecond)
-	loger.BlankDateln(fmt.Sprintf("Temps écoulé : %v", timeEnd))
+	loger.Action(fmt.Sprintf("Temps écoulé : %v", timeEnd))
 	time.Sleep(800 * time.Millisecond)
 
 	if err := Wb.SaveAs(filepath.Join(path, fmt.Sprintf("__COMPILATION__%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
@@ -146,7 +146,7 @@ func CompilerFicheAppuiFt(path string) {
 //WORKER:
 func workerFicheAppuiFt() {
 	for job := range jobs {
-		loger.BlankDateln(fmt.Sprintf("N°%v | Files: %s", job.Id, filepath.Base(job.Path)))
+		loger.Ok(fmt.Sprintf("N°%v | Files: %s", job.Id, filepath.Base(job.Path)))
 
 		excelFile := job.Path
 		f, err := xlsx.OpenFile(excelFile)

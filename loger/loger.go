@@ -24,12 +24,12 @@ var (
 	vSemicolon *log.Logger
 
 	// colors
-	Cyan    = color.New(color.FgCyan).SprintFunc()
-	Green   = color.New(color.FgGreen).SprintFunc()
-	Red     = color.New(color.FgRed).SprintFunc()
-	HiRed   = color.New(color.FgHiRed).SprintFunc()
-	Majenta = color.New(color.FgMagenta).SprintFunc()
-	Yellow  = color.New(color.FgYellow).SprintFunc()
+	Cyan    = color.New(color.FgHiCyan).SprintFunc()
+	Green   = color.New(color.FgHiGreen).SprintFunc()
+	Red     = color.New(color.FgHiRed).SprintFunc()
+	TRed    = color.New(color.FgRed).SprintFunc()
+	Majenta = color.New(color.FgHiMagenta).SprintFunc()
+	Yellow  = color.New(color.FgHiYellow).SprintFunc()
 )
 
 func init() {
@@ -78,7 +78,7 @@ func Action(v ...any) {
 
 func Warning(v ...any) {
 	warning.Println(v...)
-	fmt.Println(HiRed(v...))
+	fmt.Println(TRed(v...))
 }
 
 func Error(v ...any) {
