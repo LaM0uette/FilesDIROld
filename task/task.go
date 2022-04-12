@@ -162,7 +162,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 						loger.POAction(display.DrawSearchedFait(s.NbFilesTotal))
 					}
 
-					loger.LOOk(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
+					loger.LOOk(fmt.Sprintf("N°%v |=| Files: %s", s.NbFiles, file.Name()))
 					loger.Semicolon(fmt.Sprintf("%v;%s;%s;%s;%s",
 						s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(pth, file.Name()), pth))
 

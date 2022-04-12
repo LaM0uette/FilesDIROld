@@ -119,10 +119,11 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 	_ = Wb.SetCellValue("Sheet1", "D1", "LienFichier")
 	_ = Wb.SetCellValue("Sheet1", "E1", "Lien")
 
-	f.DrawWriteExcel()
+	iMax := len(ExcelData)
+	f.DrawWriteExcel(0, iMax)
 
 	// Creation of workers for write line in excel file
-	iMax := len(ExcelData)
+
 	for w := 1; w <= 300; w++ {
 		go f.writeExcelLineWorker(Wb, iMax)
 	}
@@ -156,8 +157,7 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 func (f *Flags) writeExcelLineWorker(Wb *excelize.File, iMax int) {
 	for job := range jobs {
 
-		//fmt.Print("\r")
-		loger.POAction(fmt.Sprintf("\r<fg=214,99,144>Export Excel...</>  <fg=44,168,65>%v</><fg=214,99,144>/</><fg=44,168,65>%v</>", job, iMax))
+		f.DrawWriteExcel(job, iMax)
 
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job+2), ExcelData[job].Id)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job+2), ExcelData[job].File)
@@ -207,12 +207,12 @@ func (f *Flags) DrawEndSearch() {
 	time.Sleep(200 * time.Millisecond)
 }
 
-func (f *Flags) DrawWriteExcel() {
+func (f *Flags) DrawWriteExcel(i, imax int) {
 	if f.FlgSuper {
 		return
 	}
 
-	loger.Action(display.DrawWriteExcel())
+	loger.Action(display.DrawWriteExcel(i, imax))
 	time.Sleep(200 * time.Millisecond)
 }
 

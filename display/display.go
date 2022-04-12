@@ -62,12 +62,14 @@ func DrawEndSearch() string {
 </>`, globals.Th2)
 }
 
-func DrawWriteExcel() string {
-	return fmt.Sprint(`<fg=214,99,144>Export Excel...</>`)
+func DrawWriteExcel(i, imax int) string {
+	return fmt.Sprintf(`<fg=%[1]s>Export Excel...</><fg=%[2]s>%[3]v</><fg=%[1]s>/</><fg=%[2]s>%[4]v</>`,
+		globals.Param, globals.Th1, i, imax)
 }
 
 func DrawSaveExcel() string {
-	return fmt.Sprint(`<fg=214,99,144>Fichier Excel sauvegardé avec succes.</>`)
+	return fmt.Sprintf(`<fg=%[1]s>Fichier Excel sauvegardé avec succes.</>`,
+		globals.Param)
 }
 
 func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize int, timerSearch time.Duration, timerTotal time.Duration) string {
