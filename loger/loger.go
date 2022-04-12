@@ -3,6 +3,7 @@ package loger
 import (
 	"FilesDIR/globals"
 	"fmt"
+	"github.com/fatih/color"
 	"log"
 	"os"
 	"path/filepath"
@@ -10,14 +11,19 @@ import (
 )
 
 var (
-	vBlank     *log.Logger
+	// logs
+	ui         *log.Logger
 	vBlankDate *log.Logger
 	vInfo      *log.Logger
 	vWarning   *log.Logger
 	vError     *log.Logger
 	vCrash     *log.Logger
 
+	// dumps
 	vSemicolon *log.Logger
+
+	// colors
+	Cyan = color.New(color.FgCyan).SprintFunc()
 )
 
 func init() {
@@ -31,7 +37,7 @@ func init() {
 		log.Fatal(err)
 	}
 
-	vBlank = log.New(logFile, "", 0)
+	ui = log.New(logFile, "", 0)
 	vBlankDate = log.New(logFile, ": ", log.Ltime|log.Lmsgprefix)
 	vInfo = log.New(logFile, "[INFO]: ", log.Ltime|log.Lmsgprefix)
 	vWarning = log.New(logFile, "[WARNING]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
@@ -41,18 +47,20 @@ func init() {
 	vSemicolon = log.New(dumpFile, "", 0)
 }
 
-//c := color.New(color.FgCyan).SprintFunc()
-//vBlank.Print(v...)
-//fmt.Print(c(v...))
 //...
-// Log + msg
+// Log
+func Ui(v ...any) {
+	ui.Println(v...)
+	fmt.Println(Cyan(v...))
+}
+
 func Blank(v ...any) {
-	vBlank.Print(v...)
+	ui.Print(v...)
 	fmt.Print(v...)
 }
 
 func Blankln(v ...any) {
-	vBlank.Println(v...)
+	ui.Println(v...)
 	fmt.Println(v...)
 }
 
