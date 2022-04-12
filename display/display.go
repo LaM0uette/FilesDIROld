@@ -31,6 +31,11 @@ func DrawCheckMinimumPoolSize() string {
 		globals.Param, globals.Th1)
 }
 
+func DrawSetMaxThread(v any) string {
+	return fmt.Sprintf(`<fg=%[1]s>Nombre de threads mis à :</> <fg=%[3]s>%[2]v</>`,
+		globals.Param, v, globals.Th1)
+}
+
 func DrawRunSearch() string {
 	return fmt.Sprint(`<cyan>
 +============================================================+

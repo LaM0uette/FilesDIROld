@@ -93,7 +93,7 @@ func (f *Flags) SetMaxThread() {
 		return
 	}
 
-	loger.Paramln(fmt.Sprintf("<fg=214,99,144>Nombre de threads mis à :</> <fg=44,168,65>%v</>", maxThr))
+	loger.Paramln(display.DrawSetMaxThread(maxThr))
 }
 
 func (f *Flags) SetSaveWord() string {
