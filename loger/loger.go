@@ -97,16 +97,6 @@ func Blankln(v ...any) {
 	fmt.Println(v...)
 }
 
-func Infoln(v ...any) {
-	param.Println(v...)
-	fmt.Println(v...)
-}
-
-func Warningln(v ...any) {
-	warning.Println(v...)
-	fmt.Println(v...)
-}
-
 func Errorln(v ...any) {
 	errr.Println(v...)
 	fmt.Println(v...)
