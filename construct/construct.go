@@ -81,7 +81,7 @@ func (f *Flags) GetReqOfSearched() string {
 func (f *Flags) CheckMinimumPoolSize() {
 	if f.FlgPoolSize < 2 {
 		f.FlgPoolSize = 2
-		loger.Param("Poolsize mise à 2 (ne peut pas être inférieur à 2)")
+		loger.Paramln("Poolsize mise à 2 (ne peut pas être inférieur à 2)")
 	}
 }
 
@@ -93,7 +93,7 @@ func (f *Flags) SetMaxThread() {
 		return
 	}
 
-	loger.Param(fmt.Sprintf("Nombre de threads mis à : %v", maxThr))
+	loger.Paramln(fmt.Sprintf("Nombre de threads mis à : %v", maxThr))
 }
 
 func (f *Flags) SetSaveWord() string {
@@ -101,7 +101,7 @@ func (f *Flags) SetSaveWord() string {
 	if len(f.FlgWord) < 1 {
 		word = "Export"
 		time.Sleep(600 * time.Millisecond)
-		loger.Action(fmt.Sprintf("Nom du fichier de sauvergarde mis par défaut : %v", word))
+		loger.Actionln(fmt.Sprintf("Nom du fichier de sauvergarde mis par défaut : %v", word))
 	}
 
 	return word
@@ -144,7 +144,7 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 
 	// Save Excel file
 	if err := Wb.SaveAs(filepath.Join(DstPath, saveWord+fmt.Sprintf("_%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
-		loger.Error(err)
+		loger.Errorln(err)
 	}
 
 	f.DrawSaveExcel()
@@ -174,7 +174,7 @@ func (f *Flags) DrawStart() {
 	if f.FlgSuper {
 		return
 	}
-	loger.Ui(display.DrawStart())
+	loger.Uiln(display.DrawStart())
 	time.Sleep(1 * time.Second)
 }
 
@@ -183,7 +183,7 @@ func (f *Flags) DrawInitSearch() {
 		return
 	}
 
-	loger.Param(display.DrawInitSearch())
+	loger.Paramln(display.DrawInitSearch())
 	time.Sleep(800 * time.Millisecond)
 }
 
@@ -192,7 +192,7 @@ func (f *Flags) DrawRunSearch() {
 		return
 	}
 
-	loger.Ui(display.DrawRunSearch())
+	loger.Uiln(display.DrawRunSearch())
 	time.Sleep(400 * time.Millisecond)
 }
 
@@ -202,7 +202,7 @@ func (f *Flags) DrawEndSearch() {
 	}
 
 	time.Sleep(1 * time.Second)
-	loger.Ui(display.DrawEndSearch())
+	loger.Uiln(display.DrawEndSearch())
 	time.Sleep(200 * time.Millisecond)
 }
 
@@ -211,7 +211,7 @@ func (f *Flags) DrawWriteExcel() {
 		return
 	}
 
-	loger.Action(display.DrawWriteExcel())
+	loger.Actionln(display.DrawWriteExcel())
 	time.Sleep(200 * time.Millisecond)
 }
 
@@ -220,17 +220,17 @@ func (f *Flags) DrawSaveExcel() {
 		return
 	}
 	//fmt.Println()
-	loger.Action(display.DrawSaveExcel())
+	loger.Actionln(display.DrawSaveExcel())
 	time.Sleep(200 * time.Millisecond)
 }
 
 func (f *Flags) DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles int, TimerSearch, timerEnd time.Duration) {
 	disp := display.DrawEnd(SrcPath, DstPath, ReqFinal, NbGoroutine, NbFiles, f.FlgPoolSize, TimerSearch, timerEnd)
-	loger.Ui(disp)
+	loger.Uiln(disp)
 }
 
 //...
 // Pkg
 func DrawEndCls() {
-	loger.Blankln("*** Dossiers de logs et dumps nettoyés ! ***\n")
+	loger.Uiln("*** Dossiers de logs et dumps nettoyés ! ***\n")
 }

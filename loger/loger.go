@@ -56,50 +56,40 @@ func init() {
 
 //...
 // Log
-func Ui(v ...any) {
+func Uiln(v ...any) {
 	ui.Println(v...)
 	fmt.Println(Cyan(v...))
 }
 
-func Param(v ...any) {
+func Paramln(v ...any) {
 	param.Println(v...)
 	fmt.Println(Yellow(v...))
 }
 
-func Ok(v ...any) {
+func Okln(v ...any) {
 	ok.Println(v...)
 	fmt.Println(Green(v...))
 }
 
-func Action(v ...any) {
+func Actionln(v ...any) {
 	action.Print(v...)
 	fmt.Print(Majenta(v...))
 }
 
-func Warning(v ...any) {
+func Warningln(v ...any) {
 	warning.Println(v...)
 	fmt.Println(TRed(v...))
 }
 
-func Error(v ...any) {
+func Errorln(v ...any) {
 	errr.Println(v...)
 	fmt.Println(Red(v...))
 }
 
-func Crash(v ...any) {
+func Crashln(v ...any) {
 	crash.Println(v...)
 	fmt.Println(Red(v...))
 	os.Exit(1)
-}
-
-func Blankln(v ...any) {
-	ui.Println(v...)
-	fmt.Println(v...)
-}
-
-func Errorln(v ...any) {
-	errr.Println(v...)
-	fmt.Println(v...)
 }
 
 //...

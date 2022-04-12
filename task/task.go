@@ -43,7 +43,7 @@ var (
 func CurrentDir() string {
 	pwd, err := os.Getwd()
 	if err != nil {
-		loger.Error(err)
+		loger.Errorln(err)
 		os.Exit(1)
 	}
 	return pwd
@@ -57,7 +57,7 @@ func (s *Search) getBlackList(file string) {
 
 	readFile, err := os.Open(file)
 	if err != nil {
-		loger.Crash(err)
+		loger.Crashln(err)
 	}
 
 	fileScanner := bufio.NewScanner(readFile)
@@ -130,7 +130,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 	for pth := range jobs {
 		files, err := ioutil.ReadDir(pth)
 		if err != nil {
-			loger.Crash(fmt.Sprintf("Crash with this path: %s", pth))
+			loger.Crashln(fmt.Sprintf("Crashln with this path: %s", pth))
 			wg.Done()
 			return err
 		}
@@ -181,7 +181,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 func (s *Search) LoopDirsFiles(path string, f *construct.Flags) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		loger.Error(fmt.Sprintf("Error with this path: %s", path))
+		loger.Errorln(fmt.Sprintf("Errorln with this path: %s", path))
 	}
 
 	go func() {
@@ -239,7 +239,7 @@ func (s *Search) RunSearch(f *construct.Flags) {
 		go func() {
 			err := s.loopFilesWorker(f.FlgSuper)
 			if err != nil {
-				loger.Error(err)
+				loger.Errorln(err)
 			}
 		}()
 	}

@@ -39,12 +39,12 @@ func ClsTempFiles() {
 
 func CompilerFicheAppuiFt(path string) {
 
-	loger.Ui(display.DrawInitCompiler())
+	loger.Uiln(display.DrawInitCompiler())
 	time.Sleep(800 * time.Millisecond)
 
 	timeStart := time.Now()
 
-	loger.Blankln(display.DrawRunCompiler())
+	loger.Uiln(display.DrawRunCompiler())
 
 	Id = 1
 
@@ -78,7 +78,7 @@ func CompilerFicheAppuiFt(path string) {
 
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		loger.Crash(fmt.Sprintf("Crash with this path: %s", path))
+		loger.Crashln(fmt.Sprintf("Crashln with this path: %s", path))
 	}
 
 	for _, file := range files {
@@ -87,7 +87,7 @@ func CompilerFicheAppuiFt(path string) {
 			excelFile := filepath.Join(path, file.Name())
 			f, err := xlsx.OpenFile(excelFile)
 			if err != nil {
-				loger.Errorln(fmt.Sprintf("Crash with this files: %s", excelFile))
+				loger.Errorln(fmt.Sprintf("Crashln with this files: %s", excelFile))
 				continue
 			}
 
@@ -126,18 +126,18 @@ func CompilerFicheAppuiFt(path string) {
 
 	time.Sleep(1 * time.Second)
 
-	loger.Ui(display.DrawEndCompiler())
+	loger.Uiln(display.DrawEndCompiler())
 
-	loger.Action(fmt.Sprintf("Nombre de fiches compilées : %v", Id-1))
+	loger.Actionln(fmt.Sprintf("Nombre de fiches compilées : %v", Id-1))
 	time.Sleep(800 * time.Millisecond)
-	loger.Action(fmt.Sprintf("Temps écoulé : %v", timeEnd))
+	loger.Actionln(fmt.Sprintf("Temps écoulé : %v", timeEnd))
 	time.Sleep(800 * time.Millisecond)
 
 	if err := Wb.SaveAs(filepath.Join(path, fmt.Sprintf("__COMPILATION__%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
 		fmt.Println(err)
 	}
 
-	loger.Blankln(display.DrawSaveExcel())
+	loger.Uiln(display.DrawSaveExcel())
 	fmt.Println()
 	time.Sleep(200 * time.Millisecond)
 }
@@ -146,12 +146,12 @@ func CompilerFicheAppuiFt(path string) {
 //WORKER:
 func workerFicheAppuiFt() {
 	for job := range jobs {
-		loger.Ok(fmt.Sprintf("N°%v | Files: %s", job.Id, filepath.Base(job.Path)))
+		loger.Okln(fmt.Sprintf("N°%v | Files: %s", job.Id, filepath.Base(job.Path)))
 
 		excelFile := job.Path
 		f, err := xlsx.OpenFile(excelFile)
 		if err != nil {
-			loger.Errorln(fmt.Sprintf("Crash with this files: %s", filepath.Base(excelFile)))
+			loger.Errorln(fmt.Sprintf("Crashln with this files: %s", filepath.Base(excelFile)))
 			_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job.Id), job.Path)
 			wg.Done()
 			continue
