@@ -25,12 +25,12 @@ var (
 
 	// colors
 	Cyan    = color.New(color.FgCyan).SprintFunc()
-	Green   = color.New(color.FgHiGreen).SprintFunc()
-	Red     = color.New(color.FgHiRed).SprintFunc()
-	TRed    = color.New(color.FgRed).SprintFunc()
+	Green   = color.New(color.FgGreen).SprintFunc()
+	HiRed   = color.New(color.FgHiRed).SprintFunc()
+	Red     = color.New(color.FgRed).SprintFunc()
 	Majenta = color.New(color.FgMagenta).SprintFunc()
-	Black   = color.New(color.FgBlack).SprintFunc()
-	Yellow  = color.New(color.FgHiYellow).SprintFunc()
+	White   = color.New(color.FgBlue).SprintFunc()
+	Yellow  = color.New(color.FgYellow).SprintFunc()
 )
 
 func init() {
@@ -79,22 +79,22 @@ func Action(v ...any) {
 
 func End(v ...any) {
 	ui.Print(v...)
-	fmt.Print(Black(v...))
+	fmt.Print(White(v...))
 }
 
 func Warning(v ...any) {
 	warning.Print(v...)
-	fmt.Print(TRed(v...))
+	fmt.Print(Red(v...))
 }
 
 func Error(v ...any) {
 	errr.Print(v...)
-	fmt.Print(Red(v...))
+	fmt.Print(HiRed(v...))
 }
 
 func Crash(v ...any) {
 	crash.Print(v...)
-	fmt.Print(Red(v...))
+	fmt.Print(HiRed(v...))
 	os.Exit(1)
 }
 
@@ -120,22 +120,22 @@ func Actionln(v ...any) {
 
 func Endln(v ...any) {
 	ui.Println(v...)
-	fmt.Println(Black(v...))
+	fmt.Println(White(v...))
 }
 
 func Warningln(v ...any) {
 	warning.Println(v...)
-	fmt.Println(TRed(v...))
+	fmt.Println(Red(v...))
 }
 
 func Errorln(v ...any) {
 	errr.Println(v...)
-	fmt.Println(Red(v...))
+	fmt.Println(HiRed(v...))
 }
 
 func Crashln(v ...any) {
 	crash.Println(v...)
-	fmt.Println(Red(v...))
+	fmt.Println(HiRed(v...))
 	os.Exit(1)
 }
 
