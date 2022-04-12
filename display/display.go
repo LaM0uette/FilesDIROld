@@ -71,7 +71,7 @@ func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize i
 <cyan>Dumps:</> <fg=48,207,37>%s</>
 <cyan>Export Excel:</> <fg=48,207,37>%s</>
 
-<cyan>+=========  Auteur:</> <yellow>%s</>       <cyan>Version:</> <yellow>%s</>  <cyan>=========+</>
+<cyan>+=========  Auteur:</> <fg=48,207,37>%s</>       <cyan>Version:</> <fg=48,207,37>%s</>  <cyan>=========+</>
 `,
 		SrcPath,
 		ReqFinal,
