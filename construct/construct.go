@@ -156,7 +156,7 @@ func (f *Flags) writeExcelLineWorker(Wb *excelize.File, iMax int) {
 	for job := range jobs {
 
 		//fmt.Print("\r")
-		loger.POAction(fmt.Sprintf("\rSauvegarde du fichier Excel...  %v/%v", job, iMax))
+		loger.POAction(fmt.Sprintf("\r<magenta>Export Excel...</>  <green>%v</><magenta>/</><green>%v</>", job, iMax))
 
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job+2), ExcelData[job].Id)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job+2), ExcelData[job].File)

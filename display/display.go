@@ -42,7 +42,7 @@ func DrawEndSearch() string {
 }
 
 func DrawWriteExcel() string {
-	return fmt.Sprint(`<magenta>Sauvegarde du fichier Excel...   `)
+	return fmt.Sprint(`<magenta>Export Excel...   `)
 }
 
 func DrawSaveExcel() string {
