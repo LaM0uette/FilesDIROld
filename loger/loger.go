@@ -52,7 +52,7 @@ func init() {
 // Log
 func Start(v ...any) {
 	ui.Print(v...)
-	color.HiCyan.Print(v...)
+	color.Print(v...)
 }
 
 func Ui(v ...any) {
