@@ -81,7 +81,7 @@ func (f *Flags) GetReqOfSearched() string {
 func (f *Flags) CheckMinimumPoolSize() {
 	if f.FlgPoolSize < 2 {
 		f.FlgPoolSize = 2
-		loger.Paramln("Poolsize mise à 2 (ne peut pas être inférieur à 2)")
+		loger.Paramln("<yellow>Poolsize mise à</> <green>2</> <yellow>(ne peut pas être inférieur à</> <green>2</><yellow>)</>")
 	}
 }
 
@@ -93,7 +93,7 @@ func (f *Flags) SetMaxThread() {
 		return
 	}
 
-	loger.Paramln(fmt.Sprintf("Nombre de threads mis à : %v", maxThr))
+	loger.Paramln(fmt.Sprintf("<yellow>Nombre de threads mis à :</> <green>%v</>", maxThr))
 }
 
 func (f *Flags) SetSaveWord() string {

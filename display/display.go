@@ -22,7 +22,7 @@ func DrawStart() string {
 }
 
 func DrawInitSearch() string {
-	return fmt.Sprint(`<yellow>Initialisation du programme...</>`)
+	return fmt.Sprint(`<yellow>Initialisation du programme...</><green>`)
 }
 
 func DrawRunSearch() string {
@@ -42,11 +42,11 @@ func DrawEndSearch() string {
 }
 
 func DrawWriteExcel() string {
-	return fmt.Sprint(`Sauvegarde du fichier Excel...  `)
+	return fmt.Sprint(`<magenta>Sauvegarde du fichier Excel...</>  <green>`)
 }
 
 func DrawSaveExcel() string {
-	return fmt.Sprint(`Fichier Excel sauvegardé avec succes.`)
+	return fmt.Sprint(`<magenta>Fichier Excel sauvegardé avec succes.</>`)
 }
 
 func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize int, timerSearch time.Duration, timerTotal time.Duration) string {
@@ -56,20 +56,20 @@ func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize i
 +============================================================+
 </>
 <magenta>#### - INFOS GENERALES :</>
-Dossiers principal: <yellow>%s</>
-Requête utilisée: <yellow>%s</>
-Nombre de Threads: <yellow>%v</>
-Nombre de Goroutines: <yellow>%v</>
+Dossiers principal: <green>%s</>
+Requête utilisée: <green>%s</>
+Nombre de Threads: <green>%v</>
+Nombre de Goroutines: <green>%v</>
 
 <magenta>#### - RESULTATS :</>
-Fichiers trouvés: <yellow>%v</>
-Temps d'exécution de la recherche: <yellow>%v</>
-Temps d'exécution total: <yellow>%v</>
+Fichiers trouvés: <green>%v</>
+Temps d'exécution de la recherche: <green>%v</>
+Temps d'exécution total: <green>%v</>
 
-<magenta>#### - EXPORTS :</>
-Logs: <yellow>%s</>
-Dumps: <yellow>%s</>
-Export Excel: <yellow>%s</>
+<magenta>#### - EXPORTS :<magenta/>
+Logs: <green>%s</>
+Dumps: <green>%s</>
+Export Excel: <green>%s</>
 
 <cyan>+=========  Auteur:</> <yellow>%s</>       <cyan>Version:</> <yellow>%s</>  <cyan>=========+</>
 
