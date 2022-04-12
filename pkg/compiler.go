@@ -46,6 +46,8 @@ func CompilerFicheAppuiFt(path string) {
 
 	loger.Blankln(display.DrawRunCompiler())
 
+	Id = 1
+
 	Wb = excelize.NewFile()
 	_ = Wb.SetCellValue("Sheet1", "A1", "Chemin de la fiche")
 	_ = Wb.SetCellValue("Sheet1", "B1", "Adresse")
@@ -70,7 +72,7 @@ func CompilerFicheAppuiFt(path string) {
 	_ = Wb.SetCellValue("Sheet1", "U1", "Date")
 	_ = Wb.SetCellValue("Sheet1", "V1", "PB")
 
-	for w := 1; w <= 500; w++ {
+	for w := 1; w <= 400; w++ {
 		go workerFicheAppuiFt()
 	}
 
@@ -97,6 +99,10 @@ func CompilerFicheAppuiFt(path string) {
 				row, err := sht.Row(i)
 				if err != nil {
 					panic(err)
+				}
+
+				if i == 0 {
+					continue
 				}
 
 				go func() {
@@ -146,6 +152,7 @@ func workerFicheAppuiFt() {
 		f, err := xlsx.OpenFile(excelFile)
 		if err != nil {
 			loger.Errorln(fmt.Sprintf("Crash with this files: %s", filepath.Base(excelFile)))
+			_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job.Id), job.Path)
 			wg.Done()
 			continue
 		}
