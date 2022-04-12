@@ -12,21 +12,24 @@ import (
 
 var (
 	// logs
-	ui       *log.Logger
-	date     *log.Logger
-	vInfo    *log.Logger
-	vWarning *log.Logger
-	vError   *log.Logger
-	crash    *log.Logger
+	ui      *log.Logger
+	param   *log.Logger
+	ok      *log.Logger
+	action  *log.Logger
+	warning *log.Logger
+	errr    *log.Logger
+	crash   *log.Logger
 
 	// dumps
 	vSemicolon *log.Logger
 
 	// colors
-	Cyan   = color.New(color.FgCyan).SprintFunc()
-	Green  = color.New(color.FgGreen).SprintFunc()
-	Red    = color.New(color.FgRed).SprintFunc()
-	Yellow = color.New(color.FgYellow).SprintFunc()
+	Cyan    = color.New(color.FgCyan).SprintFunc()
+	Green   = color.New(color.FgGreen).SprintFunc()
+	Red     = color.New(color.FgRed).SprintFunc()
+	HiRed   = color.New(color.FgHiRed).SprintFunc()
+	Majenta = color.New(color.FgMagenta).SprintFunc()
+	Yellow  = color.New(color.FgYellow).SprintFunc()
 )
 
 func init() {
@@ -41,10 +44,11 @@ func init() {
 	}
 
 	ui = log.New(logFile, "", 0)
-	date = log.New(logFile, ": ", log.Ltime|log.Lmsgprefix)
-	vInfo = log.New(logFile, "[INFO]: ", log.Ltime|log.Lmsgprefix)
-	vWarning = log.New(logFile, "[WARNING]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
-	vError = log.New(logFile, "[ERROR]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
+	param = log.New(logFile, "[INFO]: ", log.Ltime|log.Lmsgprefix)
+	ok = log.New(logFile, ": ", log.Ltime|log.Lmsgprefix)
+	action = log.New(logFile, ": ", log.Ltime|log.Lmsgprefix)
+	warning = log.New(logFile, "[WARNING]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
+	errr = log.New(logFile, "[ERROR]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
 	crash = log.New(logFile, "[CRASH]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
 
 	vSemicolon = log.New(dumpFile, "", 0)
@@ -57,14 +61,29 @@ func Ui(v ...any) {
 	fmt.Println(Cyan(v...))
 }
 
+func Param(v ...any) {
+	param.Println(v...)
+	fmt.Println(Yellow(v...))
+}
+
 func Ok(v ...any) {
-	date.Println(v...)
+	ok.Println(v...)
 	fmt.Println(Green(v...))
 }
 
-func Param(v ...any) {
-	date.Println(v...)
-	fmt.Println(Yellow(v...))
+func Action(v ...any) {
+	action.Print(v...)
+	fmt.Print(Majenta(v...))
+}
+
+func Warning(v ...any) {
+	warning.Println(v...)
+	fmt.Println(HiRed(v...))
+}
+
+func Error(v ...any) {
+	errr.Println(v...)
+	fmt.Println(Red(v...))
 }
 
 func Crash(v ...any) {
@@ -73,39 +92,40 @@ func Crash(v ...any) {
 	os.Exit(1)
 }
 
-func Blank(v ...any) {
-	ui.Print(v...)
-	fmt.Print(v...)
-}
-
 func Blankln(v ...any) {
 	ui.Println(v...)
 	fmt.Println(v...)
 }
 
 func Infoln(v ...any) {
-	vInfo.Println(v...)
+	param.Println(v...)
 	fmt.Println(v...)
 }
 
 func Warningln(v ...any) {
-	vWarning.Println(v...)
+	warning.Println(v...)
 	fmt.Println(v...)
 }
 
 func Errorln(v ...any) {
-	vError.Println(v...)
+	errr.Println(v...)
 	fmt.Println(v...)
 }
 
 //...
 // Log only
-func LOBlankDateln(v ...any) {
-	date.Println(v...)
+func LOOk(v ...any) {
+	ok.Println(v...)
+}
+
+//...
+// Print only
+func POOk(v ...any) {
+	fmt.Println(Green(v...))
 }
 
 //...
 // Dump
-func Semicolonln(v ...any) {
+func Semicolon(v ...any) {
 	vSemicolon.Println(v...)
 }

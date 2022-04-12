@@ -81,7 +81,7 @@ func (f *Flags) GetReqOfSearched() string {
 func (f *Flags) CheckMinimumPoolSize() {
 	if f.FlgPoolSize < 2 {
 		f.FlgPoolSize = 2
-		loger.Infoln("Poolsize mise à 2 (ne peut pas être inférieur à 2)")
+		loger.Param("Poolsize mise à 2 (ne peut pas être inférieur à 2)")
 	}
 }
 
@@ -93,7 +93,7 @@ func (f *Flags) SetMaxThread() {
 		return
 	}
 
-	loger.Infoln(fmt.Sprintf("Nombre de threads mis à : %v", maxThr))
+	loger.Param(fmt.Sprintf("Nombre de threads mis à : %v", maxThr))
 }
 
 func (f *Flags) SetSaveWord() string {
@@ -101,7 +101,7 @@ func (f *Flags) SetSaveWord() string {
 	if len(f.FlgWord) < 1 {
 		word = "Export"
 		time.Sleep(600 * time.Millisecond)
-		loger.Blankln(fmt.Sprintf("Nom du fichier de sauvergarde mis par défaut : %v", word))
+		loger.Action(fmt.Sprintf("Nom du fichier de sauvergarde mis par défaut : %v", word))
 	}
 
 	return word
@@ -136,7 +136,7 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 	}
 
 	wg.Wait() // Wait for all write loops to complete
-	fmt.Printf("\rNombre de lignes sauvegardées :  %v/%v\n", iMax, iMax)
+	loger.POOk(fmt.Sprintf("\rNombre de lignes sauvegardées :  %v/%v\n", iMax, iMax))
 	time.Sleep(1 * time.Second)
 
 	// Generate a default word if is none
@@ -144,7 +144,7 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 
 	// Save Excel file
 	if err := Wb.SaveAs(filepath.Join(DstPath, saveWord+fmt.Sprintf("_%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
-		fmt.Println(err)
+		loger.Error(err)
 	}
 
 	f.DrawSaveExcel()
@@ -155,8 +155,8 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 func (f *Flags) writeExcelLineWorker(Wb *excelize.File, iMax int) {
 	for job := range jobs {
 
-		fmt.Print("\r")
-		fmt.Printf("\rSauvegarde du fichier Excel...  %v/%v", job, iMax)
+		//fmt.Print("\r")
+		loger.POOk(fmt.Sprintf("\rSauvegarde du fichier Excel...  %v/%v", job, iMax))
 
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job+2), ExcelData[job].Id)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job+2), ExcelData[job].File)
@@ -192,7 +192,7 @@ func (f *Flags) DrawRunSearch() {
 		return
 	}
 
-	loger.Blankln(display.DrawRunSearch())
+	loger.Ui(display.DrawRunSearch())
 	time.Sleep(400 * time.Millisecond)
 }
 
@@ -202,7 +202,7 @@ func (f *Flags) DrawEndSearch() {
 	}
 
 	time.Sleep(1 * time.Second)
-	loger.Blankln(display.DrawEndSearch())
+	loger.Ui(display.DrawEndSearch())
 	time.Sleep(200 * time.Millisecond)
 }
 
@@ -211,7 +211,7 @@ func (f *Flags) DrawWriteExcel() {
 		return
 	}
 
-	loger.Blank(display.DrawWriteExcel())
+	loger.Action(display.DrawWriteExcel())
 	time.Sleep(200 * time.Millisecond)
 }
 
@@ -220,7 +220,7 @@ func (f *Flags) DrawSaveExcel() {
 		return
 	}
 	//fmt.Println()
-	loger.Blankln(display.DrawSaveExcel())
+	loger.Action(display.DrawSaveExcel())
 	time.Sleep(200 * time.Millisecond)
 }
 

@@ -43,7 +43,7 @@ var (
 func CurrentDir() string {
 	pwd, err := os.Getwd()
 	if err != nil {
-		fmt.Println(err)
+		loger.Error(err)
 		os.Exit(1)
 	}
 	return pwd
@@ -143,7 +143,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 					s.NbFilesTotal++
 
 					if !super {
-						fmt.Print(fmt.Sprintf("\rN°%v | Files: %s\n", s.NbFiles, file.Name()))
+						loger.POOk(fmt.Sprintf("\rN°%v | Files: %s\n", s.NbFiles, file.Name()))
 
 						dataExp := construct.ExportData{
 							Id:       s.NbFiles,
@@ -155,11 +155,11 @@ func (s *Search) loopFilesWorker(super bool) error {
 						construct.ExcelData = append(construct.ExcelData, dataExp)
 
 					} else {
-						fmt.Print(fmt.Sprintf("\rNombres de fichiers traités: %v", s.NbFilesTotal))
+						loger.POOk(fmt.Sprintf("\rNombres de fichiers traités: %v", s.NbFilesTotal))
 					}
 
-					loger.LOBlankDateln(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
-					loger.Semicolonln(fmt.Sprintf("%v;%s;%s;%s;%s",
+					loger.LOOk(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
+					loger.Semicolon(fmt.Sprintf("%v;%s;%s;%s;%s",
 						s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(pth, file.Name()), pth))
 
 					if runtime.NumGoroutine() > s.NbGoroutine {
@@ -167,7 +167,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 					}
 				} else {
 					s.NbFilesTotal++
-					fmt.Print(fmt.Sprintf("\rNombres de fichiers traités: %v", s.NbFilesTotal))
+					loger.POOk(fmt.Sprintf("\rNombres de fichiers traités: %v", s.NbFilesTotal))
 				}
 			}
 		}
@@ -181,7 +181,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 func (s *Search) LoopDirsFiles(path string, f *construct.Flags) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		loger.Errorln(fmt.Sprintf("Error with this path: %s", path))
+		loger.Error(fmt.Sprintf("Error with this path: %s", path))
 	}
 
 	go func() {
@@ -228,7 +228,7 @@ func (s *Search) RunSearch(f *construct.Flags) {
 	f.SetMaxThread()
 
 	// Generate column of dump
-	loger.Semicolonln("id;Fichier;Date;Lien_Fichier;Lien")
+	loger.Semicolon("id;Fichier;Date;Lien_Fichier;Lien")
 
 	f.DrawRunSearch()
 
@@ -239,7 +239,7 @@ func (s *Search) RunSearch(f *construct.Flags) {
 		go func() {
 			err := s.loopFilesWorker(f.FlgSuper)
 			if err != nil {
-				loger.Errorln(err)
+				loger.Error(err)
 			}
 		}()
 	}
