@@ -41,12 +41,17 @@ func DrawRunSearch() string {
 +============================================================+
 |     **********     DEBUT DES RECHERCHES     **********     |
 +============================================================+
-</>`, globals.Th1)
+</>`, globals.Th2)
 }
 
 func DrawFileSearched(num int, file string) string {
-	return fmt.Sprintf("\r<bg=%[1]s>[OK]</> <fg=%[1]s>N°%[2]v ** %[3]s</>\n",
-		globals.Th1, num, file)
+	return fmt.Sprintf("\r<bg=%[1]s>[OK]</> <fg=%[2]s>N°</><fg=%[1]s>%[3]v</> <fg=%[2]s>|=|</> <fg=%[1]s>%[4]s</>\n",
+		globals.Th1, globals.Th2, num, file)
+}
+
+func DrawSearchedFait(num int) string {
+	return fmt.Sprintf("\r<fg=%[2]s>Fait:</> <fg=%[1]s>%[3]v</>",
+		globals.Th1, globals.Th2, num)
 }
 
 func DrawEndSearch() string {
@@ -54,7 +59,7 @@ func DrawEndSearch() string {
 +============================================================+
 |     **********      FIN DES RECHERCHES      **********     |
 +============================================================+
-</>`, globals.Th1)
+</>`, globals.Th2)
 }
 
 func DrawWriteExcel() string {

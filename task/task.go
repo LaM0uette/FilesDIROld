@@ -146,7 +146,6 @@ func (s *Search) loopFilesWorker(super bool) error {
 
 					if !super {
 						Mu.Lock()
-						//loger.POOk(fmt.Sprintf("\r<fg=44,168,65>N°%v | Files:</> <fg=214,99,144>%s</>\n", s.NbFiles, file.Name()))
 						loger.POOk(display.DrawFileSearched(s.NbFiles, file.Name()))
 
 						dataExp := construct.ExportData{
@@ -160,7 +159,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 						Mu.Unlock()
 
 					} else {
-						loger.POAction(fmt.Sprintf("\rFait: %v", s.NbFilesTotal))
+						loger.POAction(display.DrawSearchedFait(s.NbFilesTotal))
 					}
 
 					loger.LOOk(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
@@ -172,7 +171,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 					}
 				} else {
 					s.NbFilesTotal++
-					loger.POAction(fmt.Sprintf("\rFait: %v", s.NbFilesTotal))
+					loger.POAction(display.DrawSearchedFait(s.NbFilesTotal))
 				}
 			}
 		}
