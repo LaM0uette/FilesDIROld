@@ -136,7 +136,7 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 	}
 
 	wg.Wait() // Wait for all write loops to complete
-	loger.POAction(fmt.Sprintf("\rNombre de lignes sauvegardées :  %v/%v\n", iMax, iMax))
+	loger.POAction(fmt.Sprintf("\r<magenta>Nombre de lignes sauvegardées :</>  <green>%v</><magenta>/</><green>%v</>\n", iMax, iMax))
 	time.Sleep(1 * time.Second)
 
 	// Generate a default word if is none
