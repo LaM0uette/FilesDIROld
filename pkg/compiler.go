@@ -128,9 +128,9 @@ func CompilerFicheAppuiFt(path string) {
 
 	loger.Uiln(display.DrawEndCompiler())
 
-	loger.Action(fmt.Sprintf("Nombre de fiches compilées : %v", Id-1))
+	loger.Actionln(fmt.Sprintf("<fg=%[1]s>Nombre de fiches compilées :</> <fg=%[2]s>%[3]v</>", globals.Param, globals.Th1, Id-1))
 	time.Sleep(800 * time.Millisecond)
-	loger.Action(fmt.Sprintf("Temps écoulé : %v", timeEnd))
+	loger.Actionln(fmt.Sprintf("<fg=%[1]s>Temps écoulé :</> <fg=%[2]s>%[3]v</>", globals.Param, globals.Th1, timeEnd))
 	time.Sleep(800 * time.Millisecond)
 
 	if err := Wb.SaveAs(filepath.Join(path, fmt.Sprintf("__COMPILATION__%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
@@ -146,16 +146,17 @@ func CompilerFicheAppuiFt(path string) {
 //WORKER:
 func workerFicheAppuiFt() {
 	for job := range jobs {
-		loger.Okln(fmt.Sprintf("N°%v | Files: %s", job.Id, filepath.Base(job.Path)))
 
 		excelFile := job.Path
 		f, err := xlsx.OpenFile(excelFile)
 		if err != nil {
-			loger.Errorln(fmt.Sprintf("Crashln with this files: %s", filepath.Base(excelFile)))
+			display.DrawFileSearchedFailed(job.Id, filepath.Base(job.Path))
 			_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job.Id), job.Path)
 			wg.Done()
 			continue
 		}
+
+		display.DrawFileSearched(job.Id, filepath.Base(job.Path))
 
 		sht := f.Sheets[0]
 

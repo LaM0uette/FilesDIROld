@@ -49,6 +49,11 @@ func DrawFileSearched(num int, file string) string {
 		globals.Th1, globals.Th2, num, file)
 }
 
+func DrawFileSearchedFailed(num int, file string) string {
+	return fmt.Sprintf("\r<bg=%[1]s;fg=255,255,255;op=bold;>[NOK]</> <fg=%[2]s;op=bold;>N°</><fg=%[1]s>%[3]v</> <fg=%[2]s;op=bold;>|=|</> <fg=%[1]s>%[4]s</>\n",
+		globals.Th3, globals.Th2, num, file)
+}
+
 func DrawSearchedFait(num int) string {
 	return fmt.Sprintf("\r<fg=%[2]s>Fait:</> <fg=%[1]s>%[3]v</>",
 		globals.Th1, globals.Th2, num)
