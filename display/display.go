@@ -37,19 +37,19 @@ func DrawSetMaxThread(v any) string {
 }
 
 func DrawRunSearch() string {
-	return fmt.Sprint(`<cyan>
+	return fmt.Sprintf(`<fg=%[1]s>
 +============================================================+
-|                    DEBUT DES RECHERCHES                    |
+|     **********     DEBUT DES RECHERCHES     **********     |
 +============================================================+
-</>`)
+</>`, globals.Th1)
 }
 
 func DrawEndSearch() string {
-	return fmt.Sprint(`<cyan>
+	return fmt.Sprintf(`<fg=%[1]s>
 +============================================================+
-|                     FIN DES RECHERCHES                     |                      
+|     **********      FIN DES RECHERCHES      **********     |
 +============================================================+
-</>`)
+</>`, globals.Th1)
 }
 
 func DrawWriteExcel() string {
