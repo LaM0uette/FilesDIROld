@@ -63,7 +63,7 @@ func DrawEndSearch() string {
 }
 
 func DrawWriteExcel(i, imax int) string {
-	return fmt.Sprintf(`<fg=%[1]s>Export Excel...</><fg=%[2]s>%[3]v</><fg=%[1]s>/</><fg=%[2]s>%[4]v</>`,
+	return fmt.Sprintf("\r<fg=%[1]s>Export Excel...</><fg=%[2]s>%[3]v</><fg=%[1]s>/</><fg=%[2]s>%[4]v</>",
 		globals.Param, globals.Th1, i, imax)
 }
 
