@@ -41,6 +41,9 @@ func init() {
 	vSemicolon = log.New(dumpFile, "", 0)
 }
 
+//c := color.New(color.FgCyan).SprintFunc()
+//vBlank.Print(v...)
+//fmt.Print(c(v...))
 //...
 // Log + msg
 func Blank(v ...any) {
