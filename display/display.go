@@ -72,6 +72,11 @@ func DrawGenerateExcelSave(imax int) string {
 		globals.Param, globals.Th1, imax)
 }
 
+func DrawSetSaveWord(word string) string {
+	return fmt.Sprintf("<fg=%[1]s>Nom du fichier de sauvergarde mis par défaut :</> <fg=%[2]s>%[3]v</>",
+		globals.Param, globals.Th1, word)
+}
+
 func DrawSaveExcel() string {
 	return fmt.Sprintf(`<fg=%[1]s>Fichier Excel sauvegardé avec succes.</>`,
 		globals.Param)

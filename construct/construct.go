@@ -101,7 +101,7 @@ func (f *Flags) SetSaveWord() string {
 	if len(f.FlgWord) < 1 {
 		word = "Export"
 		time.Sleep(600 * time.Millisecond)
-		loger.Actionln(fmt.Sprintf("<fg=214,99,144>Nom du fichier de sauvergarde mis par défaut :</> <fg=44,168,65>%v</>", word))
+		loger.Actionln(display.DrawSetSaveWord(word))
 	}
 
 	return word
