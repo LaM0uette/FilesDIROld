@@ -2,6 +2,7 @@ package task
 
 import (
 	"FilesDIR/construct"
+	"FilesDIR/display"
 	"FilesDIR/globals"
 	"FilesDIR/loger"
 	"bufio"
@@ -145,7 +146,8 @@ func (s *Search) loopFilesWorker(super bool) error {
 
 					if !super {
 						Mu.Lock()
-						loger.POOk(fmt.Sprintf("\r<fg=44,168,65>N°%v | Files:</> <fg=214,99,144>%s</>\n", s.NbFiles, file.Name()))
+						//loger.POOk(fmt.Sprintf("\r<fg=44,168,65>N°%v | Files:</> <fg=214,99,144>%s</>\n", s.NbFiles, file.Name()))
+						loger.POOk(display.DrawFileSearched(s.NbFiles, file.Name()))
 
 						dataExp := construct.ExportData{
 							Id:       s.NbFiles,
@@ -184,7 +186,6 @@ func (s *Search) loopFilesWorker(super bool) error {
 func (s *Search) LoopDirsFiles(path string, f *construct.Flags) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		// TODO A check
 		loger.Errorln(fmt.Sprintf("<fg=158, 21, 3>Error with this path:</> <fg=230, 31, 5>%s</>", path))
 	}
 
