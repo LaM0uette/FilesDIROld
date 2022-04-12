@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="correction bug excel loop">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_04_2022_08_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_04_2022_08_14__Changes_.xml" afterDir="false" />
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="Couleur mef">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/construct/construct.go" beforeDir="false" afterPath="$PROJECT_DIR$/construct/construct.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/display/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/display/display.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/globals/globals.go" beforeDir="false" afterPath="$PROJECT_DIR$/globals/globals.go" afterDir="false" />
     </list>
@@ -116,7 +116,8 @@
     <MESSAGE value="correction bug excel loop strcut" />
     <MESSAGE value="correction bug excel loop" />
     <MESSAGE value="refont visuel avec couleurs" />
-    <option name="LAST_COMMIT_MESSAGE" value="refont visuel avec couleurs" />
+    <MESSAGE value="Couleur mef" />
+    <option name="LAST_COMMIT_MESSAGE" value="Couleur mef" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

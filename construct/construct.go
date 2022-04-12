@@ -81,7 +81,7 @@ func (f *Flags) GetReqOfSearched() string {
 func (f *Flags) CheckMinimumPoolSize() {
 	if f.FlgPoolSize < 2 {
 		f.FlgPoolSize = 2
-		loger.Paramln("<fg=214,99,144>Poolsize mise à</> <fg=44,168,65>2</> <fg=214,99,144>(ne peut pas être inférieur à</> <fg=44,168,65>2</><fg=214,99,144>)</>")
+		loger.Paramln(display.DrawCheckMinimumPoolSize())
 	}
 }
 

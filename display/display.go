@@ -22,7 +22,13 @@ func DrawStart() string {
 }
 
 func DrawInitSearch() string {
-	return fmt.Sprint(`<fg=214,99,144>Initialisation du programme...</>`)
+	return fmt.Sprintf(`<fg=%[1]s>Initialisation du programme...</>`,
+		globals.Param)
+}
+
+func DrawCheckMinimumPoolSize() string {
+	return fmt.Sprintf(`<fg=%[1]s>Poolsize mise à</> <fg=%[2]s>2</> <fg=%[1]s>(ne peut pas être inférieur à</> <fg=%[2]s>2</><fg=%[1]s>)</>`,
+		globals.Param, globals.Th1)
 }
 
 func DrawRunSearch() string {
