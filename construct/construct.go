@@ -81,7 +81,7 @@ func (f *Flags) GetReqOfSearched() string {
 func (f *Flags) CheckMinimumPoolSize() {
 	if f.FlgPoolSize < 2 {
 		f.FlgPoolSize = 2
-		loger.Paramln("<fg=214,99,144>Poolsize mise à</> <fg=40,212,88>2</> <fg=214,99,144>(ne peut pas être inférieur à</> <fg=40,212,88>2</><fg=214,99,144>)</>")
+		loger.Paramln("<fg=214,99,144>Poolsize mise à</> <fg=48,207,37>2</> <fg=214,99,144>(ne peut pas être inférieur à</> <fg=48,207,37>2</><fg=214,99,144>)</>")
 	}
 }
 
@@ -93,7 +93,7 @@ func (f *Flags) SetMaxThread() {
 		return
 	}
 
-	loger.Paramln(fmt.Sprintf("<fg=214,99,144>Nombre de threads mis à :</> <fg=40,212,88>%v</>", maxThr))
+	loger.Paramln(fmt.Sprintf("<fg=214,99,144>Nombre de threads mis à :</> <fg=48,207,37>%v</>", maxThr))
 }
 
 func (f *Flags) SetSaveWord() string {
@@ -101,7 +101,7 @@ func (f *Flags) SetSaveWord() string {
 	if len(f.FlgWord) < 1 {
 		word = "Export"
 		time.Sleep(600 * time.Millisecond)
-		loger.Actionln(fmt.Sprintf("<fg=214,99,144>Nom du fichier de sauvergarde mis par défaut :</> <fg=40,212,88>%v</>", word))
+		loger.Actionln(fmt.Sprintf("<fg=214,99,144>Nom du fichier de sauvergarde mis par défaut :</> <fg=48,207,37>%v</>", word))
 	}
 
 	return word
@@ -137,7 +137,7 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 
 	wg.Wait() // Wait for all write loops to complete
 	time.Sleep(300 * time.Millisecond)
-	loger.POAction(fmt.Sprintf("\r<magenta>Nombre de lignes sauvegardées :</>  <fg=40,212,88>%v</><magenta>/</><fg=40,212,88>%v</>\n", iMax, iMax))
+	loger.POAction(fmt.Sprintf("\r<fg=214,99,144>Nombre de lignes sauvegardées :</>  <fg=48,207,37>%v</><fg=214,99,144>/</><fg=48,207,37>%v</>\n", iMax, iMax))
 	time.Sleep(1 * time.Second)
 
 	// Generate a default word if is none
@@ -157,7 +157,7 @@ func (f *Flags) writeExcelLineWorker(Wb *excelize.File, iMax int) {
 	for job := range jobs {
 
 		//fmt.Print("\r")
-		loger.POAction(fmt.Sprintf("\r<magenta>Export Excel...</>  <fg=40,212,88>%v</><magenta>/</><fg=40,212,88>%v</>", job, iMax))
+		loger.POAction(fmt.Sprintf("\r<fg=214,99,144>Export Excel...</>  <fg=48,207,37>%v</><fg=214,99,144>/</><fg=48,207,37>%v</>", job, iMax))
 
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job+2), ExcelData[job].Id)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job+2), ExcelData[job].File)

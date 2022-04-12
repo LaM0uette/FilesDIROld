@@ -8,14 +8,14 @@ import (
 )
 
 func DrawStart() string {
-	return fmt.Sprintf(`<fg=40,212,88>
+	return fmt.Sprintf(`<fg=48,207,37>
 		███████╗██╗██╗     ███████╗██████╗ ██╗██████╗ 
 		██╔════╝██║██║     ██╔════╝██╔══██╗██║██╔══██╗
 		█████╗  ██║██║     █████╗  ██║  ██║██║██████╔╝
 		██╔══╝  ██║██║     ██╔══╝  ██║  ██║██║██╔══██╗
 		██║     ██║███████╗███████╗██████╔╝██║██║  ██║
 		╚═╝     ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝</>
-		<cyan>Version:</> <fg=40,212,88>%s</>              <cyan>Auteur:</> <fg=40,212,88>%s</>
+		<cyan>Version:</> <fg=48,207,37>%s</>              <cyan>Auteur:</> <fg=48,207,37>%s</>
 
 
 `, globals.Version, globals.Author)
@@ -42,11 +42,11 @@ func DrawEndSearch() string {
 }
 
 func DrawWriteExcel() string {
-	return fmt.Sprint(`<magenta>Export Excel...   `)
+	return fmt.Sprint(`<fg=214,99,144>Export Excel...   `)
 }
 
 func DrawSaveExcel() string {
-	return fmt.Sprint(`<magenta>Fichier Excel sauvegardé avec succes.</>`)
+	return fmt.Sprint(`<fg=214,99,144>Fichier Excel sauvegardé avec succes.</>`)
 }
 
 func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize int, timerSearch time.Duration, timerTotal time.Duration) string {
@@ -55,7 +55,7 @@ func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize i
 |                    BILAN DES RECHERCHES                    |                     
 +============================================================+
 </>
-<magenta>#### - INFOS GENERALES :</>
+<fg=214,99,144>#### - INFOS GENERALES :</>
 <cyan>Dossiers principal:</> <green>%s</>
 <cyan>Requête utilisée:</> <green>%s</>
 <cyan>Nombre de Threads:</> <green>%v</>
@@ -66,7 +66,7 @@ func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize i
 <cyan>Temps d'exécution de la recherche:</> <green>%v</>
 <cyan>Temps d'exécution total:</> <green>%v</>
 
-<magenta>#### - EXPORTS :</>
+<fg=214,99,144>#### - EXPORTS :</>
 <cyan>Logs:</> <green>%s</>
 <cyan>Dumps:</> <green>%s</>
 <cyan>Export Excel:</> <green>%s</>
