@@ -226,7 +226,7 @@ func (f *Flags) DrawSaveExcel() {
 
 func (f *Flags) DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles int, TimerSearch, timerEnd time.Duration) {
 	disp := display.DrawEnd(SrcPath, DstPath, ReqFinal, NbGoroutine, NbFiles, f.FlgPoolSize, TimerSearch, timerEnd)
-	loger.Uiln(disp)
+	loger.Endln(disp)
 }
 
 //...

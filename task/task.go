@@ -181,7 +181,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 func (s *Search) LoopDirsFiles(path string, f *construct.Flags) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		loger.Errorln(fmt.Sprintf("Errorln with this path: %s", path))
+		loger.Errorln(fmt.Sprintf("Error with this path: %s", path))
 	}
 
 	go func() {

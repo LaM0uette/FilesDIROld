@@ -29,6 +29,7 @@ var (
 	Red     = color.New(color.FgHiRed).SprintFunc()
 	TRed    = color.New(color.FgRed).SprintFunc()
 	Majenta = color.New(color.FgHiMagenta).SprintFunc()
+	Black   = color.New(color.FgHiBlack).SprintFunc()
 	Yellow  = color.New(color.FgHiYellow).SprintFunc()
 )
 
@@ -76,6 +77,11 @@ func Action(v ...any) {
 	fmt.Print(Majenta(v...))
 }
 
+func End(v ...any) {
+	ui.Print(v...)
+	fmt.Print(Black(v...))
+}
+
 func Warning(v ...any) {
 	warning.Print(v...)
 	fmt.Print(TRed(v...))
@@ -112,6 +118,11 @@ func Actionln(v ...any) {
 	fmt.Println(Majenta(v...))
 }
 
+func Endln(v ...any) {
+	ui.Println(v...)
+	fmt.Println(Black(v...))
+}
+
 func Warningln(v ...any) {
 	warning.Println(v...)
 	fmt.Println(TRed(v...))
@@ -131,13 +142,13 @@ func Crashln(v ...any) {
 //...
 // Log only
 func LOOk(v ...any) {
-	ok.Println(v...)
+	ok.Print(v...)
 }
 
 //...
 // Print only
 func POOk(v ...any) {
-	fmt.Println(Green(v...))
+	fmt.Print(Green(v...))
 }
 
 //...
