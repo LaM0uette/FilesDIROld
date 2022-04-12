@@ -73,7 +73,7 @@ func main() {
 		f.DrawEnd(s.SrcPath, s.DstPath, s.ReqFinal, s.NbGoroutine, s.NbFiles, s.TimerSearch, timerEnd)
 	}
 
-	color.Print("<cyan>Appuyer sur Entrée pour quitter...</>")
+	color.Printf("<fg=%[1]s>Appuyer sur Entrée pour quitter...</>", globals.Th2)
 	_, err := bufio.NewReader(os.Stdin).ReadBytes('\n')
 	if err != nil {
 		loger.Crashln(err)
