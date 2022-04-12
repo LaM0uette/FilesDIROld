@@ -56,6 +56,42 @@ func init() {
 
 //...
 // Log
+func Ui(v ...any) {
+	ui.Print(v...)
+	fmt.Print(Cyan(v...))
+}
+
+func Param(v ...any) {
+	param.Print(v...)
+	fmt.Print(Yellow(v...))
+}
+
+func Ok(v ...any) {
+	ok.Print(v...)
+	fmt.Print(Green(v...))
+}
+
+func Action(v ...any) {
+	action.Print(v...)
+	fmt.Print(Majenta(v...))
+}
+
+func Warning(v ...any) {
+	warning.Print(v...)
+	fmt.Print(TRed(v...))
+}
+
+func Error(v ...any) {
+	errr.Print(v...)
+	fmt.Print(Red(v...))
+}
+
+func Crash(v ...any) {
+	crash.Print(v...)
+	fmt.Print(Red(v...))
+	os.Exit(1)
+}
+
 func Uiln(v ...any) {
 	ui.Println(v...)
 	fmt.Println(Cyan(v...))
@@ -72,8 +108,8 @@ func Okln(v ...any) {
 }
 
 func Actionln(v ...any) {
-	action.Print(v...)
-	fmt.Print(Majenta(v...))
+	action.Println(v...)
+	fmt.Println(Majenta(v...))
 }
 
 func Warningln(v ...any) {

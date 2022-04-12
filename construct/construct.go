@@ -101,7 +101,7 @@ func (f *Flags) SetSaveWord() string {
 	if len(f.FlgWord) < 1 {
 		word = "Export"
 		time.Sleep(600 * time.Millisecond)
-		loger.Actionln(fmt.Sprintf("Nom du fichier de sauvergarde mis par défaut : %v", word))
+		loger.Action(fmt.Sprintf("Nom du fichier de sauvergarde mis par défaut : %v", word))
 	}
 
 	return word
@@ -211,7 +211,7 @@ func (f *Flags) DrawWriteExcel() {
 		return
 	}
 
-	loger.Actionln(display.DrawWriteExcel())
+	loger.Action(display.DrawWriteExcel())
 	time.Sleep(200 * time.Millisecond)
 }
 
@@ -220,7 +220,7 @@ func (f *Flags) DrawSaveExcel() {
 		return
 	}
 	//fmt.Println()
-	loger.Actionln(display.DrawSaveExcel())
+	loger.Action(display.DrawSaveExcel())
 	time.Sleep(200 * time.Millisecond)
 }
 

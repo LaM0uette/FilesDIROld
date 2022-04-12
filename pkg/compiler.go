@@ -128,9 +128,9 @@ func CompilerFicheAppuiFt(path string) {
 
 	loger.Uiln(display.DrawEndCompiler())
 
-	loger.Actionln(fmt.Sprintf("Nombre de fiches compilées : %v", Id-1))
+	loger.Action(fmt.Sprintf("Nombre de fiches compilées : %v", Id-1))
 	time.Sleep(800 * time.Millisecond)
-	loger.Actionln(fmt.Sprintf("Temps écoulé : %v", timeEnd))
+	loger.Action(fmt.Sprintf("Temps écoulé : %v", timeEnd))
 	time.Sleep(800 * time.Millisecond)
 
 	if err := Wb.SaveAs(filepath.Join(path, fmt.Sprintf("__COMPILATION__%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
