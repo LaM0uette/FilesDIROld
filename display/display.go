@@ -137,6 +137,10 @@ func DrawRunCompiler() string {
 `)
 }
 
+func DrawEndCls() string {
+	return fmt.Sprintf("<fg=%[1]s>*** Dossiers de logs et dumps nettoyés ! ***</>\n", globals.Param)
+}
+
 func DrawEndCompiler() string {
 	return fmt.Sprint(`
 +============================================================+

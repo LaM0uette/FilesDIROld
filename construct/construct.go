@@ -232,5 +232,5 @@ func (f *Flags) DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles 
 //...
 // Pkg
 func DrawEndCls() {
-	loger.Actionln("*** Dossiers de logs et dumps nettoyés ! ***\n")
+	loger.Actionln(display.DrawEndCls())
 }
