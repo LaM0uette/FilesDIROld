@@ -45,7 +45,7 @@ func DrawRunSearch() string {
 }
 
 func DrawFileSearched(num int, file string) string {
-	return fmt.Sprintf("\r<bg=%[1]s>N°%[2]v **</> <fg=%[1]s>%[3]s</>\n",
+	return fmt.Sprintf("\r<bg=%[1]s>[OK]</> <fg=%[1]s>N°%[2]v ** %[3]s</>\n",
 		globals.Th1, num, file)
 }
 
