@@ -17,7 +17,7 @@ func tempPathGen() string {
 const (
 	Name    = "FilesDIR"
 	Author  = "LaM0uette"
-	Version = "1.0.16"
+	Version = "1.1.0"
 )
 
 var (
