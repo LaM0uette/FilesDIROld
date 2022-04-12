@@ -42,7 +42,7 @@ func DrawEndSearch() string {
 }
 
 func DrawWriteExcel() string {
-	return fmt.Sprint(`<fg=214,99,144>Export Excel...   `)
+	return fmt.Sprint(`<fg=214,99,144>Export Excel...</>`)
 }
 
 func DrawSaveExcel() string {
