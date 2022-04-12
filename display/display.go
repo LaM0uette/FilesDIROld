@@ -9,36 +9,36 @@ import (
 
 func DrawStart() string {
 	return fmt.Sprintf(`<lightCyan>
-		███████╗██╗██╗     ███████╗██████╗ ██╗██████╗ 
-		██╔════╝██║██║     ██╔════╝██╔══██╗██║██╔══██╗
-		█████╗  ██║██║     █████╗  ██║  ██║██║██████╔╝
-		██╔══╝  ██║██║     ██╔══╝  ██║  ██║██║██╔══██╗
-		██║     ██║███████╗███████╗██████╔╝██║██║  ██║
-		╚═╝     ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝</>
-		<cyan>Version:</> <yellow>%s</>              <cyan>Auteur:</> <yellow>%s</>
+			███████╗██╗██╗     ███████╗██████╗ ██╗██████╗ 
+			██╔════╝██║██║     ██╔════╝██╔══██╗██║██╔══██╗
+			█████╗  ██║██║     █████╗  ██║  ██║██║██████╔╝
+			██╔══╝  ██║██║     ██╔══╝  ██║  ██║██║██╔══██╗
+			██║     ██║███████╗███████╗██████╔╝██║██║  ██║
+			╚═╝     ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝</>
+			<cyan>Version:</> <yellow>%s</>              <cyan>Auteur:</> <yellow>%s</>
 
 
 `, globals.Version, globals.Author)
 }
 
 func DrawInitSearch() string {
-	return fmt.Sprint(`Initialisation du programme...`)
+	return fmt.Sprint(`<yellow>Initialisation du programme...</>`)
 }
 
 func DrawRunSearch() string {
-	return fmt.Sprint(`
+	return fmt.Sprint(`<cyan>
 +============================================================+
 |                    DEBUT DES RECHERCHES                    |
 +============================================================+
-`)
+</>`)
 }
 
 func DrawEndSearch() string {
-	return fmt.Sprint(`
+	return fmt.Sprint(`<cyan>
 +============================================================+
 |                     FIN DES RECHERCHES                     |                      
 +============================================================+
-`)
+</>`)
 }
 
 func DrawWriteExcel() string {
@@ -50,28 +50,28 @@ func DrawSaveExcel() string {
 }
 
 func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize int, timerSearch time.Duration, timerTotal time.Duration) string {
-	return fmt.Sprintf(`
+	return fmt.Sprintf(`<cyan>
 +============================================================+
 |                    BILAN DES RECHERCHES                    |                     
 +============================================================+
+</>
+<magenta>#### - INFOS GENERALES :</>
+Dossiers principal: <yellow>%s</>
+Requête utilisée: <yellow>%s</>
+Nombre de Threads: <yellow>%v</>
+Nombre de Goroutines: <yellow>%v</>
 
-<cyan>#### - INFOS GENERALES :</>
-Dossiers principal: %s
-Requête utilisée: %s
-Nombre de Threads: %v
-Nombre de Goroutines: %v
+<magenta>#### - RESULTATS :</>
+Fichiers trouvés: <yellow>%v</>
+Temps d'exécution de la recherche: <yellow>%v</>
+Temps d'exécution total: <yellow>%v</>
 
-#### - RESULTATS :
-Fichiers trouvés: %v
-Temps d'exécution de la recherche: %v
-Temps d'exécution total: %v
+<magenta>#### - EXPORTS :</>
+Logs: <yellow>%s</>
+Dumps: <yellow>%s</>
+Export Excel: <yellow>%s</>
 
-#### - EXPORTS :
-Logs: %s
-Dumps: %s
-Export Excel: %s
-
-+=========  Auteur: %s       Version: %s  =========+
+<cyan>+=========  Auteur:</> <yellow>%s</>       <cyan>Version:</> <yellow>%s</>  <cyan>=========+</>
 
 `,
 		SrcPath,
