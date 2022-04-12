@@ -145,7 +145,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 
 					if !super {
 						Mu.Lock()
-						loger.POOk(fmt.Sprintf("\rN°%v | Files: %s\n", s.NbFiles, file.Name()))
+						loger.POOk(fmt.Sprintf("\r<fg=44,168,65>N°%v | Files:</> <fg=214,99,144>%s</>\n", s.NbFiles, file.Name()))
 
 						dataExp := construct.ExportData{
 							Id:       s.NbFiles,
