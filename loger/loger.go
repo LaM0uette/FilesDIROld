@@ -3,6 +3,7 @@ package loger
 import (
 	"FilesDIR/globals"
 	"fmt"
+	"github.com/gookit/color"
 	"log"
 	"os"
 	"path/filepath"
@@ -51,88 +52,88 @@ func init() {
 // Log
 func Start(v ...any) {
 	ui.Print(v...)
-	fmt.Print(v...)
+	color.HiCyan.Print(v...)
 }
 
 func Ui(v ...any) {
 	ui.Print(v...)
-	fmt.Print(v...)
+	color.Print(v...)
 }
 
 func Param(v ...any) {
 	param.Print(v...)
-	fmt.Print(v...)
+	color.Print(v...)
 }
 
 func Ok(v ...any) {
 	ok.Print(v...)
-	fmt.Print(v...)
+	color.Print(v...)
 }
 
 func Action(v ...any) {
 	action.Print(v...)
-	fmt.Print(v...)
+	color.Print(v...)
 }
 
 func End(v ...any) {
 	ui.Print(v...)
-	fmt.Print(v...)
+	color.Print(v...)
 }
 
 func Warning(v ...any) {
 	warning.Print(v...)
-	fmt.Print(v...)
+	color.Print(v...)
 }
 
 func Error(v ...any) {
 	errr.Print(v...)
-	fmt.Print(v...)
+	color.Print(v...)
 }
 
 func Crash(v ...any) {
 	crash.Print(v...)
-	fmt.Print(v...)
+	color.Print(v...)
 	os.Exit(1)
 }
 
 func Uiln(v ...any) {
 	ui.Println(v...)
-	fmt.Println(v...)
+	color.Println(v...)
 }
 
 func Paramln(v ...any) {
 	param.Println(v...)
-	fmt.Println(v...)
+	color.Println(v...)
 }
 
 func Okln(v ...any) {
 	ok.Println(v...)
-	fmt.Println(v...)
+	color.Println(v...)
 }
 
 func Actionln(v ...any) {
 	action.Println(v...)
-	fmt.Println(v...)
+	color.Println(v...)
 }
 
 func Endln(v ...any) {
 	ui.Println(v...)
-	fmt.Println(v...)
+	color.Println(v...)
 }
 
 func Warningln(v ...any) {
 	warning.Println(v...)
-	fmt.Println(v...)
+	color.Println(v...)
 }
 
 func Errorln(v ...any) {
 	errr.Println(v...)
-	fmt.Println(v...)
+	color.Println(v...)
 }
 
 func Crashln(v ...any) {
 	crash.Println(v...)
-	fmt.Println(v...)
+	color.Println(v...)
 	os.Exit(1)
 }
 
@@ -145,11 +146,11 @@ func LOOk(v ...any) {
 //...
 // Print only
 func POOk(v ...any) {
-	fmt.Print(v...)
+	color.Print(v...)
 }
 
 func POAction(v ...any) {
-	fmt.Print(v...)
+	color.Print(v...)
 }
 
 //...

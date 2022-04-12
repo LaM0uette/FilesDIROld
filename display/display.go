@@ -55,7 +55,7 @@ func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize i
 |                    BILAN DES RECHERCHES                    |                     
 +============================================================+
 
-#### - INFOS GENERALES :
+<cyan>#### - INFOS GENERALES :</>
 Dossiers principal: %s
 Requête utilisée: %s
 Nombre de Threads: %v
