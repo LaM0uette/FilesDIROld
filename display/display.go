@@ -8,17 +8,17 @@ import (
 )
 
 func DrawStart() string {
-	return fmt.Sprintf(`<fg=44,168,65>
+	return fmt.Sprintf(`<fg=%[3]s>
 		███████╗██╗██╗     ███████╗██████╗ ██╗██████╗ 
 		██╔════╝██║██║     ██╔════╝██╔══██╗██║██╔══██╗
 		█████╗  ██║██║     █████╗  ██║  ██║██║██████╔╝
 		██╔══╝  ██║██║     ██╔══╝  ██║  ██║██║██╔══██╗
 		██║     ██║███████╗███████╗██████╔╝██║██║  ██║
 		╚═╝     ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝</>
-		<cyan>Version:</> <fg=44,168,65>%s</>              <cyan>Auteur:</> <fg=44,168,65>%s</>
+		<fg=%[4]s>Version:</> <fg=%[3]s>%[1]s</>              <fg=%[4]s>Auteur:</> <fg=%[3]s>%[2]s</>
 
 
-`, globals.Version, globals.Author)
+`, globals.Version, globals.Author, globals.Th1, globals.Th2)
 }
 
 func DrawInitSearch() string {

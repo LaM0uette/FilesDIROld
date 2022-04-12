@@ -18,6 +18,10 @@ const (
 	Name    = "FilesDIR"
 	Author  = "LaM0uette"
 	Version = "1.1.0"
+
+	// RGB
+	Th1 = "44,168,65"
+	Th2 = "86,195,199"
 )
 
 var (
