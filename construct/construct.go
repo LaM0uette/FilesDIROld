@@ -212,7 +212,7 @@ func (f *Flags) DrawWriteExcel(i, imax int) {
 		return
 	}
 
-	loger.Action(display.DrawWriteExcel(i, imax))
+	loger.POAction(display.DrawWriteExcel(i, imax))
 	time.Sleep(200 * time.Millisecond)
 }
 

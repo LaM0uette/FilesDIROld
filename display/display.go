@@ -126,15 +126,16 @@ func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize i
 }
 
 func DrawInitCompiler() string {
-	return fmt.Sprint(`Initialisation de la compilation...`)
+	return fmt.Sprintf("<fg=%[1]s>Initialisation de la compilation...</>",
+		globals.Param)
 }
 
 func DrawRunCompiler() string {
-	return fmt.Sprint(`
+	return fmt.Sprintf(`<fg=%[1]s>
 +============================================================+
 |                   DEBUT DES COMPILATIONS                   |
 +============================================================+
-`)
+</>`, globals.Th2)
 }
 
 func DrawEndCls() string {
@@ -142,9 +143,9 @@ func DrawEndCls() string {
 }
 
 func DrawEndCompiler() string {
-	return fmt.Sprint(`
+	return fmt.Sprintf(`<fg=%[1]s>
 +============================================================+
 |                    FIN DES COMPILATIONS                    |
 +============================================================+
-`)
+</>`, globals.Th2)
 }
