@@ -8,14 +8,14 @@ import (
 )
 
 func DrawStart() string {
-	return fmt.Sprintf(`<fg=48,207,37>
+	return fmt.Sprintf(`<fg=44,168,65>
 		███████╗██╗██╗     ███████╗██████╗ ██╗██████╗ 
 		██╔════╝██║██║     ██╔════╝██╔══██╗██║██╔══██╗
 		█████╗  ██║██║     █████╗  ██║  ██║██║██████╔╝
 		██╔══╝  ██║██║     ██╔══╝  ██║  ██║██║██╔══██╗
 		██║     ██║███████╗███████╗██████╔╝██║██║  ██║
 		╚═╝     ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝</>
-		<cyan>Version:</> <fg=48,207,37>%s</>              <cyan>Auteur:</> <fg=48,207,37>%s</>
+		<cyan>Version:</> <fg=44,168,65>%s</>              <cyan>Auteur:</> <fg=44,168,65>%s</>
 
 
 `, globals.Version, globals.Author)
@@ -56,22 +56,22 @@ func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize i
 +============================================================+
 </>
 <fg=214,99,144>#### - INFOS GENERALES :</>
-<cyan>Dossiers principal:</> <fg=48,207,37>%s</>
-<cyan>Requête utilisée:</> <fg=48,207,37>%s</>
-<cyan>Nombre de Threads:</> <fg=48,207,37>%v</>
-<cyan>Nombre de Goroutines:</> <fg=48,207,37>%v</>
+<cyan>Dossiers principal:</> <fg=44,168,65>%s</>
+<cyan>Requête utilisée:</> <fg=44,168,65>%s</>
+<cyan>Nombre de Threads:</> <fg=44,168,65>%v</>
+<cyan>Nombre de Goroutines:</> <fg=44,168,65>%v</>
 
 <fg=214,99,144>#### - RESULTATS :</>
-<cyan>Fichiers trouvés:</> <fg=48,207,37>%v</>
-<cyan>Temps d'exécution de la recherche:</> <fg=48,207,37>%v</>
-<cyan>Temps d'exécution total:</> <fg=48,207,37>%v</>
+<cyan>Fichiers trouvés:</> <fg=44,168,65>%v</>
+<cyan>Temps d'exécution de la recherche:</> <fg=44,168,65>%v</>
+<cyan>Temps d'exécution total:</> <fg=44,168,65>%v</>
 
 <fg=214,99,144>#### - EXPORTS :</>
-<cyan>Logs:</> <fg=48,207,37>%s</>
-<cyan>Dumps:</> <fg=48,207,37>%s</>
-<cyan>Export Excel:</> <fg=48,207,37>%s</>
+<cyan>Logs:</> <fg=44,168,65>%s</>
+<cyan>Dumps:</> <fg=44,168,65>%s</>
+<cyan>Export Excel:</> <fg=44,168,65>%s</>
 
-<cyan>+=========  Auteur:</> <fg=48,207,37>%s</>       <cyan>Version:</> <fg=48,207,37>%s</>  <cyan>=========+</>
+<cyan>+=========  Auteur:</> <fg=44,168,65>%s</>       <cyan>Version:</> <fg=44,168,65>%s</>  <cyan>=========+</>
 `,
 		SrcPath,
 		ReqFinal,
