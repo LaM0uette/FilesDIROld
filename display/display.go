@@ -56,20 +56,20 @@ func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize i
 +============================================================+
 </>
 <fg=214,99,144>#### - INFOS GENERALES :</>
-<cyan>Dossiers principal:</> <green>%s</>
-<cyan>Requête utilisée:</> <green>%s</>
-<cyan>Nombre de Threads:</> <green>%v</>
-<cyan>Nombre de Goroutines:</> <green>%v</>
+<cyan>Dossiers principal:</> <fg=48,207,37>%s</>
+<cyan>Requête utilisée:</> <fg=48,207,37>%s</>
+<cyan>Nombre de Threads:</> <fg=48,207,37>%v</>
+<cyan>Nombre de Goroutines:</> <fg=48,207,37>%v</>
 
-<bg=255,35,156>#### - RESULTATS :</>
-<cyan>Fichiers trouvés:</> <green>%v</>
-<cyan>Temps d'exécution de la recherche:</> <green>%v</>
-<cyan>Temps d'exécution total:</> <green>%v</>
+<fg=214,99,144>#### - RESULTATS :</>
+<cyan>Fichiers trouvés:</> <fg=48,207,37>%v</>
+<cyan>Temps d'exécution de la recherche:</> <fg=48,207,37>%v</>
+<cyan>Temps d'exécution total:</> <fg=48,207,37>%v</>
 
 <fg=214,99,144>#### - EXPORTS :</>
-<cyan>Logs:</> <green>%s</>
-<cyan>Dumps:</> <green>%s</>
-<cyan>Export Excel:</> <green>%s</>
+<cyan>Logs:</> <fg=48,207,37>%s</>
+<cyan>Dumps:</> <fg=48,207,37>%s</>
+<cyan>Export Excel:</> <fg=48,207,37>%s</>
 
 <cyan>+=========  Auteur:</> <yellow>%s</>       <cyan>Version:</> <yellow>%s</>  <cyan>=========+</>
 `,
