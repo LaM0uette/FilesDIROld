@@ -3,7 +3,6 @@ package loger
 import (
 	"FilesDIR/globals"
 	"fmt"
-	"github.com/fatih/color"
 	"log"
 	"os"
 	"path/filepath"
@@ -24,13 +23,6 @@ var (
 	vSemicolon *log.Logger
 
 	// colors
-	Cyan    = color.New(color.Bold, color.FgCyan).SprintFunc()
-	Green   = color.New(color.FgGreen).SprintFunc()
-	HiRed   = color.New(color.Bold, color.FgHiRed).SprintFunc()
-	Red     = color.New(color.FgRed).SprintFunc()
-	Majenta = color.New(color.Italic, color.FgMagenta).SprintFunc()
-	Blue    = color.New(color.FgBlue).SprintFunc()
-	Yellow  = color.New(color.Italic, color.FgYellow).SprintFunc()
 )
 
 func init() {
@@ -59,88 +51,88 @@ func init() {
 // Log
 func Start(v ...any) {
 	ui.Print(v...)
-	fmt.Print(Cyan(v...))
+	fmt.Print(v...)
 }
 
 func Ui(v ...any) {
 	ui.Print(v...)
-	fmt.Print(Blue(v...))
+	fmt.Print(v...)
 }
 
 func Param(v ...any) {
 	param.Print(v...)
-	fmt.Print(Yellow(v...))
+	fmt.Print(v...)
 }
 
 func Ok(v ...any) {
 	ok.Print(v...)
-	fmt.Print(Green(v...))
+	fmt.Print(v...)
 }
 
 func Action(v ...any) {
 	action.Print(v...)
-	fmt.Print(Majenta(v...))
+	fmt.Print(v...)
 }
 
 func End(v ...any) {
 	ui.Print(v...)
-	fmt.Print(Blue(v...))
+	fmt.Print(v...)
 }
 
 func Warning(v ...any) {
 	warning.Print(v...)
-	fmt.Print(Red(v...))
+	fmt.Print(v...)
 }
 
 func Error(v ...any) {
 	errr.Print(v...)
-	fmt.Print(HiRed(v...))
+	fmt.Print(v...)
 }
 
 func Crash(v ...any) {
 	crash.Print(v...)
-	fmt.Print(HiRed(v...))
+	fmt.Print(v...)
 	os.Exit(1)
 }
 
 func Uiln(v ...any) {
 	ui.Println(v...)
-	fmt.Println(Blue(v...))
+	fmt.Println(v...)
 }
 
 func Paramln(v ...any) {
 	param.Println(v...)
-	fmt.Println(Yellow(v...))
+	fmt.Println(v...)
 }
 
 func Okln(v ...any) {
 	ok.Println(v...)
-	fmt.Println(Green(v...))
+	fmt.Println(v...)
 }
 
 func Actionln(v ...any) {
 	action.Println(v...)
-	fmt.Println(Majenta(v...))
+	fmt.Println(v...)
 }
 
 func Endln(v ...any) {
 	ui.Println(v...)
-	fmt.Println(Blue(v...))
+	fmt.Println(v...)
 }
 
 func Warningln(v ...any) {
 	warning.Println(v...)
-	fmt.Println(Red(v...))
+	fmt.Println(v...)
 }
 
 func Errorln(v ...any) {
 	errr.Println(v...)
-	fmt.Println(HiRed(v...))
+	fmt.Println(v...)
 }
 
 func Crashln(v ...any) {
 	crash.Println(v...)
-	fmt.Println(HiRed(v...))
+	fmt.Println(v...)
 	os.Exit(1)
 }
 
@@ -153,11 +145,11 @@ func LOOk(v ...any) {
 //...
 // Print only
 func POOk(v ...any) {
-	fmt.Print(Green(v...))
+	fmt.Print(v...)
 }
 
 func POAction(v ...any) {
-	fmt.Print(Majenta(v...))
+	fmt.Print(v...)
 }
 
 //...

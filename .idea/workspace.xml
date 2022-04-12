@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="refont visuel avec couleurs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/globals/globals.go" beforeDir="false" afterPath="$PROJECT_DIR$/globals/globals.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/versioninfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/versioninfo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loger/loger.go" beforeDir="false" afterPath="$PROJECT_DIR$/loger/loger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource.syso" beforeDir="false" afterPath="$PROJECT_DIR$/resource.syso" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
