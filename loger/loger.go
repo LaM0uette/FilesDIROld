@@ -151,6 +151,10 @@ func POOk(v ...any) {
 	fmt.Print(Green(v...))
 }
 
+func POAction(v ...any) {
+	fmt.Print(Majenta(v...))
+}
+
 //...
 // Dump
 func Semicolon(v ...any) {

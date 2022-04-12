@@ -101,7 +101,7 @@ func (f *Flags) SetSaveWord() string {
 	if len(f.FlgWord) < 1 {
 		word = "Export"
 		time.Sleep(600 * time.Millisecond)
-		loger.Action(fmt.Sprintf("Nom du fichier de sauvergarde mis par défaut : %v", word))
+		loger.Actionln(fmt.Sprintf("Nom du fichier de sauvergarde mis par défaut : %v", word))
 	}
 
 	return word
@@ -136,7 +136,7 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 	}
 
 	wg.Wait() // Wait for all write loops to complete
-	loger.POOk(fmt.Sprintf("\rNombre de lignes sauvegardées :  %v/%v\n", iMax, iMax))
+	loger.POAction(fmt.Sprintf("\rNombre de lignes sauvegardées :  %v/%v\n", iMax, iMax))
 	time.Sleep(1 * time.Second)
 
 	// Generate a default word if is none
@@ -156,7 +156,7 @@ func (f *Flags) writeExcelLineWorker(Wb *excelize.File, iMax int) {
 	for job := range jobs {
 
 		//fmt.Print("\r")
-		loger.POOk(fmt.Sprintf("\rSauvegarde du fichier Excel...  %v/%v", job, iMax))
+		loger.POAction(fmt.Sprintf("\rSauvegarde du fichier Excel...  %v/%v", job, iMax))
 
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job+2), ExcelData[job].Id)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job+2), ExcelData[job].File)
@@ -220,7 +220,7 @@ func (f *Flags) DrawSaveExcel() {
 		return
 	}
 	//fmt.Println()
-	loger.Action(display.DrawSaveExcel())
+	loger.Actionln(display.DrawSaveExcel())
 	time.Sleep(200 * time.Millisecond)
 }
 
@@ -232,5 +232,5 @@ func (f *Flags) DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles 
 //...
 // Pkg
 func DrawEndCls() {
-	loger.Uiln("*** Dossiers de logs et dumps nettoyés ! ***\n")
+	loger.Actionln("*** Dossiers de logs et dumps nettoyés ! ***\n")
 }
