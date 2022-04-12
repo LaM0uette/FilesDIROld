@@ -29,7 +29,7 @@ var (
 	HiRed   = color.New(color.FgHiRed).SprintFunc()
 	Red     = color.New(color.FgRed).SprintFunc()
 	Majenta = color.New(color.FgMagenta).SprintFunc()
-	White   = color.New(color.FgBlue).SprintFunc()
+	Blue    = color.New(color.FgBlue).SprintFunc()
 	Yellow  = color.New(color.FgYellow).SprintFunc()
 )
 
@@ -79,7 +79,7 @@ func Action(v ...any) {
 
 func End(v ...any) {
 	ui.Print(v...)
-	fmt.Print(White(v...))
+	fmt.Print(Blue(v...))
 }
 
 func Warning(v ...any) {
@@ -120,7 +120,7 @@ func Actionln(v ...any) {
 
 func Endln(v ...any) {
 	ui.Println(v...)
-	fmt.Println(White(v...))
+	fmt.Println(Blue(v...))
 }
 
 func Warningln(v ...any) {
