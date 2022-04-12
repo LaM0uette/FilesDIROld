@@ -12,19 +12,21 @@ import (
 
 var (
 	// logs
-	ui         *log.Logger
-	vBlankDate *log.Logger
-	vInfo      *log.Logger
-	vWarning   *log.Logger
-	vError     *log.Logger
-	crash      *log.Logger
+	ui       *log.Logger
+	date     *log.Logger
+	vInfo    *log.Logger
+	vWarning *log.Logger
+	vError   *log.Logger
+	crash    *log.Logger
 
 	// dumps
 	vSemicolon *log.Logger
 
 	// colors
-	Cyan = color.New(color.FgCyan).SprintFunc()
-	Red  = color.New(color.FgRed).SprintFunc()
+	Cyan   = color.New(color.FgCyan).SprintFunc()
+	Green  = color.New(color.FgGreen).SprintFunc()
+	Red    = color.New(color.FgRed).SprintFunc()
+	Yellow = color.New(color.FgYellow).SprintFunc()
 )
 
 func init() {
@@ -39,7 +41,7 @@ func init() {
 	}
 
 	ui = log.New(logFile, "", 0)
-	vBlankDate = log.New(logFile, ": ", log.Ltime|log.Lmsgprefix)
+	date = log.New(logFile, ": ", log.Ltime|log.Lmsgprefix)
 	vInfo = log.New(logFile, "[INFO]: ", log.Ltime|log.Lmsgprefix)
 	vWarning = log.New(logFile, "[WARNING]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
 	vError = log.New(logFile, "[ERROR]: ", log.Ltime|log.Lmsgprefix|log.Lshortfile)
@@ -55,6 +57,16 @@ func Ui(v ...any) {
 	fmt.Println(Cyan(v...))
 }
 
+func Ok(v ...any) {
+	date.Println(v...)
+	fmt.Println(Green(v...))
+}
+
+func Param(v ...any) {
+	date.Println(v...)
+	fmt.Println(Yellow(v...))
+}
+
 func Crash(v ...any) {
 	crash.Println(v...)
 	fmt.Println(Red(v...))
@@ -68,11 +80,6 @@ func Blank(v ...any) {
 
 func Blankln(v ...any) {
 	ui.Println(v...)
-	fmt.Println(v...)
-}
-
-func BlankDateln(v ...any) {
-	vBlankDate.Println(v...)
 	fmt.Println(v...)
 }
 
@@ -94,7 +101,7 @@ func Errorln(v ...any) {
 //...
 // Log only
 func LOBlankDateln(v ...any) {
-	vBlankDate.Println(v...)
+	date.Println(v...)
 }
 
 //...

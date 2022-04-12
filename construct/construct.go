@@ -183,7 +183,7 @@ func (f *Flags) DrawInitSearch() {
 		return
 	}
 
-	loger.BlankDateln(display.DrawInitSearch())
+	loger.Param(display.DrawInitSearch())
 	time.Sleep(800 * time.Millisecond)
 }
 
