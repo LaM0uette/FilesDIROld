@@ -37,7 +37,7 @@ func ClsTempFiles() {
 }
 
 func CompilerFicheAppuiFt(path string) {
-	path = "C:\\Users\\doria\\FilesDIR\\Nouveau dossier"
+	path = "C:\\Users\\XD5965\\OneDrive - EQUANS\\Bureau\\Nouveau dossier"
 
 	loger.BlankDateln(display.DrawInitCompiler())
 	time.Sleep(800 * time.Millisecond)
@@ -203,13 +203,24 @@ func workerFicheAppuiFt() {
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("U%v", job.Id), date.Value)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("V%v", job.Id), pb.Value)
 
-		fmt.Println(effort1.GetStyle().Fill.BgColor)
+		rgb1 := effort1.GetStyle().Fill.FgColor
+		rgb2 := effort2.GetStyle().Fill.FgColor
+		rgb3 := effort3.GetStyle().Fill.FgColor
 
-		style, _ := Wb.NewStyle(fmt.Sprintf("{\"fill\":{\"type\":\"pattern\",\"color\":[\"#%s\"],\"pattern\":1}}", effort1.GetStyle().Fill.BgColor))
-		if err != nil {
-			fmt.Println(err)
+		if len(rgb1) > 2 {
+			style1, _ := Wb.NewStyle(fmt.Sprintf("{\"fill\":{\"type\":\"pattern\",\"color\":[\"#%s\"],\"pattern\":1}}", rgb1[2:]))
+			_ = Wb.SetCellStyle("Sheet1", fmt.Sprintf("I%v", job.Id), fmt.Sprintf("I%v", job.Id), style1)
 		}
-		Wb.SetCellStyle("Sheet1", fmt.Sprintf("I%v", job.Id), fmt.Sprintf("I%v", job.Id), style)
+
+		if len(rgb2) > 2 {
+			style2, _ := Wb.NewStyle(fmt.Sprintf("{\"fill\":{\"type\":\"pattern\",\"color\":[\"#%s\"],\"pattern\":1}}", rgb2[2:]))
+			_ = Wb.SetCellStyle("Sheet1", fmt.Sprintf("J%v", job.Id), fmt.Sprintf("J%v", job.Id), style2)
+		}
+
+		if len(rgb3) > 2 {
+			style3, _ := Wb.NewStyle(fmt.Sprintf("{\"fill\":{\"type\":\"pattern\",\"color\":[\"#%s\"],\"pattern\":1}}", rgb3[2:]))
+			_ = Wb.SetCellStyle("Sheet1", fmt.Sprintf("K%v", job.Id), fmt.Sprintf("K%v", job.Id), style3)
+		}
 
 		wg.Done()
 	}
