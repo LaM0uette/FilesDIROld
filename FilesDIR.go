@@ -10,7 +10,7 @@ import (
 	"FilesDIR/task"
 	"bufio"
 	"flag"
-	"fmt"
+	"github.com/gookit/color"
 	"os"
 	"path/filepath"
 	"time"
@@ -73,7 +73,7 @@ func main() {
 		f.DrawEnd(s.SrcPath, s.DstPath, s.ReqFinal, s.NbGoroutine, s.NbFiles, s.TimerSearch, timerEnd)
 	}
 
-	fmt.Print("<cyan>Appuyer sur Entrée pour quitter...</>")
+	color.Print("<cyan>Appuyer sur Entrée pour quitter...</>")
 	_, err := bufio.NewReader(os.Stdin).ReadBytes('\n')
 	if err != nil {
 		loger.Crashln(err)

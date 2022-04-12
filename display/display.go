@@ -8,21 +8,21 @@ import (
 )
 
 func DrawStart() string {
-	return fmt.Sprintf(`<lightCyan>
+	return fmt.Sprintf(`<fg=40,212,88>
 		███████╗██╗██╗     ███████╗██████╗ ██╗██████╗ 
 		██╔════╝██║██║     ██╔════╝██╔══██╗██║██╔══██╗
 		█████╗  ██║██║     █████╗  ██║  ██║██║██████╔╝
 		██╔══╝  ██║██║     ██╔══╝  ██║  ██║██║██╔══██╗
 		██║     ██║███████╗███████╗██████╔╝██║██║  ██║
 		╚═╝     ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝</>
-		<cyan>Version:</> <yellow>%s</>              <cyan>Auteur:</> <yellow>%s</>
+		<cyan>Version:</> <fg=40,212,88>%s</>              <cyan>Auteur:</> <fg=40,212,88>%s</>
 
 
 `, globals.Version, globals.Author)
 }
 
 func DrawInitSearch() string {
-	return fmt.Sprint(`<yellow>Initialisation du programme...</>`)
+	return fmt.Sprint(`<fg=214,99,144>Initialisation du programme...</>`)
 }
 
 func DrawRunSearch() string {
@@ -61,7 +61,7 @@ func DrawEnd(SrcPath, DstPath, ReqFinal string, NbGoroutine, NbFiles, PoolSize i
 <cyan>Nombre de Threads:</> <green>%v</>
 <cyan>Nombre de Goroutines:</> <green>%v</>
 
-<magenta>#### - RESULTATS :</>
+<bg=255,35,156>#### - RESULTATS :</>
 <cyan>Fichiers trouvés:</> <green>%v</>
 <cyan>Temps d'exécution de la recherche:</> <green>%v</>
 <cyan>Temps d'exécution total:</> <green>%v</>
