@@ -24,12 +24,12 @@ var (
 	vSemicolon *log.Logger
 
 	// colors
-	Cyan    = color.New(color.FgHiCyan).SprintFunc()
+	Cyan    = color.New(color.FgCyan).SprintFunc()
 	Green   = color.New(color.FgHiGreen).SprintFunc()
 	Red     = color.New(color.FgHiRed).SprintFunc()
 	TRed    = color.New(color.FgRed).SprintFunc()
-	Majenta = color.New(color.FgHiMagenta).SprintFunc()
-	Black   = color.New(color.FgHiBlack).SprintFunc()
+	Majenta = color.New(color.FgMagenta).SprintFunc()
+	Black   = color.New(color.FgBlack).SprintFunc()
 	Yellow  = color.New(color.FgHiYellow).SprintFunc()
 )
 
