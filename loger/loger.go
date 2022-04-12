@@ -82,17 +82,17 @@ func End(v ...any) {
 
 func Warning(v ...any) {
 	warning.Print(v...)
-	color.Print(v...)
+	color.Print(fmt.Sprintf("<bg=232,151,21;fg=255,255,255;op=bold;>[WARNING]:</> <fg=232,151,21>%s</>", v...))
 }
 
 func Error(v ...any) {
 	errr.Print(v...)
-	color.Print(v...)
+	color.Print(fmt.Sprintf("<bg=255,0,0;fg=255,255,255;op=bold;>[ERROR]:</> <fg=255,0,0>%s</>", v...))
 }
 
 func Crash(v ...any) {
 	crash.Print(v...)
-	color.Print(v...)
+	color.Print(fmt.Sprintf("<bg=255,0,0;fg=255,255,255;op=bold;>[CRASH]:</> <fg=255,0,0>%s</>", v...))
 	os.Exit(1)
 }
 
@@ -123,17 +123,17 @@ func Endln(v ...any) {
 
 func Warningln(v ...any) {
 	warning.Println(v...)
-	color.Println(v...)
+	color.Println(fmt.Sprintf("<bg=232,151,21;fg=255,255,255;op=bold;>[WARNING]:</> <fg=232,151,21>%s</>", v...))
 }
 
 func Errorln(v ...any) {
 	errr.Println(v...)
-	color.Println(v...)
+	color.Println(fmt.Sprintf("<bg=255,0,0;fg=255,255,255;op=bold;>[ERROR]:</> <fg=255,0,0>%s</>", v...))
 }
 
 func Crashln(v ...any) {
 	crash.Println(v...)
-	color.Println(v...)
+	color.Println(fmt.Sprintf("<bg=255,0,0;fg=255,255,255;op=bold;>[CRASH]:</> <fg=255,0,0>%s</>", v...))
 	os.Exit(1)
 }
 
