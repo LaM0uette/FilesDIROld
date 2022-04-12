@@ -36,6 +36,7 @@ type Search struct {
 var (
 	wg   sync.WaitGroup
 	jobs = make(chan string)
+	Mu   sync.Mutex
 )
 
 //...
@@ -143,6 +144,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 					s.NbFilesTotal++
 
 					if !super {
+						Mu.Lock()
 						loger.POOk(fmt.Sprintf("\rN°%v | Files: %s\n", s.NbFiles, file.Name()))
 
 						dataExp := construct.ExportData{
@@ -153,9 +155,10 @@ func (s *Search) loopFilesWorker(super bool) error {
 							Path:     pth,
 						}
 						construct.ExcelData = append(construct.ExcelData, dataExp)
+						Mu.Unlock()
 
 					} else {
-						loger.POOk(fmt.Sprintf("\rNombres de fichiers traités: %v", s.NbFilesTotal))
+						loger.POAction(fmt.Sprintf("\rFait: %v", s.NbFilesTotal))
 					}
 
 					loger.LOOk(fmt.Sprintf("N°%v | Files: %s", s.NbFiles, file.Name()))
@@ -167,7 +170,7 @@ func (s *Search) loopFilesWorker(super bool) error {
 					}
 				} else {
 					s.NbFilesTotal++
-					loger.POOk(fmt.Sprintf("\rNombres de fichiers traités: %v", s.NbFilesTotal))
+					loger.POAction(fmt.Sprintf("\rFait: %v", s.NbFilesTotal))
 				}
 			}
 		}
