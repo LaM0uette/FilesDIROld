@@ -39,7 +39,7 @@ func ClsTempFiles() {
 
 func CompilerFicheAppuiFt(path string) {
 
-	loger.Uiln(display.DrawInitCompiler())
+	loger.Paramln(display.DrawInitCompiler())
 	time.Sleep(800 * time.Millisecond)
 
 	timeStart := time.Now()
