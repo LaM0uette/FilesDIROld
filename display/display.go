@@ -67,6 +67,11 @@ func DrawWriteExcel(i, imax int) string {
 		globals.Param, globals.Th1, i, imax)
 }
 
+func DrawGenerateExcelSave(imax int) string {
+	return fmt.Sprintf("\r<fg=%[1]s>Nombre de lignes sauvegardées :</>  <fg=%[2]s>%[3]v</><fg=%[1]s>/</><fg=%[2]s>%[3]v</>\n",
+		globals.Param, globals.Th1, imax)
+}
+
 func DrawSaveExcel() string {
 	return fmt.Sprintf(`<fg=%[1]s>Fichier Excel sauvegardé avec succes.</>`,
 		globals.Param)

@@ -138,7 +138,7 @@ func (f *Flags) GenerateExcelSave(DstPath string) {
 
 	wg.Wait() // Wait for all write loops to complete
 	time.Sleep(300 * time.Millisecond)
-	loger.POAction(fmt.Sprintf("\r<fg=214,99,144>Nombre de lignes sauvegardées :</>  <fg=44,168,65>%v</><fg=214,99,144>/</><fg=44,168,65>%v</>\n", iMax, iMax))
+	loger.Action(display.DrawGenerateExcelSave(iMax))
 	time.Sleep(1 * time.Second)
 
 	// Generate a default word if is none
@@ -220,7 +220,6 @@ func (f *Flags) DrawSaveExcel() {
 	if f.FlgSuper {
 		return
 	}
-	//fmt.Println()
 	loger.Actionln(display.DrawSaveExcel())
 	time.Sleep(200 * time.Millisecond)
 }
