@@ -24,13 +24,13 @@ var (
 	vSemicolon *log.Logger
 
 	// colors
-	Cyan    = color.New(color.FgCyan).SprintFunc()
+	Cyan    = color.New(color.Bold, color.FgCyan).SprintFunc()
 	Green   = color.New(color.FgGreen).SprintFunc()
-	HiRed   = color.New(color.FgHiRed).SprintFunc()
+	HiRed   = color.New(color.Bold, color.FgHiRed).SprintFunc()
 	Red     = color.New(color.FgRed).SprintFunc()
-	Majenta = color.New(color.FgMagenta).SprintFunc()
+	Majenta = color.New(color.Italic, color.FgMagenta).SprintFunc()
 	Blue    = color.New(color.FgBlue).SprintFunc()
-	Yellow  = color.New(color.FgYellow).SprintFunc()
+	Yellow  = color.New(color.Italic, color.FgYellow).SprintFunc()
 )
 
 func init() {
@@ -57,9 +57,14 @@ func init() {
 
 //...
 // Log
-func Ui(v ...any) {
+func Start(v ...any) {
 	ui.Print(v...)
 	fmt.Print(Cyan(v...))
+}
+
+func Ui(v ...any) {
+	ui.Print(v...)
+	fmt.Print(Blue(v...))
 }
 
 func Param(v ...any) {
@@ -100,7 +105,7 @@ func Crash(v ...any) {
 
 func Uiln(v ...any) {
 	ui.Println(v...)
-	fmt.Println(Cyan(v...))
+	fmt.Println(Blue(v...))
 }
 
 func Paramln(v ...any) {

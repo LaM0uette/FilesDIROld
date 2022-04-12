@@ -174,7 +174,7 @@ func (f *Flags) DrawStart() {
 	if f.FlgSuper {
 		return
 	}
-	loger.Uiln(display.DrawStart())
+	loger.Start(display.DrawStart())
 	time.Sleep(1 * time.Second)
 }
 
