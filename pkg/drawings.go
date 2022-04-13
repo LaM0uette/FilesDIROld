@@ -35,7 +35,7 @@ func DrawStart() {
 	rgb.HiGreen.Println(start)
 	fmt.Print("\t\t", author+rgb.HiGreen.Sprint(config.Author), "\n", "\t\t", version+rgb.HiGreen.Sprint(config.Version))
 	fmt.Print("\n\n")
-	fmt.Println(sep)
+	rgb.Gray.Println(sep)
 }
 
 func DrawEnd() {
@@ -44,7 +44,7 @@ func DrawEnd() {
 	loger.Ui(sep)
 	loger.Ui(author+config.Author, "\n", version+config.Version)
 
-	fmt.Println(sep)
+	rgb.Gray.Println(sep)
 	fmt.Print(author+rgb.HiGreen.Sprint(config.Author), "\n", version+rgb.HiGreen.Sprint(config.Version))
 	fmt.Print("\n\n")
 }
