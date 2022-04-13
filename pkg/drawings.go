@@ -32,7 +32,6 @@ func DrawStart() {
 	loger.Ui("\t\t", author+config.Author, "\n", "\t\t", version+config.Version)
 	loger.Ui("\n")
 	loger.Ui(sep)
-	loger.Ui("\n")
 
 	rgb.Green.Println(start)
 	fmt.Print("\t\t", author+rgb.Green.Sprint(config.Author), "\n", "\t\t", version+rgb.Green.Sprint(config.Version))
@@ -56,7 +55,7 @@ func DrawEnd() {
 func DrawParam(v ...any) {
 	defer time.Sleep(600 * time.Millisecond)
 
-	pre := "          "
+	pre := "██████████"
 	txt := ""
 	arg1 := ""
 	arg2 := ""
@@ -73,6 +72,6 @@ func DrawParam(v ...any) {
 
 	loger.Ui(pre, txt, arg1, arg2)
 
-	fmt.Printf("%s%s%s%s\n", rgb.BgYellow.Sprint(pre),
+	fmt.Printf("%s%s%s%s\n", rgb.Yellow.Sprint(pre),
 		rgb.Yellow.Sprint(txt), rgb.GreenB.Sprint(arg1), rgb.Gray.Sprint(arg2))
 }
