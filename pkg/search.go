@@ -1,7 +1,6 @@
 package pkg
 
 import (
-	"FilesDIR/rgb"
 	"bufio"
 	"fmt"
 	"os"
@@ -116,7 +115,7 @@ func (s *Search) CheckMinimumPoolSize() {
 		s.PoolSize = 2
 		DrawParam("POOLSIZE MISE A", strconv.Itoa(s.PoolSize), "(ne peut pas être inférieur)")
 	} else {
-		DrawParam(fmt.Sprintf("POOLSIZE MISE A %v", rgb.GreenB.Sprint(s.PoolSize)))
+		DrawParam("POOLSIZE MISE A", strconv.Itoa(s.PoolSize))
 	}
 }
 
