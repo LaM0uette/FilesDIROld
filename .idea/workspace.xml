@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="Couleur mef" />
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="refont visuel avec couleurs">
+      <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="V1.0" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -111,8 +113,7 @@
     <MESSAGE value="correction bug excel loop strcut" />
     <MESSAGE value="correction bug excel loop" />
     <MESSAGE value="refont visuel avec couleurs" />
-    <MESSAGE value="Couleur mef" />
-    <option name="LAST_COMMIT_MESSAGE" value="Couleur mef" />
+    <option name="LAST_COMMIT_MESSAGE" value="refont visuel avec couleurs" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
