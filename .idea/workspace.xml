@@ -5,7 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="refont visuel avec couleurs">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__/func.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/construct/construct.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/display/display.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/globals/globals.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/loger/loger.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/compiler.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource.syso" beforeDir="false" afterPath="$PROJECT_DIR$/resource.syso" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/task_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Scooter/Scooter bleu/Infos.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Scooter/Scooter bleu/Xl.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Scooter/Scooter rouge/Devis/Devis.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Scooter/Scooter rouge/Devis/xl.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Scooter/Scooter rouge/Infos.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Scooter/Scooter rouge/xl.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Voitures/Fiat/Bleu/Devis/Devis.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Voitures/Fiat/Bleu/Infos.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Voitures/Fiat/Rouge/Client.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Voitures/Fiat/Rouge/Devis/Devis.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Voitures/Fiat/Rouge/Infos.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Voitures/Fiat/Rouge/xl.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Voitures/Fiat/Verte/Client.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Voitures/Fiat/Verte/Devis/Devis.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Voitures/Fiat/Verte/Infos.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Voitures/Renaut/Grise/Client.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Voitures/Renaut/Grise/Devis/Devis.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Voitures/Renaut/Grise/Infos.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Voitures/Renaut/Megan/Infos.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Voitures/xl.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Véhicules.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Vélo/Devis/Devis.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Vélo/Devis/xl.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Vélo/Infos.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Vélo/Xl.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Xl.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/versioninfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/versioninfo.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +61,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="V1.0" />
+        <entry key="$PROJECT_DIR$" value="V1.1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -69,7 +106,16 @@
       <recent name="C:\Users\doria\go\src\FilesDIR" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Build.go build FilesDIR">
+    <configuration name="go build FilesDIR" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="FilesDIR" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="FilesDIR" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/FilesDIR.go" />
+      <method v="2" />
+    </configuration>
     <configuration name="TestRunSearch in FilesDIR/task" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$/task" />
@@ -83,6 +129,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build FilesDIR" />
         <item itemvalue="Go Test.TestRunSearch in FilesDIR/task" />
       </list>
     </recent_temporary>
