@@ -38,7 +38,6 @@ func DrawStart() {
 	fmt.Print("\t\t", author+rgb.Green.Sprint(config.Author), "\n", "\t\t", version+rgb.Green.Sprint(config.Version))
 	fmt.Print("\n\n")
 	rgb.Gray.Println(sep)
-	fmt.Print("\n")
 }
 
 func DrawEnd() {
