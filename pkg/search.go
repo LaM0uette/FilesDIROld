@@ -1,10 +1,12 @@
 package pkg
 
 import (
+	"FilesDIR/rgb"
 	"bufio"
 	"fmt"
 	"os"
 	"path/filepath"
+	"runtime/debug"
 )
 
 type Search struct {
@@ -56,6 +58,9 @@ func (s *Search) initSearch() {
 			s.setBlackList(file)
 		}
 	}
+
+	s.CheckMinimumPoolSize()
+	s.SetMaxThread()
 }
 
 func (s *Search) GetReqOfSearched() string {
@@ -103,4 +108,24 @@ func (s *Search) setBlackList(file string) {
 		s.ListBlackList = append(s.ListBlackList, fileScanner.Text())
 	}
 	_ = readFile.Close()
+}
+
+func (s *Search) CheckMinimumPoolSize() {
+	if s.PoolSize < 2 {
+		s.PoolSize = 2
+		DrawParam("POOLSIZE MISE A", s.PoolSize, "(ne peut pas être inférieur)")
+	} else {
+		DrawParam(fmt.Sprintf("POOLSIZE MISE A %v", rgb.GreenB.Sprint(s.PoolSize)))
+	}
+}
+
+func (s *Search) SetMaxThread() {
+	maxThr := s.PoolSize * 500
+	debug.SetMaxThreads(maxThr)
+
+	if s.Super {
+		return
+	}
+
+	//loger.Paramln(display.DrawSetMaxThread(maxThr))
 }
