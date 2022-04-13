@@ -25,6 +25,6 @@ func init() {
 
 //...
 // Log
-func Start(v ...any) {
+func Ui(v ...any) {
 	ui.Print(v...)
 }

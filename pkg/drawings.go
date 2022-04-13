@@ -23,8 +23,8 @@ const (
 func DrawStart() {
 	defer time.Sleep(1 * time.Second)
 
-	loger.Start(start)
-	loger.Start(author+config.Author, "\n", version+config.Version)
+	loger.Ui(start)
+	loger.Ui(author+config.Author, "\n", version+config.Version)
 
 	rgb.HiGreen.Println(start)
 	fmt.Print(author+rgb.HiGreen.Sprint(config.Author), "\n", version+rgb.HiGreen.Sprint(config.Version))
