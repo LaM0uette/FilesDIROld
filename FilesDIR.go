@@ -2,6 +2,8 @@
 package main
 
 import (
+	"FilesDIR/config"
+	"FilesDIR/pkg"
 	"flag"
 	"fmt"
 )
@@ -29,7 +31,7 @@ func main() {
 	// Parse all Flags
 	flag.Parse()
 
-	s := &Search{
+	s := &pkg.Search{
 		Cls:       *FlgCls,
 		Compiler:  *FlgCompiler,
 		Mode:      *FlgMode,
@@ -41,8 +43,8 @@ func main() {
 		Super:     *FlgSuper,
 		BlackList: *FlgBlackList,
 
-		SrcPath: GetCurrentDir(),
-		DstPath: DstPath,
+		SrcPath: pkg.GetCurrentDir(),
+		DstPath: config.DstPath,
 	}
 	fmt.Println(s)
 
