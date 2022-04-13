@@ -40,8 +40,9 @@ func DrawStart() {
 func DrawEnd() {
 	defer time.Sleep(1 * time.Second)
 
-	//loger.Ui(start)
-	//loger.Ui(author+config.Author, "\n", version+config.Version)
+	loger.Ui(sep)
+	loger.Ui(author+config.Author, "\n", version+config.Version)
+	fmt.Print("\n\n")
 
 	fmt.Println(sep)
 	fmt.Print(author+rgb.HiGreen.Sprint(config.Author), "\n", version+rgb.HiGreen.Sprint(config.Version))
