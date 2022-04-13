@@ -57,11 +57,11 @@ func DrawEnd() {
 func DrawInitSearch() {
 	defer time.Sleep(600 * time.Millisecond)
 
-	pre := "       "
-	txt := "INITIALISATION DE LA RECHERCHE EN COURS..."
+	pre := "          "
+	txt := " INITIALISATION DE LA RECHERCHE EN COURS \n"
 
 	loger.Ui(pre, txt)
 	loger.Ui("\n")
 
-	fmt.Println(rgb.BgYellow.Sprint(pre), rgb.Yellow.Sprint(txt))
+	fmt.Printf("%s%s", rgb.BgYellow.Sprint(pre), rgb.Yellow.Sprint(txt))
 }
