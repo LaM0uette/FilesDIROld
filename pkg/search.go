@@ -20,3 +20,7 @@ type Search struct {
 	SrcPath string
 	DstPath string
 }
+
+func (s *Search) RunSearch() {
+
+}
