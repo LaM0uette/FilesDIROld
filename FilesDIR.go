@@ -29,7 +29,7 @@ func main() {
 	// Parse all Flags
 	flag.Parse()
 
-	s := Search{
+	s := &Search{
 		Cls:       *FlgCls,
 		Compiler:  *FlgCompiler,
 		Mode:      *FlgMode,

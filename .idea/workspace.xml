@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="REMAKE">
-      <change afterPath="$PROJECT_DIR$/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="Créetion flag">
       <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/testPerf/V0.5/V0.5_DEVIL_poolsize=10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/testPerf/V0.5/V0.5_DEVIL_poolsize=1000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/testPerf/V0.5/V0.5_poolsize=10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/testPerf/V0.5/V0.5_poolsize=1000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/testPerf/V1.0.0/bench.PNG" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +125,8 @@
     <MESSAGE value="correction bug excel loop" />
     <MESSAGE value="refont visuel avec couleurs" />
     <MESSAGE value="REMAKE" />
-    <option name="LAST_COMMIT_MESSAGE" value="REMAKE" />
+    <MESSAGE value="Créetion flag" />
+    <option name="LAST_COMMIT_MESSAGE" value="Créetion flag" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
