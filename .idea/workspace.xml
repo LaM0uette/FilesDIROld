@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="affichage du logo principal">
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="init search + req + blacklist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/drawings.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/drawings.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/search.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/search.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +62,8 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm"
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -152,6 +151,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value=".idea" />
     <MESSAGE value="Dump" />
     <MESSAGE value="Export excel dans un autre package" />
@@ -166,7 +166,8 @@
     <MESSAGE value="Créetion flag" />
     <MESSAGE value="Créetion test current dir" />
     <MESSAGE value="affichage du logo principal" />
-    <option name="LAST_COMMIT_MESSAGE" value="affichage du logo principal" />
+    <MESSAGE value="init search + req + blacklist" />
+    <option name="LAST_COMMIT_MESSAGE" value="init search + req + blacklist" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

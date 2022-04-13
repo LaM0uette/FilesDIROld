@@ -42,7 +42,7 @@ func DrawStart() {
 }
 
 func DrawEnd() {
-	defer time.Sleep(10 * time.Second)
+	defer time.Sleep(1 * time.Second)
 
 	loger.Ui(sep)
 	loger.Ui(author+config.Author, "\n", version+config.Version)
