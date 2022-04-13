@@ -73,8 +73,7 @@ func DrawParam(v ...any) {
 	}
 
 	loger.Ui(pre, txt, arg1, arg2)
-	loger.Ui("\n")
 
-	fmt.Printf("%s%s", rgb.BgYellow.Sprint(pre),
-		rgb.Yellow.Sprint(txt), rgb.GreenB.Sprint(arg1), rgb.Gray.Sprint(arg2), "\n")
+	fmt.Printf("%s%s%s%s\n", rgb.BgYellow.Sprint(pre),
+		rgb.Yellow.Sprint(txt), rgb.GreenB.Sprint(arg1), rgb.Gray.Sprint(arg2))
 }
