@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="init search + req + blacklist">
-      <change beforePath="$PROJECT_DIR$/pkg/drawings.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/drawings.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgb/rgb.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgb/rgb.go" afterDir="false" />
-    </list>
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="init search + req + blacklist" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,16 +72,7 @@
       <recent name="C:\Users\XD5965\go\src\FilesDIR\docs" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestStrToLower in FilesDIR/pkg">
-    <configuration name="go build FilesDIR" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="FilesDIR" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="FilesDIR" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/FilesDIR.go" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Go Test.go test FilesDIR/pkg">
     <configuration name="go build FilesDIR.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$" />
@@ -125,13 +113,23 @@
       <pattern value="^\QTestStrToLower\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="go test FilesDIR/pkg" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="FilesDIR" />
+      <working_directory value="$PROJECT_DIR$/pkg" />
+      <kind value="PACKAGE" />
+      <package value="FilesDIR/pkg" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.go test FilesDIR/pkg" />
         <item itemvalue="Go Test.TestStrToLower in FilesDIR/pkg" />
         <item itemvalue="Go Build.go build FilesDIR.go" />
         <item itemvalue="Go Build.go build f.go" />
         <item itemvalue="Go Test.TestGetCurrentDir in FilesDIR/pkg" />
-        <item itemvalue="Go Build.go build FilesDIR" />
       </list>
     </recent_temporary>
   </component>
