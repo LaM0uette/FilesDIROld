@@ -62,5 +62,4 @@ func main() {
 	fmt.Println(s)
 
 	pkg.DrawEnd()
-
 }

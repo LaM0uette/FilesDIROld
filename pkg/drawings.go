@@ -16,7 +16,6 @@ const (
 		██╔══╝  ██║██║     ██╔══╝  ██║  ██║██║██╔══██╗
 		██║     ██║███████╗███████╗██████╔╝██║██║  ██║
 		╚═╝     ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝`
-
 	sep = `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
 
@@ -24,6 +23,8 @@ const (
 	version = `Version: `
 )
 
+// ...
+// FilesDIR
 func DrawStart() {
 	defer time.Sleep(1 * time.Second)
 
@@ -31,11 +32,13 @@ func DrawStart() {
 	loger.Ui("\t\t", author+config.Author, "\n", "\t\t", version+config.Version)
 	loger.Ui("\n")
 	loger.Ui(sep)
+	loger.Ui("\n")
 
-	rgb.HiGreen.Println(start)
-	fmt.Print("\t\t", author+rgb.HiGreen.Sprint(config.Author), "\n", "\t\t", version+rgb.HiGreen.Sprint(config.Version))
+	rgb.Green.Println(start)
+	fmt.Print("\t\t", author+rgb.Green.Sprint(config.Author), "\n", "\t\t", version+rgb.Green.Sprint(config.Version))
 	fmt.Print("\n\n")
 	rgb.Gray.Println(sep)
+	fmt.Print("\n")
 }
 
 func DrawEnd() {
@@ -45,6 +48,20 @@ func DrawEnd() {
 	loger.Ui(author+config.Author, "\n", version+config.Version)
 
 	rgb.Gray.Println(sep)
-	fmt.Print(author+rgb.HiGreen.Sprint(config.Author), "\n", version+rgb.HiGreen.Sprint(config.Version))
+	fmt.Print(author+rgb.Green.Sprint(config.Author), "\n", version+rgb.Green.Sprint(config.Version))
 	fmt.Print("\n\n")
+}
+
+// ...
+// Search
+func DrawInitSearch() {
+	defer time.Sleep(600 * time.Millisecond)
+
+	pre := "       "
+	txt := "INITIALISATION DE LA RECHERCHE EN COURS..."
+
+	loger.Ui(pre, txt)
+	loger.Ui("\n")
+
+	fmt.Println(rgb.BgYellow.Sprint(pre), rgb.Yellow.Sprint(txt))
 }

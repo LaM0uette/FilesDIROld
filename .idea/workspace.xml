@@ -7,7 +7,11 @@
     <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="affichage du logo principal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/drawings.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/drawings.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/search.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/search.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/task_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/task_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rgb/rgb.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgb/rgb.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +79,7 @@
       <recent name="C:\Users\XD5965\go\src\FilesDIR\docs" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build FilesDIR.go">
+  <component name="RunManager" selected="Go Test.TestStrToLower in FilesDIR/pkg">
     <configuration name="go build FilesDIR" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$" />
@@ -114,24 +118,24 @@
       <pattern value="^\QTestGetCurrentDir\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestRunSearch in FilesDIR/task" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestStrToLower in FilesDIR/pkg" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
-      <working_directory value="$PROJECT_DIR$/task" />
+      <working_directory value="$PROJECT_DIR$/pkg" />
       <kind value="PACKAGE" />
-      <package value="FilesDIR/task" />
+      <package value="FilesDIR/pkg" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
-      <pattern value="^\QTestRunSearch\E$" />
+      <pattern value="^\QTestStrToLower\E$" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestStrToLower in FilesDIR/pkg" />
         <item itemvalue="Go Build.go build FilesDIR.go" />
         <item itemvalue="Go Build.go build f.go" />
         <item itemvalue="Go Test.TestGetCurrentDir in FilesDIR/pkg" />
         <item itemvalue="Go Build.go build FilesDIR" />
-        <item itemvalue="Go Test.TestRunSearch in FilesDIR/task" />
       </list>
     </recent_temporary>
   </component>

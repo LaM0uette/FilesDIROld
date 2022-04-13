@@ -21,6 +21,13 @@ type Search struct {
 	DstPath string
 }
 
+//...
+// Functions
 func (s *Search) RunSearch() {
 
+	s.initSearch()
+}
+
+func (s *Search) initSearch() {
+	DrawInitSearch()
 }

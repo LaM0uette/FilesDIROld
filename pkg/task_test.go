@@ -11,3 +11,11 @@ func TestGetCurrentDir(t *testing.T) {
 		t.Error("Is not the current dir ! ", dir)
 	}
 }
+
+func TestStrToLower(t *testing.T) {
+	word := "ImATest"
+
+	if StrToLower(word) != "imatest" {
+		t.Error("Fail during strings conversion !", word)
+	}
+}

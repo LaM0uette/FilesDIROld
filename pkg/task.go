@@ -2,6 +2,7 @@ package pkg
 
 import (
 	"os"
+	"strings"
 )
 
 func GetCurrentDir() string {
@@ -11,4 +12,8 @@ func GetCurrentDir() string {
 		os.Exit(1)
 	}
 	return pwd
+}
+
+func StrToLower(s string) string {
+	return strings.ToLower(s)
 }
