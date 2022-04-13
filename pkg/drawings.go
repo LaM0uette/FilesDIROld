@@ -4,6 +4,7 @@ import (
 	"FilesDIR/config"
 	"FilesDIR/loger"
 	"FilesDIR/rgb"
+	"fmt"
 	"time"
 )
 
@@ -14,19 +15,17 @@ const (
 		█████╗  ██║██║     █████╗  ██║  ██║██║██████╔╝
 		██╔══╝  ██║██║     ██╔══╝  ██║  ██║██║██╔══██╗
 		██║     ██║███████╗███████╗██████╔╝██║██║  ██║
-		╚═╝     ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝
-`
-	author  = `		Auteur : `
-	version = `		Version : `
+		╚═╝     ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝`
+	author  = `		Auteur:  `
+	version = `		Version: `
 )
 
 func DrawStart() {
 	defer time.Sleep(1 * time.Second)
 
 	loger.Start(start)
-	loger.Start(author+config.Author, "     ", version+config.Version)
+	loger.Start(author+config.Author, "\n", version+config.Version)
 
 	rgb.HiGreen.Println(start)
-	rgb.HiGreen.Print(author+config.Author, "     ", version+config.Version)
-
+	fmt.Print(author+rgb.HiGreen.Sprint(config.Author), "\n", version+rgb.HiGreen.Sprint(config.Version))
 }

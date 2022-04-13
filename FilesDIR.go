@@ -45,6 +45,10 @@ func main() {
 		DstPath: config.DstPath,
 	}
 
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
 	fmt.Println(s)
 
 }
