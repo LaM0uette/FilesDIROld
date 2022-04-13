@@ -17,7 +17,7 @@ const (
 		██║     ██║███████╗███████╗██████╔╝██║██║  ██║
 		╚═╝     ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝`
 
-	sep = `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
+	sep = `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
 
 	author  = `Auteur:  `
 	version = `Version: `
@@ -32,7 +32,7 @@ func DrawStart() {
 	rgb.HiGreen.Println(start)
 	fmt.Print("\t\t", author+rgb.HiGreen.Sprint(config.Author), "\n", "\t\t", version+rgb.HiGreen.Sprint(config.Version))
 
-	fmt.Println()
+	fmt.Print("\n\n")
 	fmt.Println(sep)
 }
 
