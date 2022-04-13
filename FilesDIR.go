@@ -59,7 +59,6 @@ func main() {
 	timerEnd := time.Since(timerStart)
 
 	fmt.Println(timerEnd)
-	fmt.Println(s)
 
 	pkg.DrawEnd()
 }
