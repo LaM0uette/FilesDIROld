@@ -57,14 +57,24 @@ func DrawEnd() {
 func DrawParam(v ...any) {
 	defer time.Sleep(600 * time.Millisecond)
 
-	_pre := "          "
-	_txt := fmt.Sprintf(" %s", v[0])
-	_arg1 := fmt.Sprintf(" %s", v[1])
-	_arg2 := fmt.Sprintf(" %s", v[2])
+	pre := "          "
+	txt := ""
+	arg1 := ""
+	arg2 := ""
 
-	loger.Ui(_pre, _txt, _arg1, _arg2)
+	if len(v) >= 1 {
+		txt = fmt.Sprintf(" %s", v[0])
+	}
+	if len(v) >= 2 {
+		arg1 = fmt.Sprintf(" %s", v[1])
+	}
+	if len(v) >= 3 {
+		arg2 = fmt.Sprintf(" %s", v[2])
+	}
+
+	loger.Ui(pre, txt, arg1, arg2)
 	loger.Ui("\n")
 
-	fmt.Printf("%s%s", rgb.BgYellow.Sprint(_pre),
-		rgb.Yellow.Sprint(_txt), rgb.GreenB.Sprint(_arg1), rgb.Gray.Sprint(_arg2))
+	fmt.Printf("%s%s", rgb.BgYellow.Sprint(pre),
+		rgb.Yellow.Sprint(txt), rgb.GreenB.Sprint(arg1), rgb.Gray.Sprint(arg2), "\n")
 }

@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime/debug"
+	"strconv"
 )
 
 type Search struct {
@@ -113,7 +114,7 @@ func (s *Search) setBlackList(file string) {
 func (s *Search) CheckMinimumPoolSize() {
 	if s.PoolSize < 2 {
 		s.PoolSize = 2
-		DrawParam("POOLSIZE MISE A", s.PoolSize, "(ne peut pas être inférieur)")
+		DrawParam("POOLSIZE MISE A", strconv.Itoa(s.PoolSize), "(ne peut pas être inférieur)")
 	} else {
 		DrawParam(fmt.Sprintf("POOLSIZE MISE A %v", rgb.GreenB.Sprint(s.PoolSize)))
 	}
