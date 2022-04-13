@@ -10,6 +10,8 @@ import (
 
 func main() {
 
+	pkg.DrawStart()
+
 	// Flag of Packages
 	FlgCls := flag.Bool("cls", false, "Nettoie les dossiers logs, dumps et exports")
 	FlgCompiler := flag.Bool("c", false, "Lance le mode de compilation")
