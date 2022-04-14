@@ -27,7 +27,7 @@ func main() {
 	FlgMaj := flag.Bool("maj", false, "Autorise les majuscules")
 	// Flag of special mode
 	FlgDevil := flag.Bool("devil", false, "Mode 'Démon' de l'application")
-	FlgSuper := flag.Bool("s", false, "Mode 'Super', évite toutes les choses inutiles")
+	FlgSilent := flag.Bool("s", false, "Mode 'Silent', évite toutes les choses inutiles")
 	FlgBlackList := flag.Bool("b", false, "Ajout d'une blacklist de dossier")
 	FlgWhiteList := flag.Bool("w", false, "Ajout d'une whitelist de dossier")
 	// Parse all Flags
@@ -42,7 +42,7 @@ func main() {
 		PoolSize:  *FlgPoolSize,
 		Maj:       *FlgMaj,
 		Devil:     *FlgDevil,
-		Super:     *FlgSuper,
+		Silent:    *FlgSilent,
 		BlackList: *FlgBlackList,
 		WhiteList: *FlgWhiteList,
 

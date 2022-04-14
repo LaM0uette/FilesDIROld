@@ -22,7 +22,7 @@ type Search struct {
 	PoolSize  int
 	Maj       bool
 	Devil     bool
-	Super     bool
+	Silent    bool
 	BlackList bool
 	WhiteList bool
 
@@ -82,33 +82,52 @@ func (s *Search) initSearch() {
 }
 
 func (s *Search) GetReqOfSearched() string {
-	DrawParam("CONSTRUCTION DE LA REQUETE EN COURS")
 
-	VWord := ""
-	if s.Word != "" {
-		VWord = " -word=" + s.Word
+	req := "FilesDIR"
+
+	if !s.Cls && !s.Compiler {
+		req += fmt.Sprintf(" -mode=%s", s.Mode)
+
+		if s.Word != "" {
+			req += fmt.Sprintf(" -word=%s", s.Word)
+		}
+
+		if s.Ext != "" {
+			req += fmt.Sprintf(" -ext=%s", s.Ext)
+		}
+
+		req += fmt.Sprintf(" -poolsize=%v", s.PoolSize)
+
+		if s.Maj {
+			req += " -maj"
+		}
+
+		if s.Devil {
+			req += " -devil"
+		}
+
+		if s.BlackList {
+			req += " -b"
+		}
+
+		if s.WhiteList {
+			req += " -w"
+		}
 	}
 
-	VMaj := ""
-	if s.Maj {
-		VMaj = " -maj"
+	if s.Cls {
+		req += " -cls"
+	} else if s.Compiler {
+		req += " -c"
 	}
 
-	VDevil := ""
-	if s.Devil {
-		VDevil = " -devil"
+	if s.Silent {
+		req += " -s"
 	}
 
-	VSuper := ""
-	if s.Super {
-		VSuper = " -s"
-	}
+	DrawParam(fmt.Sprintf("REQUETE UTILISEE: %s", req))
 
-	VBlackList := ""
-	if s.BlackList {
-		VBlackList = " -b"
-	}
-	return fmt.Sprintf("FilesDIR -mode=%s%s -ext=%s -poolsize=%v%s%s%s%s\n", s.Mode, VWord, s.Ext, s.PoolSize, VMaj, VDevil, VSuper, VBlackList)
+	return req
 }
 
 func (s *Search) setBlackWhiteList(file string, val int) {
@@ -145,7 +164,7 @@ func (s *Search) SetMaxThread() {
 	maxThr := s.PoolSize * 500
 	debug.SetMaxThreads(maxThr)
 
-	if s.Super {
+	if s.Silent {
 		return
 	}
 
