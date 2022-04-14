@@ -74,6 +74,8 @@ func (s *Search) RunSearch() {
 
 	wgSch.Wait()
 
+	time.Sleep(600 * time.Millisecond)
+
 	s.Timer.SearchEnd = time.Since(s.Timer.SearchStart)
 }
 
@@ -286,10 +288,8 @@ func (s *Search) loopFilesWorker() error {
 
 				if s.checkFileSearched(file.Name()) {
 					//fmt.Println(file.Name())
-
 					atomic.AddUint64(&s.Counter.NbrFiles, 1)
 					atomic.AddUint64(&s.Counter.NbrAllFiles, 1)
-
 				}
 
 				/*

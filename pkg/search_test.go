@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"testing"
+	"time"
 )
 
 func TestRunSearch(t *testing.T) {
@@ -18,7 +19,7 @@ func TestRunSearch(t *testing.T) {
 
 		fmt.Printf(`
 ==================         TEST N°%v         ==================
-DATA:   Mode=%s  Word=%s  Ext=%s  PoolSize=%s  Maj=%s  Xl=%s  Devil=%s  Super=%s  BlackList=%s
+DATA:   Mode=%s  Word=%s  Ext=%s  PoolSize=%s  Maj=%s  Devil=%s  Super=%s  BlackList=%s  WhiteList=%s
 
 `, i+1, tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6], tab[7], tab[8])
 
@@ -54,12 +55,12 @@ DATA:   Mode=%s  Word=%s  Ext=%s  PoolSize=%s  Maj=%s  Xl=%s  Devil=%s  Super=%s
 
 		s.RunSearch()
 
+		time.Sleep(1 * time.Second)
+
 		if s.Counter.NbrFiles != uint64(VResult) {
 			t.Error(fmt.Sprintf("the number of files found is incorrect: %v found but %v file was expected", s.Counter.NbrFiles, VResult))
 		}
 
-		fmt.Println()
-		fmt.Println()
 		fmt.Println(s.Counter.NbrFiles)
 		fmt.Println()
 		fmt.Println()
