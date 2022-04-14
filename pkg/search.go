@@ -163,10 +163,5 @@ func (s *Search) CheckMinimumPoolSize() {
 func (s *Search) SetMaxThread() {
 	maxThr := s.PoolSize * 500
 	debug.SetMaxThreads(maxThr)
-
-	if s.Silent {
-		return
-	}
-
-	//loger.Paramln(display.DrawSetMaxThread(maxThr))
+	DrawParam("THREADS MIS A", strconv.Itoa(maxThr))
 }

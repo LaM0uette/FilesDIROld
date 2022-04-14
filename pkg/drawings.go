@@ -53,7 +53,7 @@ func DrawEnd() {
 // ...
 // Search
 func DrawParam(v ...any) {
-	defer time.Sleep(300 * time.Millisecond)
+	defer time.Sleep(400 * time.Millisecond)
 
 	pre := "██████████"
 	txt := ""
