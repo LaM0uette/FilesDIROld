@@ -24,8 +24,8 @@ type Timer struct {
 }
 
 type Counter struct {
-	NbrFiles    uint64
-	NbrAllFiles uint64
+	NbrFiles    int
+	NbrAllFiles int
 }
 
 type Search struct {
@@ -54,6 +54,7 @@ type Search struct {
 	ListBlackList []string
 	ListWhiteList []string
 	Timer         *Timer
+	Counter       *Counter
 }
 
 var (

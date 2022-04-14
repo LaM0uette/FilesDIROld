@@ -49,6 +49,7 @@ func main() {
 		Timer: &pkg.Timer{
 			AppStart: time.Now(),
 		},
+		Counter: &pkg.Counter{},
 	}
 
 	if s.Cls {
