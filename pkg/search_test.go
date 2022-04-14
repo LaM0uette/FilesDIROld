@@ -11,6 +11,7 @@ func TestRunSearch(t *testing.T) {
 	tabs := [][]string{
 		//Mode | Word | Ext | PoolSize | Maj | Devil | Super | BlackList | WhiteList | Result
 		{"%", "", "*", "10", "false", "false", "false", "false", "false", "61"},
+		{"%", "comac", "*", "10", "false", "false", "false", "false", "false", "24"},
 	}
 
 	for i, tab := range tabs {
