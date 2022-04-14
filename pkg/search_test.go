@@ -30,7 +30,7 @@ func TestRunSearch(t *testing.T) {
 	}
 
 	for i, tab := range tabs {
-		if i <= 3 {
+		if i <= -1 {
 			continue
 		}
 
