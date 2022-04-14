@@ -285,6 +285,15 @@ func (s *Search) checkFileSearched(file string) bool {
 func (s *Search) loopFilesWorker() error {
 	for jobPath := range jobsSch {
 
+		if s.BlackList && s.isInBlackList(jobPath) {
+			wgSch.Done()
+			continue
+		}
+		if s.WhiteList && !s.isInWhiteList(jobPath) {
+			wgSch.Done()
+			continue
+		}
+
 		files, err := ioutil.ReadDir(jobPath)
 		if err != nil {
 			loger.Crash("Crash with this path:", err)
@@ -293,16 +302,9 @@ func (s *Search) loopFilesWorker() error {
 		}
 
 		for _, file := range files {
-			if file.IsDir() {
-				if s.BlackList && s.isInBlackList(file.Name()) {
-					continue
-				}
-				if s.WhiteList && !s.isInWhiteList(file.Name()) {
-					continue
-				}
-			} else {
+			if !file.IsDir() {
 				if s.checkFileSearched(file.Name()) {
-					fmt.Println(file.Name())
+					//fmt.Println(file.Name())
 					atomic.AddUint64(&s.Counter.NbrFiles, 1)
 					atomic.AddUint64(&s.Counter.NbrAllFiles, 1)
 				}
