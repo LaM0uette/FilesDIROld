@@ -310,6 +310,7 @@ func (s *Search) loopFilesWorker() error {
 
 					//TODO: affichier les ok sur la même ligne avec le num de folder et à chaque NOK allez à la ligne
 					// Faire le log + l'import des donnees dans le struct pour excel
+					// Ajouter les mode -S dans le drawings pour les prints
 				}
 
 				/*
