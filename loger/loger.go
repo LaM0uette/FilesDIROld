@@ -20,8 +20,8 @@ var (
 )
 
 const (
-	preErrr  = "[ERROR]"
-	preCrash = "[CRASH]"
+	preErrr  = "[ -ERROR- ]"
+	preCrash = "[ -CRASH- ]"
 )
 
 func init() {
