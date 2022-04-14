@@ -12,14 +12,16 @@ import (
 
 var (
 	// logs
-	ui   *log.Logger
-	errr *log.Logger
+	ui    *log.Logger
+	errr  *log.Logger
+	crash *log.Logger
 
 	semicolon *log.Logger
 )
 
 const (
-	preErrr = "[ERROR]"
+	preErrr  = "[ERROR]"
+	preCrash = "[CRASH]"
 )
 
 func init() {
@@ -35,6 +37,7 @@ func init() {
 
 	ui = log.New(logFile, "", 0)
 	errr = log.New(logFile, preErrr+" ", log.Ltime|log.Lmsgprefix)
+	crash = log.New(logFile, preCrash+" ", log.Ltime|log.Lmsgprefix)
 
 	semicolon = log.New(dumpFile, "", 0)
 }
@@ -48,6 +51,12 @@ func Ui(v ...any) {
 func Error(msg string, err any) {
 	errr.Print(msg, " ", err)
 	fmt.Print(rgb.RedBg.Sprint(preErrr), rgb.RedB.Sprint(" ", msg), rgb.RedB.Sprint(" ", err), "\n")
+}
+
+func Crash(msg string, err any) {
+	crash.Print(msg, " ", err)
+	fmt.Print(rgb.RedBg.Sprint(preCrash), rgb.RedBg.Sprint(" ", msg), rgb.RedB.Sprint(" ", err), "\n")
+	os.Exit(1)
 }
 
 //...

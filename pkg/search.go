@@ -4,10 +4,13 @@ import (
 	"FilesDIR/loger"
 	"bufio"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"runtime/debug"
 	"strconv"
+	"strings"
+	"sync"
 	"time"
 )
 
@@ -17,6 +20,11 @@ type Timer struct {
 
 	SearchStart time.Time
 	SearchEnd   time.Duration
+}
+
+type Counter struct {
+	NbrFiles    uint64
+	NbrAllFiles uint64
 }
 
 type Search struct {
@@ -47,12 +55,20 @@ type Search struct {
 	Timer         *Timer
 }
 
+var (
+	wgSch   sync.WaitGroup
+	jobsSch = make(chan string)
+)
+
 //...
 // Functions
 func (s *Search) RunSearch() {
 	s.initSearch()
 
 	s.Timer.SearchStart = time.Now()
+
+	s.loopDirsWorker(s.SrcPath)
+
 	s.Timer.SearchEnd = time.Since(s.Timer.SearchStart)
 }
 
@@ -60,7 +76,7 @@ func (s *Search) initSearch() {
 	DrawParam("INITIALISATION DE LA RECHERCHE EN COURS")
 
 	// Construct variable of search
-	s.ReqUse = s.GetReqOfSearched()
+	s.ReqUse = s.getReqOfSearched()
 	if !s.Maj {
 		s.Word = StrToLower(s.Word)
 	}
@@ -91,14 +107,25 @@ func (s *Search) initSearch() {
 	}
 
 	// Check basics configurations
-	s.CheckMinimumPoolSize()
-	s.SetMaxThread()
+	s.checkMinimumPoolSize()
+	s.setMaxThread()
+
+	// Creation of workers for search
+	for w := 1; w <= s.PoolSize; w++ {
+		numWorker := w
+		go func() {
+			err := s.loopFilesWorker()
+			if err != nil {
+				loger.Error(fmt.Sprintf("Error with worker N°%v", numWorker), err)
+			}
+		}()
+	}
 
 	// Create csv dump
 	loger.Semicolon("id;Fichier;Date;Lien_Fichier;Lien")
 }
 
-func (s *Search) GetReqOfSearched() string {
+func (s *Search) getReqOfSearched() string {
 
 	req := "FilesDIR"
 
@@ -168,7 +195,7 @@ func (s *Search) setBlackWhiteList(file string, val int) {
 	_ = readFile.Close()
 }
 
-func (s *Search) CheckMinimumPoolSize() {
+func (s *Search) checkMinimumPoolSize() {
 	if s.PoolSize < 2 {
 		s.PoolSize = 2
 		DrawParam("POOLSIZE MISE A", strconv.Itoa(s.PoolSize), "(ne peut pas être inférieur)")
@@ -177,8 +204,97 @@ func (s *Search) CheckMinimumPoolSize() {
 	}
 }
 
-func (s *Search) SetMaxThread() {
+func (s *Search) setMaxThread() {
 	maxThr := s.PoolSize * 500
 	debug.SetMaxThreads(maxThr)
 	DrawParam("THREADS MIS A", strconv.Itoa(maxThr))
+}
+
+func (s *Search) isInBlackList(f string) bool {
+	for _, black := range s.ListBlackList {
+		if strings.Contains(StrToLower(f), StrToLower(black)) {
+			return true
+		}
+	}
+	return false
+}
+
+//...
+// WORKER:
+func (s *Search) loopFilesWorker() error {
+	for jobPath := range jobsSch {
+
+		files, err := ioutil.ReadDir(jobPath)
+		if err != nil {
+			loger.Crash("Crash with this path:", err)
+			wgSch.Done()
+			return err
+		}
+
+		for _, file := range files {
+			if !file.IsDir() {
+				fmt.Println(file)
+
+				/*
+					if s.checkFileSearched(file.Name()) {
+						s.NbFiles++
+						s.NbFilesTotal++
+
+						if !super {
+							Mu.Lock()
+							loger.POOk(display.DrawFileSearched(s.NbFiles, file.Name()))
+
+							dataExp := construct.ExportData{
+								Id:       s.NbFiles,
+								File:     file.Name(),
+								Date:     file.ModTime().Format("02-01-2006 15:04:05"),
+								PathFile: filepath.Join(jobPath, file.Name()),
+								Path:     jobPath,
+							}
+							construct.ExcelData = append(construct.ExcelData, dataExp)
+							Mu.Unlock()
+
+						} else {
+							loger.POAction(display.DrawSearchedFait(s.NbFilesTotal))
+						}
+
+						loger.LOOk(fmt.Sprintf("N°%v |=| Files: %s", s.NbFiles, file.Name()))
+						loger.Semicolon(fmt.Sprintf("%v;%s;%s;%s;%s",
+							s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(jobPath, file.Name()), jobPath))
+
+						if runtime.NumGoroutine() > s.NbGoroutine {
+							s.NbGoroutine = runtime.NumGoroutine()
+						}
+					} else {
+						s.NbFilesTotal++
+						loger.POAction(display.DrawSearchedFait(s.NbFilesTotal))
+					}*/
+			}
+		}
+		wgSch.Done()
+	}
+	return nil
+}
+
+func (s *Search) loopDirsWorker(path string) {
+	files, err := ioutil.ReadDir(path)
+	if err != nil {
+		loger.Error("Error with this path:", err)
+	}
+
+	go func() {
+		wgSch.Add(1)
+		jobsSch <- path
+	}()
+
+	for _, file := range files {
+		if file.IsDir() && !s.isInBlackList(file.Name()) {
+			if s.Devil {
+				time.Sleep(20 * time.Millisecond)
+				go s.loopDirsWorker(filepath.Join(path, file.Name()))
+			} else {
+				s.loopDirsWorker(filepath.Join(path, file.Name()))
+			}
+		}
+	}
 }
