@@ -24,6 +24,7 @@ type Search struct {
 	Devil     bool
 	Super     bool
 	BlackList bool
+	WhiteList bool
 
 	// Search
 	SrcPath string
@@ -32,6 +33,7 @@ type Search struct {
 
 	// Data
 	ListBlackList []string
+	ListWhiteList []string
 }
 
 //...
@@ -43,22 +45,38 @@ func (s *Search) RunSearch() {
 func (s *Search) initSearch() {
 	DrawParam("INITIALISATION DE LA RECHERCHE EN COURS")
 
+	// Construct variable of search
 	s.ReqUse = s.GetReqOfSearched()
 	if !s.Maj {
 		s.Word = StrToLower(s.Word)
 	}
 	s.Ext = fmt.Sprintf(".%s", s.Ext)
 
+	// Add WhiteList / BlackList
 	if s.BlackList {
 		blPath := filepath.Join(s.DstPath, "blacklist")
-		s.setBlackList(filepath.Join(blPath, "__ALL__.txt"))
+		s.setBlackWhiteList(filepath.Join(blPath, "__ALL__.txt"), 0)
 
 		file := filepath.Join(blPath, fmt.Sprintf("%s.txt", StrToLower(s.Word)))
 		if _, err := os.Stat(file); err == nil {
-			s.setBlackList(file)
+			s.setBlackWhiteList(file, 0)
 		}
+
+		DrawParam(fmt.Sprintf("BLACKLIST: %v", s.ListBlackList))
+	}
+	if s.WhiteList {
+		wlPath := filepath.Join(s.DstPath, "whitelist")
+		s.setBlackWhiteList(filepath.Join(wlPath, "__ALL__.txt"), 1)
+
+		file := filepath.Join(wlPath, fmt.Sprintf("%s.txt", StrToLower(s.Word)))
+		if _, err := os.Stat(file); err == nil {
+			s.setBlackWhiteList(file, 1)
+		}
+
+		DrawParam(fmt.Sprintf("WHITELIST: %v", s.ListWhiteList))
 	}
 
+	// Check basics configurations
 	s.CheckMinimumPoolSize()
 	s.SetMaxThread()
 }
@@ -93,9 +111,7 @@ func (s *Search) GetReqOfSearched() string {
 	return fmt.Sprintf("FilesDIR -mode=%s%s -ext=%s -poolsize=%v%s%s%s%s\n", s.Mode, VWord, s.Ext, s.PoolSize, VMaj, VDevil, VSuper, VBlackList)
 }
 
-func (s *Search) setBlackList(file string) {
-	DrawParam("AJOUT DE DONNEES DANS LA BLACKLIST")
-
+func (s *Search) setBlackWhiteList(file string, val int) {
 	readFile, err := os.Open(file)
 	if err != nil {
 		fmt.Println(err) //TODO: Loger crash
@@ -105,7 +121,13 @@ func (s *Search) setBlackList(file string) {
 	fileScanner.Split(bufio.ScanLines)
 
 	for fileScanner.Scan() {
-		s.ListBlackList = append(s.ListBlackList, fileScanner.Text())
+		switch val {
+		case 0:
+			s.ListBlackList = append(s.ListBlackList, fileScanner.Text())
+		case 1:
+			s.ListWhiteList = append(s.ListWhiteList, fileScanner.Text())
+		}
+
 	}
 	_ = readFile.Close()
 }

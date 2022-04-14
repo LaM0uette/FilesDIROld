@@ -29,6 +29,7 @@ func main() {
 	FlgDevil := flag.Bool("devil", false, "Mode 'Démon' de l'application")
 	FlgSuper := flag.Bool("s", false, "Mode 'Super', évite toutes les choses inutiles")
 	FlgBlackList := flag.Bool("b", false, "Ajout d'une blacklist de dossier")
+	FlgWhiteList := flag.Bool("w", false, "Ajout d'une whitelist de dossier")
 	// Parse all Flags
 	flag.Parse()
 
@@ -43,6 +44,7 @@ func main() {
 		Devil:     *FlgDevil,
 		Super:     *FlgSuper,
 		BlackList: *FlgBlackList,
+		WhiteList: *FlgWhiteList,
 
 		SrcPath: pkg.GetCurrentDir(),
 		DstPath: config.DstPath,
