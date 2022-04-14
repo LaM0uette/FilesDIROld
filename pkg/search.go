@@ -293,8 +293,14 @@ func (s *Search) loopFilesWorker() error {
 		}
 
 		for _, file := range files {
-			if !file.IsDir() {
-
+			if file.IsDir() {
+				if s.BlackList && s.isInBlackList(file.Name()) {
+					continue
+				}
+				if s.WhiteList && !s.isInWhiteList(file.Name()) {
+					continue
+				}
+			} else {
 				if s.checkFileSearched(file.Name()) {
 					fmt.Println(file.Name())
 					atomic.AddUint64(&s.Counter.NbrFiles, 1)
@@ -354,12 +360,7 @@ func (s *Search) loopDirsWorker(path string) {
 	}()
 
 	for _, file := range files {
-		if file.IsDir() && !s.isInBlackList(file.Name()) {
-
-			if s.WhiteList && !s.isInWhiteList(file.Name()) {
-				return
-			}
-
+		if file.IsDir() {
 			if s.Devil {
 				time.Sleep(20 * time.Millisecond)
 				go s.loopDirsWorker(filepath.Join(path, file.Name()))
