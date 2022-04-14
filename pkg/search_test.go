@@ -2,6 +2,7 @@ package pkg
 
 import (
 	"FilesDIR/config"
+	"FilesDIR/rgb"
 	"fmt"
 	"strconv"
 	"testing"
@@ -14,6 +15,7 @@ func TestRunSearch(t *testing.T) {
 		{"%", "", "*", "10", "false", "false", "false", "false", "false", "61"},
 		{"%", "comac", "*", "10", "false", "false", "false", "false", "false", "24"},
 		{"%", "comac", "*", "10", "true", "false", "false", "false", "false", "6"},
+		{"%", "", "*", "10", "false", "false", "false", "true", "false", "26"},
 	}
 
 	s := &Search{
@@ -45,21 +47,14 @@ DATA:   Mode=%s  Word=%s  Ext=%s  PoolSize=%s  Maj=%s  Devil=%s  Super=%s  Black
 		s.WhiteList, _ = strconv.ParseBool(tab[8])
 		s.Counter.NbrFiles = 0
 		s.Counter.NbrAllFiles = 0
-
 		Result, _ := strconv.Atoi(tab[9])
 
-		fmt.Println(s)
-
 		s.RunSearch()
-
 		time.Sleep(1 * time.Second)
 
 		if s.Counter.NbrFiles != uint64(Result) {
-			t.Error(fmt.Sprintf("the number of files found is incorrect: %v found but %v file was expected", s.Counter.NbrFiles, Result))
+			t.Error(rgb.RedBg.Sprintf("the number of files found is incorrect: %v found but %v file was expected", s.Counter.NbrFiles, Result))
 		}
-
-		fmt.Println(s.Counter.NbrFiles)
-		fmt.Println()
-		fmt.Println()
+		rgb.GreenB.Printf("Succes : %v\n\n\n", s.Counter.NbrFiles)
 	}
 }
