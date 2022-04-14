@@ -283,6 +283,8 @@ func (s *Search) loopFilesWorker() error {
 
 				if s.checkFileSearched(file.Name()) {
 					fmt.Println(file.Name())
+					s.Counter.NbrFiles++
+					s.Counter.NbrAllFiles++
 				}
 
 				/*

@@ -10,7 +10,7 @@ import (
 func TestRunSearch(t *testing.T) {
 	tabs := [][]string{
 		//Mode | Word | Ext | PoolSize | Maj | Devil | Super | BlackList | WhiteList | Result
-		{"%", "", "*", "10", "false", "false", "false", "false", "false", "0"},
+		{"%", "", "*", "10", "false", "false", "false", "false", "false", "61"},
 	}
 
 	for i, tab := range tabs {
