@@ -13,6 +13,7 @@ import (
 var (
 	// logs
 	ui    *log.Logger
+	ok    *log.Logger
 	errr  *log.Logger
 	crash *log.Logger
 
@@ -20,6 +21,7 @@ var (
 )
 
 const (
+	preOk    = "[ -OK- ]"
 	preErrr  = "[ -ERROR- ]"
 	preCrash = "[ -CRASH- ]"
 )
@@ -36,6 +38,7 @@ func init() {
 	}
 
 	ui = log.New(logFile, "", 0)
+	ok = log.New(logFile, preOk+" ", log.Ltime|log.Lmsgprefix)
 	errr = log.New(logFile, preErrr+" ", log.Ltime|log.Lmsgprefix)
 	crash = log.New(logFile, preCrash+" ", log.Ltime|log.Lmsgprefix)
 
@@ -46,6 +49,11 @@ func init() {
 // Log
 func Ui(v ...any) {
 	ui.Print(v...)
+}
+
+func Ok(msg string) {
+	ok.Print(msg)
+	fmt.Print(rgb.GreenBg.Sprint(preErrr), rgb.GreenB.Sprint(" ", msg))
 }
 
 func Error(msg string, err any) {
