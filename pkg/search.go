@@ -8,7 +8,16 @@ import (
 	"path/filepath"
 	"runtime/debug"
 	"strconv"
+	"time"
 )
+
+type Timer struct {
+	AppStart time.Time
+	AppEnd   time.Duration
+
+	SearchStart time.Time
+	SearchEnd   time.Duration
+}
 
 type Search struct {
 
@@ -35,12 +44,16 @@ type Search struct {
 	// Data
 	ListBlackList []string
 	ListWhiteList []string
+	Timer         *Timer
 }
 
 //...
 // Functions
 func (s *Search) RunSearch() {
 	s.initSearch()
+
+	s.Timer.SearchStart = time.Now()
+	s.Timer.SearchEnd = time.Since(s.Timer.SearchStart)
 }
 
 func (s *Search) initSearch() {

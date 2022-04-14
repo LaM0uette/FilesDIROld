@@ -11,8 +11,6 @@ import (
 
 func main() {
 
-	timerStart := time.Now()
-
 	pkg.DrawStart()
 
 	// Flag of Packages
@@ -48,6 +46,9 @@ func main() {
 
 		SrcPath: pkg.GetCurrentDir(),
 		DstPath: config.DstPath,
+		Timer: &pkg.Timer{
+			AppStart: time.Now(),
+		},
 	}
 
 	if s.Cls {
@@ -58,9 +59,9 @@ func main() {
 		s.RunSearch()
 	}
 
-	timerEnd := time.Since(timerStart)
+	s.Timer.AppEnd = time.Since(s.Timer.AppStart)
 
-	fmt.Println(timerEnd)
+	fmt.Println(s.Timer.AppEnd)
 
 	pkg.DrawEnd()
 }
