@@ -1,6 +1,7 @@
 package pkg
 
 import (
+	"FilesDIR/loger"
 	"os"
 	"strings"
 )
@@ -8,7 +9,7 @@ import (
 func GetCurrentDir() string {
 	pwd, err := os.Getwd()
 	if err != nil {
-		//TODO: mettre un loger
+		loger.Error("Error with current dir:", err)
 		os.Exit(1)
 	}
 	return pwd

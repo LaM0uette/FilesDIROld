@@ -1,6 +1,7 @@
 package loger
 
 import (
+	"FilesDIR/rgb"
 	"FilesDIROLD/globals"
 	"fmt"
 	"log"
@@ -11,7 +12,12 @@ import (
 
 var (
 	// logs
-	ui *log.Logger
+	ui   *log.Logger
+	errr *log.Logger
+)
+
+const (
+	preErrr = "[ERROR]"
 )
 
 func init() {
@@ -21,10 +27,16 @@ func init() {
 	}
 
 	ui = log.New(logFile, "", 0)
+	errr = log.New(logFile, preErrr+" ", log.Ltime|log.Lmsgprefix)
 }
 
 //...
 // Log
 func Ui(v ...any) {
 	ui.Print(v...)
+}
+
+func Error(msg string, err any) {
+	errr.Print(msg, " ", err)
+	fmt.Print(rgb.RedBg.Sprint(preErrr), rgb.RedB.Sprint(" ", msg), rgb.RedB.Sprint(" ", err), "\n")
 }
