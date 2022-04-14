@@ -30,6 +30,9 @@ func TestRunSearch(t *testing.T) {
 	}
 
 	for i, tab := range tabs {
+		if i <= 3 {
+			continue
+		}
 
 		fmt.Printf(`
 ==================         TEST N°%v         ==================

@@ -296,7 +296,7 @@ func (s *Search) loopFilesWorker() error {
 			if !file.IsDir() {
 
 				if s.checkFileSearched(file.Name()) {
-					//fmt.Println(file.Name())
+					fmt.Println(file.Name())
 					atomic.AddUint64(&s.Counter.NbrFiles, 1)
 					atomic.AddUint64(&s.Counter.NbrAllFiles, 1)
 				}

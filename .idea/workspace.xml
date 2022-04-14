@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="add test run loop">
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="add whitelist">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/search.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/search.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/search_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/search_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgb/rgb.go" beforeDir="false" afterPath="$PROJECT_DIR$/rgb/rgb.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +177,8 @@
     <MESSAGE value="add search worker" />
     <MESSAGE value="add search worker + filter" />
     <MESSAGE value="add test run loop" />
-    <option name="LAST_COMMIT_MESSAGE" value="add test run loop" />
+    <MESSAGE value="add whitelist" />
+    <option name="LAST_COMMIT_MESSAGE" value="add whitelist" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
