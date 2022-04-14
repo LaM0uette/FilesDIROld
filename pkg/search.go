@@ -184,7 +184,11 @@ func (s *Search) getReqOfSearched() string {
 func (s *Search) setBlackWhiteList(file string, val int) {
 	readFile, err := os.Open(file)
 	if err != nil {
-		fmt.Println(err) //TODO: Loger crash
+		list := "Black"
+		if val == 1 {
+			list = "White"
+		}
+		loger.Error(fmt.Sprintf("Error during insert data in %sList:", list), err)
 	}
 
 	fileScanner := bufio.NewScanner(readFile)
@@ -304,7 +308,6 @@ func (s *Search) loopFilesWorker() error {
 		for _, file := range files {
 			if !file.IsDir() {
 				if s.checkFileSearched(file.Name()) {
-					//fmt.Println(file.Name())
 					atomic.AddUint64(&s.Counter.NbrFiles, 1)
 					atomic.AddUint64(&s.Counter.NbrAllFiles, 1)
 
