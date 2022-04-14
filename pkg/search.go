@@ -355,6 +355,11 @@ func (s *Search) loopDirsWorker(path string) {
 
 	for _, file := range files {
 		if file.IsDir() && !s.isInBlackList(file.Name()) {
+
+			if s.WhiteList && !s.isInWhiteList(file.Name()) {
+				return
+			}
+
 			if s.Devil {
 				time.Sleep(20 * time.Millisecond)
 				go s.loopDirsWorker(filepath.Join(path, file.Name()))
