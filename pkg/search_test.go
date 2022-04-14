@@ -15,7 +15,7 @@ func TestRunSearch(t *testing.T) {
 		{"%", "", "*", "10", "false", "false", "false", "false", "false", "61"},
 		{"%", "comac", "*", "10", "false", "false", "false", "false", "false", "24"},
 		{"%", "comac", "*", "10", "true", "false", "false", "false", "false", "6"},
-		{"%", "", "*", "10", "false", "false", "false", "true", "false", "26"},
+		{"%", "", "*", "10", "false", "false", "false", "true", "false", "25"},
 	}
 
 	s := &Search{
@@ -54,7 +54,8 @@ DATA:   Mode=%s  Word=%s  Ext=%s  PoolSize=%s  Maj=%s  Devil=%s  Super=%s  Black
 
 		if s.Counter.NbrFiles != uint64(Result) {
 			t.Error(rgb.RedBg.Sprintf("the number of files found is incorrect: %v found but %v file was expected", s.Counter.NbrFiles, Result))
+		} else {
+			rgb.GreenB.Printf("Succes : %v\n\n\n", s.Counter.NbrFiles)
 		}
-		rgb.GreenB.Printf("Succes : %v\n\n\n", s.Counter.NbrFiles)
 	}
 }
