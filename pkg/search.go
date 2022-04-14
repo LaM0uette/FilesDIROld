@@ -1,6 +1,7 @@
 package pkg
 
 import (
+	"FilesDIR/loger"
 	"bufio"
 	"fmt"
 	"os"
@@ -79,6 +80,9 @@ func (s *Search) initSearch() {
 	// Check basics configurations
 	s.CheckMinimumPoolSize()
 	s.SetMaxThread()
+
+	// Create csv dump
+	loger.Semicolon("id;Fichier;Date;Lien_Fichier;Lien")
 }
 
 func (s *Search) GetReqOfSearched() string {

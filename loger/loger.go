@@ -14,6 +14,8 @@ var (
 	// logs
 	ui   *log.Logger
 	errr *log.Logger
+
+	semicolon *log.Logger
 )
 
 const (
@@ -26,8 +28,15 @@ func init() {
 		log.Fatal(err)
 	}
 
+	dumpFile, err := os.OpenFile(filepath.Join(globals.FolderDumps, fmt.Sprintf("Dump_%v.txt", time.Now().Format("20060102150405"))), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	ui = log.New(logFile, "", 0)
 	errr = log.New(logFile, preErrr+" ", log.Ltime|log.Lmsgprefix)
+
+	semicolon = log.New(dumpFile, "", 0)
 }
 
 //...
@@ -39,4 +48,10 @@ func Ui(v ...any) {
 func Error(msg string, err any) {
 	errr.Print(msg, " ", err)
 	fmt.Print(rgb.RedBg.Sprint(preErrr), rgb.RedB.Sprint(" ", msg), rgb.RedB.Sprint(" ", err), "\n")
+}
+
+//...
+// Dump
+func Semicolon(v ...any) {
+	semicolon.Println(v...)
 }
