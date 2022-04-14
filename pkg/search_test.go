@@ -13,6 +13,17 @@ func TestRunSearch(t *testing.T) {
 		//Mode | Word | Ext | PoolSize | Maj | Devil | Super | BlackList | WhiteList | Result
 		{"%", "", "*", "10", "false", "false", "false", "false", "false", "61"},
 		{"%", "comac", "*", "10", "false", "false", "false", "false", "false", "24"},
+		{"%", "comac", "*", "10", "true", "false", "false", "false", "false", "6"},
+	}
+
+	s := &Search{
+		Cls:      false,
+		Compiler: false,
+
+		SrcPath: "C:\\Users\\XD5965\\go\\src\\FilesDIR\\test",
+		DstPath: config.DstPath,
+		Timer:   &Timer{},
+		Counter: &Counter{},
 	}
 
 	for i, tab := range tabs {
@@ -23,42 +34,28 @@ DATA:   Mode=%s  Word=%s  Ext=%s  PoolSize=%s  Maj=%s  Devil=%s  Super=%s  Black
 
 `, i+1, tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6], tab[7], tab[8])
 
-		VMode := tab[0]
-		VWord := tab[1]
-		VExt := tab[2]
-		VPoolSize, _ := strconv.Atoi(tab[3])
-		VMaj, _ := strconv.ParseBool(tab[4])
-		VDevil, _ := strconv.ParseBool(tab[5])
-		VSuper, _ := strconv.ParseBool(tab[6])
-		VBlackList, _ := strconv.ParseBool(tab[7])
-		VWhiteList, _ := strconv.ParseBool(tab[8])
-		VResult, _ := strconv.Atoi(tab[9])
+		s.Mode = tab[0]
+		s.Word = tab[1]
+		s.Ext = tab[2]
+		s.PoolSize, _ = strconv.Atoi(tab[3])
+		s.Maj, _ = strconv.ParseBool(tab[4])
+		s.Devil, _ = strconv.ParseBool(tab[5])
+		s.Silent, _ = strconv.ParseBool(tab[6])
+		s.BlackList, _ = strconv.ParseBool(tab[7])
+		s.WhiteList, _ = strconv.ParseBool(tab[8])
+		s.Counter.NbrFiles = 0
+		s.Counter.NbrAllFiles = 0
 
-		s := &Search{
-			Cls:       false,
-			Compiler:  false,
-			Mode:      VMode,
-			Word:      VWord,
-			Ext:       VExt,
-			PoolSize:  VPoolSize,
-			Maj:       VMaj,
-			Devil:     VDevil,
-			Silent:    VSuper,
-			BlackList: VBlackList,
-			WhiteList: VWhiteList,
+		Result, _ := strconv.Atoi(tab[9])
 
-			SrcPath: "C:\\Users\\XD5965\\go\\src\\FilesDIR\\test",
-			DstPath: config.DstPath,
-			Timer:   &Timer{},
-			Counter: &Counter{},
-		}
+		fmt.Println(s)
 
 		s.RunSearch()
 
 		time.Sleep(1 * time.Second)
 
-		if s.Counter.NbrFiles != uint64(VResult) {
-			t.Error(fmt.Sprintf("the number of files found is incorrect: %v found but %v file was expected", s.Counter.NbrFiles, VResult))
+		if s.Counter.NbrFiles != uint64(Result) {
+			t.Error(fmt.Sprintf("the number of files found is incorrect: %v found but %v file was expected", s.Counter.NbrFiles, Result))
 		}
 
 		fmt.Println(s.Counter.NbrFiles)
