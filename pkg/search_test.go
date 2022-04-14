@@ -33,7 +33,6 @@ func TestRunSearch(t *testing.T) {
 		fmt.Printf(`
 ==================         TEST N°%v         ==================
 DATA:   Mode=%s  Word=%s  Ext=%s  PoolSize=%s  Maj=%s  Devil=%s  Super=%s  BlackList=%s  WhiteList=%s
-
 `, i+1, tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6], tab[7], tab[8])
 
 		s.Mode = tab[0]
@@ -54,8 +53,6 @@ DATA:   Mode=%s  Word=%s  Ext=%s  PoolSize=%s  Maj=%s  Devil=%s  Super=%s  Black
 
 		if s.Counter.NbrFiles != uint64(Result) {
 			t.Error(rgb.RedBg.Sprintf("the number of files found is incorrect: %v found but %v file was expected", s.Counter.NbrFiles, Result))
-		} else {
-			rgb.GreenB.Printf("Succes : %v\n\n\n", s.Counter.NbrFiles)
 		}
 	}
 }
