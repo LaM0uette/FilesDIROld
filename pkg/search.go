@@ -12,6 +12,7 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"sync/atomic"
 	"time"
 )
 
@@ -24,8 +25,8 @@ type Timer struct {
 }
 
 type Counter struct {
-	NbrFiles    int
-	NbrAllFiles int
+	NbrFiles    uint64
+	NbrAllFiles uint64
 }
 
 type Search struct {
@@ -70,6 +71,8 @@ func (s *Search) RunSearch() {
 	s.Timer.SearchStart = time.Now()
 
 	s.loopDirsWorker(s.SrcPath)
+
+	wgSch.Wait()
 
 	s.Timer.SearchEnd = time.Since(s.Timer.SearchStart)
 }
@@ -282,9 +285,11 @@ func (s *Search) loopFilesWorker() error {
 			if !file.IsDir() {
 
 				if s.checkFileSearched(file.Name()) {
-					fmt.Println(file.Name())
-					s.Counter.NbrFiles++
-					s.Counter.NbrAllFiles++
+					//fmt.Println(file.Name())
+
+					atomic.AddUint64(&s.Counter.NbrFiles, 1)
+					atomic.AddUint64(&s.Counter.NbrAllFiles, 1)
+
 				}
 
 				/*

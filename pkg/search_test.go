@@ -53,7 +53,7 @@ DATA:   Mode=%s  Word=%s  Ext=%s  PoolSize=%s  Maj=%s  Xl=%s  Devil=%s  Super=%s
 
 		s.RunSearch()
 
-		if s.Counter.NbrFiles != VResult {
+		if s.Counter.NbrFiles != uint64(VResult) {
 			t.Error(fmt.Sprintf("the number of files found is incorrect: %v found but %v file was expected", s.Counter.NbrFiles, VResult))
 		}
 
