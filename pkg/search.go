@@ -218,8 +218,17 @@ func (s *Search) setMaxThread() {
 }
 
 func (s *Search) isInBlackList(f string) bool {
-	for _, black := range s.ListBlackList {
-		if strings.Contains(StrToLower(f), StrToLower(black)) {
+	for _, word := range s.ListBlackList {
+		if strings.Contains(StrToLower(f), StrToLower(word)) {
+			return true
+		}
+	}
+	return false
+}
+
+func (s *Search) isInWhiteList(f string) bool {
+	for _, word := range s.ListWhiteList {
+		if strings.Contains(StrToLower(f), StrToLower(word)) {
 			return true
 		}
 	}

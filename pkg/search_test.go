@@ -16,6 +16,7 @@ func TestRunSearch(t *testing.T) {
 		{"%", "comac", "*", "10", "false", "false", "false", "false", "false", "24"},
 		{"%", "comac", "*", "10", "true", "false", "false", "false", "false", "6"},
 		{"%", "", "*", "10", "false", "false", "false", "true", "false", "25"},
+		{"%", "", "*", "10", "false", "false", "false", "false", "true", "36"},
 	}
 
 	s := &Search{
