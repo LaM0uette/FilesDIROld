@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path"
 	"path/filepath"
 	"runtime/debug"
 	"strconv"
@@ -219,6 +220,51 @@ func (s *Search) isInBlackList(f string) bool {
 	return false
 }
 
+func (s *Search) checkFileSearched(file string) bool {
+	name := file[:strings.LastIndex(file, path.Ext(file))]
+	ext := StrToLower(filepath.Ext(file))
+
+	if !s.Maj {
+		name = StrToLower(name)
+	}
+
+	// condition of search Mode ( = | % | ^ | $ )
+	switch s.Mode {
+	case "%":
+		if !strings.Contains(name, s.Word) {
+			return false
+		}
+	case "=":
+		if name != s.Word {
+			return false
+		}
+	case "^":
+		if !strings.HasPrefix(name, s.Word) {
+			return false
+		}
+	case "$":
+		if !strings.HasSuffix(name, s.Word) {
+			return false
+		}
+	default:
+		if !strings.Contains(name, s.Word) {
+			return false
+		}
+	}
+
+	// condition of extension file
+	if s.Ext != ".*" && ext != s.Ext {
+		return false
+	}
+
+	// condition of open file
+	if strings.Contains(name, "~") {
+		return false
+	}
+
+	return true
+}
+
 //...
 // WORKER:
 func (s *Search) loopFilesWorker() error {
@@ -233,7 +279,10 @@ func (s *Search) loopFilesWorker() error {
 
 		for _, file := range files {
 			if !file.IsDir() {
-				fmt.Println(file)
+
+				if s.checkFileSearched(file.Name()) {
+					fmt.Println(file.Name())
+				}
 
 				/*
 					if s.checkFileSearched(file.Name()) {
