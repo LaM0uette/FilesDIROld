@@ -83,8 +83,8 @@ func (s *Search) DrawFilesSearched() {
 // Ui
 func DrawSep(name string) {
 	sep := ligneSep + fmt.Sprintf(" %s ", name) + ligneSep
-	sepRgb := rgb.Gray.Sprintf("%s", ligneSep) + rgb.GreenB.Sprintf(" %s ", name) + rgb.Gray.Sprintf("%s", ligneSep)
+	sepRgb := rgb.Gray.Sprint(ligneSep) + rgb.GreenB.Sprintf(" %s ", name) + rgb.Gray.Sprint(ligneSep)
 
-	loger.Ui(sep)
-	fmt.Println(sepRgb)
+	loger.Ui("\n\n", sep)
+	fmt.Println("\n\n", sepRgb)
 }

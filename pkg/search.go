@@ -80,6 +80,8 @@ func (s *Search) RunSearch() {
 	time.Sleep(1 * time.Second)
 
 	s.Timer.SearchEnd = time.Since(s.Timer.SearchStart)
+
+	//TODO: Generation Excel avec draw sep
 }
 
 func (s *Search) initSearch() {
