@@ -131,3 +131,9 @@ func DrawSep(name string) {
 	loger.Ui("\n\n", sep)
 	fmt.Println("\n\n", sepRgb)
 }
+
+// ...
+// Export Excel
+func DrawAddLine(job, iMax int) {
+	loger.Void(fmt.Sprintf("Export Excel: %v/%v", job, iMax))
+}
