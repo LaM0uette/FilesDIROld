@@ -27,6 +27,8 @@ var (
 )
 
 func RunWritter() {
+	DrawSep("EXPORT XLSX")
+
 	headers := map[string]string{
 		"A1": "id",
 		"B1": "Fichier",

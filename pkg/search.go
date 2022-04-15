@@ -70,6 +70,7 @@ type Search struct {
 var (
 	wgSch   sync.WaitGroup
 	jobsSch = make(chan string)
+	Mu      sync.Mutex
 )
 
 //...
@@ -324,6 +325,7 @@ func (s *Search) loopFilesWorker() error {
 		for _, file := range files {
 			if !file.IsDir() {
 				if s.checkFileSearched(file.Name()) {
+					Mu.Lock()
 					atomic.AddUint64(&s.Counter.NbrFiles, 1)
 					s.DrawFilesOk(file.Name())
 
@@ -339,6 +341,7 @@ func (s *Search) loopFilesWorker() error {
 					ExportSch = append(ExportSch, data)
 
 					//  TODO: Ajouter les mode -S dans le drawings pour les prints
+					Mu.Unlock()
 				}
 				atomic.AddUint64(&s.Counter.NbrAllFiles, 1)
 
