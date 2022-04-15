@@ -27,6 +27,7 @@ func TestRunSearch(t *testing.T) {
 		DstPath: config.DstPath,
 		Timer:   &Timer{},
 		Counter: &Counter{},
+		Process: &Process{},
 	}
 
 	for i, tab := range tabs {

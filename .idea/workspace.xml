@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="généraztion du fichier excel">
-      <change beforePath="$PROJECT_DIR$/pkg/searchWritter.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/searchWritter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/search_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/search_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +75,17 @@
     </key>
   </component>
   <component name="RunManager" selected="Go Test.TestRunSearch in FilesDIR/pkg (2)">
+    <configuration name="TestGetCurrentDir in FilesDIR/pkg" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="FilesDIR" />
+      <working_directory value="$PROJECT_DIR$/pkg" />
+      <kind value="PACKAGE" />
+      <package value="FilesDIR/pkg" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestGetCurrentDir\E$" />
+      <method v="2" />
+    </configuration>
     <configuration name="TestRunSearch in FilesDIR/pkg (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$/pkg" />
@@ -108,17 +119,6 @@
       <pattern value="^\QTestRunSearch\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestStrToLower in FilesDIR/pkg" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="FilesDIR" />
-      <working_directory value="$PROJECT_DIR$/pkg" />
-      <kind value="PACKAGE" />
-      <package value="FilesDIR/pkg" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestStrToLower\E$" />
-      <method v="2" />
-    </configuration>
     <configuration name="go test FilesDIR/pkg" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$/pkg" />
@@ -132,10 +132,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Test.TestRunSearch in FilesDIR/pkg (2)" />
+        <item itemvalue="Go Test.TestGetCurrentDir in FilesDIR/pkg" />
         <item itemvalue="Go Test.TestRunSearch in FilesDIR/pkg (1)" />
         <item itemvalue="Go Test.TestRunSearch in FilesDIR/pkg" />
         <item itemvalue="Go Test.go test FilesDIR/pkg" />
-        <item itemvalue="Go Test.TestStrToLower in FilesDIR/pkg" />
       </list>
     </recent_temporary>
   </component>
