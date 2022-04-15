@@ -88,7 +88,7 @@ func (s *Search) RunSearch() {
 
 	s.Timer.SearchEnd = time.Since(s.Timer.SearchStart)
 
-	//TODO: Generation Excel avec draw sep
+	RunWritter()
 }
 
 func (s *Search) initSearch() {
