@@ -1,5 +1,11 @@
 package config
 
+import (
+	"log"
+	"os/user"
+	"path/filepath"
+)
+
 const (
 	Name    = "FilesDIR"
 	Author  = "LaM0uette"
@@ -7,5 +13,14 @@ const (
 )
 
 var (
-	DstPath = "C:\\Users\\XD5965\\FilesDIR"
+	DstPath = filepath.Join(GetTempDir(), Name)
 )
+
+func GetTempDir() string {
+	temp, err := user.Current()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return filepath.Join(temp.HomeDir)
+}
