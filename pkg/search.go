@@ -85,6 +85,8 @@ func (s *Search) RunSearch() {
 
 	wgSch.Wait()
 
+	fmt.Print("\r                                                                                            ")
+
 	time.Sleep(1 * time.Second)
 
 	s.Timer.SearchEnd = time.Since(s.Timer.SearchStart)

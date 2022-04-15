@@ -83,7 +83,7 @@ func (s *Search) DrawFilesSearched() {
 func (s *Search) DrawBilanSearch() {
 	defer time.Sleep(1 * time.Second)
 
-	DrawSep("BILAN")
+	DrawSep("   BILAN   ")
 
 	loger.Ui("INFOS GENERALES:")
 	loger.Ui("  Dossier principale: ", s.SrcPath)
@@ -119,7 +119,7 @@ func (s *Search) DrawBilanSearch() {
 	fmt.Println(rgb.Majenta.Sprint("  Dumps:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "dumps")))
 	fmt.Println(rgb.Majenta.Sprint("  Export Excel:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "exports")))
 
-	DrawSep("FIN")
+	DrawSep("    FIN    ")
 }
 
 // ...
