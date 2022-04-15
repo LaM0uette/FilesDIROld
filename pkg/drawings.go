@@ -80,7 +80,15 @@ func (s *Search) DrawFilesSearched() {
 }
 
 func (s *Search) DrawBilanSearch() {
+	defer time.Sleep(1 * time.Second)
+
 	DrawSep("BILAN")
+
+	loger.Ui("INFOS GENERALES")
+	loger.Ui("  Dossier principale: ", s.SrcPath)
+
+	fmt.Println(rgb.MajentaBg.Sprint("INFOS GENERALES:"))
+	fmt.Println(rgb.Majenta.Sprint("  Dossier principale:"), rgb.GreenB.Sprint(s.SrcPath))
 
 }
 
