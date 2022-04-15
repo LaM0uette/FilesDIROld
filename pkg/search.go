@@ -77,9 +77,10 @@ func (s *Search) RunSearch() {
 
 	wgSch.Wait()
 
-	time.Sleep(1 * time.Second)
+	time.Sleep(3 * time.Second)
 
 	s.Timer.SearchEnd = time.Since(s.Timer.SearchStart)
+	s.DrawBilanSearch()
 
 	//TODO: Generation Excel avec draw sep
 }
@@ -391,5 +392,3 @@ func (s *Search) loopDirsWorker(path string) {
 		}
 	}
 }
-
-/////////////////// PARAMETRE \\\\\\\\\\\\\\\\\\\\\\\\

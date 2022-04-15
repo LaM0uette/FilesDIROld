@@ -79,6 +79,11 @@ func (s *Search) DrawFilesSearched() {
 		s.Counter.NbrAllFiles, s.Counter.NbrFiles, s.Counter.NbrFolder))
 }
 
+func (s *Search) DrawBilanSearch() {
+	DrawSep("BILAN")
+
+}
+
 // ...
 // Ui
 func DrawSep(name string) {
