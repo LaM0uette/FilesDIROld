@@ -3,7 +3,6 @@ package loger
 import (
 	"FilesDIR/config"
 	"FilesDIR/rgb"
-	"FilesDIROLD/globals"
 	"fmt"
 	"log"
 	"os"
@@ -31,12 +30,12 @@ func init() {
 
 	createTempFiles()
 
-	logFile, err := os.OpenFile(filepath.Join(globals.FolderLogs, fmt.Sprintf("SLog_%v.log", time.Now().Format("20060102150405"))), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	logFile, err := os.OpenFile(filepath.Join(config.LogsPath, fmt.Sprintf("SLog_%v.log", time.Now().Format("20060102150405"))), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	dumpFile, err := os.OpenFile(filepath.Join(globals.FolderDumps, fmt.Sprintf("Dump_%v.csv", time.Now().Format("20060102150405"))), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	dumpFile, err := os.OpenFile(filepath.Join(config.DumpsPath, fmt.Sprintf("Dump_%v.csv", time.Now().Format("20060102150405"))), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
