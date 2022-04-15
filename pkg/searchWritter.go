@@ -56,6 +56,9 @@ func RunWritter() {
 	}
 
 	wgWrt.Wait()
+
+	DrawAddLine(len(ExportSch), len(ExportSch))
+
 	time.Sleep(1 * time.Second)
 
 	if err := Wb.SaveAs(filepath.Join(config.DstPath, "exports", fmt.Sprintf("Export_%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
