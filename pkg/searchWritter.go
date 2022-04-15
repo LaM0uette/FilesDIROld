@@ -59,6 +59,8 @@ func RunWritter() {
 	wgWrt.Wait()
 
 	DrawAddLine(WriteLigneTotal, len(ExportSch))
+	fmt.Print("\n")
+	loger.Ok("Fichier Excel sauvegardé !")
 
 	time.Sleep(1 * time.Second)
 
