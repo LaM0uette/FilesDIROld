@@ -19,8 +19,9 @@ type Export struct {
 }
 
 var (
-	ExportSch []Export
-	Wb        *excelize.File
+	ExportSch       []Export
+	Wb              *excelize.File
+	WriteLigneTotal int
 
 	wgWrt   sync.WaitGroup
 	jobsWrt = make(chan int)
@@ -57,7 +58,7 @@ func RunWritter() {
 
 	wgWrt.Wait()
 
-	DrawAddLine(len(ExportSch), len(ExportSch))
+	DrawAddLine(WriteLigneTotal, len(ExportSch))
 
 	time.Sleep(1 * time.Second)
 
@@ -73,6 +74,7 @@ func writeExcelWorker() {
 	for jobWrt := range jobsWrt {
 
 		DrawAddLine(jobWrt, len(ExportSch))
+		WriteLigneTotal++
 
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", jobWrt+2), ExportSch[jobWrt].Id)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", jobWrt+2), ExportSch[jobWrt].File)
