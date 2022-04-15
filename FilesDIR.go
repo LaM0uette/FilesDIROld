@@ -3,8 +3,12 @@ package main
 
 import (
 	"FilesDIR/config"
+	"FilesDIR/loger"
 	"FilesDIR/pkg"
+	"FilesDIR/rgb"
+	"bufio"
 	"flag"
+	"os"
 	"time"
 )
 
@@ -71,4 +75,10 @@ func main() {
 	}
 
 	s.DrawEnd()
+
+	rgb.GreenB.Print("Appuyer sur Entrée pour quitter...")
+	_, err := bufio.NewReader(os.Stdin).ReadBytes('\n')
+	if err != nil {
+		loger.Crash("Crash :", err)
+	}
 }

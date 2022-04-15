@@ -16,7 +16,7 @@ var (
 	DstPath     = filepath.Join(GetTempDir(), Name)
 	LogsPath    = filepath.Join(DstPath, "logs")
 	DumpsPath   = filepath.Join(DstPath, "dumps")
-	ExportsPath = filepath.Join(DstPath, "expots")
+	ExportsPath = filepath.Join(DstPath, "exports")
 )
 
 func GetTempDir() string {

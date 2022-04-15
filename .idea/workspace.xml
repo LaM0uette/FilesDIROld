@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="création dyu mode silent">
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="Ajout du mode cls">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/drawings.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/drawings.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +159,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="amélioration de l'affichage" />
     <MESSAGE value="Ajout du flag Clear pour vider les logs" />
     <MESSAGE value="Ajout du flag FlgCompiler pour lancer la compilatopin des fiches appuis ft" />
     <MESSAGE value="création app avec infos + logo" />
@@ -184,7 +183,8 @@
     <MESSAGE value="création fichiers temporaires" />
     <MESSAGE value="généraztion du fichier excel" />
     <MESSAGE value="création dyu mode silent" />
-    <option name="LAST_COMMIT_MESSAGE" value="création dyu mode silent" />
+    <MESSAGE value="Ajout du mode cls" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout du mode cls" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
