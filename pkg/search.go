@@ -87,7 +87,6 @@ func (s *Search) RunSearch() {
 	time.Sleep(1 * time.Second)
 
 	s.Timer.SearchEnd = time.Since(s.Timer.SearchStart)
-	s.DrawBilanSearch()
 
 	//TODO: Generation Excel avec draw sep
 }

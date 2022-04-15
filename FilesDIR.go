@@ -5,7 +5,6 @@ import (
 	"FilesDIR/config"
 	"FilesDIR/pkg"
 	"flag"
-	"fmt"
 	"time"
 )
 
@@ -63,7 +62,13 @@ func main() {
 
 	s.Timer.AppEnd = time.Since(s.Timer.AppStart)
 
-	fmt.Println(s.Timer.AppEnd)
+	if s.Cls {
+
+	} else if s.Compiler {
+
+	} else {
+		s.DrawBilanSearch()
+	}
 
 	pkg.DrawEnd()
 }
