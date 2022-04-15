@@ -9,7 +9,7 @@ import (
 const (
 	Name    = "FilesDIR"
 	Author  = "LaM0uette"
-	Version = "1.1.0"
+	Version = "1.2.0"
 )
 
 var (
