@@ -16,8 +16,7 @@ const (
 		██╔══╝  ██║██║     ██╔══╝  ██║  ██║██║██╔══██╗
 		██║     ██║███████╗███████╗██████╔╝██║██║  ██║
 		╚═╝     ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝`
-	sep = `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
+	ligneSep = `■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■`
 
 	author  = `Auteur:  `
 	version = `Version: `
@@ -31,21 +30,17 @@ func DrawStart() {
 	loger.Ui(start)
 	loger.Ui("\t\t", author+config.Author, "\n", "\t\t", version+config.Version)
 	loger.Ui("\n")
-	loger.Ui(sep)
 
 	rgb.Green.Println(start)
 	fmt.Print("\t\t", author+rgb.Green.Sprint(config.Author), "\n", "\t\t", version+rgb.Green.Sprint(config.Version))
 	fmt.Print("\n\n")
-	rgb.Gray.Println(sep)
 }
 
 func DrawEnd() {
 	defer time.Sleep(1 * time.Second)
 
-	loger.Ui(sep)
 	loger.Ui(author+config.Author, "\n", version+config.Version)
 
-	rgb.Gray.Println(sep)
 	fmt.Print(author+rgb.Green.Sprint(config.Author), "\n", version+rgb.Green.Sprint(config.Version))
 	fmt.Print("\n\n")
 }
@@ -81,7 +76,10 @@ func (s *Search) DrawFilesSearched() {
 
 // ...
 // Ui
-func DrawSep() {
+func DrawSep(name string) {
+	sep := ligneSep + fmt.Sprintf(" %s ", name) + ligneSep
+	sepRgb := rgb.Gray.Sprintf(" %s ", ligneSep) + rgb.GreenBg.Sprintf(" %s ", name) + rgb.Gray.Sprintf(" %s ", ligneSep)
+
 	loger.Ui(sep)
-	rgb.Gray.Println(sep)
+	fmt.Println(sepRgb)
 }

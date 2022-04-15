@@ -82,6 +82,8 @@ func (s *Search) RunSearch() {
 }
 
 func (s *Search) initSearch() {
+	DrawSep("PARAMETRES")
+
 	DrawParam("INITIALISATION DE LA RECHERCHE EN COURS")
 
 	// Construct variable of search
@@ -132,8 +134,6 @@ func (s *Search) initSearch() {
 
 	// Create csv dump
 	loger.Semicolon("id;Fichier;Date;Lien_Fichier;Lien")
-
-	DrawSep()
 }
 
 func (s *Search) getReqOfSearched() string {
