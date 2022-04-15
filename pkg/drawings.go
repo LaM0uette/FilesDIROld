@@ -5,6 +5,7 @@ import (
 	"FilesDIR/loger"
 	"FilesDIR/rgb"
 	"fmt"
+	"path/filepath"
 	"time"
 )
 
@@ -95,6 +96,12 @@ func (s *Search) DrawBilanSearch() {
 	loger.Ui("  Fichiers trouvés: ", s.Counter.NbrFiles)
 	loger.Ui("  Temps d'exécution de la recherche: ", s.Timer.SearchEnd)
 	loger.Ui("  Temps d'exécution total: ", s.Timer.AppEnd)
+	loger.Ui("\n")
+	loger.Ui("EXPORTS:")
+	loger.Ui("  Logs: ", filepath.Join(s.DstPath, "logs"))
+	loger.Ui("  Dumps: ", filepath.Join(s.DstPath, "dumps"))
+	loger.Ui("  Export Excel: ", filepath.Join(s.DstPath, "exports"))
+	loger.Ui("\n")
 
 	fmt.Println(rgb.MajentaBg.Sprint("INFOS GENERALES:"))
 	fmt.Println(rgb.Majenta.Sprint("  Dossier principale:"), rgb.GreenB.Sprint(s.SrcPath))
@@ -107,6 +114,12 @@ func (s *Search) DrawBilanSearch() {
 	fmt.Println(rgb.Majenta.Sprint("  Fichiers trouvés:"), rgb.GreenB.Sprint(s.Counter.NbrFiles))
 	fmt.Println(rgb.Majenta.Sprint("  Temps d'exécution de la recherche:"), rgb.GreenB.Sprint(s.Timer.SearchEnd))
 	fmt.Println(rgb.Majenta.Sprint("  Temps d'exécution total:"), rgb.GreenB.Sprint(s.Timer.AppEnd))
+	fmt.Println()
+	fmt.Println(rgb.MajentaBg.Sprint("EXPORTS:"))
+	fmt.Println(rgb.Majenta.Sprint("  Logs:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "logs")))
+	fmt.Println(rgb.Majenta.Sprint("  Dumps:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "dumps")))
+	fmt.Println(rgb.Majenta.Sprint("  Export Excel:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "exports")))
+	fmt.Println()
 }
 
 // ...
