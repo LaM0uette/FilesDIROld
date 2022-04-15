@@ -70,6 +70,7 @@ var (
 func (s *Search) RunSearch() {
 	s.initSearch()
 
+	DrawSep("RECHERCHES")
 	s.Timer.SearchStart = time.Now()
 
 	s.loopDirsWorker(s.SrcPath)
@@ -313,6 +314,7 @@ func (s *Search) loopFilesWorker() error {
 			if !file.IsDir() {
 				if s.checkFileSearched(file.Name()) {
 					atomic.AddUint64(&s.Counter.NbrFiles, 1)
+					s.DrawFilesOk(file.Name())
 
 					// TODO: Faire le log + l'import des donnees dans le struct pour excel
 					//  Ajouter les mode -S dans le drawings pour les prints

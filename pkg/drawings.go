@@ -69,8 +69,13 @@ func DrawParam(v ...any) {
 		rgb.YellowUB.Sprint(txt), rgb.GreenB.Sprint(arg1), rgb.Gray.Sprint(arg2))
 }
 
+func (s *Search) DrawFilesOk(file string) {
+	loger.Ok(fmt.Sprintf("N°%v || Fichier: %s",
+		s.Counter.NbrFiles, file))
+}
+
 func (s *Search) DrawFilesSearched() {
-	loger.Ok(fmt.Sprintf("Traités: %v || Trouvés: %v || Dossiers: %v",
+	loger.Void(fmt.Sprintf("Traités: %v || Trouvés: %v || Dossiers: %v",
 		s.Counter.NbrAllFiles, s.Counter.NbrFiles, s.Counter.NbrFolder))
 }
 

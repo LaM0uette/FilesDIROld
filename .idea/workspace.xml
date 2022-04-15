@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="add msg loop file">
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="add desgin log + fmt bansdeau">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loger/loger.go" beforeDir="false" afterPath="$PROJECT_DIR$/loger/loger.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/drawings.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/drawings.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/search.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/search.go" afterDir="false" />
     </list>
@@ -181,7 +182,8 @@
     <MESSAGE value="add test run loop" />
     <MESSAGE value="add whitelist" />
     <MESSAGE value="add msg loop file" />
-    <option name="LAST_COMMIT_MESSAGE" value="add msg loop file" />
+    <MESSAGE value="add desgin log + fmt bansdeau" />
+    <option name="LAST_COMMIT_MESSAGE" value="add desgin log + fmt bansdeau" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

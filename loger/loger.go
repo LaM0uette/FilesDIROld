@@ -51,9 +51,14 @@ func Ui(v ...any) {
 	ui.Print(v...)
 }
 
+func Void(msg string) {
+	ui.Print(msg)
+	fmt.Print("\r", rgb.GreenB.Sprint(msg))
+}
+
 func Ok(msg string) {
 	ok.Print(msg)
-	fmt.Print("\r", rgb.GreenBg.Sprint(preOk), rgb.GreenB.Sprint(" ", msg))
+	fmt.Print("\r", rgb.GreenBg.Sprint(preOk), rgb.GreenB.Sprint(" ", msg), "\n")
 }
 
 func Error(msg string, err any) {
