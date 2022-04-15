@@ -52,7 +52,6 @@ func Ui(v ...any) {
 }
 
 func Void(msg string) {
-	ui.Print(msg)
 	fmt.Print("\r", rgb.GreenB.Sprint(msg))
 }
 
