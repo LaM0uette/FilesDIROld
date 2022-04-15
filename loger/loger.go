@@ -1,6 +1,7 @@
 package loger
 
 import (
+	"FilesDIR/config"
 	"FilesDIR/rgb"
 	"FilesDIROLD/globals"
 	"fmt"
@@ -27,6 +28,9 @@ const (
 )
 
 func init() {
+
+	createTempFiles()
+
 	logFile, err := os.OpenFile(filepath.Join(globals.FolderLogs, fmt.Sprintf("SLog_%v.log", time.Now().Format("20060102150405"))), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		log.Fatal(err)
@@ -75,4 +79,45 @@ func Crash(msg string, err any) {
 // Dump
 func Semicolon(v ...any) {
 	semicolon.Println(v...)
+}
+
+// ...
+// Init func
+func createTempFiles() {
+	folders := []string{
+		"logs", "dumps", "exports", "blacklist", "whitelist",
+	}
+
+	var paths []string
+
+	for _, f := range folders {
+		paths = append(paths, filepath.Join(config.DstPath, f))
+	}
+
+	for _, p := range paths {
+		err := os.MkdirAll(p, os.ModePerm)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	createFile(filepath.Join(filepath.Join(config.DstPath, "blacklist"), "__ALL__.txt"))
+	createFile(filepath.Join(filepath.Join(config.DstPath, "whitelist"), "__ALL__.txt"))
+}
+
+func createFile(file string) {
+	var _, err = os.Stat(file)
+
+	if os.IsNotExist(err) {
+		var file, err = os.Create(file)
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer func(file *os.File) {
+			err := file.Close()
+			if err != nil {
+				log.Fatal(err)
+			}
+		}(file)
+	}
 }
