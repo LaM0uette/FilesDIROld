@@ -13,7 +13,10 @@ const (
 )
 
 var (
-	DstPath = filepath.Join(GetTempDir(), Name)
+	DstPath     = filepath.Join(GetTempDir(), Name)
+	LogsPath    = filepath.Join(DstPath, "logs")
+	DumpsPath   = filepath.Join(DstPath, "dumps")
+	ExportsPath = filepath.Join(DstPath, "expots")
 )
 
 func GetTempDir() string {

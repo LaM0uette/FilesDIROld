@@ -53,7 +53,7 @@ func main() {
 	s.DrawStart()
 
 	if s.Cls {
-
+		pkg.CleenTempFiles()
 	} else if s.Compiler {
 
 	} else {
@@ -63,7 +63,7 @@ func main() {
 	s.Timer.AppEnd = time.Since(s.Timer.AppStart)
 
 	if s.Cls {
-
+		s.DrawCls()
 	} else if s.Compiler {
 
 	} else {

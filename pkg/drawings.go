@@ -136,6 +136,14 @@ func (s *Search) DrawBilanSearch() {
 	s.DrawSep("    FIN    ")
 }
 
+func (s *Search) DrawCls() {
+	loger.Ok(fmt.Sprintf("Dossier %s vidé !", filepath.Base(config.LogsPath)))
+	loger.Ok(fmt.Sprintf("Dossier %s vidé !", filepath.Base(config.DumpsPath)))
+	loger.Ok(fmt.Sprintf("Dossier %s vidé !\n\n", filepath.Base(config.ExportsPath)))
+
+	loger.Ui(fmt.Sprintf("Temps d'exécution: %v", s.Timer.AppEnd))
+}
+
 // ...
 // Ui
 func (s *Search) DrawSep(name string) {
