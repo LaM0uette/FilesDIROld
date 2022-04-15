@@ -329,45 +329,18 @@ func (s *Search) loopFilesWorker() error {
 
 					loger.Semicolon(fmt.Sprintf("%v;%s;%s;%s;%s", s.Counter.NbrFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(jobPath, file.Name()), jobPath))
 
-					// TODO: Faire le log + l'import des donnees dans le struct pour excel
-					//  Ajouter les mode -S dans le drawings pour les prints
+					data := Export{
+						Id:       int(s.Counter.NbrFiles),
+						File:     file.Name(),
+						Date:     file.ModTime().Format("02-01-2006 15:04:05"),
+						PathFile: filepath.Join(jobPath, file.Name()),
+						Path:     jobPath,
+					}
+					ExportSch = append(ExportSch, data)
+
+					//  TODO: Ajouter les mode -S dans le drawings pour les prints
 				}
 				atomic.AddUint64(&s.Counter.NbrAllFiles, 1)
-
-				/*
-					if s.checkFileSearched(file.Name()) {
-						s.NbFiles++
-						s.NbFilesTotal++
-
-						if !super {
-							Mu.Lock()
-							loger.POOk(display.DrawFileSearched(s.NbFiles, file.Name()))
-
-							dataExp := construct.ExportData{
-								Id:       s.NbFiles,
-								File:     file.Name(),
-								Date:     file.ModTime().Format("02-01-2006 15:04:05"),
-								PathFile: filepath.Join(jobPath, file.Name()),
-								Path:     jobPath,
-							}
-							construct.ExcelData = append(construct.ExcelData, dataExp)
-							Mu.Unlock()
-
-						} else {
-							loger.POAction(display.DrawSearchedFait(s.NbFilesTotal))
-						}
-
-						loger.LOOk(fmt.Sprintf("N°%v |=| Files: %s", s.NbFiles, file.Name()))
-						loger.Semicolon(fmt.Sprintf("%v;%s;%s;%s;%s",
-							s.NbFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(jobPath, file.Name()), jobPath))
-
-						if runtime.NumGoroutine() > s.NbGoroutine {
-							s.NbGoroutine = runtime.NumGoroutine()
-						}
-					} else {
-						s.NbFilesTotal++
-						loger.POAction(display.DrawSearchedFait(s.NbFilesTotal))
-					}*/
 
 				if runtime.NumGoroutine() > s.Process.NbrGoroutines {
 					s.Process.NbrGoroutines = runtime.NumGoroutine()
