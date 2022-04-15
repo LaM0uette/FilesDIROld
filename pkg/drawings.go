@@ -84,18 +84,29 @@ func (s *Search) DrawBilanSearch() {
 
 	DrawSep("BILAN")
 
-	loger.Ui("INFOS GENERALES")
+	loger.Ui("INFOS GENERALES:")
 	loger.Ui("  Dossier principale: ", s.SrcPath)
 	loger.Ui("  Requête utilisée: ", s.ReqUse)
 	loger.Ui("  Nombre de Threads: ", s.Process.NbrThreads)
 	loger.Ui("  Nombre de Goroutines: ", s.Process.NbrGoroutines)
+	loger.Ui("\n")
+	loger.Ui("RESULTATS DE LA RECHERCHE:")
+	loger.Ui("  Fichiers traités: ", s.Counter.NbrAllFiles)
+	loger.Ui("  Fichiers trouvés: ", s.Counter.NbrFiles)
+	loger.Ui("  Temps d'exécution de la recherche: ", s.Timer.SearchEnd)
+	loger.Ui("  Temps d'exécution total: ", s.Timer.AppEnd)
 
 	fmt.Println(rgb.MajentaBg.Sprint("INFOS GENERALES:"))
 	fmt.Println(rgb.Majenta.Sprint("  Dossier principale:"), rgb.GreenB.Sprint(s.SrcPath))
 	fmt.Println(rgb.Majenta.Sprint("  Requête utilisée:"), rgb.GreenB.Sprint(s.ReqUse))
 	fmt.Println(rgb.Majenta.Sprint("  Nombre de Threads:"), rgb.GreenB.Sprint(s.Process.NbrThreads))
 	fmt.Println(rgb.Majenta.Sprint("  Nombre de Goroutines:"), rgb.GreenB.Sprint(s.Process.NbrGoroutines))
-
+	fmt.Println()
+	fmt.Println(rgb.MajentaBg.Sprint("RESULTATS DE LA RECHERCHE:"))
+	fmt.Println(rgb.Majenta.Sprint("  Fichiers traités:"), rgb.GreenB.Sprint(s.Counter.NbrAllFiles))
+	fmt.Println(rgb.Majenta.Sprint("  Fichiers trouvés:"), rgb.GreenB.Sprint(s.Counter.NbrFiles))
+	fmt.Println(rgb.Majenta.Sprint("  Temps d'exécution de la recherche:"), rgb.GreenB.Sprint(s.Timer.SearchEnd))
+	fmt.Println(rgb.Majenta.Sprint("  Temps d'exécution total:"), rgb.GreenB.Sprint(s.Timer.AppEnd))
 }
 
 // ...
