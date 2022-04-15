@@ -85,14 +85,18 @@ func (s *Search) RunSearch() {
 
 	wgSch.Wait()
 
-	fmt.Print("\r                                                                                            ")
+	fmt.Print("\r                                                                                                 ")
 
 	s.Timer.SearchEnd = time.Since(s.Timer.SearchStart)
 
 	time.Sleep(1 * time.Millisecond)
 
 	s.DrawSep("EXPORT XLSX")
-	RunWritter()
+	if !s.Silent {
+		RunWritter()
+	} else {
+		print("\n")
+	}
 }
 
 func (s *Search) initSearch() {

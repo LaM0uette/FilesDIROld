@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="création dyu mode silent">
       <change beforePath="$PROJECT_DIR$/pkg/search.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/search.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/searchWritter.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/searchWritter.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
