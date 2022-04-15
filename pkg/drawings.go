@@ -101,7 +101,6 @@ func (s *Search) DrawBilanSearch() {
 	loger.Ui("  Logs: ", filepath.Join(s.DstPath, "logs"))
 	loger.Ui("  Dumps: ", filepath.Join(s.DstPath, "dumps"))
 	loger.Ui("  Export Excel: ", filepath.Join(s.DstPath, "exports"))
-	loger.Ui("\n")
 
 	fmt.Println(rgb.MajentaBg.Sprint("INFOS GENERALES:"))
 	fmt.Println(rgb.Majenta.Sprint("  Dossier principale:"), rgb.GreenB.Sprint(s.SrcPath))
@@ -119,7 +118,6 @@ func (s *Search) DrawBilanSearch() {
 	fmt.Println(rgb.Majenta.Sprint("  Logs:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "logs")))
 	fmt.Println(rgb.Majenta.Sprint("  Dumps:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "dumps")))
 	fmt.Println(rgb.Majenta.Sprint("  Export Excel:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "exports")))
-	fmt.Println()
 
 	DrawSep("FIN")
 }
