@@ -8,6 +8,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"runtime"
 	"runtime/debug"
 	"strconv"
 	"strings"
@@ -29,6 +30,11 @@ type Counter struct {
 	NbrAllFiles uint64
 
 	NbrFolder uint64
+}
+
+type Process struct {
+	NbrThreads    int
+	NbrGoroutines int
 }
 
 type Search struct {
@@ -58,6 +64,7 @@ type Search struct {
 	ListWhiteList []string
 	Timer         *Timer
 	Counter       *Counter
+	Process       *Process
 }
 
 var (
@@ -226,6 +233,8 @@ func (s *Search) checkMinimumPoolSize() {
 func (s *Search) setMaxThread() {
 	maxThr := s.PoolSize * 500
 	debug.SetMaxThreads(maxThr)
+	s.Process.NbrThreads = maxThr
+
 	DrawParam("THREADS MIS A", strconv.Itoa(maxThr))
 }
 
@@ -360,6 +369,10 @@ func (s *Search) loopFilesWorker() error {
 						s.NbFilesTotal++
 						loger.POAction(display.DrawSearchedFait(s.NbFilesTotal))
 					}*/
+
+				if runtime.NumGoroutine() > s.Process.NbrGoroutines {
+					s.Process.NbrGoroutines = runtime.NumGoroutine()
+				}
 			} else {
 				atomic.AddUint64(&s.Counter.NbrFolder, 1)
 			}

@@ -86,9 +86,15 @@ func (s *Search) DrawBilanSearch() {
 
 	loger.Ui("INFOS GENERALES")
 	loger.Ui("  Dossier principale: ", s.SrcPath)
+	loger.Ui("  Requête utilisée: ", s.ReqUse)
+	loger.Ui("  Nombre de Threads: ", s.Process.NbrThreads)
+	loger.Ui("  Nombre de Goroutines: ", s.Process.NbrGoroutines)
 
 	fmt.Println(rgb.MajentaBg.Sprint("INFOS GENERALES:"))
 	fmt.Println(rgb.Majenta.Sprint("  Dossier principale:"), rgb.GreenB.Sprint(s.SrcPath))
+	fmt.Println(rgb.Majenta.Sprint("  Requête utilisée:"), rgb.GreenB.Sprint(s.ReqUse))
+	fmt.Println(rgb.Majenta.Sprint("  Nombre de Threads:"), rgb.GreenB.Sprint(s.Process.NbrThreads))
+	fmt.Println(rgb.Majenta.Sprint("  Nombre de Goroutines:"), rgb.GreenB.Sprint(s.Process.NbrGoroutines))
 
 }
 

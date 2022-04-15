@@ -50,6 +50,7 @@ func main() {
 			AppStart: time.Now(),
 		},
 		Counter: &pkg.Counter{},
+		Process: &pkg.Process{},
 	}
 
 	if s.Cls {
