@@ -50,8 +50,6 @@ func DrawEnd() {
 	fmt.Print("\n\n")
 }
 
-// ...
-// Search
 func DrawParam(v ...any) {
 	defer time.Sleep(400 * time.Millisecond)
 
@@ -74,4 +72,16 @@ func DrawParam(v ...any) {
 
 	fmt.Printf("%s%s%s%s\n", rgb.YellowUB.Sprint(pre),
 		rgb.YellowUB.Sprint(txt), rgb.GreenB.Sprint(arg1), rgb.Gray.Sprint(arg2))
+}
+
+func (s *Search) DrawFilesSearched() {
+	loger.Ok(fmt.Sprintf("Traités: %v || Trouvés: %v || Dossiers: %v",
+		s.Counter.NbrAllFiles, s.Counter.NbrFiles, s.Counter.NbrFolder))
+}
+
+// ...
+// Ui
+func DrawSep() {
+	loger.Ui(sep)
+	rgb.Gray.Println(sep)
 }

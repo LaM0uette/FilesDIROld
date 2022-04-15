@@ -27,6 +27,8 @@ type Timer struct {
 type Counter struct {
 	NbrFiles    uint64
 	NbrAllFiles uint64
+
+	NbrFolder uint64
 }
 
 type Search struct {
@@ -130,6 +132,8 @@ func (s *Search) initSearch() {
 
 	// Create csv dump
 	loger.Semicolon("id;Fichier;Date;Lien_Fichier;Lien")
+
+	DrawSep()
 }
 
 func (s *Search) getReqOfSearched() string {
@@ -309,14 +313,12 @@ func (s *Search) loopFilesWorker() error {
 			if !file.IsDir() {
 				if s.checkFileSearched(file.Name()) {
 					atomic.AddUint64(&s.Counter.NbrFiles, 1)
-					atomic.AddUint64(&s.Counter.NbrAllFiles, 1)
 
-					loger.Ok(fmt.Sprintf("\ttest %v", s.Counter.NbrFiles))
-
-					//TODO: affichier les ok sur la même ligne avec le num de folder et à chaque NOK allez à la ligne
-					// Faire le log + l'import des donnees dans le struct pour excel
-					// Ajouter les mode -S dans le drawings pour les prints
+					// TODO: affichier les ok sur la même ligne avec le num de folder et à chaque NOK allez à la ligne
+					//  Faire le log + l'import des donnees dans le struct pour excel
+					//  Ajouter les mode -S dans le drawings pour les prints
 				}
+				atomic.AddUint64(&s.Counter.NbrAllFiles, 1)
 
 				/*
 					if s.checkFileSearched(file.Name()) {
@@ -352,7 +354,10 @@ func (s *Search) loopFilesWorker() error {
 						s.NbFilesTotal++
 						loger.POAction(display.DrawSearchedFait(s.NbFilesTotal))
 					}*/
+			} else {
+				atomic.AddUint64(&s.Counter.NbrFolder, 1)
 			}
+			s.DrawFilesSearched()
 		}
 		wgSch.Done()
 	}

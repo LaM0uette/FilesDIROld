@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="add msg loop file" />
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="add msg loop file">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loger/loger.go" beforeDir="false" afterPath="$PROJECT_DIR$/loger/loger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/drawings.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/drawings.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/search.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/search.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,17 +78,19 @@
       <recent name="C:\Users\XD5965\go\src\FilesDIR\docs" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestRunSearch in FilesDIR/pkg (1)">
-    <configuration name="go build FilesDIR.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Test.TestRunSearch in FilesDIR/pkg (2)">
+    <configuration name="TestRunSearch in FilesDIR/pkg (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <package value="FilesDIR" />
+      <working_directory value="$PROJECT_DIR$/pkg" />
+      <kind value="PACKAGE" />
+      <package value="FilesDIR/pkg" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/FilesDIR.go" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestRunSearch\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestRunSearch in FilesDIR/pkg (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestRunSearch in FilesDIR/pkg (2)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$/pkg" />
       <kind value="PACKAGE" />
@@ -127,11 +135,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestRunSearch in FilesDIR/pkg (2)" />
         <item itemvalue="Go Test.TestRunSearch in FilesDIR/pkg (1)" />
         <item itemvalue="Go Test.TestRunSearch in FilesDIR/pkg" />
         <item itemvalue="Go Test.go test FilesDIR/pkg" />
         <item itemvalue="Go Test.TestStrToLower in FilesDIR/pkg" />
-        <item itemvalue="Go Build.go build FilesDIR.go" />
       </list>
     </recent_temporary>
   </component>

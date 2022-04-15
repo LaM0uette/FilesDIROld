@@ -53,7 +53,7 @@ func Ui(v ...any) {
 
 func Ok(msg string) {
 	ok.Print(msg)
-	fmt.Print(rgb.GreenBg.Sprint(preErrr), rgb.GreenB.Sprint(" ", msg))
+	fmt.Print("\r", rgb.GreenBg.Sprint(preOk), rgb.GreenB.Sprint(" ", msg))
 }
 
 func Error(msg string, err any) {
