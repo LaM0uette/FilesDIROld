@@ -87,10 +87,11 @@ func (s *Search) RunSearch() {
 
 	fmt.Print("\r                                                                                            ")
 
-	time.Sleep(1 * time.Second)
-
 	s.Timer.SearchEnd = time.Since(s.Timer.SearchStart)
 
+	time.Sleep(1 * time.Millisecond)
+
+	s.DrawSep("EXPORT XLSX")
 	RunWritter()
 }
 
