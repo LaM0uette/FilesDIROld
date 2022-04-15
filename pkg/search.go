@@ -97,7 +97,7 @@ func (s *Search) RunSearch() {
 func (s *Search) initSearch() {
 	DrawSep("PARAMETRES")
 
-	DrawParam("INITIALISATION DE LA RECHERCHE EN COURS")
+	s.DrawParam("INITIALISATION DE LA RECHERCHE EN COURS")
 
 	// Construct variable of search
 	s.ReqUse = s.getReqOfSearched()
@@ -116,7 +116,7 @@ func (s *Search) initSearch() {
 			s.setBlackWhiteList(file, 0)
 		}
 
-		DrawParam(fmt.Sprintf("BLACKLIST: %v", s.ListBlackList))
+		s.DrawParam(fmt.Sprintf("BLACKLIST: %v", s.ListBlackList))
 	}
 	if s.WhiteList {
 		wlPath := filepath.Join(s.DstPath, "whitelist")
@@ -127,7 +127,7 @@ func (s *Search) initSearch() {
 			s.setBlackWhiteList(file, 1)
 		}
 
-		DrawParam(fmt.Sprintf("WHITELIST: %v", s.ListWhiteList))
+		s.DrawParam(fmt.Sprintf("WHITELIST: %v", s.ListWhiteList))
 	}
 
 	// Check basics configurations
@@ -193,7 +193,7 @@ func (s *Search) getReqOfSearched() string {
 		req += " -s"
 	}
 
-	DrawParam(fmt.Sprintf("REQUETE UTILISEE: %s", req))
+	s.DrawParam(fmt.Sprintf("REQUETE UTILISEE: %s", req))
 
 	return req
 }
@@ -226,9 +226,9 @@ func (s *Search) setBlackWhiteList(file string, val int) {
 func (s *Search) checkMinimumPoolSize() {
 	if s.PoolSize < 2 {
 		s.PoolSize = 2
-		DrawParam("POOLSIZE MISE A", strconv.Itoa(s.PoolSize), "(ne peut pas être inférieur)")
+		s.DrawParam("POOLSIZE MISE A", strconv.Itoa(s.PoolSize), "(ne peut pas être inférieur)")
 	} else {
-		DrawParam("POOLSIZE MISE A", strconv.Itoa(s.PoolSize))
+		s.DrawParam("POOLSIZE MISE A", strconv.Itoa(s.PoolSize))
 	}
 }
 
@@ -237,7 +237,7 @@ func (s *Search) setMaxThread() {
 	debug.SetMaxThreads(maxThr)
 	s.Process.NbrThreads = maxThr
 
-	DrawParam("THREADS MIS A", strconv.Itoa(maxThr))
+	s.DrawParam("THREADS MIS A", strconv.Itoa(maxThr))
 }
 
 func (s *Search) isInBlackList(f string) bool {

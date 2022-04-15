@@ -25,7 +25,11 @@ const (
 
 // ...
 // FilesDIR
-func DrawStart() {
+func (s *Search) DrawStart() {
+	if s.Silent {
+		return
+	}
+
 	defer time.Sleep(1 * time.Second)
 
 	loger.Ui(start)
@@ -37,7 +41,11 @@ func DrawStart() {
 	fmt.Print("\n\n")
 }
 
-func DrawEnd() {
+func (s *Search) DrawEnd() {
+	if s.Silent {
+		return
+	}
+
 	defer time.Sleep(1 * time.Second)
 
 	loger.Ui(author+config.Author, "\n", version+config.Version)
@@ -46,7 +54,11 @@ func DrawEnd() {
 	fmt.Print("\n\n")
 }
 
-func DrawParam(v ...any) {
+func (s *Search) DrawParam(v ...any) {
+	if s.Silent {
+		return
+	}
+
 	defer time.Sleep(400 * time.Millisecond)
 
 	pre := "██████████"
