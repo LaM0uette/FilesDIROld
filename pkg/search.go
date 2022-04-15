@@ -78,7 +78,7 @@ var (
 func (s *Search) RunSearch() {
 	s.initSearch()
 
-	DrawSep("RECHERCHES")
+	s.DrawSep("RECHERCHES")
 	s.Timer.SearchStart = time.Now()
 
 	s.loopDirsWorker(s.SrcPath)
@@ -95,7 +95,7 @@ func (s *Search) RunSearch() {
 }
 
 func (s *Search) initSearch() {
-	DrawSep("PARAMETRES")
+	s.DrawSep("PARAMETRES")
 
 	s.DrawParam("INITIALISATION DE LA RECHERCHE EN COURS")
 
@@ -329,7 +329,10 @@ func (s *Search) loopFilesWorker() error {
 				if s.checkFileSearched(file.Name()) {
 					Mu.Lock()
 					atomic.AddUint64(&s.Counter.NbrFiles, 1)
-					s.DrawFilesOk(file.Name())
+
+					if !s.Silent {
+						s.DrawFilesOk(file.Name())
+					}
 
 					loger.Semicolon(fmt.Sprintf("%v;%s;%s;%s;%s", s.Counter.NbrFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(jobPath, file.Name()), jobPath))
 

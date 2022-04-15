@@ -93,9 +93,11 @@ func (s *Search) DrawFilesSearched() {
 }
 
 func (s *Search) DrawBilanSearch() {
-	defer time.Sleep(1 * time.Second)
+	if !s.Silent {
+		defer time.Sleep(1 * time.Second)
+	}
 
-	DrawSep("   BILAN   ")
+	s.DrawSep("   BILAN   ")
 
 	loger.Ui("INFOS GENERALES:")
 	loger.Ui("  Dossier principale: ", s.SrcPath)
@@ -131,12 +133,16 @@ func (s *Search) DrawBilanSearch() {
 	fmt.Println(rgb.Majenta.Sprint("  Dumps:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "dumps")))
 	fmt.Println(rgb.Majenta.Sprint("  Export Excel:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "exports")))
 
-	DrawSep("    FIN    ")
+	s.DrawSep("    FIN    ")
 }
 
 // ...
 // Ui
-func DrawSep(name string) {
+func (s *Search) DrawSep(name string) {
+	if s.Silent {
+		return
+	}
+
 	sep := ligneSep + fmt.Sprintf(" %s ", name) + ligneSep
 	sepRgb := rgb.Gray.Sprint(ligneSep) + rgb.GreenB.Sprintf(" %s ", name) + rgb.Gray.Sprint(ligneSep)
 
