@@ -120,6 +120,8 @@ func (s *Search) DrawBilanSearch() {
 	fmt.Println(rgb.Majenta.Sprint("  Dumps:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "dumps")))
 	fmt.Println(rgb.Majenta.Sprint("  Export Excel:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "exports")))
 	fmt.Println()
+
+	DrawSep("FIN")
 }
 
 // ...
