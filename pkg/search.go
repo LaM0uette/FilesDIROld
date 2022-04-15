@@ -318,6 +318,8 @@ func (s *Search) loopFilesWorker() error {
 					atomic.AddUint64(&s.Counter.NbrFiles, 1)
 					s.DrawFilesOk(file.Name())
 
+					loger.Semicolon(fmt.Sprintf("%v;%s;%s;%s;%s", s.Counter.NbrFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(jobPath, file.Name()), jobPath))
+
 					// TODO: Faire le log + l'import des donnees dans le struct pour excel
 					//  Ajouter les mode -S dans le drawings pour les prints
 				}
