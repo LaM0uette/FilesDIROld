@@ -51,6 +51,7 @@ type Search struct {
 	Maj       bool
 	Devil     bool
 	Silent    bool
+	WordsList bool
 	BlackList bool
 	WhiteList bool
 
@@ -60,6 +61,7 @@ type Search struct {
 	ReqUse  string
 
 	// Data
+	ListWords     []string
 	ListBlackList []string
 	ListWhiteList []string
 	Timer         *Timer
@@ -112,24 +114,28 @@ func (s *Search) initSearch() {
 	s.Ext = fmt.Sprintf(".%s", s.Ext)
 
 	// Add WhiteList / BlackList
+	if s.WordsList {
+		s.setList(filepath.Join(s.DstPath, "words.txt"), 0)
+		s.DrawParam(fmt.Sprintf("WORDS: %v", s.ListWords))
+	}
 	if s.BlackList {
 		blPath := filepath.Join(s.DstPath, "blacklist")
-		s.setBlackWhiteList(filepath.Join(blPath, "__ALL__.txt"), 0)
+		s.setList(filepath.Join(blPath, "__ALL__.txt"), 1)
 
 		file := filepath.Join(blPath, fmt.Sprintf("%s.txt", StrToLower(s.Word)))
 		if _, err := os.Stat(file); err == nil {
-			s.setBlackWhiteList(file, 0)
+			s.setList(file, 1)
 		}
 
 		s.DrawParam(fmt.Sprintf("BLACKLIST: %v", s.ListBlackList))
 	}
 	if s.WhiteList {
 		wlPath := filepath.Join(s.DstPath, "whitelist")
-		s.setBlackWhiteList(filepath.Join(wlPath, "__ALL__.txt"), 1)
+		s.setList(filepath.Join(wlPath, "__ALL__.txt"), 2)
 
 		file := filepath.Join(wlPath, fmt.Sprintf("%s.txt", StrToLower(s.Word)))
 		if _, err := os.Stat(file); err == nil {
-			s.setBlackWhiteList(file, 1)
+			s.setList(file, 2)
 		}
 
 		s.DrawParam(fmt.Sprintf("WHITELIST: %v", s.ListWhiteList))
@@ -203,11 +209,13 @@ func (s *Search) getReqOfSearched() string {
 	return req
 }
 
-func (s *Search) setBlackWhiteList(file string, val int) {
+func (s *Search) setList(file string, val int) {
 	readFile, err := os.Open(file)
 	if err != nil {
-		list := "Black"
+		list := "Words"
 		if val == 1 {
+			list = "Black"
+		} else if val == 2 {
 			list = "White"
 		}
 		loger.Error(fmt.Sprintf("Error during insert data in %sList:", list), err)
@@ -219,8 +227,10 @@ func (s *Search) setBlackWhiteList(file string, val int) {
 	for fileScanner.Scan() {
 		switch val {
 		case 0:
-			s.ListBlackList = append(s.ListBlackList, fileScanner.Text())
+			s.ListWords = append(s.ListWords, fileScanner.Text())
 		case 1:
+			s.ListWhiteList = append(s.ListWhiteList, fileScanner.Text())
+		case 2:
 			s.ListWhiteList = append(s.ListWhiteList, fileScanner.Text())
 		}
 
@@ -243,6 +253,21 @@ func (s *Search) setMaxThread() {
 	s.Process.NbrThreads = maxThr
 
 	s.DrawParam("THREADS MIS A", strconv.Itoa(maxThr))
+}
+
+func (s *Search) isInWordsList(f string) bool {
+	for _, word := range s.ListWords {
+
+		if !s.Maj {
+			f = StrToLower(f)
+			word = StrToLower(word)
+		}
+
+		if strings.Contains(f, word) {
+			return true
+		}
+	}
+	return false
 }
 
 func (s *Search) isInBlackList(f string) bool {
@@ -274,8 +299,13 @@ func (s *Search) checkFileSearched(file string) bool {
 	// condition of search Mode ( = | % | ^ | $ )
 	switch s.Mode {
 	case "%":
-		if !strings.Contains(name, s.Word) {
-			return false
+
+		if s.WordsList {
+			return s.isInWordsList(name)
+		} else {
+			if !strings.Contains(name, s.Word) {
+				return false
+			}
 		}
 	case "=":
 		if name != s.Word {

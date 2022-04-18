@@ -27,6 +27,7 @@ func main() {
 	// Flag of special mode
 	FlgDevil := flag.Bool("devil", false, "Mode 'Démon' de l'application")
 	FlgSilent := flag.Bool("s", false, "Mode 'Silent', évite toutes les choses inutiles")
+	FlgWordsList := flag.Bool("wl", false, "Ajout d'une wordslist")
 	FlgBlackList := flag.Bool("b", false, "Ajout d'une blacklist de dossier")
 	FlgWhiteList := flag.Bool("w", false, "Ajout d'une whitelist de dossier")
 	// Parse all Flags
@@ -42,6 +43,7 @@ func main() {
 		Maj:       *FlgMaj,
 		Devil:     *FlgDevil,
 		Silent:    *FlgSilent,
+		WordsList: *FlgWordsList,
 		BlackList: *FlgBlackList,
 		WhiteList: *FlgWhiteList,
 
