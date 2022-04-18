@@ -76,6 +76,8 @@ func (s *Search) CompileFichesAppuis() {
 
 	time.Sleep(1 * time.Second)
 
+	s.DrawSep("EXPORT XLSX")
+
 	if err := Wb.SaveAs(filepath.Join(s.SrcPath, fmt.Sprintf("__COMPILATION__%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
 		fmt.Println(err)
 	}
@@ -133,7 +135,7 @@ func (s *Search) worker() {
 			continue
 		}
 
-		loger.Ok(fmt.Sprintf("Fiche appui ajoutée: %s", job))
+		loger.Ok(fmt.Sprintf("Fiche %v ajoutée: %s", s.Counter.NbrFiles, job))
 
 		sht := f.Sheets[0]
 
