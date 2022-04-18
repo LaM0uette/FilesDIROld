@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="Couleur mef">
-      <change afterPath="$PROJECT_DIR$/pkg/compilerFichesAppuis.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_04_2022_08_24_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_04_2022_08_24__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_04_2022_08_17__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_04_2022_08_17__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="init compiler">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/compilerFichesAppuis.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/compilerFichesAppuis.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/drawings.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/drawings.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/search.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/search.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +158,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Ajout du flag Clear pour vider les logs" />
     <MESSAGE value="Ajout du flag FlgCompiler pour lancer la compilatopin des fiches appuis ft" />
     <MESSAGE value="création app avec infos + logo" />
     <MESSAGE value="correction bug excel loop strcut" />
@@ -190,7 +182,8 @@
     <MESSAGE value="généraztion du fichier excel" />
     <MESSAGE value="création dyu mode silent" />
     <MESSAGE value="Ajout du mode cls" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout du mode cls" />
+    <MESSAGE value="init compiler" />
+    <option name="LAST_COMMIT_MESSAGE" value="init compiler" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

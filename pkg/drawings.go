@@ -146,9 +146,10 @@ func (s *Search) DrawCls() {
 }
 
 func (s *Search) DrawFichesAppuisCompiled() {
-	loger.Ok(fmt.Sprintf("A FAIRE %s vidé !", filepath.Base(config.LogsPath)))
+	loger.Ui(fmt.Sprintf("%v fiches compilées avec succes !", s.Counter.NbrFiles))
+	loger.Void(fmt.Sprintf("%v fiches compilées avec succes !\n", s.Counter.NbrFiles))
 
-	loger.Ui(fmt.Sprintf("\nTemps d'exécution: %v\n", s.Timer.AppEnd))
+	loger.Ui(fmt.Sprintf("Temps d'exécution: %v\n\n", s.Timer.AppEnd))
 	loger.Void(fmt.Sprintf("Temps d'exécution: %v\n\n", s.Timer.AppEnd))
 }
 
