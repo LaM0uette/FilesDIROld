@@ -23,6 +23,9 @@ type Timer struct {
 
 	SearchStart time.Time
 	SearchEnd   time.Duration
+
+	CompileStart time.Time
+	CompileEnd   time.Duration
 }
 
 type Counter struct {

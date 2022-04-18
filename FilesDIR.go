@@ -59,7 +59,7 @@ func main() {
 	if s.Cls {
 		pkg.CleenTempFiles()
 	} else if s.Compiler {
-
+		s.CompileFichesAppuis()
 	} else {
 		s.RunSearch()
 	}
@@ -69,7 +69,7 @@ func main() {
 	if s.Cls {
 		s.DrawCls()
 	} else if s.Compiler {
-
+		s.DrawFichesAppuisCompiled()
 	} else {
 		s.DrawBilanSearch()
 	}

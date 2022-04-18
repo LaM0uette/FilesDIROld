@@ -145,6 +145,13 @@ func (s *Search) DrawCls() {
 	loger.Void(fmt.Sprintf("Temps d'exécution: %v\n\n", s.Timer.AppEnd))
 }
 
+func (s *Search) DrawFichesAppuisCompiled() {
+	loger.Ok(fmt.Sprintf("A FAIRE %s vidé !", filepath.Base(config.LogsPath)))
+
+	loger.Ui(fmt.Sprintf("\nTemps d'exécution: %v\n", s.Timer.AppEnd))
+	loger.Void(fmt.Sprintf("Temps d'exécution: %v\n\n", s.Timer.AppEnd))
+}
+
 // ...
 // Ui
 func (s *Search) DrawSep(name string) {
