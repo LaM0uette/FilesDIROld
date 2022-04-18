@@ -296,10 +296,11 @@ func (s *Search) checkFileSearched(file string) bool {
 		name = StrToLower(name)
 	}
 
+	//TODO: Tout refaire avec du REGEX
+
 	// condition of search Mode ( = | % | ^ | $ )
 	switch s.Mode {
 	case "%":
-
 		if s.WordsList {
 			return s.isInWordsList(name)
 		} else {
