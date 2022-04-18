@@ -12,9 +12,14 @@ import (
 	"time"
 )
 
+type compileData struct {
+	Id   int
+	path string
+}
+
 var (
 	wg   sync.WaitGroup
-	jobs = make(chan string)
+	jobs = make(chan compileData)
 )
 
 func (s *Search) CompileFichesAppuis() {
@@ -37,6 +42,7 @@ func (s *Search) CompileFichesAppuis() {
 		loger.Crash("Crash avec ce dossier:", s.SrcPath)
 	}
 
+	ligneConc := 1
 	for _, file := range files {
 		if !file.IsDir() && !strings.Contains(file.Name(), "__COMPILATION__") {
 
@@ -64,8 +70,12 @@ func (s *Search) CompileFichesAppuis() {
 					Mu.Lock()
 					wg.Add(1)
 					s.Counter.NbrFiles++
+					ligneConc++
 
-					jobs <- row.GetCell(3).String()
+					jobs <- compileData{
+						Id:   ligneConc,
+						path: row.GetCell(3).String(),
+					}
 					Mu.Unlock()
 				}()
 			}
@@ -123,19 +133,19 @@ func createWB() {
 func (s *Search) worker() {
 	for job := range jobs {
 
-		excelFile := job
+		excelFile := job.path
 		f, err := xlsx.OpenFile(excelFile)
 		if err != nil {
-			loger.Nok(fmt.Sprintf("Error avec cette fiche appui: %s", job))
+			loger.Nok(fmt.Sprintf("Error avec cette fiche appui: %s", excelFile))
 
-			_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", s.Counter.NbrFiles), job)
+			_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job.Id), excelFile)
 
 			wg.Done()
 			time.Sleep(800 * time.Millisecond)
 			continue
 		}
 
-		loger.Ok(fmt.Sprintf("Fiche %v ajoutée: %s", s.Counter.NbrFiles, job))
+		loger.Ok(fmt.Sprintf("Fiche %v ajoutée: %s", job.Id, excelFile))
 
 		sht := f.Sheets[0]
 
@@ -174,28 +184,28 @@ func (s *Search) worker() {
 		pb, _ := sht.Cell(17, 13)
 
 		// insert value
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", s.Counter.NbrFiles), job)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", s.Counter.NbrFiles), adresse.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", s.Counter.NbrFiles), ville.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", s.Counter.NbrFiles), numAppui.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", s.Counter.NbrFiles), type1.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("F%v", s.Counter.NbrFiles), typeNApp.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("G%v", s.Counter.NbrFiles), natureTvx.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("H%v", s.Counter.NbrFiles), etiquetteJaune)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("I%v", s.Counter.NbrFiles), effort1.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("J%v", s.Counter.NbrFiles), effort2.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("K%v", s.Counter.NbrFiles), effort3.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("L%v", s.Counter.NbrFiles), lat.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("M%v", s.Counter.NbrFiles), lon.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("N%v", s.Counter.NbrFiles), operateur.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("O%v", s.Counter.NbrFiles), utilisableEnEtat.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("P%v", s.Counter.NbrFiles), environnement.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("Q%v", s.Counter.NbrFiles), commentaireEtatAppui.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("R%v", s.Counter.NbrFiles), commentaireGlobal.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("S%v", s.Counter.NbrFiles), proxiEnedis.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("T%v", s.Counter.NbrFiles), idMetier)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("U%v", s.Counter.NbrFiles), date.Value)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("V%v", s.Counter.NbrFiles), pb.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job.Id), excelFile)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job.Id), adresse.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("C%v", job.Id), ville.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("D%v", job.Id), numAppui.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("E%v", job.Id), type1.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("F%v", job.Id), typeNApp.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("G%v", job.Id), natureTvx.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("H%v", job.Id), etiquetteJaune)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("I%v", job.Id), effort1.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("J%v", job.Id), effort2.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("K%v", job.Id), effort3.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("L%v", job.Id), lat.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("M%v", job.Id), lon.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("N%v", job.Id), operateur.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("O%v", job.Id), utilisableEnEtat.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("P%v", job.Id), environnement.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("Q%v", job.Id), commentaireEtatAppui.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("R%v", job.Id), commentaireGlobal.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("S%v", job.Id), proxiEnedis.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("T%v", job.Id), idMetier)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("U%v", job.Id), date.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("V%v", job.Id), pb.Value)
 
 		rgb1 := effort1.GetStyle().Fill.FgColor
 		rgb2 := effort2.GetStyle().Fill.FgColor
@@ -203,17 +213,17 @@ func (s *Search) worker() {
 
 		if len(rgb1) > 2 {
 			style1, _ := Wb.NewStyle(fmt.Sprintf("{\"fill\":{\"type\":\"pattern\",\"color\":[\"#%s\"],\"pattern\":1}}", rgb1[2:]))
-			_ = Wb.SetCellStyle("Sheet1", fmt.Sprintf("I%v", s.Counter.NbrFiles), fmt.Sprintf("I%v", s.Counter.NbrFiles), style1)
+			_ = Wb.SetCellStyle("Sheet1", fmt.Sprintf("I%v", job.Id), fmt.Sprintf("I%v", job.Id), style1)
 		}
 
 		if len(rgb2) > 2 {
 			style2, _ := Wb.NewStyle(fmt.Sprintf("{\"fill\":{\"type\":\"pattern\",\"color\":[\"#%s\"],\"pattern\":1}}", rgb2[2:]))
-			_ = Wb.SetCellStyle("Sheet1", fmt.Sprintf("J%v", s.Counter.NbrFiles), fmt.Sprintf("J%v", s.Counter.NbrFiles), style2)
+			_ = Wb.SetCellStyle("Sheet1", fmt.Sprintf("J%v", job.Id), fmt.Sprintf("J%v", job.Id), style2)
 		}
 
 		if len(rgb3) > 2 {
 			style3, _ := Wb.NewStyle(fmt.Sprintf("{\"fill\":{\"type\":\"pattern\",\"color\":[\"#%s\"],\"pattern\":1}}", rgb3[2:]))
-			_ = Wb.SetCellStyle("Sheet1", fmt.Sprintf("K%v", s.Counter.NbrFiles), fmt.Sprintf("K%v", s.Counter.NbrFiles), style3)
+			_ = Wb.SetCellStyle("Sheet1", fmt.Sprintf("K%v", job.Id), fmt.Sprintf("K%v", job.Id), style3)
 		}
 
 		wg.Done()
