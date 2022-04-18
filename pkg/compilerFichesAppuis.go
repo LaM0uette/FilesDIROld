@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
 	"github.com/tealeg/xlsx"
+	"io/ioutil"
 	"path/filepath"
+	"strings"
 	"sync"
 	"time"
 )
@@ -30,12 +32,56 @@ func (s *Search) CompileFichesAppuis() {
 
 	s.DrawSep("COMPILATION")
 
-	if err := Wb.SaveAs(filepath.Join(GetCurrentDir(), fmt.Sprintf("__COMPILATION__%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
-		fmt.Println(err)
+	files, err := ioutil.ReadDir(s.SrcPath)
+	if err != nil {
+		loger.Crash("Crash avec ce dossier:", s.SrcPath)
 	}
 
-	s.DrawSep("BILAN")
+	for _, file := range files {
+		if !file.IsDir() && !strings.Contains(file.Name(), "__COMPILATION__") {
 
+			excelFile := filepath.Join(s.SrcPath, file.Name())
+			f, err := xlsx.OpenFile(excelFile)
+			if err != nil {
+				loger.Error("Error avec ce fichier:", excelFile)
+				continue
+			}
+
+			sht := f.Sheets[0]
+			maxRow := sht.MaxRow
+
+			for i := 0; i < maxRow; i++ {
+				row, err := sht.Row(i)
+				if err != nil {
+					loger.Crash("Crash:", err)
+				}
+
+				if i == 0 {
+					continue
+				}
+
+				go func() {
+					Mu.Lock()
+					wg.Add(1)
+					s.Counter.NbrFiles++
+
+					jobs <- row.GetCell(3).String()
+					Mu.Unlock()
+				}()
+			}
+		}
+	}
+
+	wg.Wait()
+
+	time.Sleep(1 * time.Second)
+
+	if err := Wb.SaveAs(filepath.Join(s.SrcPath, fmt.Sprintf("__COMPILATION__%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
+		fmt.Println(err)
+	}
+	loger.Ok("Fichier Excel sauvegardé avec succes !")
+
+	s.DrawSep("BILAN")
 }
 
 func createWB() {

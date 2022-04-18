@@ -59,11 +59,11 @@ func RunWritter() {
 
 	DrawAddLine(WriteLigneTotal, len(ExportSch))
 	fmt.Print("\n")
-	loger.Ok("Fichier Excel sauvegardé avec succes !")
 
 	if err := Wb.SaveAs(filepath.Join(config.DstPath, "exports", fmt.Sprintf("Export_%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
 		loger.Error("Erreur pendant la sauvegarde du fichier Excel:", err)
 	}
+	loger.Ok("Fichier Excel sauvegardé avec succes !")
 
 }
 

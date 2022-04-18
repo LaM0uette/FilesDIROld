@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="init compiler">
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="préparation de la recherche">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loger/loger.go" beforeDir="false" afterPath="$PROJECT_DIR$/loger/loger.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/compilerFichesAppuis.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/compilerFichesAppuis.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/searchWritter.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/searchWritter.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,8 +158,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Ajout du flag FlgCompiler pour lancer la compilatopin des fiches appuis ft" />
-    <MESSAGE value="création app avec infos + logo" />
     <MESSAGE value="correction bug excel loop strcut" />
     <MESSAGE value="correction bug excel loop" />
     <MESSAGE value="refont visuel avec couleurs" />
@@ -183,7 +181,9 @@
     <MESSAGE value="création dyu mode silent" />
     <MESSAGE value="Ajout du mode cls" />
     <MESSAGE value="init compiler" />
-    <option name="LAST_COMMIT_MESSAGE" value="init compiler" />
+    <MESSAGE value="ajout du worker" />
+    <MESSAGE value="préparation de la recherche" />
+    <option name="LAST_COMMIT_MESSAGE" value="préparation de la recherche" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
