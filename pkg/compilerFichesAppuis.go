@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 	"sync"
+	"sync/atomic"
 	"time"
 )
 
@@ -69,7 +70,7 @@ func (s *Search) CompileFichesAppuis() {
 				go func() {
 					Mu.Lock()
 					wg.Add(1)
-					s.Counter.NbrFiles++
+					atomic.AddUint64(&s.Counter.NbrFiles, 1)
 					ligneConc++
 
 					jobs <- compileData{
