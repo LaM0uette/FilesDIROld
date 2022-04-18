@@ -108,6 +108,7 @@ func createTempFiles() {
 		}
 	}
 
+	createFile(filepath.Join(config.DstPath, "words.txt"))
 	createFile(filepath.Join(filepath.Join(config.DstPath, "blacklist"), "__ALL__.txt"))
 	createFile(filepath.Join(filepath.Join(config.DstPath, "whitelist"), "__ALL__.txt"))
 }

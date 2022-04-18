@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="ajout de la boucle de recherceh">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FilesDIR.go" beforeDir="false" afterPath="$PROJECT_DIR$/FilesDIR.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/search.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/search.go" afterDir="false" />
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="ajout d'un recherche par liste de lmots">
+      <change beforePath="$PROJECT_DIR$/loger/loger.go" beforeDir="false" afterPath="$PROJECT_DIR$/loger/loger.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +156,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="correction bug excel loop" />
     <MESSAGE value="refont visuel avec couleurs" />
     <MESSAGE value="REMAKE" />
     <MESSAGE value="Créetion flag" />
@@ -183,7 +180,8 @@
     <MESSAGE value="ajout du worker" />
     <MESSAGE value="préparation de la recherche" />
     <MESSAGE value="ajout de la boucle de recherceh" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout de la boucle de recherceh" />
+    <MESSAGE value="ajout d'un recherche par liste de lmots" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout d'un recherche par liste de lmots" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
