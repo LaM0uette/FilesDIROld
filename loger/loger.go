@@ -14,6 +14,7 @@ var (
 	// logs
 	ui    *log.Logger
 	ok    *log.Logger
+	nok   *log.Logger
 	errr  *log.Logger
 	crash *log.Logger
 
@@ -22,6 +23,7 @@ var (
 
 const (
 	preOk    = "[ -OK- ]"
+	preNok   = "[ -NOK- ]"
 	preErrr  = "[ -ERROR- ]"
 	preCrash = "[ -CRASH- ]"
 )
@@ -42,6 +44,7 @@ func init() {
 
 	ui = log.New(logFile, "", 0)
 	ok = log.New(logFile, preOk+" ", log.Ltime|log.Lmsgprefix)
+	nok = log.New(logFile, preNok+" ", log.Ltime|log.Lmsgprefix)
 	errr = log.New(logFile, preErrr+" ", log.Ltime|log.Lmsgprefix)
 	crash = log.New(logFile, preCrash+" ", log.Ltime|log.Lmsgprefix)
 
@@ -61,6 +64,11 @@ func Void(msg string) {
 func Ok(msg string) {
 	ok.Print(msg)
 	fmt.Print("\r", rgb.GreenBg.Sprint(preOk), rgb.GreenB.Sprint(" ", msg), "\n")
+}
+
+func Nok(msg string) {
+	nok.Print(msg)
+	fmt.Print("\r", rgb.RedBg.Sprint(preNok), rgb.RedB.Sprint(" ", msg), "\n")
 }
 
 func Error(msg string, err any) {

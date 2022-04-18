@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="init compiler">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loger/loger.go" beforeDir="false" afterPath="$PROJECT_DIR$/loger/loger.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/compilerFichesAppuis.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/compilerFichesAppuis.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
