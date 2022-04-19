@@ -355,7 +355,7 @@ func (s *Search) loopFilesWorker() error {
 
 		files, err := ioutil.ReadDir(jobPath)
 		if err != nil {
-			loger.Crash("Crash with this path:", err)
+			loger.Crash("\nCrash with this path:", err)
 			wgSch.Done()
 			return err
 		}

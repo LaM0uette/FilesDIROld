@@ -146,7 +146,7 @@ func (s *Search) worker() {
 			continue
 		}
 
-		loger.Ok(fmt.Sprintf("Fiche %v ajoutée: %s", job.Id, excelFile))
+		loger.Ok(fmt.Sprintf("Fiche %v ajoutée: %s", job.Id, filepath.Base(excelFile)))
 
 		sht := f.Sheets[0]
 
