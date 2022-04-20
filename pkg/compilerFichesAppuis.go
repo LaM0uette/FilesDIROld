@@ -7,6 +7,7 @@ import (
 	"github.com/tealeg/xlsx"
 	"io/ioutil"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"sync"
 	"sync/atomic"
@@ -184,6 +185,9 @@ func (s *Search) worker() {
 		date, _ := sht.Cell(0, 19)
 		pb, _ := sht.Cell(17, 13)
 
+		dateInt, _ := strconv.Atoi(date.Value)
+		//dateDate := ExcelDateToDate(date.Value)
+
 		// insert value
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("A%v", job.Id), excelFile)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("B%v", job.Id), adresse.Value)
@@ -205,7 +209,7 @@ func (s *Search) worker() {
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("R%v", job.Id), commentaireGlobal.Value)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("S%v", job.Id), proxiEnedis.Value)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("T%v", job.Id), idMetier)
-		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("U%v", job.Id), date.Value)
+		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("U%v", job.Id), dateInt)
 		_ = Wb.SetCellValue("Sheet1", fmt.Sprintf("V%v", job.Id), pb.Value)
 
 		rgb1 := effort1.GetStyle().Fill.FgColor

@@ -4,7 +4,9 @@ import (
 	"FilesDIR/config"
 	"FilesDIR/loger"
 	"os"
+	"strconv"
 	"strings"
+	"time"
 )
 
 func GetCurrentDir() string {
@@ -24,4 +26,11 @@ func CleenTempFiles() {
 	_ = os.RemoveAll(config.LogsPath)
 	_ = os.RemoveAll(config.DumpsPath)
 	_ = os.RemoveAll(config.ExportsPath)
+}
+
+func ExcelDateToDate(excelDate string) time.Time {
+
+	excelTime := time.Date(1899, time.December, 30, 0, 0, 0, 0, time.UTC)
+	var days, _ = strconv.Atoi(excelDate)
+	return excelTime.Add(time.Second * time.Duration(days*86400))
 }

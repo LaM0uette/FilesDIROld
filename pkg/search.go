@@ -151,7 +151,7 @@ func (s *Search) initSearch() {
 		go func() {
 			err := s.loopFilesWorker()
 			if err != nil {
-				loger.Error(fmt.Sprintf("Error with worker N°%v", numWorker), err)
+				loger.Errorinf(fmt.Sprintf("Error with worker N°%v", numWorker), err)
 			}
 		}()
 	}
@@ -218,7 +218,7 @@ func (s *Search) setList(file string, val int) {
 		} else if val == 2 {
 			list = "White"
 		}
-		loger.Error(fmt.Sprintf("Error during insert data in %sList:", list), err)
+		loger.Errorinf(fmt.Sprintf("Error during insert data in %sList:", list), err)
 	}
 
 	fileScanner := bufio.NewScanner(readFile)
