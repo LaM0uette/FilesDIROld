@@ -355,7 +355,7 @@ func (s *Search) loopFilesWorker() error {
 
 		files, err := ioutil.ReadDir(jobPath)
 		if err != nil {
-			loger.Crash("\nCrash with this path:", err)
+			loger.Errorinf("Error with this path:", err)
 			wgSch.Done()
 			return err
 		}
@@ -402,7 +402,7 @@ func (s *Search) loopFilesWorker() error {
 func (s *Search) loopDirsWorker(path string) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		loger.Error("Error with this path:", err)
+		loger.Errorinf("Error with this path:", err)
 	}
 
 	go func() {

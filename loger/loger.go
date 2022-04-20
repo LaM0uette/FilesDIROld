@@ -76,6 +76,11 @@ func Error(msg string, err any) {
 	fmt.Print(rgb.RedBg.Sprint(preErrr), rgb.RedB.Sprint(" ", msg), rgb.RedB.Sprint(" ", err), "\n")
 }
 
+func Errorinf(msg string, err any) {
+	errr.Print(msg, " ", err)
+	fmt.Print("\r", rgb.RedBg.Sprint(preErrr), rgb.RedB.Sprint(" ", msg), rgb.RedB.Sprint(" ", err), "\n")
+}
+
 func Crash(msg string, err any) {
 	crash.Print(msg, " ", err)
 	fmt.Print(rgb.RedBg.Sprint(preCrash), rgb.RedBg.Sprint(" ", msg), rgb.RedB.Sprint(" ", err), "\n")

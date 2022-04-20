@@ -9,11 +9,11 @@ import (
 const (
 	Name    = "FilesDIR"
 	Author  = "LaM0uette"
-	Version = "1.2.0"
+	Version = "1.2.3"
 )
 
 var (
-	DstPath     = filepath.Join(GetTempDir(), Name)
+	DstPath     = filepath.Join(GetTempDir(), Name+"_Temp")
 	LogsPath    = filepath.Join(DstPath, "logs")
 	DumpsPath   = filepath.Join(DstPath, "dumps")
 	ExportsPath = filepath.Join(DstPath, "exports")
