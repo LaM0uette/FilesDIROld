@@ -83,8 +83,14 @@ func (s *Search) DrawParam(v ...any) {
 }
 
 func (s *Search) DrawFilesOk(file string) {
-	loger.Ok(fmt.Sprintf("N°%v || Fichier: %s",
-		s.Counter.NbrFiles, file))
+
+	if len(file) < 40 {
+		loger.Ok(fmt.Sprintf("N°%v || Fichier: %s",
+			s.Counter.NbrFiles, file))
+	} else {
+		loger.Ok(fmt.Sprintf("N°%v || Fichier: %s                                           ",
+			s.Counter.NbrFiles, file))
+	}
 }
 
 func (s *Search) DrawFilesSearched() {
