@@ -24,31 +24,31 @@ var (
 	jobs = make(chan compileData)
 )
 
-func (s *Search) CompileFichesAppuis() {
-	s.DrawSep("PARAMETRES")
-	s.DrawParam("INITIALISATION DE LA COMPILATION EN COURS")
+func (flg *SSearch) CompileFichesAppuis() {
+	flg.DrawSep("PARAMETRES")
+	flg.DrawParam("INITIALISATION DE LA COMPILATION EN COURS")
 
-	s.DrawParam("CREATION DE LA FICHE EXCEL")
+	flg.DrawParam("CREATION DE LA FICHE EXCEL")
 
 	createWB()
 
-	s.DrawParam("CREATION DES WORKERS")
+	flg.DrawParam("CREATION DES WORKERS")
 	for w := 1; w <= 400; w++ {
-		go s.worker()
+		go flg.worker()
 	}
 
-	s.DrawSep("COMPILATION")
+	flg.DrawSep("COMPILATION")
 
-	files, err := ioutil.ReadDir(s.SrcPath)
+	files, err := ioutil.ReadDir(flg.SrcPath)
 	if err != nil {
-		loger.Crash("Crash avec ce dossier:", s.SrcPath)
+		loger.Crash("Crash avec ce dossier:", flg.SrcPath)
 	}
 
 	ligneConc := 1
 	for _, file := range files {
 		if !file.IsDir() && !strings.Contains(file.Name(), "__COMPILATION__") {
 
-			excelFile := filepath.Join(s.SrcPath, file.Name())
+			excelFile := filepath.Join(flg.SrcPath, file.Name())
 			f, err := xlsx.OpenFile(excelFile)
 			if err != nil {
 				loger.Error("Error avec ce fichier:", excelFile)
@@ -71,7 +71,7 @@ func (s *Search) CompileFichesAppuis() {
 				go func() {
 					Mu.Lock()
 					wg.Add(1)
-					atomic.AddUint64(&s.Counter.NbrFiles, 1)
+					atomic.AddUint64(&flg.Counter.NbrFiles, 1)
 					ligneConc++
 
 					jobs <- compileData{
@@ -88,14 +88,14 @@ func (s *Search) CompileFichesAppuis() {
 
 	time.Sleep(1 * time.Second)
 
-	s.DrawSep("EXPORT XLSX")
+	flg.DrawSep("EXPORT XLSX")
 
-	if err := Wb.SaveAs(filepath.Join(s.SrcPath, fmt.Sprintf("__COMPILATION__%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
+	if err := Wb.SaveAs(filepath.Join(flg.SrcPath, fmt.Sprintf("__COMPILATION__%v.xlsx", time.Now().Format("20060102150405")))); err != nil {
 		fmt.Println(err)
 	}
 	loger.Ok("Fichier Excel sauvegardé avec succes !")
 
-	s.DrawSep("BILAN")
+	flg.DrawSep("BILAN")
 }
 
 func createWB() {
@@ -132,7 +132,7 @@ func createWB() {
 
 //...
 //WORKER:
-func (s *Search) worker() {
+func (flg *SSearch) worker() {
 	for job := range jobs {
 
 		excelFile := job.path

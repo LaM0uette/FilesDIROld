@@ -25,8 +25,8 @@ const (
 
 // ...
 // FilesDIR
-func (s *Search) DrawStart() {
-	if s.Silent {
+func (flg *SSearch) DrawStart() {
+	if flg.Silent {
 		return
 	}
 
@@ -41,8 +41,8 @@ func (s *Search) DrawStart() {
 	fmt.Print("\n\n")
 }
 
-func (s *Search) DrawEnd() {
-	if s.Silent {
+func (flg *SSearch) DrawEnd() {
+	if flg.Silent {
 		return
 	}
 
@@ -54,8 +54,8 @@ func (s *Search) DrawEnd() {
 	fmt.Print("\n\n")
 }
 
-func (s *Search) DrawParam(v ...any) {
-	if s.Silent {
+func (flg *SSearch) DrawParam(v ...any) {
+	if flg.Silent {
 		return
 	}
 
@@ -82,87 +82,87 @@ func (s *Search) DrawParam(v ...any) {
 		rgb.YellowUB.Sprint(txt), rgb.GreenB.Sprint(arg1), rgb.Gray.Sprint(arg2))
 }
 
-func (s *Search) DrawFilesOk(file string) {
+func (flg *SSearch) DrawFilesOk(file string) {
 
 	if len(file) > 40 {
 		loger.Ok(fmt.Sprintf("N°%v || Fichier: %s",
-			s.Counter.NbrFiles, file))
+			flg.Counter.NbrFiles, file))
 	} else {
 		loger.Ok(fmt.Sprintf("N°%v || Fichier: %s                                           ",
-			s.Counter.NbrFiles, file))
+			flg.Counter.NbrFiles, file))
 	}
 }
 
-func (s *Search) DrawFilesSearched() {
+func (flg *SSearch) DrawFilesSearched() {
 	loger.Void(fmt.Sprintf("Traités: %v || Trouvés: %v || Dossiers: %v",
-		s.Counter.NbrAllFiles, s.Counter.NbrFiles, s.Counter.NbrFolder))
+		flg.Counter.NbrAllFiles, flg.Counter.NbrFiles, flg.Counter.NbrFolder))
 }
 
-func (s *Search) DrawBilanSearch() {
-	if !s.Silent {
+func (flg *SSearch) DrawBilanSearch() {
+	if !flg.Silent {
 		defer time.Sleep(1 * time.Second)
 	}
 
-	s.DrawSep("   BILAN   ")
+	flg.DrawSep("   BILAN   ")
 
 	loger.Ui("INFOS GENERALES:")
-	loger.Ui("  Dossier principale: ", s.SrcPath)
-	loger.Ui("  Requête utilisée: ", s.ReqUse)
-	loger.Ui("  Nombre de Threads: ", s.Process.NbrThreads)
-	loger.Ui("  Nombre de Goroutines: ", s.Process.NbrGoroutines)
+	loger.Ui("  Dossier principale: ", flg.SrcPath)
+	loger.Ui("  Requête utilisée: ", flg.ReqUse)
+	loger.Ui("  Nombre de Threads: ", flg.Process.NbrThreads)
+	loger.Ui("  Nombre de Goroutines: ", flg.Process.NbrGoroutines)
 	loger.Ui("\n")
 	loger.Ui("RESULTATS DE LA RECHERCHE:")
-	loger.Ui("  Fichiers traités: ", s.Counter.NbrAllFiles)
-	loger.Ui("  Fichiers trouvés: ", s.Counter.NbrFiles)
-	loger.Ui("  Temps d'exécution de la recherche: ", s.Timer.SearchEnd)
-	loger.Ui("  Temps d'exécution total: ", s.Timer.AppEnd)
+	loger.Ui("  Fichiers traités: ", flg.Counter.NbrAllFiles)
+	loger.Ui("  Fichiers trouvés: ", flg.Counter.NbrFiles)
+	loger.Ui("  Temps d'exécution de la recherche: ", flg.Timer.SearchEnd)
+	loger.Ui("  Temps d'exécution total: ", flg.Timer.AppEnd)
 	loger.Ui("\n")
 	loger.Ui("EXPORTS:")
-	loger.Ui("  Logs: ", filepath.Join(s.DstPath, "logs"))
-	loger.Ui("  Dumps: ", filepath.Join(s.DstPath, "dumps"))
-	loger.Ui("  Export Excel: ", filepath.Join(s.DstPath, "exports"))
+	loger.Ui("  Logs: ", filepath.Join(flg.DstPath, "logs"))
+	loger.Ui("  Dumps: ", filepath.Join(flg.DstPath, "dumps"))
+	loger.Ui("  Export Excel: ", filepath.Join(flg.DstPath, "exports"))
 
 	fmt.Println(rgb.MajentaBg.Sprint("INFOS GENERALES:"))
-	fmt.Println(rgb.Majenta.Sprint("  Dossier principale:"), rgb.GreenB.Sprint(s.SrcPath))
-	fmt.Println(rgb.Majenta.Sprint("  Requête utilisée:"), rgb.GreenB.Sprint(s.ReqUse))
-	fmt.Println(rgb.Majenta.Sprint("  Nombre de Threads:"), rgb.GreenB.Sprint(s.Process.NbrThreads))
-	fmt.Println(rgb.Majenta.Sprint("  Nombre de Goroutines:"), rgb.GreenB.Sprint(s.Process.NbrGoroutines))
+	fmt.Println(rgb.Majenta.Sprint("  Dossier principale:"), rgb.GreenB.Sprint(flg.SrcPath))
+	fmt.Println(rgb.Majenta.Sprint("  Requête utilisée:"), rgb.GreenB.Sprint(flg.ReqUse))
+	fmt.Println(rgb.Majenta.Sprint("  Nombre de Threads:"), rgb.GreenB.Sprint(flg.Process.NbrThreads))
+	fmt.Println(rgb.Majenta.Sprint("  Nombre de Goroutines:"), rgb.GreenB.Sprint(flg.Process.NbrGoroutines))
 	fmt.Println()
 	fmt.Println(rgb.MajentaBg.Sprint("RESULTATS DE LA RECHERCHE:"))
-	fmt.Println(rgb.Majenta.Sprint("  Fichiers traités:"), rgb.GreenB.Sprint(s.Counter.NbrAllFiles))
-	fmt.Println(rgb.Majenta.Sprint("  Fichiers trouvés:"), rgb.GreenB.Sprint(s.Counter.NbrFiles))
-	fmt.Println(rgb.Majenta.Sprint("  Temps d'exécution de la recherche:"), rgb.GreenB.Sprint(s.Timer.SearchEnd))
-	fmt.Println(rgb.Majenta.Sprint("  Temps d'exécution total:"), rgb.GreenB.Sprint(s.Timer.AppEnd))
+	fmt.Println(rgb.Majenta.Sprint("  Fichiers traités:"), rgb.GreenB.Sprint(flg.Counter.NbrAllFiles))
+	fmt.Println(rgb.Majenta.Sprint("  Fichiers trouvés:"), rgb.GreenB.Sprint(flg.Counter.NbrFiles))
+	fmt.Println(rgb.Majenta.Sprint("  Temps d'exécution de la recherche:"), rgb.GreenB.Sprint(flg.Timer.SearchEnd))
+	fmt.Println(rgb.Majenta.Sprint("  Temps d'exécution total:"), rgb.GreenB.Sprint(flg.Timer.AppEnd))
 	fmt.Println()
 	fmt.Println(rgb.MajentaBg.Sprint("EXPORTS:"))
-	fmt.Println(rgb.Majenta.Sprint("  Logs:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "logs")))
-	fmt.Println(rgb.Majenta.Sprint("  Dumps:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "dumps")))
-	fmt.Println(rgb.Majenta.Sprint("  Export Excel:"), rgb.GreenB.Sprint(filepath.Join(s.DstPath, "exports")))
+	fmt.Println(rgb.Majenta.Sprint("  Logs:"), rgb.GreenB.Sprint(filepath.Join(flg.DstPath, "logs")))
+	fmt.Println(rgb.Majenta.Sprint("  Dumps:"), rgb.GreenB.Sprint(filepath.Join(flg.DstPath, "dumps")))
+	fmt.Println(rgb.Majenta.Sprint("  Export Excel:"), rgb.GreenB.Sprint(filepath.Join(flg.DstPath, "exports")))
 
-	s.DrawSep("    FIN    ")
+	flg.DrawSep("    FIN    ")
 }
 
-func (s *Search) DrawCls() {
+func (flg *SSearch) DrawCls() {
 	loger.Ok(fmt.Sprintf("Dossier %s vidé !", filepath.Base(config.LogsPath)))
 	loger.Ok(fmt.Sprintf("Dossier %s vidé !", filepath.Base(config.DumpsPath)))
 	loger.Ok(fmt.Sprintf("Dossier %s vidé !\n", filepath.Base(config.ExportsPath)))
 
-	loger.Ui(fmt.Sprintf("\nTemps d'exécution: %v\n", s.Timer.AppEnd))
-	loger.Void(fmt.Sprintf("Temps d'exécution: %v\n\n", s.Timer.AppEnd))
+	loger.Ui(fmt.Sprintf("\nTemps d'exécution: %v\n", flg.Timer.AppEnd))
+	loger.Void(fmt.Sprintf("Temps d'exécution: %v\n\n", flg.Timer.AppEnd))
 }
 
-func (s *Search) DrawFichesAppuisCompiled() {
-	loger.Ui(fmt.Sprintf("%v fiches compilées avec succes !", s.Counter.NbrFiles))
-	loger.Void(fmt.Sprintf("%v fiches compilées avec succes !\n", s.Counter.NbrFiles))
+func (flg *SSearch) DrawFichesAppuisCompiled() {
+	loger.Ui(fmt.Sprintf("%v fiches compilées avec succes !", flg.Counter.NbrFiles))
+	loger.Void(fmt.Sprintf("%v fiches compilées avec succes !\n", flg.Counter.NbrFiles))
 
-	loger.Ui(fmt.Sprintf("Temps d'exécution: %v\n\n", s.Timer.AppEnd))
-	loger.Void(fmt.Sprintf("Temps d'exécution: %v\n\n", s.Timer.AppEnd))
+	loger.Ui(fmt.Sprintf("Temps d'exécution: %v\n\n", flg.Timer.AppEnd))
+	loger.Void(fmt.Sprintf("Temps d'exécution: %v\n\n", flg.Timer.AppEnd))
 }
 
 // ...
 // Ui
-func (s *Search) DrawSep(name string) {
-	if s.Silent {
+func (flg *SSearch) DrawSep(name string) {
+	if flg.Silent {
 		return
 	}
 

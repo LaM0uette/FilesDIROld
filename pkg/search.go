@@ -17,58 +17,6 @@ import (
 	"time"
 )
 
-type Timer struct {
-	AppStart time.Time
-	AppEnd   time.Duration
-
-	SearchStart time.Time
-	SearchEnd   time.Duration
-}
-
-type Counter struct {
-	NbrFiles    uint64
-	NbrAllFiles uint64
-
-	NbrFolder uint64
-}
-
-type Process struct {
-	NbrThreads    int
-	NbrGoroutines int
-}
-
-type Search struct {
-
-	// Flags
-	Cls      bool
-	Compiler bool
-
-	//..
-	Mode      string
-	Word      string
-	Ext       string
-	PoolSize  int
-	Maj       bool
-	Devil     bool
-	Silent    bool
-	WordsList bool
-	BlackList bool
-	WhiteList bool
-
-	// Search
-	SrcPath string
-	DstPath string
-	ReqUse  string
-
-	// Data
-	ListWords     []string
-	ListBlackList []string
-	ListWhiteList []string
-	Timer         *Timer
-	Counter       *Counter
-	Process       *Process
-}
-
 var (
 	wgSch   sync.WaitGroup
 	jobsSch = make(chan string)
@@ -77,79 +25,79 @@ var (
 
 //...
 // Functions
-func (s *Search) RunSearch() {
-	s.initSearch()
+func (flg *SSearch) RunSearch() {
+	flg.initSearch()
 
-	s.DrawSep("RECHERCHES")
-	s.Timer.SearchStart = time.Now()
+	flg.DrawSep("RECHERCHES")
+	flg.Timer.SearchStart = time.Now()
 
-	s.loopDirsWorker(s.SrcPath)
+	flg.loopDirsWorker(flg.SrcPath)
 
 	wgSch.Wait()
 
 	fmt.Print("\r                                                                                                 ")
 
-	s.Timer.SearchEnd = time.Since(s.Timer.SearchStart)
+	flg.Timer.SearchEnd = time.Since(flg.Timer.SearchStart)
 
 	time.Sleep(1 * time.Millisecond)
 
-	s.DrawSep("EXPORT XLSX")
-	if !s.Silent {
+	flg.DrawSep("EXPORT XLSX")
+	if !flg.Silent {
 		RunWritter()
 	} else {
 		print("\n")
 	}
 }
 
-func (s *Search) initSearch() {
-	s.DrawSep("PARAMETRES")
+func (flg *SSearch) initSearch() {
+	flg.DrawSep("PARAMETRES")
 
-	s.DrawParam("INITIALISATION DE LA RECHERCHE EN COURS")
+	flg.DrawParam("INITIALISATION DE LA RECHERCHE EN COURS")
 
 	// Construct variable of search
-	s.ReqUse = s.getReqOfSearched()
-	if !s.Maj {
-		s.Word = StrToLower(s.Word)
+	flg.ReqUse = flg.getReqOfSearched()
+	if !flg.Maj {
+		flg.Word = StrToLower(flg.Word)
 	}
-	s.Ext = fmt.Sprintf(".%s", s.Ext)
+	flg.Ext = fmt.Sprintf(".%s", flg.Ext)
 
 	// Add WhiteList / BlackList
-	if s.WordsList {
-		s.setList(filepath.Join(s.DstPath, "words.txt"), 0)
-		s.DrawParam(fmt.Sprintf("WORDS: %v", s.ListWords))
+	if flg.WordsList {
+		flg.setList(filepath.Join(flg.DstPath, "words.txt"), 0)
+		flg.DrawParam(fmt.Sprintf("WORDS: %v", flg.ListWords))
 	}
-	if s.BlackList {
-		blPath := filepath.Join(s.DstPath, "blacklist")
-		s.setList(filepath.Join(blPath, "__ALL__.txt"), 1)
+	if flg.BlackList {
+		blPath := filepath.Join(flg.DstPath, "blacklist")
+		flg.setList(filepath.Join(blPath, "__ALL__.txt"), 1)
 
-		file := filepath.Join(blPath, fmt.Sprintf("%s.txt", StrToLower(s.Word)))
+		file := filepath.Join(blPath, fmt.Sprintf("%s.txt", StrToLower(flg.Word)))
 		if _, err := os.Stat(file); err == nil {
-			s.setList(file, 1)
+			flg.setList(file, 1)
 		}
 
-		s.DrawParam(fmt.Sprintf("BLACKLIST: %v", s.ListBlackList))
+		flg.DrawParam(fmt.Sprintf("BLACKLIST: %v", flg.ListBlackList))
 	}
-	if s.WhiteList {
-		wlPath := filepath.Join(s.DstPath, "whitelist")
-		s.setList(filepath.Join(wlPath, "__ALL__.txt"), 2)
+	if flg.WhiteList {
+		wlPath := filepath.Join(flg.DstPath, "whitelist")
+		flg.setList(filepath.Join(wlPath, "__ALL__.txt"), 2)
 
-		file := filepath.Join(wlPath, fmt.Sprintf("%s.txt", StrToLower(s.Word)))
+		file := filepath.Join(wlPath, fmt.Sprintf("%s.txt", StrToLower(flg.Word)))
 		if _, err := os.Stat(file); err == nil {
-			s.setList(file, 2)
+			flg.setList(file, 2)
 		}
 
-		s.DrawParam(fmt.Sprintf("WHITELIST: %v", s.ListWhiteList))
+		flg.DrawParam(fmt.Sprintf("WHITELIST: %v", flg.ListWhiteList))
 	}
 
 	// Check basics configurations
-	s.checkMinimumPoolSize()
-	s.setMaxThread()
+	flg.checkMinimumPoolSize()
+	flg.setMaxThread()
 
 	// Creation of workers for search
-	for w := 1; w <= s.PoolSize; w++ {
+	for w := 1; w <= flg.PoolSize; w++ {
 		numWorker := w
 		go func() {
-			err := s.loopFilesWorker()
+			err := flg.loopFilesWorker()
 			if err != nil {
 				loger.Errorinf(fmt.Sprintf("Error with worker N°%v", numWorker), err)
 			}
@@ -160,56 +108,56 @@ func (s *Search) initSearch() {
 	loger.Semicolon("id;Fichier;Date;Lien_Fichier;Lien")
 }
 
-func (s *Search) getReqOfSearched() string {
+func (flg *SSearch) getReqOfSearched() string {
 
 	req := "FilesDIR"
 
-	if !s.Cls && !s.Compiler {
-		req += fmt.Sprintf(" -mode=%s", s.Mode)
+	if !flg.Cls && !flg.Compiler {
+		req += fmt.Sprintf(" -mode=%s", flg.Mode)
 
-		if s.Word != "" {
-			req += fmt.Sprintf(" -word=%s", s.Word)
+		if flg.Word != "" {
+			req += fmt.Sprintf(" -word=%s", flg.Word)
 		}
 
-		if s.Ext != "" {
-			req += fmt.Sprintf(" -ext=%s", s.Ext)
+		if flg.Ext != "" {
+			req += fmt.Sprintf(" -ext=%s", flg.Ext)
 		}
 
-		req += fmt.Sprintf(" -poolsize=%v", s.PoolSize)
+		req += fmt.Sprintf(" -poolsize=%v", flg.PoolSize)
 
-		if s.Maj {
+		if flg.Maj {
 			req += " -maj"
 		}
 
-		if s.Devil {
+		if flg.Devil {
 			req += " -devil"
 		}
 
-		if s.BlackList {
+		if flg.BlackList {
 			req += " -b"
 		}
 
-		if s.WhiteList {
+		if flg.WhiteList {
 			req += " -w"
 		}
 	}
 
-	if s.Cls {
+	if flg.Cls {
 		req += " -cls"
-	} else if s.Compiler {
+	} else if flg.Compiler {
 		req += " -c"
 	}
 
-	if s.Silent {
+	if flg.Silent {
 		req += " -s"
 	}
 
-	s.DrawParam(fmt.Sprintf("REQUETE UTILISEE: %s", req))
+	flg.DrawParam(fmt.Sprintf("REQUETE UTILISEE: %s", req))
 
 	return req
 }
 
-func (s *Search) setList(file string, val int) {
+func (flg *SSearch) setList(file string, val int) {
 	readFile, err := os.Open(file)
 	if err != nil {
 		list := "Words"
@@ -227,38 +175,38 @@ func (s *Search) setList(file string, val int) {
 	for fileScanner.Scan() {
 		switch val {
 		case 0:
-			s.ListWords = append(s.ListWords, fileScanner.Text())
+			flg.ListWords = append(flg.ListWords, fileScanner.Text())
 		case 1:
-			s.ListWhiteList = append(s.ListWhiteList, fileScanner.Text())
+			flg.ListWhiteList = append(flg.ListWhiteList, fileScanner.Text())
 		case 2:
-			s.ListWhiteList = append(s.ListWhiteList, fileScanner.Text())
+			flg.ListWhiteList = append(flg.ListWhiteList, fileScanner.Text())
 		}
 
 	}
 	_ = readFile.Close()
 }
 
-func (s *Search) checkMinimumPoolSize() {
-	if s.PoolSize < 2 {
-		s.PoolSize = 2
-		s.DrawParam("POOLSIZE MISE A", strconv.Itoa(s.PoolSize), "(ne peut pas être inférieur)")
+func (flg *SSearch) checkMinimumPoolSize() {
+	if flg.PoolSize < 2 {
+		flg.PoolSize = 2
+		flg.DrawParam("POOLSIZE MISE A", strconv.Itoa(flg.PoolSize), "(ne peut pas être inférieur)")
 	} else {
-		s.DrawParam("POOLSIZE MISE A", strconv.Itoa(s.PoolSize))
+		flg.DrawParam("POOLSIZE MISE A", strconv.Itoa(flg.PoolSize))
 	}
 }
 
-func (s *Search) setMaxThread() {
-	maxThr := s.PoolSize * 500
+func (flg *SSearch) setMaxThread() {
+	maxThr := flg.PoolSize * 500
 	debug.SetMaxThreads(maxThr)
-	s.Process.NbrThreads = maxThr
+	flg.Process.NbrThreads = maxThr
 
-	s.DrawParam("THREADS MIS A", strconv.Itoa(maxThr))
+	flg.DrawParam("THREADS MIS A", strconv.Itoa(maxThr))
 }
 
-func (s *Search) isInWordsList(f string) bool {
-	for _, word := range s.ListWords {
+func (flg *SSearch) isInWordsList(f string) bool {
+	for _, word := range flg.ListWords {
 
-		if !s.Maj {
+		if !flg.Maj {
 			f = StrToLower(f)
 			word = StrToLower(word)
 		}
@@ -270,8 +218,8 @@ func (s *Search) isInWordsList(f string) bool {
 	return false
 }
 
-func (s *Search) isInBlackList(f string) bool {
-	for _, word := range s.ListBlackList {
+func (flg *SSearch) isInBlackList(f string) bool {
+	for _, word := range flg.ListBlackList {
 		if strings.Contains(StrToLower(f), StrToLower(word)) {
 			return true
 		}
@@ -279,8 +227,8 @@ func (s *Search) isInBlackList(f string) bool {
 	return false
 }
 
-func (s *Search) isInWhiteList(f string) bool {
-	for _, word := range s.ListWhiteList {
+func (flg *SSearch) isInWhiteList(f string) bool {
+	for _, word := range flg.ListWhiteList {
 		if strings.Contains(StrToLower(f), StrToLower(word)) {
 			return true
 		}
@@ -288,46 +236,46 @@ func (s *Search) isInWhiteList(f string) bool {
 	return false
 }
 
-func (s *Search) checkFileSearched(file string) bool {
+func (flg *SSearch) checkFileSearched(file string) bool {
 	name := file[:strings.LastIndex(file, path.Ext(file))]
 	ext := StrToLower(filepath.Ext(file))
 
-	if !s.Maj {
+	if !flg.Maj {
 		name = StrToLower(name)
 	}
 
 	//TODO: Tout refaire avec du REGEX
 
 	// condition of search Mode ( = | % | ^ | $ )
-	switch s.Mode {
+	switch flg.Mode {
 	case "%":
-		if s.WordsList {
-			return s.isInWordsList(name)
+		if flg.WordsList {
+			return flg.isInWordsList(name)
 		} else {
-			if !strings.Contains(name, s.Word) {
+			if !strings.Contains(name, flg.Word) {
 				return false
 			}
 		}
 	case "=":
-		if name != s.Word {
+		if name != flg.Word {
 			return false
 		}
 	case "^":
-		if !strings.HasPrefix(name, s.Word) {
+		if !strings.HasPrefix(name, flg.Word) {
 			return false
 		}
 	case "$":
-		if !strings.HasSuffix(name, s.Word) {
+		if !strings.HasSuffix(name, flg.Word) {
 			return false
 		}
 	default:
-		if !strings.Contains(name, s.Word) {
+		if !strings.Contains(name, flg.Word) {
 			return false
 		}
 	}
 
 	// condition of extension file
-	if s.Ext != ".*" && ext != s.Ext {
+	if flg.Ext != ".*" && ext != flg.Ext {
 		return false
 	}
 
@@ -341,14 +289,14 @@ func (s *Search) checkFileSearched(file string) bool {
 
 //...
 // WORKER:
-func (s *Search) loopFilesWorker() error {
+func (flg *SSearch) loopFilesWorker() error {
 	for jobPath := range jobsSch {
 
-		if s.BlackList && s.isInBlackList(jobPath) {
+		if flg.BlackList && flg.isInBlackList(jobPath) {
 			wgSch.Done()
 			continue
 		}
-		if s.WhiteList && !s.isInWhiteList(jobPath) {
+		if flg.WhiteList && !flg.isInWhiteList(jobPath) {
 			wgSch.Done()
 			continue
 		}
@@ -362,18 +310,18 @@ func (s *Search) loopFilesWorker() error {
 
 		for _, file := range files {
 			if !file.IsDir() {
-				if s.checkFileSearched(file.Name()) {
+				if flg.checkFileSearched(file.Name()) {
 					Mu.Lock()
-					atomic.AddUint64(&s.Counter.NbrFiles, 1)
+					atomic.AddUint64(&flg.Counter.NbrFiles, 1)
 
-					if !s.Silent {
-						s.DrawFilesOk(file.Name())
+					if !flg.Silent {
+						flg.DrawFilesOk(file.Name())
 					}
 
-					loger.Semicolon(fmt.Sprintf("%v;%s;%s;%s;%s", s.Counter.NbrFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(jobPath, file.Name()), jobPath))
+					loger.Semicolon(fmt.Sprintf("%v;%s;%s;%s;%s", flg.Counter.NbrFiles, file.Name(), file.ModTime().Format("02-01-2006 15:04:05"), filepath.Join(jobPath, file.Name()), jobPath))
 
 					data := Export{
-						Id:       int(s.Counter.NbrFiles),
+						Id:       int(flg.Counter.NbrFiles),
 						File:     file.Name(),
 						Date:     file.ModTime().Format("02-01-2006 15:04:05"),
 						PathFile: filepath.Join(jobPath, file.Name()),
@@ -384,22 +332,22 @@ func (s *Search) loopFilesWorker() error {
 					//  TODO: Ajouter les mode -S dans le drawings pour les prints
 					Mu.Unlock()
 				}
-				atomic.AddUint64(&s.Counter.NbrAllFiles, 1)
+				atomic.AddUint64(&flg.Counter.NbrAllFiles, 1)
 
-				if runtime.NumGoroutine() > s.Process.NbrGoroutines {
-					s.Process.NbrGoroutines = runtime.NumGoroutine()
+				if runtime.NumGoroutine() > flg.Process.NbrGoroutines {
+					flg.Process.NbrGoroutines = runtime.NumGoroutine()
 				}
 			} else {
-				atomic.AddUint64(&s.Counter.NbrFolder, 1)
+				atomic.AddUint64(&flg.Counter.NbrFolder, 1)
 			}
-			s.DrawFilesSearched()
+			flg.DrawFilesSearched()
 		}
 		wgSch.Done()
 	}
 	return nil
 }
 
-func (s *Search) loopDirsWorker(path string) {
+func (flg *SSearch) loopDirsWorker(path string) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		loger.Errorinf("Error with this path:", err)
@@ -412,11 +360,11 @@ func (s *Search) loopDirsWorker(path string) {
 
 	for _, file := range files {
 		if file.IsDir() {
-			if s.Devil {
+			if flg.Devil {
 				time.Sleep(20 * time.Millisecond)
-				go s.loopDirsWorker(filepath.Join(path, file.Name()))
+				go flg.loopDirsWorker(filepath.Join(path, file.Name()))
 			} else {
-				s.loopDirsWorker(filepath.Join(path, file.Name()))
+				flg.loopDirsWorker(filepath.Join(path, file.Name()))
 			}
 		}
 	}
