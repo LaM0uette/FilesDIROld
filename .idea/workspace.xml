@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="1.2.5">
+    <list default="true" id="979b7eed-bcd8-4bdb-b699-9de9d26ae912" name="Changes" comment="debut du nettoyagfe main app">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,28 +43,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/XD5965/go/src/FilesDIR&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "C:/Users/XD5965/go/src/GoMap",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\XD5965\go\src\FilesDIR\pkg" />
@@ -74,7 +74,16 @@
       <recent name="C:\Users\XD5965\go\src\FilesDIR\docs" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestRunSearch in FilesDIR/pkg (2)">
+  <component name="RunManager" selected="Go Build.go build FilesDIR">
+    <configuration name="go build FilesDIR" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="FilesDIR" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="FilesDIR" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/FilesDIR.go" />
+      <method v="2" />
+    </configuration>
     <configuration name="TestGetCurrentDir in FilesDIR/pkg" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FilesDIR" />
       <working_directory value="$PROJECT_DIR$/pkg" />
@@ -119,23 +128,13 @@
       <pattern value="^\QTestRunSearch\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="go test FilesDIR/pkg" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="FilesDIR" />
-      <working_directory value="$PROJECT_DIR$/pkg" />
-      <kind value="PACKAGE" />
-      <package value="FilesDIR/pkg" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build FilesDIR" />
         <item itemvalue="Go Test.TestRunSearch in FilesDIR/pkg (2)" />
         <item itemvalue="Go Test.TestGetCurrentDir in FilesDIR/pkg" />
         <item itemvalue="Go Test.TestRunSearch in FilesDIR/pkg (1)" />
         <item itemvalue="Go Test.TestRunSearch in FilesDIR/pkg" />
-        <item itemvalue="Go Test.go test FilesDIR/pkg" />
       </list>
     </recent_temporary>
   </component>
@@ -156,7 +155,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="ajout d'une whitelist" />
     <MESSAGE value="modif constuct req" />
     <MESSAGE value="add log err + timer" />
     <MESSAGE value="add search worker" />
@@ -181,7 +179,8 @@
     <MESSAGE value="up doc" />
     <MESSAGE value="correction espace msg OK" />
     <MESSAGE value="1.2.5" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.2.5" />
+    <MESSAGE value="debut du nettoyagfe main app" />
+    <option name="LAST_COMMIT_MESSAGE" value="debut du nettoyagfe main app" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
