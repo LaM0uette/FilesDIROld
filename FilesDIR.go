@@ -50,7 +50,7 @@ func GetFlags() *pkg.SSearch {
 	// Flag of search
 	FlgMode := flag.String("mode", "%", "Mode de recherche") //fait
 	FlgWord := flag.String("word", "", "Non de fichier")     //fait
-	FlgExt := flag.String("ext", "*", "Ext de fichier")
+	FlgExt := flag.String("ext", "*", "Ext de fichier")      //fait
 	FlgPoolSize := flag.Int("poolsize", 10, "Nombre de tâches en simultanées")
 
 	// Flag of criteral of search
